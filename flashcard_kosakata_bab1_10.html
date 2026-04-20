@@ -1,0 +1,85 @@
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Flashcard Kosakata Bab 1-7</title>
+  <link rel="stylesheet" href="flashcard_kosakata_bab1_10.css">
+</head>
+<body>
+
+<div class="fc-wrap">
+  <div class="header">
+    <h1>🎌 Kosakata Jepang</h1>
+    <span class="header-subtitle">Bab 1-7: Kosakata | Kanji N5 dipisah</span>
+  </div>
+  
+  <div class="tab-row">
+    <button class="tab active" data-mode="flash" onclick="setMode('flash')">🎴 Flashcard</button>
+    <button class="tab" data-mode="grid" onclick="setMode('grid')">📋 Semua Kata</button>
+    <button class="tab" data-mode="auto" onclick="setMode('auto')">🔊 Auto Voice</button>
+  </div>
+  
+  <div class="controls">
+    <select id="catFilter" onchange="filterCards()">
+      <option value="">Semua Bab</option>
+      <option value="Bab 1">Bab 1 – Perkenalan</option>
+      <option value="Bab 2">Bab 2 – Benda</option>
+      <option value="Bab 3">Bab 3 – Tempat</option>
+      <option value="Bab 4">Bab 4 – Waktu & Jam</option>
+      <option value="Bab 5">Bab 5 – Transportasi</option>
+      <option value="Bab 6">Bab 6 – Aktivitas & Makanan</option>
+      <option value="Bab 7">Bab 7 – Memberi, Menerima, & Benda</option>
+      <option value="Kanji N5">Kanji N5 (Terpisah)</option>
+    </select>
+    <input id="search" type="text" placeholder="Cari kata..." oninput="filterCards()" />
+    <span class="stats" id="stats"></span>
+  </div>
+
+  <div id="flashMode">
+    <div class="card-area">
+      <div class="flashcard" onclick="flipCard()" id="fc">
+        <div class="card-front" id="front">
+          <div class="card-jp" id="fcJp"></div>
+          <div class="card-hint">Ketuk untuk melihat arti</div>
+        </div>
+        <div class="card-back" id="back">
+          <div class="card-id" id="fcRomaji"></div>
+          <div class="card-meaning" id="fcMeaning"></div>
+          <div class="card-cat" id="fcCat"></div>
+        </div>
+      </div>
+      <div class="stroke-panel" id="strokePanel">
+        <div class="stroke-header">Animasi Stroke Order Kanji</div>
+        <div id="strokeTarget">Memuat...</div>
+        <div class="stroke-actions">
+          <button class="stroke-btn" onclick="replayStrokeAnimation()">▶ Ulangi Animasi</button>
+        </div>
+        <div class="stroke-note" id="strokeNote">Stroke order akan berjalan otomatis saat ganti kartu kanji.</div>
+      </div>
+      <div class="nav-row">
+        <button onclick="prev()">← Prev</button>
+        <span class="progress" id="prog"></span>
+        <button onclick="next()">Next →</button>
+      </div>
+      <div class="nav-row">
+        <button onclick="speakCurrentCard()">🔊 Baca: Jepang lalu arti</button>
+      </div>
+      <div class="nav-row">
+        <button id="reverseBtn" onclick="toggleReverseMode()">↔ Reverse: OFF (Jepang dulu)</button>
+      </div>
+      <div class="header-subtitle" id="autoVoiceStatus" style="text-align:center; margin-top:4px;"></div>
+      <button class="shuffle-btn" onclick="shuffle()">🔀 Acak Urutan (tanpa kanji)</button>
+    </div>
+  </div>
+
+  <div id="gridMode" style="display:none;">
+    <div class="grid-view" id="gridContainer"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
+<script src="database.js"></script>
+<script src="flashcard_kosakata_bab1_10.js"></script>
+
+</body>
+</html>
