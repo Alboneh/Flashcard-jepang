@@ -313,18 +313,33 @@ const bunpoDatabase = [
   },
   {
     pattern: "K.Benda は K.Sifat な です / K.Benda は K.Sifat い です",
-    explanation: "Predikat sifat: na-adjective butuh な saat menerangkan kata benda, dan です saat jadi predikat. i-adjective langsung + です.",
+    explanation: "Predikat sifat: na-adjective memakai です saat jadi predikat, i-adjective langsung + です. Catatan: ada kata berakhiran い yang tetap termasuk na-adjective, misalnya きれい (綺麗) dan ゆうめい (有名).",
     examples: [
       "この へや は しずか です。",
+      "この まち は きれい です。 (きれい tetap na-adjective)",
+      "あの ひと は ゆうめい です。 (ゆうめい tetap na-adjective)",
       "この ほん は おもしろい です。"
     ]
   },
   {
     pattern: "K.Sifat な + K.Benda / K.Sifat い + K.Benda",
-    explanation: "Sifat langsung menerangkan kata benda. Na-adjective wajib pakai な.",
+    explanation: "Sifat langsung menerangkan kata benda. Na-adjective wajib pakai な. Termasuk pengecualian berakhiran い seperti きれい dan ゆうめい yang tetap memakai な.",
     examples: [
       "しんせつな ひと です。",
+      "きれいな へや です。",
+      "ゆうめいな だいがく です。",
       "あたらしい くるま です。"
+    ]
+  },
+  {
+    pattern: "Bentuk negatif sifat: な-adjective / い-adjective",
+    explanation: "Bentuk negatif na-adjective: [K.Sifat な] じゃ ありません. Bentuk negatif i-adjective: [K.Sifat い] -> [K.Sifat くない] です.",
+    examples: [
+      "この へや は しずか じゃ ありません。",
+      "この まち は きれい じゃ ありません。 (きれい = na-adjective)",
+      "あの ひと は ゆうめい じゃ ありません。 (ゆうめい = na-adjective)",
+      "この ほん は おもしろくない です。",
+      "この くるま は たかくない です。"
     ]
   },
   {

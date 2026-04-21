@@ -84,13 +84,60 @@ input {
   padding: 16px;
 }
 
+.helper-card h2 {
+  margin: 0 0 8px;
+}
+
+.helper-card p {
+  margin: 0;
+  color: var(--muted);
+}
+
+.helper-grid {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  font-size: 14px;
+}
+
 .item h3 {
-  margin: 0 0 6px;
+  margin: 0;
+  font-size: 13px;
+  color: #3a4660;
 }
 
 .item p {
   margin: 6px 0;
   color: var(--muted);
+}
+
+.item .pattern-main {
+  margin-top: 8px;
+  font-size: 20px;
+  color: var(--text);
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.item .easy-read,
+.item .core-meaning {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.item .easy-read {
+  background: #f3f7ff;
+  border: 1px solid #dfe9ff;
+  color: #2c3d64;
+}
+
+.item .core-meaning {
+  background: #f7fbf4;
+  border: 1px solid #dfead4;
+  color: #2f4d2c;
 }
 
 .item ul {
@@ -101,6 +148,17 @@ input {
 .item li {
   margin: 6px 0;
   line-height: 1.5;
+}
+
+.item .ex-jp {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.item .ex-id {
+  color: #4d5d7a;
+  font-size: 13px;
+  margin-top: 2px;
 }
 
 @media (max-width: 640px) {
