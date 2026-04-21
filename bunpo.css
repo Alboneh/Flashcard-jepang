@@ -1,0 +1,110 @@
+:root {
+  --bg: #f5f7fb;
+  --panel: #ffffff;
+  --text: #1a1f2b;
+  --muted: #5b6475;
+  --line: #d9deea;
+  --accent: #1f6feb;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 60%);
+  color: var(--text);
+}
+
+.page {
+  width: min(920px, 92vw);
+  margin: 24px auto 40px;
+}
+
+.top {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+h1 {
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--muted);
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.controls {
+  margin-top: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 14px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
+input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  font-size: 15px;
+}
+
+.card,
+.item {
+  margin-top: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 16px;
+}
+
+.item h3 {
+  margin: 0 0 6px;
+}
+
+.item p {
+  margin: 6px 0;
+  color: var(--muted);
+}
+
+.item ul {
+  margin: 8px 0 0 18px;
+  color: var(--text);
+}
+
+.item li {
+  margin: 6px 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 640px) {
+  .page {
+    width: 94vw;
+  }
+}

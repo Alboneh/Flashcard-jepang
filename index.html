@@ -10,7 +10,12 @@
 <div class="fc-wrap">
   <div class="header">
     <h1>🎌 Kosakata Jepang</h1>
-    <span class="header-subtitle">Bab 1-8: Kosakata | Kanji N5 dipisah</span>
+    <span class="header-subtitle">Bab 1-8: Kosakata</span>
+    <div class="page-nav" aria-label="Navigasi halaman belajar">
+      <a class="page-nav-link active" href="index.html">Kosakata</a>
+      <a class="page-nav-link" href="bunpo.html">Bunpo</a>
+      <a class="page-nav-link" href="kanji.html">Kanji</a>
+    </div>
   </div>
   
   <div class="tab-row">
@@ -30,7 +35,6 @@
       <option value="Bab 6">Bab 6 – Aktivitas & Makanan</option>
       <option value="Bab 7">Bab 7 – Memberi, Menerima, & Benda</option>
       <option value="Bab 8">Bab 8 – Sifat, Kehidupan, & Ungkapan</option>
-      <option value="Kanji N5">Kanji N5 (Terpisah)</option>
     </select>
     <input id="search" type="text" placeholder="Cari kata..." oninput="filterCards()" />
     <span class="stats" id="stats"></span>
@@ -49,14 +53,6 @@
           <div class="card-cat" id="fcCat"></div>
         </div>
       </div>
-      <div class="stroke-panel" id="strokePanel">
-        <div class="stroke-header">Animasi Stroke Order Kanji</div>
-        <div id="strokeTarget">Memuat...</div>
-        <div class="stroke-actions">
-          <button class="stroke-btn" onclick="replayStrokeAnimation()">▶ Ulangi Animasi</button>
-        </div>
-        <div class="stroke-note" id="strokeNote">Stroke order akan berjalan otomatis saat ganti kartu kanji.</div>
-      </div>
       <div class="nav-row">
         <button onclick="prev()">← Prev</button>
         <span class="progress" id="prog"></span>
@@ -69,7 +65,7 @@
         <button id="reverseBtn" onclick="toggleReverseMode()">↔ Reverse: OFF (Jepang dulu)</button>
       </div>
       <div class="header-subtitle" id="autoVoiceStatus" style="text-align:center; margin-top:4px;"></div>
-      <button class="shuffle-btn" onclick="shuffle()">🔀 Acak Urutan (tanpa kanji)</button>
+      <button class="shuffle-btn" onclick="shuffle()">🔀 Acak Urutan</button>
     </div>
   </div>
 
@@ -78,7 +74,6 @@
   </div>
 </div>
 
-<script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
 <script src="database.js"></script>
 <script src="flashcard_kosakata_bab1_10.js"></script>
 

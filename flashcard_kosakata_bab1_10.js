@@ -1,10 +1,4 @@
 
-for (const v of vocab) {
-  if (v.type === 'kanji' && v.cat === 'Bab 6') {
-    v.cat = 'Kanji N5';
-  }
-}
-
 let filtered = [...vocab];
 let idx = 0;
 let flipped = false;
@@ -184,7 +178,6 @@ function filterCards() {
 }
 
 function renderCard() {
-  const strokePanel = document.getElementById('strokePanel');
   document.querySelector('.card-hint').textContent = reverseMode ? 'Ketuk untuk melihat Jepang' : 'Ketuk untuk melihat arti';
 
   if(!filtered.length) {
@@ -193,7 +186,7 @@ function renderCard() {
     document.getElementById('fcMeaning').textContent = 'Tidak ada kata';
     document.getElementById('fcCat').textContent = '';
     document.getElementById('prog').textContent = '0 / 0';
-    strokePanel.style.display = 'none';
+    updateStrokePanel(null, false);
     return;
   }
   const v = filtered[idx];
@@ -226,6 +219,10 @@ function updateStrokePanel(v, isKanji) {
   const panel = document.getElementById('strokePanel');
   const note = document.getElementById('strokeNote');
   const target = document.getElementById('strokeTarget');
+
+  if(!panel || !note || !target) {
+    return;
+  }
 
   if(!isKanji) {
     panel.style.display = 'none';
@@ -360,13 +357,10 @@ function startAutoVoice(restart) {
 }
 
 function shuffle() {
-  const nonKanji = filtered.filter(v => v.type !== 'kanji');
-  const kanji = filtered.filter(v => v.type === 'kanji');
-  for(let i=nonKanji.length-1;i>0;i--){
+  for(let i=filtered.length-1;i>0;i--){
     const j=Math.floor(Math.random()*(i+1));
-    [nonKanji[i],nonKanji[j]]=[nonKanji[j],nonKanji[i]];
+    [filtered[i],filtered[j]]=[filtered[j],filtered[i]];
   }
-  filtered = [...nonKanji, ...kanji];
   idx=0;
   renderCard();
 }

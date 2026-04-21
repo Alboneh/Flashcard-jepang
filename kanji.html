@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kanji yang Sudah Dipelajari</title>
+  <link rel="stylesheet" href="kanji.css">
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <h1>Kanji yang Sudah Dipelajari</h1>
+      <p class="subtitle">Halaman khusus daftar kanji, onyomi, kunyomi, arti, dan contoh.</p>
+      <nav class="nav-links">
+        <a href="index.html">Kembali ke Kosakata</a>
+        <a href="bunpo.html">Buka Halaman Bunpo</a>
+      </nav>
+    </header>
+
+    <section class="controls">
+      <label for="kanjiSearch">Cari kanji</label>
+      <input id="kanjiSearch" type="text" placeholder="Contoh: 日, いち, air" />
+    </section>
+
+    <section class="card stroke-panel" id="strokePanel">
+      <h2>Stroke Order</h2>
+      <p id="strokeSelected">Pilih kanji untuk melihat urutan goresan.</p>
+      <div id="strokeTarget">-</div>
+      <button type="button" id="replayStrokeBtn">Ulangi Animasi</button>
+    </section>
+
+    <section class="card" id="kanjiEmptyState">
+      <h2>Belum ada data kanji</h2>
+      <p>List kanji akan dimasukkan setelah kamu kirim data.</p>
+    </section>
+
+    <section class="grid" id="kanjiList" aria-live="polite"></section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
+  <script src="kanji_database.js"></script>
+  <script src="kanji.js"></script>
+</body>
+</html>

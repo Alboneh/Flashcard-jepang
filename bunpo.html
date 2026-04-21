@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bunpo Jepang</title>
+  <link rel="stylesheet" href="bunpo.css">
+</head>
+<body>
+  <main class="page">
+    <header class="top">
+      <h1>Bunpo Jepang</h1>
+      <p class="subtitle">Halaman khusus penjelasan pola tata bahasa dan contohnya.</p>
+      <nav class="nav-links">
+        <a href="index.html">Kembali ke Kosakata</a>
+        <a href="kanji.html">Buka Halaman Kanji</a>
+      </nav>
+    </header>
+
+    <section class="controls">
+      <label for="bunpoSearch">Cari bunpo</label>
+      <input id="bunpoSearch" type="text" placeholder="Contoh: wa, ga, desu" />
+    </section>
+
+    <section class="card" id="bunpoEmptyState">
+      <h2>Belum ada data bunpo</h2>
+      <p>List bunpo akan dimasukkan setelah kamu kirim data.</p>
+    </section>
+
+    <section class="list" id="bunpoList" aria-live="polite"></section>
+  </main>
+
+  <script src="bunpo_database.js"></script>
+  <script src="bunpo.js"></script>
+</body>
+</html>
