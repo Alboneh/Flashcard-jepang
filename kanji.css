@@ -162,7 +162,10 @@ input {
   border-radius: 6px;
   font-size: 13px;
   color: #2d4a2f;
-  line-height: 1.5;
+  line-height: 1.6;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: normal;
 }
 
 .mnemonic-label {
@@ -221,5 +224,10 @@ input {
 
   .tile .main {
     font-size: 36px;
+  }
+
+  .mnemonic {
+    font-size: 12.5px;
+    padding: 8px 9px;
   }
 }
