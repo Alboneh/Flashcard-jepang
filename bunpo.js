@@ -168,11 +168,25 @@ function parseExample(exampleText) {
   };
 }
 
+function getBabByIndex(index) {
+  if (index <= 5) return 'Bab 1';
+  if (index <= 10) return 'Bab 2';
+  if (index <= 16) return 'Bab 3';
+  if (index <= 22) return 'Bab 4';
+  if (index <= 26) return 'Bab 5';
+  if (index <= 35) return 'Bab 6';
+  if (index <= 38) return 'Bab 7';
+  if (index <= 46) return 'Bab 8';
+  return 'Bab 9';
+}
+
 function renderBunpo() {
   const q = normalize(bunpoSearch.value);
-  const filtered = bunpoDatabase.filter((item) => {
+  const filtered = bunpoDatabase.filter((item, index) => {
+    const bab = getBabByIndex(index);
     return (
       !q ||
+      normalize(bab).includes(q) ||
       normalize(item.pattern).includes(q) ||
       normalize(item.explanation).includes(q) ||
       (item.examples || []).some((ex) => normalize(ex).includes(q))
@@ -191,10 +205,15 @@ function renderBunpo() {
       const rawPattern = item.pattern || '-';
       const easyPattern = expandShorthand(rawPattern);
       const easyExplanation = simplifyExplanation(item.explanation || '-');
+      const dataIndex = bunpoDatabase.indexOf(item);
+      const bab = getBabByIndex(dataIndex);
 
       return `
         <article class="item">
-          <h3>Pola Asli</h3>
+          <div class="item-top">
+            <h3>Pola Asli</h3>
+            <span class="bab-badge">${escapeHtml(bab)}</span>
+          </div>
           <p class="pattern-main">${escapeHtml(rawPattern)}</p>
           <p class="easy-read"><strong>Cara Baca:</strong> ${escapeHtml(easyPattern)}</p>
           <p class="core-meaning"><strong>Penjelasan Gampang:</strong> ${escapeHtml(easyExplanation)}</p>

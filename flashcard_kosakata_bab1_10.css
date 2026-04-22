@@ -1,6 +1,11 @@
     * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --kanji-bg: #f7f8f4;
+    }
+
     body { 
-      background: #000;
+      background: linear-gradient(180deg, #fbfff7 0%, var(--kanji-bg) 60%);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       min-height: 100vh;
       padding: 10px;

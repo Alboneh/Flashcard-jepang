@@ -381,5 +381,56 @@ const bunpoDatabase = [
       "あなた の かばん は どれ ですか。",
       "どれ が すき ですか。"
     ]
+  },
+  {
+    pattern: "K.Benda が あります / わかります",
+    explanation: "Bab 9: Partikel が dipakai untuk objek pada あります dan わかります. あります menyatakan keberadaan/kepemilikan benda, わかります menyatakan paham atau tidak paham.",
+    examples: [
+      "わたし は おかね が あります。 (Saya memiliki uang.)",
+      "わたし は げつようび に やくそく が あります。 (Saya ada janji di hari Senin.)",
+      "わたし は にほんご が わかります。 (Saya paham bahasa Jepang.)",
+      "わたし は えいご が わかりません。 (Saya tidak paham bahasa Inggris.)"
+    ]
+  },
+  {
+    pattern: "K.Benda が すきです / きらいです / じょうずです / へたです",
+    explanation: "Bab 9: Dipakai untuk menyatakan suka/tidak suka dan pandai/tidak pandai terhadap suatu hal. Objeknya ditandai partikel が.",
+    examples: [
+      "わたし は スポーツ が すき です。 (Saya suka olahraga.)",
+      "おかあさん は やきゅう が きらい です。 (Ibu tidak suka baseball.)",
+      "サントスさん は りょうり が じょうず です。 (Santos pandai memasak.)",
+      "わたし は すうがく が へた です。 (Saya tidak pandai matematika.)"
+    ]
+  },
+  {
+    pattern: "よく / だいたい / たくさん / すこし / あまり / ぜんぜん + K.Kerja",
+    explanation: "Bab 9: Kata keterangan diletakkan di depan kata kerja. よく/だいたい/たくさん/すこし umumnya untuk kalimat positif. あまり dan ぜんぜん dipakai dengan kalimat negatif.",
+    examples: [
+      "ジョンさん は スペインご が よく わかります。 (John memahami bahasa Spanyol dengan baik.)",
+      "タワポンさん は おかね が たくさん あります。 (Tawapon mempunyai banyak uang.)",
+      "まつもとさん は ドイツご が ぜんぜん わかりません。 (Matsumoto sama sekali tidak mengerti bahasa Jerman.)",
+      "ここ は もり が あまり ありません。 (Di sini tidak begitu banyak hutan.)"
+    ]
+  },
+  {
+    pattern: "Kalimat 1 から、Kalimat 2",
+    explanation: "Bab 9: から berarti karena/sebab. Kalimat 1 berisi alasan, kalimat 2 berisi akibat atau keputusan.",
+    examples: [
+      "いそがしい です から、テレビ を みません。 (Tidak menonton TV, karena sibuk.)",
+      "にほんご が わかりません から、アニメ を みません。 (Tidak menonton anime, karena tidak paham bahasa Jepang.)",
+      "じかん が ありません から、りょこう を しません。 (Tidak bertamasya, karena tidak ada waktu.)"
+    ]
+  },
+  {
+    pattern: "どうして + Kalimat? / ... から",
+    explanation: "Bab 9: どうして dipakai untuk menanyakan alasan. Jawaban biasanya diakhiri から.",
+    examples: [
+      "どうして きょうと へ いきませんか。 (Mengapa tidak pergi ke Kyoto?)",
+      "やくそく が あります から。 (Karena ada janji.)",
+      "どうして あさ しんぶん を よみませんか。 (Mengapa tidak baca koran saat pagi?)",
+      "じかん が ありません から。 (Karena tidak ada waktu.)",
+      "どうして はやく かえりますか。 (Mengapa pulang lebih awal?)",
+      "こども の たんじょうび です から。 (Karena anak saya ulang tahun.)"
+    ]
   }
 ];

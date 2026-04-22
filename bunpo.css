@@ -1,5 +1,5 @@
 :root {
-  --bg: #f5f7fb;
+  --bg: #f7f8f4;
   --panel: #ffffff;
   --text: #1a1f2b;
   --muted: #5b6475;
@@ -14,7 +14,7 @@
 body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(180deg, #f8fbff 0%, var(--bg) 60%);
+  background: linear-gradient(180deg, #fbfff7 0%, var(--bg) 60%);
   color: var(--text);
 }
 
@@ -105,6 +105,26 @@ input {
   margin: 0;
   font-size: 13px;
   color: #3a4660;
+}
+
+.item-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.bab-badge {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid #cfdaf1;
+  background: #f1f6ff;
+  color: #31548f;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 999px;
+  padding: 4px 10px;
+  white-space: nowrap;
 }
 
 .item p {
