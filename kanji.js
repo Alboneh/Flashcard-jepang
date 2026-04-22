@@ -107,7 +107,8 @@ function renderKanji() {
       normalize(item.onyomi).includes(q) ||
       normalize(item.kunyomi).includes(q) ||
       normalize(item.meaning).includes(q) ||
-      normalize(item.example).includes(q)
+      normalize(item.example).includes(q) ||
+      normalize(item.mnemonic).includes(q)
     );
   });
 
@@ -126,6 +127,7 @@ function renderKanji() {
           <p>Kunyomi: ${escapeHtml(item.kunyomi || '-')}</p>
           <p>Arti: ${escapeHtml(item.meaning || '-')}</p>
           <p>Contoh: ${escapeHtml(item.example || '-')}</p>
+          ${item.mnemonic ? `<div class="mnemonic"><span class="mnemonic-label">💡 Gambaran:</span> ${escapeHtml(item.mnemonic)}</div>` : ''}
         </article>
       `;
     })
