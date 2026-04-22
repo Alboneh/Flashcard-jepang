@@ -4,11 +4,11 @@ const kanjiEmptyState = document.getElementById('kanjiEmptyState');
 const strokePanel = document.getElementById('strokePanel');
 const strokeSelected = document.getElementById('strokeSelected');
 const strokeTarget = document.getElementById('strokeTarget');
-const replayStrokeBtn = document.getElementById('replayStrokeBtn');
 let filteredKanji = [...kanjiDatabase];
 let selectedKanjiIndex = 0;
 let strokeWriter = null;
 let currentStrokeKanji = '';
+let loopGeneration = 0;
 
 function isMobileView() {
   return window.matchMedia('(max-width: 640px)').matches;
@@ -58,15 +58,47 @@ function updateStrokePanel(item) {
     });
   }
 
-  strokeWriter.animateCharacter();
+  loopGeneration++;
+  const gen = loopGeneration;
+  function loopAnimation() {
+    if (gen !== loopGeneration) return;
+    strokeWriter.animateCharacter({
+      onComplete: () => {
+        if (gen !== loopGeneration) return;
+        setTimeout(() => {
+          if (gen !== loopGeneration) return;
+          loopAnimation();
+        }, 1200);
+      }
+    });
+  }
+  loopAnimation();
 }
 
 function bindTileActions() {
   const tiles = kanjiList.querySelectorAll('.tile');
   tiles.forEach((tile) => {
-    tile.addEventListener('click', () => {
+    tile.addEventListener('click', (e) => {
+      if (e.target.closest('.mnemonic-toggle')) return;
       const index = Number(tile.dataset.index || 0);
       selectKanji(index, true);
+    });
+  });
+
+  kanjiList.querySelectorAll('.mnemonic-toggle').forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const box = btn.nextElementSibling;
+      const isOpen = btn.getAttribute('aria-expanded') === 'true';
+      if (isOpen) {
+        box.hidden = true;
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = '💡 Lihat Gambaran';
+      } else {
+        box.hidden = false;
+        btn.setAttribute('aria-expanded', 'true');
+        btn.textContent = '❌ Sembunyikan Gambaran';
+      }
     });
   });
 }
@@ -127,7 +159,9 @@ function renderKanji() {
           <p>Kunyomi: ${escapeHtml(item.kunyomi || '-')}</p>
           <p>Arti: ${escapeHtml(item.meaning || '-')}</p>
           <p>Contoh: ${escapeHtml(item.example || '-')}</p>
-          ${item.mnemonic ? `<div class="mnemonic"><span class="mnemonic-label">💡 Gambaran:</span> ${escapeHtml(item.mnemonic)}</div>` : ''}
+          ${item.mnemonic ? `
+          <button type="button" class="mnemonic-toggle" aria-expanded="false">💡 Lihat Gambaran</button>
+          <div class="mnemonic" hidden><span class="mnemonic-label">Gambaran:</span> ${escapeHtml(item.mnemonic)}</div>` : ''}
         </article>
       `;
     })
@@ -137,12 +171,6 @@ function renderKanji() {
   bindTileActions();
   selectKanji(selectedKanjiIndex, false);
 }
-
-replayStrokeBtn.addEventListener('click', () => {
-  if (strokeWriter) {
-    strokeWriter.animateCharacter();
-  }
-});
 
 kanjiSearch.addEventListener('input', renderKanji);
 renderKanji();
