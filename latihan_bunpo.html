@@ -1,0 +1,64 @@
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan Bunpo Jepang</title>
+  <link rel="stylesheet" href="latihan.css">
+</head>
+<body>
+
+<div class="fc-wrap">
+  <div class="header">
+    <h1>📝 Latihan Bunpo</h1>
+    <span class="header-subtitle">Latihan kaiwa nyata: situasi, respons, dan partikel</span>
+    <div class="page-nav" aria-label="Navigasi halaman belajar">
+      <a class="page-nav-link" href="index.html">Kosakata</a>
+      <a class="page-nav-link" href="bunpo.html">Bunpo</a>
+      <a class="page-nav-link" href="kanji.html">Kanji</a>
+      <a class="page-nav-link" href="latihan.html">Latihan Vocab</a>
+      <a class="page-nav-link" href="latihan_kanji.html">Latihan Kanji</a>
+      <a class="page-nav-link active" href="latihan_bunpo.html">Latihan Bunpo</a>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="header-subtitle" style="text-align:left; margin-bottom:12px;">Semua bab otomatis dipakai.</div>
+    <div class="header-subtitle" style="text-align:left;">Mode tetap: isi partikel pada kalimat kaiwa.</div>
+  </div>
+
+  <div id="exerciseContainer" style="display:none;">
+    <div class="question-card">
+      <div class="corner-bab" id="cornerBab">Bab 1</div>
+      <div class="progress-bar">
+        <span id="progressText">0/0</span>
+        <div class="progress-line"><div id="progressFill" class="progress-fill"></div></div>
+      </div>
+
+      <div class="question-area">
+        <div class="question-label" id="questionLabel">Soal Bunpo</div>
+        <div class="question-content bunpo-question" id="questionContent">...</div>
+      </div>
+
+      <div id="multipleChoiceMode">
+        <div class="options-grid" id="optionsGrid"></div>
+      </div>
+
+      <div id="feedbackArea" style="display:none;" class="feedback-area">
+        <div id="feedbackContent"></div>
+        <button onclick="nextQuestion()" class="next-btn">Soal Berikutnya -></button>
+      </div>
+    </div>
+
+    <div class="stats-area">
+      <div class="stat-item"><span class="stat-label">Benar</span><span class="stat-value" id="correctCount">0</span></div>
+      <div class="stat-item"><span class="stat-label">Salah</span><span class="stat-value" id="wrongCount">0</span></div>
+      <div class="stat-item"><span class="stat-label">Akurasi</span><span class="stat-value" id="accuracyRate">0%</span></div>
+    </div>
+  </div>
+
+</div>
+
+<script src="bunpo_database.js"></script>
+<script src="latihan_bunpo.js"></script>
+</body>
+</html>

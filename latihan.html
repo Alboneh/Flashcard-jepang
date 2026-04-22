@@ -1,0 +1,144 @@
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan Kosakata Jepang</title>
+  <link rel="stylesheet" href="latihan.css">
+</head>
+<body>
+
+<div class="fc-wrap">
+  <div class="header">
+    <h1>📝 Latihan Kosakata</h1>
+    <span class="header-subtitle">Uji kemampuanmu</span>
+    <div class="page-nav" aria-label="Navigasi halaman belajar">
+      <a class="page-nav-link" href="index.html">Kosakata</a>
+      <a class="page-nav-link" href="bunpo.html">Bunpo</a>
+      <a class="page-nav-link" href="kanji.html">Kanji</a>
+      <a class="page-nav-link active" href="latihan.html">Latihan Vocab</a>
+      <a class="page-nav-link" href="latihan_kanji.html">Latihan Kanji</a>
+      <a class="page-nav-link" href="latihan_bunpo.html">Latihan Bunpo</a>
+    </div>
+  </div>
+
+  <div class="controls">
+    <div class="bab-selection">
+      <label class="bab-label">Pilih Bab (bisa lebih dari satu):</label>
+      <div class="bab-grid">
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 1" onchange="startNewExercise()">
+          <span>Bab 1 – Perkenalan</span>
+        </label>
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 2" onchange="startNewExercise()">
+          <span>Bab 2 – Benda</span>
+        </label>
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 3" onchange="startNewExercise()">
+          <span>Bab 3 – Tempat</span>
+        </label>
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 4" onchange="startNewExercise()">
+          <span>Bab 4 – Waktu & Jam</span>
+        </label>
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 5" onchange="startNewExercise()">
+          <span>Bab 5 – Transportasi</span>
+        </label>
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 6" onchange="startNewExercise()">
+          <span>Bab 6 – Aktivitas & Makanan</span>
+        </label>
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 7" onchange="startNewExercise()">
+          <span>Bab 7 – Memberi, Menerima, & Benda</span>
+        </label>
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 8" onchange="startNewExercise()">
+          <span>Bab 8 – Sifat, Kehidupan, & Ungkapan</span>
+        </label>
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 9" onchange="startNewExercise()">
+          <span>Bab 9 - Kesukaan dan Kemahiran</span>
+        </label>
+      </div>
+    </div>
+    <div class="question-type-row">
+      <label>
+        <input type="radio" name="questionType" value="campur" checked onchange="startNewExercise()">
+        <span>Campur</span>
+      </label>
+      <label>
+        <input type="radio" name="questionType" value="jp-to-id" onchange="startNewExercise()">
+        <span>Jepang → Arti</span>
+      </label>
+      <label>
+        <input type="radio" name="questionType" value="id-to-jp" onchange="startNewExercise()">
+        <span>Arti → Jepang</span>
+      </label>
+    </div>
+  </div>
+
+  <div id="exerciseContainer" style="display: none;">
+    <div class="question-card">
+      <div class="progress-bar">
+        <span id="progressText">0/0</span>
+        <div class="progress-line">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+      </div>
+      <div class="question-area">
+        <div class="question-label" id="questionLabel">Apa artinya?</div>
+        <div class="question-content" id="questionContent">くつ（靴）</div>
+      </div>
+
+      <div id="multipleChoiceMode">
+        <div class="options-grid" id="optionsGrid"></div>
+      </div>
+
+      <div id="textInputMode" style="display:none;">
+        <div class="text-input-area">
+          <input 
+            type="text" 
+            id="answerInput" 
+            class="answer-input" 
+            placeholder="Ketik jawabanmu..." 
+            onkeypress="handleKeyPress(event)"
+            autocomplete="off"
+          >
+          <button onclick="submitTextAnswer()" class="submit-btn">Kirim Jawaban</button>
+        </div>
+      </div>
+
+      <div id="feedbackArea" style="display:none;" class="feedback-area">
+        <div id="feedbackContent"></div>
+        <button onclick="nextQuestion()" class="next-btn">Soal Berikutnya →</button>
+      </div>
+    </div>
+
+    <div class="stats-area">
+      <div class="stat-item">
+        <span class="stat-label">Benar</span>
+        <span class="stat-value" id="correctCount">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Salah</span>
+        <span class="stat-value" id="wrongCount">0</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-label">Tingkat Akurasi</span>
+        <span class="stat-value" id="accuracyRate">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <div id="noDataMessage" style="display:none;" class="no-data-message">
+    <p>Silakan pilih minimal satu Bab untuk memulai latihan</p>
+  </div>
+</div>
+
+<script src="database.js"></script>
+<script src="latihan.js"></script>
+
+</body>
+</html>
