@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>速読漢字 — Belajar Kanji Cepat</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1108;
+    --paper: #f5f0e8;
+    --aged: #e8dfc8;
+    --red: #c0392b;
+    --blue: #1a4a7a;
+    --gold: #b8860b;
+    --faded: #8a7a6a;
+    --green: #2d6a4f;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Noto Sans JP', sans-serif;
+    min-height: 100vh;
+    background-image: 
+      repeating-linear-gradient(0deg, transparent, transparent 31px, rgba(139,119,99,0.08) 31px, rgba(139,119,99,0.08) 32px),
+      repeating-linear-gradient(90deg, transparent, transparent 31px, rgba(139,119,99,0.05) 31px, rgba(139,119,99,0.05) 32px);
+  }
+
+  header {
+    text-align: center;
+    padding: 2rem 1rem 1rem;
+    border-bottom: 2px solid var(--ink);
+    position: relative;
+  }
+
+  header::after {
+    content: '';
+    display: block;
+    height: 4px;
+    background: var(--red);
+    margin-top: 4px;
+  }
+
+  .title-jp {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    letter-spacing: 0.2em;
+    color: var(--ink);
+  }
+
+  .title-sub {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--faded);
+    font-size: 1rem;
+    margin-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  .tip-banner {
+    background: var(--blue);
+    color: #e8f0f8;
+    text-align: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.82rem;
+    letter-spacing: 0.03em;
+  }
+
+  .tip-banner strong { color: #ffd700; }
+
+  /* NAV TABS */
+  .tabs {
+    display: flex;
+    justify-content: center;
+    gap: 0;
+    padding: 1.2rem 1rem 0;
+    border-bottom: 2px solid var(--ink);
+    overflow-x: auto;
+  }
+
+  .tab {
+    padding: 0.5rem 1.2rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    border: 2px solid var(--ink);
+    border-bottom: none;
+    cursor: pointer;
+    background: var(--aged);
+    color: var(--faded);
+    transition: all 0.15s;
+    white-space: nowrap;
+    margin-right: -2px;
+  }
+
+  .tab.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  .tab:hover:not(.active) { background: var(--ink); color: var(--paper); }
+
+  /* MAIN CONTENT */
+  .section { display: none; padding: 1.5rem 1rem 3rem; max-width: 700px; margin: 0 auto; }
+  .section.active { display: block; }
+
+  /* FLASHCARD */
+  .progress-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .progress-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--aged);
+    border: 1px solid var(--ink);
+  }
+
+  .progress-fill {
+    height: 100%;
+    background: var(--red);
+    transition: width 0.3s ease;
+  }
+
+  .progress-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--faded);
+    min-width: 50px;
+    text-align: right;
+  }
+
+  .level-select {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    flex-wrap: wrap;
+  }
+
+  .level-btn {
+    padding: 0.3rem 0.9rem;
+    border: 1.5px solid var(--ink);
+    background: transparent;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .level-btn.active { background: var(--red); color: white; border-color: var(--red); }
+  .level-btn:hover:not(.active) { background: var(--ink); color: var(--paper); }
+
+  .card-container {
+    perspective: 1000px;
+    margin-bottom: 1.2rem;
+  }
+
+  .card {
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+    transform-style: preserve-3d;
+    transition: transform 0.5s cubic-bezier(0.4,0,0.2,1);
+    cursor: pointer;
+  }
+
+  .card.flipped { transform: rotateY(180deg); }
+
+  .card-face {
+    position: absolute;
+    inset: 0;
+    backface-visibility: hidden;
+    border: 2px solid var(--ink);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: white;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+
+  .card-back { transform: rotateY(180deg); background: var(--aged); }
+
+  .kanji-main {
+    font-family: 'Noto Serif JP', serif;
+    font-size: clamp(5rem, 20vw, 8rem);
+    line-height: 1;
+    color: var(--ink);
+    text-shadow: 2px 2px 0 rgba(192,57,43,0.15);
+    margin-bottom: 0.5rem;
+  }
+
+  .hint-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--faded);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .back-content { text-align: center; width: 100%; }
+
+  .meaning-main {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 0.8rem;
+  }
+
+  .reading-row {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .reading-badge {
+    padding: 0.25rem 0.7rem;
+    border: 1.5px solid;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+  }
+
+  .on-badge { border-color: var(--red); color: var(--red); }
+  .kun-badge { border-color: var(--blue); color: var(--blue); }
+
+  .vocab-list { text-align: left; width: 100%; }
+
+  .vocab-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dashed rgba(0,0,0,0.15);
+    font-size: 0.88rem;
+  }
+
+  .vocab-item:last-child { border-bottom: none; }
+
+  .vocab-kanji {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    min-width: 60px;
+    color: var(--ink);
+  }
+
+  .vocab-reading {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--faded);
+    min-width: 80px;
+  }
+
+  .vocab-meaning { color: var(--ink); font-size: 0.83rem; }
+
+  .card-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn {
+    padding: 0.55rem 1.3rem;
+    border: 2px solid var(--ink);
+    background: transparent;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.15s;
+    text-transform: uppercase;
+  }
+
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn.btn-know { border-color: var(--green); color: var(--green); }
+  .btn.btn-know:hover { background: var(--green); color: white; }
+  .btn.btn-forget { border-color: var(--red); color: var(--red); }
+  .btn.btn-forget:hover { background: var(--red); color: white; }
+
+  .stats-row {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .stat-pill {
+    padding: 0.3rem 0.8rem;
+    border: 1.5px solid var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  .stat-pill.green { border-color: var(--green); color: var(--green); }
+  .stat-pill.red { border-color: var(--red); color: var(--red); }
+
+  /* GUIDE SECTION */
+  .guide-block {
+    border: 2px solid var(--ink);
+    padding: 1.2rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    background: white;
+  }
+
+  .guide-block::before {
+    content: attr(data-num);
+    position: absolute;
+    top: -14px;
+    left: 12px;
+    background: var(--red);
+    color: white;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    padding: 0.1rem 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .guide-block h3 {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: var(--ink);
+  }
+
+  .guide-block p, .guide-block li {
+    font-size: 0.88rem;
+    line-height: 1.7;
+    color: #3a3028;
+  }
+
+  .guide-block ul { padding-left: 1.2rem; }
+  .guide-block li { margin-bottom: 0.3rem; }
+
+  .compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 0.8rem;
+    font-size: 0.82rem;
+  }
+
+  .compare-table th {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 0.4rem 0.7rem;
+    text-align: left;
+    font-family: 'DM Mono', monospace;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+  }
+
+  .compare-table td {
+    padding: 0.4rem 0.7rem;
+    border-bottom: 1px solid var(--aged);
+    vertical-align: top;
+  }
+
+  .compare-table tr:nth-child(even) td { background: var(--aged); }
+
+  .tag {
+    display: inline-block;
+    padding: 0.1rem 0.4rem;
+    font-size: 0.68rem;
+    font-family: 'DM Mono', monospace;
+    border: 1px solid;
+    margin-right: 0.2rem;
+  }
+
+  .tag.on { border-color: var(--red); color: var(--red); }
+  .tag.kun { border-color: var(--blue); color: var(--blue); }
+  .tag.vocab { border-color: var(--green); color: var(--green); }
+
+  /* STROKE ORDER SECTION */
+  .stroke-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+    gap: 1rem;
+  }
+
+  .stroke-card {
+    border: 2px solid var(--ink);
+    padding: 0.8rem;
+    text-align: center;
+    background: white;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .stroke-card:hover { background: var(--ink); color: var(--paper); }
+  .stroke-card:hover .stroke-kanji { color: var(--paper); }
+
+  .stroke-kanji {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 2.5rem;
+    display: block;
+    color: var(--ink);
+  }
+
+  .stroke-info {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--faded);
+    margin-top: 0.3rem;
+    letter-spacing: 0.05em;
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    border: 2px dashed var(--faded);
+  }
+
+  .empty-kanji {
+    font-family: 'Noto Serif JP', serif;
+    font-size: 4rem;
+    color: var(--faded);
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+
+  .empty-msg {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    color: var(--faded);
+  }
+
+  /* PAGE NAV */
+  .page-nav-link {
+    text-decoration: none;
+    padding: 0.35rem 0.8rem;
+    border: 1.5px solid var(--ink);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+
+  .page-nav-link:hover,
+  .page-nav-link.active {
+    background: var(--ink);
+    color: var(--paper);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 480px) {
+    .card-face { padding: 1rem; }
+    .reading-row { gap: 0.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="title-jp">速読漢字</div>
+  <div class="title-sub">Belajar Kanji Efisien — Vocabulary First</div>
+  <nav class="page-nav" aria-label="Navigasi halaman belajar" style="display:flex;flex-wrap:wrap;gap:0.6rem;justify-content:center;margin-top:1rem;">
+    <a class="page-nav-link" href="index.html">Kosakata</a>
+    <a class="page-nav-link" href="bunpo.html">Bunpo</a>
+    <a class="page-nav-link" href="kanji.html">Kanji</a>
+    <a class="page-nav-link active" href="kanji-belajar.html">Belajar Kanji</a>
+    <a class="page-nav-link" href="latihan.html">Latihan Vocab</a>
+    <a class="page-nav-link" href="latihan_kanji.html">Latihan Kanji</a>
+    <a class="page-nav-link" href="latihan_bunpo.html">Latihan Bunpo</a>
+  </nav>
+</header>
+
+<div class="tip-banner">
+  💡 Strategi terbaik: <strong>Hafal kosakata dulu</strong> → onyomi/kunyomi akan mengikuti secara alami
+</div>
+
+<div class="tabs">
+  <button class="tab active" onclick="switchTab('flashcard')">⚡ Flashcard</button>
+  <button class="tab" onclick="switchTab('guide')">📖 Metode</button>
+  <button class="tab" onclick="switchTab('radicals')">🔑 Radikal</button>
+</div>
+
+<!-- FLASHCARD SECTION -->
+<div class="section active" id="sec-flashcard">
+
+  <div class="level-select">
+    <button class="level-btn active" onclick="setLevel('n5')">N5</button>
+    <button class="level-btn" onclick="setLevel('n4')">N4</button>
+    <button class="level-btn" onclick="setLevel('n3')">N3 (soon)</button>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-pill green">✓ Hafal: <span id="stat-know">0</span></div>
+    <div class="stat-pill red">✗ Perlu latihan: <span id="stat-forget">0</span></div>
+  </div>
+
+  <div class="progress-bar-wrap">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width:0%"></div></div>
+    <div class="progress-text" id="progress-text">0 / 0</div>
+  </div>
+
+  <div class="card-container">
+    <div class="card" id="main-card" onclick="flipCard()">
+      <div class="card-face card-front">
+        <div class="kanji-main" id="card-kanji">日</div>
+        <div class="hint-text">— klik untuk lihat arti —</div>
+      </div>
+      <div class="card-face card-back">
+        <div class="back-content">
+          <div class="meaning-main" id="card-meaning">Matahari / Hari</div>
+          <div class="reading-row">
+            <div class="reading-badge on-badge" id="card-on">ニチ・ジツ</div>
+            <div class="reading-badge kun-badge" id="card-kun">ひ・か</div>
+          </div>
+          <div class="vocab-list" id="card-vocab"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-actions" id="card-actions-flip">
+    <button class="btn btn-know" onclick="markCard(true)">✓ Hafal</button>
+    <button class="btn btn-forget" onclick="markCard(false)">✗ Ulangi</button>
+    <button class="btn" onclick="nextCard()">→ Lewati</button>
+  </div>
+
+  <div id="done-state" style="display:none">
+    <div class="empty-state">
+      <span class="empty-kanji">完</span>
+      <div class="empty-msg">Semua kartu selesai! Keren sekali 👏</div>
+      <br>
+      <button class="btn" onclick="resetDeck()">↺ Mulai Ulang</button>
+    </div>
+  </div>
+
+</div>
+
+<!-- GUIDE SECTION -->
+<div class="section" id="sec-guide">
+
+  <div class="guide-block" data-num="STRATEGI UTAMA">
+    <h3>Kenapa kosakata dulu, bukan onyomi/kunyomi?</h3>
+    <p>Otak manusia lebih mudah mengingat sesuatu dalam konteks. Kalau kamu hafal <strong>日曜日</strong> (Nichiyōbi = hari Minggu) terlebih dulu, otomatis kamu tahu bahwa 日 bisa berbunyi <em>nichi</em> dan <em>bi</em>. Jauh lebih mudah daripada hafal daftar bunyi tanpa makna.</p>
+  </div>
+
+  <div class="guide-block" data-num="CARA BACA">
+    <h3>Kapan pakai Onyomi vs Kunyomi?</h3>
+    <table class="compare-table">
+      <thead>
+        <tr><th>Jenis</th><th>Kapan dipakai</th><th>Contoh</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag on">ON</span><br>Onyomi<br><small>(bunyi China)</small></td>
+          <td>Gabungan 2+ kanji (kosakata serapan/formal)</td>
+          <td>日本 <small>Nihon</small><br>食事 <small>Shokuji</small></td>
+        </tr>
+        <tr>
+          <td><span class="tag kun">KUN</span><br>Kunyomi<br><small>(bunyi Jepang asli)</small></td>
+          <td>Kanji sendirian atau dengan hiragana (okurigana)</td>
+          <td>日 <small>hi</small><br>食べる <small>taberu</small></td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <p><strong>Trik cepat:</strong> Kalau ada 2 kanji berjajar → kemungkinan besar onyomi. Kalau ada hiragana setelahnya → kemungkinan kunyomi.</p>
+  </div>
+
+  <div class="guide-block" data-num="PRIORITAS HAFALAN">
+    <h3>Urutan Belajar yang Efisien</h3>
+    <ul>
+      <li><strong>1. Radikal (部首)</strong> — pola visual kanji. Hafal ~30 radikal penting, ribuan kanji jadi lebih mudah diingat.</li>
+      <li><strong>2. Kosakata konteks</strong> — belajar kanji lewat kata yang sering muncul (bukan kanji sendirian).</li>
+      <li><strong>3. Onyomi/Kunyomi</strong> — pelajari SAAT kamu menemukan kata baru, bukan sebagai hafalan tersendiri.</li>
+      <li><strong>4. Spaced Repetition</strong> — ulangi kartu yang kamu lupa lebih sering (gunakan Anki untuk ini).</li>
+    </ul>
+  </div>
+
+  <div class="guide-block" data-num="TARGET KANJI">
+    <h3>Berapa kanji yang perlu dihafal?</h3>
+    <ul>
+      <li><strong>N5</strong> — ~100 kanji. Cukup untuk turis dan percakapan dasar.</li>
+      <li><strong>N4</strong> — ~300 kanji. Bisa baca teks sederhana.</li>
+      <li><strong>N3</strong> — ~650 kanji. Bisa baca manga dan artikel ringan.</li>
+      <li><strong>N2</strong> — ~1000 kanji. Hampir setara kemampuan SMA Jepang.</li>
+      <li><strong>Joyo Kanji</strong> — 2136 kanji. Standar literasi Jepang.</li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- RADICALS SECTION -->
+<div class="section" id="sec-radicals">
+
+  <div class="guide-block" data-num="KENAPA RADIKAL">
+    <h3>Radikal = kunci membongkar kanji</h3>
+    <p>Kebanyakan kanji adalah kombinasi dari bentuk-bentuk dasar (radikal). Kalau kamu tahu <strong>氵</strong> (air) dan <strong>木</strong> (pohon), kamu bisa menebak kanji baru yang mengandung keduanya berkaitan dengan hal tersebut.</p>
+  </div>
+
+  <div class="stroke-grid" id="radical-grid"></div>
+
+</div>
+
+<script>
+// ===== DATA =====
+const kanjiData = {
+  n5: [
+    { kanji: '日', meaning: 'Matahari / Hari', on: 'ニチ・ジツ', kun: 'ひ・か',
+      vocab: [['日曜日','にちようび','Hari Minggu'],['毎日','まいにち','Setiap hari'],['今日','きょう','Hari ini']] },
+    { kanji: '月', meaning: 'Bulan / Bulan kalender', on: 'ゲツ・ガツ', kun: 'つき',
+      vocab: [['月曜日','げつようび','Hari Senin'],['来月','らいげつ','Bulan depan'],['月見','つきみ','Melihat bulan']] },
+    { kanji: '火', meaning: 'Api', on: 'カ', kun: 'ひ',
+      vocab: [['火曜日','かようび','Hari Selasa'],['火事','かじ','Kebakaran'],['花火','はなび','Kembang api']] },
+    { kanji: '水', meaning: 'Air', on: 'スイ', kun: 'みず',
+      vocab: [['水曜日','すいようび','Hari Rabu'],['水泳','すいえい','Renang'],['お水','おみず','Air (sopan)']] },
+    { kanji: '木', meaning: 'Pohon / Kayu', on: 'モク・ボク', kun: 'き・こ',
+      vocab: [['木曜日','もくようび','Hari Kamis'],['木村','きむら','Kimura (nama)'],['大木','たいぼく','Pohon besar']] },
+    { kanji: '金', meaning: 'Emas / Uang', on: 'キン・コン', kun: 'かね・かな',
+      vocab: [['金曜日','きんようび','Hari Jumat'],['お金','おかね','Uang'],['金色','きんいろ','Warna emas']] },
+    { kanji: '土', meaning: 'Tanah', on: 'ド・ト', kun: 'つち',
+      vocab: [['土曜日','どようび','Hari Sabtu'],['土地','とち','Tanah / Lahan'],['土産','みやげ','Oleh-oleh']] },
+    { kanji: '山', meaning: 'Gunung', on: 'サン', kun: 'やま',
+      vocab: [['富士山','ふじさん','Gunung Fuji'],['山道','やまみち','Jalan gunung'],['火山','かざん','Gunung berapi']] },
+    { kanji: '川', meaning: 'Sungai', on: 'セン', kun: 'かわ',
+      vocab: [['川口','かわぐち','Kawaguchi (nama kota)'],['川辺','かわべ','Tepi sungai'],['小川','おがわ','Sungai kecil']] },
+    { kanji: '人', meaning: 'Orang / Manusia', on: 'ジン・ニン', kun: 'ひと',
+      vocab: [['日本人','にほんじん','Orang Jepang'],['人気','にんき','Populer'],['一人','ひとり','Sendiri / 1 orang']] },
+    { kanji: '口', meaning: 'Mulut / Pintu masuk', on: 'コウ・ク', kun: 'くち',
+      vocab: [['入口','いりぐち','Pintu masuk'],['出口','でぐち','Pintu keluar'],['人口','じんこう','Populasi']] },
+    { kanji: '目', meaning: 'Mata', on: 'モク・ボク', kun: 'め・ま',
+      vocab: [['目的','もくてき','Tujuan'],['一番目','いちばんめ','Pertama'],['目薬','めぐすり','Obat tetes mata']] },
+    { kanji: '手', meaning: 'Tangan', on: 'シュ', kun: 'て・た',
+      vocab: [['手紙','てがみ','Surat'],['上手','じょうず','Pandai/Bagus'],['下手','へた','Tidak pandai']] },
+    { kanji: '足', meaning: 'Kaki / Cukup', on: 'ソク', kun: 'あし・た',
+      vocab: [['足りる','たりる','Cukup'],['手足','てあし','Tangan dan kaki'],['土足','どそく','Pakai alas kaki']] },
+    { kanji: '大', meaning: 'Besar', on: 'ダイ・タイ', kun: 'おお',
+      vocab: [['大学','だいがく','Universitas'],['大好き','だいすき','Sangat suka'],['大人','おとな','Orang dewasa']] },
+    { kanji: '小', meaning: 'Kecil', on: 'ショウ', kun: 'ちい・こ・お',
+      vocab: [['小学校','しょうがっこう','SD'],['小さい','ちいさい','Kecil'],['小鳥','ことり','Burung kecil']] },
+    { kanji: '中', meaning: 'Tengah / Dalam', on: 'チュウ', kun: 'なか',
+      vocab: [['中学校','ちゅうがっこう','SMP'],['中心','ちゅうしん','Pusat'],['日中','にっちゅう','Siang hari']] },
+    { kanji: '上', meaning: 'Atas', on: 'ジョウ・ショウ', kun: 'うえ・あが',
+      vocab: [['上手','じょうず','Pandai'],['上着','うわぎ','Jaket/Baju luar'],['屋上','おくじょう','Atap gedung']] },
+    { kanji: '下', meaning: 'Bawah', on: 'カ・ゲ', kun: 'した・さが',
+      vocab: [['地下','ちか','Bawah tanah'],['下手','へた','Tidak pandai'],['靴下','くつした','Kaus kaki']] },
+    { kanji: '車', meaning: 'Kendaraan / Mobil', on: 'シャ', kun: 'くるま',
+      vocab: [['電車','でんしゃ','Kereta listrik'],['自動車','じどうしゃ','Mobil'],['自転車','じてんしゃ','Sepeda']] },
+  ],
+  n4: [
+    { kanji: '駅', meaning: 'Stasiun', on: 'エキ', kun: '—',
+      vocab: [['駅員','えきいん','Petugas stasiun'],['終点駅','しゅうてんえき','Stasiun akhir'],['駅前','えきまえ','Depan stasiun']] },
+    { kanji: '会', meaning: 'Bertemu / Perkumpulan', on: 'カイ・エ', kun: 'あ',
+      vocab: [['会社','かいしゃ','Perusahaan'],['会議','かいぎ','Rapat'],['会う','あう','Bertemu']] },
+    { kanji: '語', meaning: 'Bahasa / Kata', on: 'ゴ', kun: 'かた',
+      vocab: [['日本語','にほんご','Bahasa Jepang'],['語る','かたる','Bercerita'],['英語','えいご','Bahasa Inggris']] },
+    { kanji: '読', meaning: 'Membaca', on: 'ドク・トク', kun: 'よ',
+      vocab: [['読む','よむ','Membaca'],['読書','どくしょ','Membaca buku'],['音読み','おんよみ','Onyomi']] },
+    { kanji: '書', meaning: 'Menulis', on: 'ショ', kun: 'か',
+      vocab: [['書く','かく','Menulis'],['教科書','きょうかしょ','Buku pelajaran'],['図書館','としょかん','Perpustakaan']] },
+    { kanji: '食', meaning: 'Makan / Makanan', on: 'ショク・ジキ', kun: 'た・く',
+      vocab: [['食べる','たべる','Makan'],['食事','しょくじ','Makan/Makanan'],['食堂','しょくどう','Kantin']] },
+    { kanji: '飲', meaning: 'Minum', on: 'イン', kun: 'の',
+      vocab: [['飲む','のむ','Minum'],['飲み物','のみもの','Minuman'],['飲食','いんしょく','Makan dan minum']] },
+    { kanji: '見', meaning: 'Melihat', on: 'ケン', kun: 'み',
+      vocab: [['見る','みる','Melihat'],['見せる','みせる','Memperlihatkan'],['花見','はなみ','Melihat bunga sakura']] },
+    { kanji: '聞', meaning: 'Mendengar', on: 'ブン・モン', kun: 'き',
+      vocab: [['聞く','きく','Mendengar/Bertanya'],['新聞','しんぶん','Koran'],['聞こえる','きこえる','Terdengar']] },
+    { kanji: '行', meaning: 'Pergi', on: 'コウ・ギョウ', kun: 'い・ゆ・おこな',
+      vocab: [['行く','いく','Pergi'],['旅行','りょこう','Perjalanan'],['行動','こうどう','Tindakan']] },
+  ]
+};
+
+const radicals = [
+  { r: '氵', name: 'Air', ex: '海・泳・波' },
+  { r: '木', name: 'Pohon', ex: '林・森・机' },
+  { r: '火', name: 'Api', ex: '炎・焼・燃' },
+  { r: '土', name: 'Tanah', ex: '地・場・塩' },
+  { r: '口', name: 'Mulut', ex: '味・叫・唇' },
+  { r: '心', name: 'Hati', ex: '思・感・恋' },
+  { r: '手', name: 'Tangan', ex: '持・投・打' },
+  { r: '目', name: 'Mata', ex: '見・眠・眼' },
+  { r: '足', name: 'Kaki', ex: '走・跳・路' },
+  { r: '日', name: 'Matahari', ex: '明・晴・時' },
+  { r: '月', name: 'Bulan', ex: '朝・期・明' },
+  { r: '山', name: 'Gunung', ex: '岩・峠・崩' },
+  { r: '人', name: 'Orang', ex: '休・体・何' },
+  { r: '女', name: 'Perempuan', ex: '好・姉・妹' },
+  { r: '子', name: 'Anak', ex: '字・学・孫' },
+  { r: '言', name: 'Ucapan', ex: '語・話・読' },
+  { r: '門', name: 'Gerbang', ex: '聞・問・間' },
+  { r: '雨', name: 'Hujan', ex: '雲・電・雪' },
+];
+
+// ===== STATE =====
+let currentLevel = 'n5';
+let deck = [];
+let currentIdx = 0;
+let isFlipped = false;
+let knowCount = 0;
+let forgetCount = 0;
+
+function buildDeck(level) {
+  deck = [...(kanjiData[level] || [])];
+  currentIdx = 0;
+  isFlipped = false;
+  knowCount = 0;
+  forgetCount = 0;
+  updateStats();
+  showCard();
+}
+
+function setLevel(level) {
+  currentLevel = level;
+  document.querySelectorAll('.level-btn').forEach(b => b.classList.remove('active'));
+  event.target.classList.add('active');
+  buildDeck(level);
+}
+
+function showCard() {
+  const card = document.getElementById('main-card');
+  const doneState = document.getElementById('done-state');
+  const actions = document.getElementById('card-actions-flip');
+  const progress = document.getElementById('progress-fill');
+  const progressText = document.getElementById('progress-text');
+  const total = (kanjiData[currentLevel] || []).length;
+
+  if (deck.length === 0) {
+    card.parentElement.style.display = 'none';
+    actions.style.display = 'none';
+    doneState.style.display = 'block';
+    progress.style.width = '100%';
+    progressText.textContent = `${total} / ${total}`;
+    return;
+  }
+
+  card.parentElement.style.display = 'block';
+  actions.style.display = 'flex';
+  doneState.style.display = 'none';
+
+  const data = deck[currentIdx % deck.length];
+  card.classList.remove('flipped');
+  isFlipped = false;
+
+  document.getElementById('card-kanji').textContent = data.kanji;
+  document.getElementById('card-meaning').textContent = data.meaning;
+  document.getElementById('card-on').textContent = 'ON: ' + data.on;
+  document.getElementById('card-kun').textContent = 'KUN: ' + data.kun;
+
+  const vocabEl = document.getElementById('card-vocab');
+  vocabEl.innerHTML = data.vocab.map(v =>
+    `<div class="vocab-item">
+      <span class="vocab-kanji">${v[0]}</span>
+      <span class="vocab-reading">${v[1]}</span>
+      <span class="vocab-meaning">${v[2]}</span>
+    </div>`
+  ).join('');
+
+  const done = total - deck.length + (currentIdx % deck.length);
+  const pct = Math.round((done / total) * 100);
+  progress.style.width = pct + '%';
+  progressText.textContent = `${done} / ${total}`;
+}
+
+function flipCard() {
+  const card = document.getElementById('main-card');
+  isFlipped = !isFlipped;
+  card.classList.toggle('flipped', isFlipped);
+}
+
+function markCard(know) {
+  if (!isFlipped) { flipCard(); return; }
+  if (know) knowCount++; else forgetCount++;
+  deck.splice(currentIdx % deck.length, 1);
+  if (currentIdx >= deck.length) currentIdx = 0;
+  updateStats();
+  showCard();
+}
+
+function nextCard() {
+  if (deck.length === 0) return;
+  currentIdx = (currentIdx + 1) % deck.length;
+  isFlipped = false;
+  showCard();
+}
+
+function updateStats() {
+  document.getElementById('stat-know').textContent = knowCount;
+  document.getElementById('stat-forget').textContent = forgetCount;
+}
+
+function resetDeck() {
+  buildDeck(currentLevel);
+}
+
+// TABS
+function switchTab(tab) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('sec-' + tab).classList.add('active');
+}
+
+// BUILD RADICALS
+function buildRadicals() {
+  const grid = document.getElementById('radical-grid');
+  grid.innerHTML = radicals.map(r =>
+    `<div class="stroke-card">
+      <span class="stroke-kanji">${r.r}</span>
+      <div style="font-family:'Noto Sans JP',sans-serif;font-size:0.8rem;margin-top:0.3rem;">${r.name}</div>
+      <div class="stroke-info">${r.ex}</div>
+    </div>`
+  ).join('');
+}
+
+// INIT
+buildDeck('n5');
+buildRadicals();
+</script>
+</body>
+</html>

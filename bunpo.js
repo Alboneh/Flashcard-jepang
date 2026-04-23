@@ -181,16 +181,28 @@ function getBabByIndex(index) {
   return 'Bab 10';
 }
 
+let selectedBab = 'Semua';
+
+function setBabFilter(bab) {
+  selectedBab = bab;
+  document.querySelectorAll('#babFilter .level-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent === bab);
+  });
+  renderBunpo();
+}
+
 function renderBunpo() {
   const q = normalize(bunpoSearch.value);
   const filtered = bunpoDatabase.filter((item, index) => {
     const bab = getBabByIndex(index);
+    const babMatch = selectedBab === 'Semua' || bab === selectedBab;
     return (
-      !q ||
-      normalize(bab).includes(q) ||
-      normalize(item.pattern).includes(q) ||
-      normalize(item.explanation).includes(q) ||
-      (item.examples || []).some((ex) => normalize(ex).includes(q))
+      babMatch &&
+      (!q ||
+        normalize(bab).includes(q) ||
+        normalize(item.pattern).includes(q) ||
+        normalize(item.explanation).includes(q) ||
+        (item.examples || []).some((ex) => normalize(ex).includes(q)))
     );
   });
 
