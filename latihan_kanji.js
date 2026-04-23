@@ -1,4 +1,4 @@
-let currentExerciseList = [];
+﻿let currentExerciseList = [];
 let currentQuestionIndex = 0;
 let correctAnswers = 0;
 let wrongAnswers = 0;
@@ -10,26 +10,54 @@ function getSelectedBabs() {
   return Array.from(checkboxes).map(cb => cb.value);
 }
 
+function buildExerciseList(selectedBabs) {
+  const items = [];
+
+  // Kanji items: tebak furigana dari contoh kata (pakai daftar contoh tambahan jika ada)
+  kanjiDatabase
+    .filter(k => selectedBabs.includes(k.bab))
+    .forEach(k => {
+      const exList = (typeof kanjiExamples !== 'undefined' && kanjiExamples[k.kanji])
+        ? kanjiExamples[k.kanji]
+        : [k.example];
+
+      exList.forEach(ex => {
+        const parts = ex.split(' (');
+        const word = parts[0].trim();
+        const furigana = parts[1] ? parts[1].replace(')', '').trim() : '';
+        if (word && furigana) {
+          items.push({
+            type: 'kanji-furigana',
+            question: word,
+            answer: furigana,
+            label: 'Pilih furigana yang benar!',
+            detail: k
+          });
+        }
+      });
+    });
+
+  return items;
+}
+
 function startNewExercise() {
   const selectedBabs = getSelectedBabs();
-  
+
   if (selectedBabs.length === 0) {
     document.getElementById('exerciseContainer').style.display = 'none';
     document.getElementById('noDataMessage').style.display = 'block';
     return;
   }
 
-  // Filter kanji by selected Babs
-  const filtered = kanjiDatabase.filter(k => selectedBabs.includes(k.bab));
-  
-  if (filtered.length === 0) {
+  const allItems = buildExerciseList(selectedBabs);
+
+  if (allItems.length === 0) {
     document.getElementById('exerciseContainer').style.display = 'none';
     document.getElementById('noDataMessage').style.display = 'block';
     return;
   }
 
-  // Shuffle and set up exercise
-  currentExerciseList = shuffleArray([...filtered]);
+  currentExerciseList = shuffleArray(allItems);
   currentQuestionIndex = 0;
   correctAnswers = 0;
   wrongAnswers = 0;
@@ -42,11 +70,12 @@ function startNewExercise() {
 }
 
 function shuffleArray(arr) {
-  for (let i = arr.length - 1; i > 0; i--) {
+  const out = [...arr];
+  for (let i = out.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
-    [arr[i], arr[j]] = [arr[j], arr[i]];
+    [out[i], out[j]] = [out[j], out[i]];
   }
-  return arr;
+  return out;
 }
 
 function generateNewQuestion() {
@@ -55,176 +84,68 @@ function generateNewQuestion() {
     currentExerciseList = shuffleArray([...currentExerciseList]);
   }
 
-  const kanji = currentExerciseList[currentQuestionIndex];
-  let questionType = document.querySelector('input[name="questionType"]:checked').value;
-  
-  if (questionType === 'campur') {
-    const types = [
-      'kanji-to-meaning',
-      'kanji-to-onyomi',
-      'kanji-to-kunyomi',
-      'meaning-to-kanji',
-      'onyomi-to-kanji',
-      'kunyomi-to-kanji',
-      'sentence-furigana'
-    ];
-    questionType = types[Math.floor(Math.random() * types.length)];
-  }
-
-  let questionDisplay = '';
-  let correctAnswer = '';
-  let questionLabel = '';
-
-  switch(questionType) {
-    case 'kanji-to-meaning':
-      questionDisplay = kanji.kanji;
-      correctAnswer = kanji.meaning;
-      questionLabel = 'Apa arti kanji ini?';
-      break;
-    case 'kanji-to-onyomi':
-      questionDisplay = kanji.kanji;
-      correctAnswer = kanji.onyomi;
-      questionLabel = 'Apa on\'yomi kanji ini?';
-      break;
-    case 'kanji-to-kunyomi':
-      questionDisplay = kanji.kanji;
-      correctAnswer = kanji.kunyomi;
-      questionLabel = 'Apa kun\'yomi kanji ini?';
-      break;
-    case 'meaning-to-kanji':
-      questionDisplay = kanji.meaning;
-      correctAnswer = kanji.kanji;
-      questionLabel = 'Kanji mana artinya ini?';
-      break;
-    case 'onyomi-to-kanji':
-      questionDisplay = kanji.onyomi;
-      correctAnswer = kanji.kanji;
-      questionLabel = 'Kanji mana yang on\'yomi-nya ini?';
-      break;
-    case 'kunyomi-to-kanji':
-      questionDisplay = kanji.kunyomi;
-      correctAnswer = kanji.kanji;
-      questionLabel = 'Kanji mana yang kun\'yomi-nya ini?';
-      break;
-    case 'sentence-furigana': {
-      const exParts = kanji.example.split(' (');
-      const exWord = exParts[0];
-      const exFurigana = exParts[1] ? exParts[1].replace(')', '') : '';
-      questionDisplay = exWord;
-      correctAnswer = exFurigana;
-      questionLabel = 'Pilih furigana yang benar!';
-      break;
-    }
-  }
-
-  currentQuestion = {
-    kanji: kanji,
-    questionType: questionType,
-    questionDisplay: questionDisplay,
-    correctAnswer: correctAnswer,
-    questionLabel: questionLabel
-  };
-
+  currentQuestion = currentExerciseList[currentQuestionIndex];
   renderQuestion();
   answerSubmitted = false;
 }
 
 function renderQuestion() {
-  const kanji = currentQuestion.kanji;
-  const questionDisplay = currentQuestion.questionDisplay;
-  const questionLabel = currentQuestion.questionLabel;
+  document.getElementById('questionLabel').textContent = currentQuestion.label;
+  document.getElementById('questionContent').textContent = currentQuestion.question;
 
-  // Update question
-  document.getElementById('questionLabel').textContent = questionLabel;
-  document.getElementById('questionContent').textContent = questionDisplay;
-  
-  // Determine if this is a kanji display
-  const isKanjiQuestion = ['meaning-to-kanji', 'onyomi-to-kanji', 'kunyomi-to-kanji', 'sentence-furigana'].includes(currentQuestion.questionType);
-  
-  if (isKanjiQuestion) {
-    document.getElementById('questionContent').className = 'question-content kanji-question';
-  } else {
-    document.getElementById('questionContent').className = 'question-content';
-  }
+  // Both kanji types use large kanji font
+  document.getElementById('questionContent').className = 'question-content kanji-question';
 
-  // Update progress
   const totalQuestions = currentExerciseList.length;
   document.getElementById('progressText').textContent = `${currentQuestionIndex + 1}/${totalQuestions}`;
-  const progressPercent = ((currentQuestionIndex + 1) / totalQuestions) * 100;
-  document.getElementById('progressFill').style.width = progressPercent + '%';
+  document.getElementById('progressFill').style.width = `${((currentQuestionIndex + 1) / totalQuestions) * 100}%`;
 
-  // Generate options
   renderMultipleChoice();
 
-  // Hide feedback
   document.getElementById('feedbackArea').style.display = 'none';
   document.getElementById('multipleChoiceMode').style.display = 'block';
 
-  // Update stats
   updateStats();
 }
 
 function renderMultipleChoice() {
-  const correctAnswer = currentQuestion.correctAnswer;
-  const allKanji = currentExerciseList;
-  const questionType = currentQuestion.questionType;
-  
-  // Get 3 random wrong answers based on question type
-  const wrongAnswers = [];
-  const kanjiPool = allKanji.filter(k => k !== currentQuestion.kanji);
-  
-  while (wrongAnswers.length < 3 && kanjiPool.length > 0) {
-    const randomIdx = Math.floor(Math.random() * kanjiPool.length);
-    const wrongKanji = kanjiPool.splice(randomIdx, 1)[0];
-    
-    let wrongAnswer = '';
-    switch(questionType) {
-      case 'kanji-to-meaning':
-        wrongAnswer = wrongKanji.meaning;
-        break;
-      case 'kanji-to-onyomi':
-        wrongAnswer = wrongKanji.onyomi;
-        break;
-      case 'kanji-to-kunyomi':
-        wrongAnswer = wrongKanji.kunyomi;
-        break;
-      case 'meaning-to-kanji':
-        wrongAnswer = wrongKanji.kanji;
-        break;
-      case 'onyomi-to-kanji':
-        wrongAnswer = wrongKanji.kanji;
-        break;
-      case 'kunyomi-to-kanji':
-        wrongAnswer = wrongKanji.kanji;
-        break;
-      case 'sentence-furigana': {
-        const wParts = wrongKanji.example.split(' (');
-        wrongAnswer = wParts[1] ? wParts[1].replace(')', '') : wrongKanji.onyomi;
-        break;
-      }
+  const correctAnswer = currentQuestion.answer;
+  const type = currentQuestion.type;
+
+  // Ambil jawaban salah dari pool yang sama jenisnya dulu
+  const sameTypePool = shuffleArray(
+    currentExerciseList.filter(item => item !== currentQuestion && item.type === type)
+  );
+
+  const distractors = [];
+  for (const item of sameTypePool) {
+    if (!distractors.includes(item.answer) && item.answer !== correctAnswer) {
+      distractors.push(item.answer);
     }
-    
-    if (!wrongAnswers.includes(wrongAnswer)) {
-      wrongAnswers.push(wrongAnswer);
+    if (distractors.length >= 3) break;
+  }
+
+  // Kalau kurang dari 3, ambil dari pool lain
+  if (distractors.length < 3) {
+    const fallbackPool = shuffleArray(
+      currentExerciseList.filter(item => item !== currentQuestion && !distractors.includes(item.answer) && item.answer !== correctAnswer)
+    );
+    for (const item of fallbackPool) {
+      if (!distractors.includes(item.answer)) {
+        distractors.push(item.answer);
+      }
+      if (distractors.length >= 3) break;
     }
   }
 
-  // Create options array with correct answer
-  let options = [correctAnswer, ...wrongAnswers];
-  options = shuffleArray(options);
+  const options = shuffleArray([correctAnswer, ...distractors.slice(0, 3)]);
 
-  // Render options
   const optionsGrid = document.getElementById('optionsGrid');
   optionsGrid.innerHTML = '';
-
-  const isKanjiAnswer = ['meaning-to-kanji', 'onyomi-to-kanji', 'kunyomi-to-kanji'].includes(questionType);
 
   options.forEach(option => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
-    if (isKanjiAnswer) {
-      btn.className += ' kanji-option';
-    }
     btn.textContent = option;
     btn.onclick = () => selectAnswer(option, correctAnswer, btn);
     optionsGrid.appendChild(btn);
@@ -233,64 +154,50 @@ function renderMultipleChoice() {
 
 function selectAnswer(selectedOption, correctAnswer, btnElement) {
   if (answerSubmitted) return;
-
   answerSubmitted = true;
 
-  // Disable all buttons
   document.querySelectorAll('.option-btn').forEach(btn => {
     btn.classList.add('disabled');
   });
 
-  // Check if correct
   const isCorrect = selectedOption === correctAnswer;
 
   if (isCorrect) {
     btnElement.classList.add('correct');
     correctAnswers++;
-    showFeedback(true, selectedOption, correctAnswer);
   } else {
     btnElement.classList.add('wrong');
     wrongAnswers++;
-    
-    // Highlight correct answer
     document.querySelectorAll('.option-btn').forEach(btn => {
-      if (btn.textContent === correctAnswer) {
-        btn.classList.add('correct');
-      }
+      if (btn.textContent === correctAnswer) btn.classList.add('correct');
     });
-    
-    showFeedback(false, selectedOption, correctAnswer);
   }
 
+  showFeedback(isCorrect, correctAnswer);
   updateStats();
 }
 
-function showFeedback(isCorrect, selectedOption, correctAnswer) {
-  const kanji = currentQuestion.kanji;
+function showFeedback(isCorrect, correctAnswer) {
+  const item = currentQuestion;
   const feedbackArea = document.getElementById('feedbackArea');
   const feedbackContent = document.getElementById('feedbackContent');
 
-  let html = '';
-  
-  if (isCorrect) {
-    html += '<span class="feedback-correct">✓ Benar!</span>';
-  } else {
-    html += '<span class="feedback-wrong">✗ Salah</span>';
-  }
+  let html = isCorrect
+    ? '<span class="feedback-correct">&#10003; Benar!</span>'
+    : '<span class="feedback-wrong">&#10007; Salah</span>';
 
   html += '<div class="feedback-details">';
-  
-  html += `<strong>Kanji:</strong> <span style="font-size: 28px; color: #667eea;">${kanji.kanji}</span><br>`;
-  html += `<strong>Arti:</strong> ${kanji.meaning}<br>`;
-  html += `<strong>On'yomi:</strong> ${kanji.onyomi}<br>`;
-  html += `<strong>Kun'yomi:</strong> ${kanji.kunyomi}<br>`;
-  html += `<strong>Contoh:</strong> ${kanji.example}<br>`;
-  html += `<strong>Tip:</strong> ${kanji.mnemonic}`;
+
+  const k = item.detail;
+  html += `<strong>Kanji:</strong> <span style="font-family:'Noto Serif JP',serif;font-size:1.4rem;">${k.kanji}</span><br>`;
+  html += `<strong>Contoh:</strong> ${k.example}<br>`;
+  html += `<strong>Arti:</strong> ${k.meaning}<br>`;
+  html += `<strong>On'yomi:</strong> ${k.onyomi} &nbsp;|&nbsp; <strong>Kun'yomi:</strong> ${k.kunyomi}`;
 
   html += '</div>';
-  
+
   feedbackContent.innerHTML = html;
-  feedbackArea.style.display = 'block';
+  feedbackArea.style.display = 'flex';
   document.getElementById('multipleChoiceMode').style.display = 'none';
 }
 
@@ -302,15 +209,12 @@ function nextQuestion() {
 function updateStats() {
   document.getElementById('correctCount').textContent = correctAnswers;
   document.getElementById('wrongCount').textContent = wrongAnswers;
-  
   const total = correctAnswers + wrongAnswers;
   const accuracy = total > 0 ? Math.round((correctAnswers / total) * 100) : 0;
   document.getElementById('accuracyRate').textContent = accuracy + '%';
 }
 
-// Initialize on page load
-document.addEventListener('DOMContentLoaded', function() {
-  // Set up initial state
+document.addEventListener('DOMContentLoaded', function () {
   document.getElementById('exerciseContainer').style.display = 'none';
   document.getElementById('noDataMessage').style.display = 'block';
 });

@@ -11,7 +11,7 @@
 <div class="fc-wrap">
   <div class="header">
     <h1>📝 Latihan Kanji</h1>
-    <span class="header-subtitle">Uji kemampuan membaca kanji</span>
+    <span class="header-subtitle">Furigana kanji per bab</span>
     <div class="page-nav" aria-label="Navigasi halaman belajar">
       <a class="page-nav-link" href="index.html">Kosakata</a>
       <a class="page-nav-link" href="bunpo.html">Bunpo</a>
@@ -58,51 +58,6 @@
         <label class="bab-checkbox">
           <input type="checkbox" value="Bab 8" onchange="startNewExercise()">
           <span>Bab 8</span>
-        </label>
-      </div>
-    </div>
-    <div class="question-type-row">
-      <div class="question-type-group">
-        <div class="question-type-title">Dari Kanji</div>
-        <label>
-          <input type="radio" name="questionType" value="kanji-to-meaning" onchange="startNewExercise()">
-          <span>→ Arti</span>
-        </label>
-        <label>
-          <input type="radio" name="questionType" value="kanji-to-onyomi" onchange="startNewExercise()">
-          <span>→ Onyomi</span>
-        </label>
-        <label>
-          <input type="radio" name="questionType" value="kanji-to-kunyomi" onchange="startNewExercise()">
-          <span>→ Kunyomi</span>
-        </label>
-        <label>
-          <input type="radio" name="questionType" value="sentence-furigana" onchange="startNewExercise()">
-          <span>→ Furigana Contoh</span>
-        </label>
-      </div>
-
-      <div class="question-type-group">
-        <div class="question-type-title">Ke Kanji</div>
-        <label>
-          <input type="radio" name="questionType" value="meaning-to-kanji" onchange="startNewExercise()">
-          <span>Arti →</span>
-        </label>
-        <label>
-          <input type="radio" name="questionType" value="onyomi-to-kanji" onchange="startNewExercise()">
-          <span>Onyomi →</span>
-        </label>
-        <label>
-          <input type="radio" name="questionType" value="kunyomi-to-kanji" onchange="startNewExercise()">
-          <span>Kunyomi →</span>
-        </label>
-      </div>
-
-      <div class="question-type-group">
-        <div class="question-type-title">Mode</div>
-        <label>
-          <input type="radio" name="questionType" value="campur" checked onchange="startNewExercise()">
-          <span>Campur Semua</span>
         </label>
       </div>
     </div>
@@ -153,6 +108,7 @@
 </div>
 
 <script src="kanji_database.js"></script>
+<script src="kanji_examples.js"></script>
 <script src="latihan_kanji.js"></script>
 
 </body>
