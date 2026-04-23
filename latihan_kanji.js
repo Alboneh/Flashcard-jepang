@@ -65,7 +65,8 @@ function generateNewQuestion() {
       'kanji-to-kunyomi',
       'meaning-to-kanji',
       'onyomi-to-kanji',
-      'kunyomi-to-kanji'
+      'kunyomi-to-kanji',
+      'sentence-furigana'
     ];
     questionType = types[Math.floor(Math.random() * types.length)];
   }
@@ -105,6 +106,15 @@ function generateNewQuestion() {
       correctAnswer = kanji.kanji;
       questionLabel = 'Kanji mana yang kun\'yomi-nya ini?';
       break;
+    case 'sentence-furigana': {
+      const exParts = kanji.example.split(' (');
+      const exWord = exParts[0];
+      const exFurigana = exParts[1] ? exParts[1].replace(')', '') : '';
+      questionDisplay = exWord;
+      correctAnswer = exFurigana;
+      questionLabel = 'Pilih furigana yang benar!';
+      break;
+    }
   }
 
   currentQuestion = {
@@ -129,7 +139,7 @@ function renderQuestion() {
   document.getElementById('questionContent').textContent = questionDisplay;
   
   // Determine if this is a kanji display
-  const isKanjiQuestion = ['meaning-to-kanji', 'onyomi-to-kanji', 'kunyomi-to-kanji'].includes(currentQuestion.questionType);
+  const isKanjiQuestion = ['meaning-to-kanji', 'onyomi-to-kanji', 'kunyomi-to-kanji', 'sentence-furigana'].includes(currentQuestion.questionType);
   
   if (isKanjiQuestion) {
     document.getElementById('questionContent').className = 'question-content kanji-question';
@@ -187,6 +197,11 @@ function renderMultipleChoice() {
       case 'kunyomi-to-kanji':
         wrongAnswer = wrongKanji.kanji;
         break;
+      case 'sentence-furigana': {
+        const wParts = wrongKanji.example.split(' (');
+        wrongAnswer = wParts[1] ? wParts[1].replace(')', '') : wrongKanji.onyomi;
+        break;
+      }
     }
     
     if (!wrongAnswers.includes(wrongAnswer)) {

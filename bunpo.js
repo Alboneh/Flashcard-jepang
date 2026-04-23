@@ -177,7 +177,8 @@ function getBabByIndex(index) {
   if (index <= 35) return 'Bab 6';
   if (index <= 38) return 'Bab 7';
   if (index <= 46) return 'Bab 8';
-  return 'Bab 9';
+  if (index <= 51) return 'Bab 9';
+  return 'Bab 10';
 }
 
 function renderBunpo() {

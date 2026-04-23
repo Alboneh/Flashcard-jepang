@@ -432,5 +432,62 @@ const bunpoDatabase = [
       "どうして はやく かえりますか。 (Mengapa pulang lebih awal?)",
       "こども の たんじょうび です から。 (Karena anak saya ulang tahun.)"
     ]
+  },
+
+  // ===== BAB 10 =====
+  {
+    pattern: "[KB] が あります / います",
+    explanation: "あります dipakai untuk menyatakan keberadaan benda mati dan tumbuhan. います dipakai untuk orang atau hewan yang bergerak sendiri. Objeknya ditandai dengan partikel が.",
+    examples: [
+      "あそこ に こうえん が あります。 (Di sana ada taman.)",
+      "にわ に ねこ が います。 (Di halaman ada kucing.)",
+      "きょうしつ に せんせい が います。 (Di kelas ada guru.)",
+      "あそこ に ポスト が あります。 (Di sana ada kotak pos.)"
+    ]
+  },
+  {
+    pattern: "[Posisi/Tempat] に [KB] が あります / います",
+    explanation: "Pola ini menyatakan keberadaan benda atau orang di suatu tempat. Tempat keberadaan ditandai dengan partikel に. Untuk menanyakan benda gunakan なに が ありますか, untuk orang gunakan だれ が いますか.",
+    examples: [
+      "スーパー の となり に きっさてん が あります。 (Di sebelah supermarket ada coffee shop.)",
+      "ドア の みぎ に スイッチ が あります。 (Di sebelah kanan pintu ada saklar.)",
+      "さとうさん の まえ に カリナさん が います。 (Di depan Sato ada Karina.)"
+    ]
+  },
+  {
+    pattern: "[KB] は [Tempat] に あります / います",
+    explanation: "Pola ini menyatakan keberadaan suatu benda atau orang di suatu tempat. KB sebagai topik diletakkan sebelum は, lalu tempat ditandai dengan に. Bentuk lain: [KB] は [Tempat] です.",
+    examples: [
+      "グプタさん は かいぎしつ に います。 (Gupta ada di ruang rapat.)",
+      "きむらさん は あそこ に います。 (Kimura ada di sana.)",
+      "じしょ は じむしょ に あります。 (Kamus ada di kantor.)"
+    ]
+  },
+  {
+    pattern: "❓ [KB] は どこ に あります / いますか",
+    explanation: "Pertanyaan untuk menanyakan letak atau keberadaan suatu benda atau orang. どこ berarti 'di mana'.",
+    examples: [
+      "じしょ は どこ に ありますか。 (Kamus ada di mana?)",
+      "グプタさん は どこ に いますか。 (Gupta ada di mana?)"
+    ]
+  },
+  {
+    pattern: "[KB1, Orang, Tempat] の [Posisi] に [KB2] が あります / います",
+    explanation: "Pola ini menyatakan posisi KB2 relatif terhadap KB1. Kata posisi yang sering dipakai: うえ、した、まえ、うしろ、みぎ、ひだり、なか、そと、となり、ちかく、あいだ. Catatan: jika diikuti aksi, tempat diberi partikel で, bukan に.",
+    examples: [
+      "ゆうびんきょく の となり に ぎんこう が あります。 (Di sebelah kantor pos ada bank.)",
+      "まつもとさん の うしろ に いしかわさん が います。 (Di belakang Matsumoto ada Ishikawa.)",
+      "テーブル と たな の あいだ に いす が あります。 (Di antara meja dan lemari ada kursi.)",
+      "えき の ちかく で ともだち に あいます。 (Saya bertemu teman di dekat stasiun.)"
+    ]
+  },
+  {
+    pattern: "[KB1] や [KB2] (など)",
+    explanation: "Partikel や dipakai untuk menyebutkan beberapa benda secara setara sebagai perwakilan dari banyak hal lain (tidak semuanya disebutkan). Berbeda dengan と yang menyebutkan semua secara lengkap. Tambahkan など di akhir untuk menegaskan masih ada benda lain yang tidak disebutkan, artinya 'dan lainnya'.",
+    examples: [
+      "はこ の なか に てがみ や しゃしん など が あります。 (Di dalam kotak ada surat, foto, dan lainnya.)",
+      "ベッド の うえ に かみ や じしょ が あります。 (Di atas kasur ada kertas dan kamus.)",
+      "かいぎしつ の なか に ミラーさん や やまださん など が います。 (Di dalam ruang rapat ada Miller, Yamada, dan lainnya.)"
+    ]
   }
 ];
