@@ -104,10 +104,10 @@ async function speakCurrentCardSequence(flipBeforeSecondAudio) {
   const idVoice = findVoice('id') || findVoice('en');
 
   const firstText = reverseMode ? meaningText : jpText;
-  const firstLang = reverseMode ? (idVoice ? idVoice.lang : 'id-ID') : 'ja-JP';
+  const firstLang = reverseMode ? 'id-ID' : 'ja-JP';
   const firstVoice = reverseMode ? idVoice : jaVoice;
   const secondText = reverseMode ? jpText : meaningText;
-  const secondLang = reverseMode ? 'ja-JP' : (idVoice ? idVoice.lang : 'id-ID');
+  const secondLang = reverseMode ? 'ja-JP' : 'id-ID';
   const secondVoice = reverseMode ? jaVoice : idVoice;
 
   await speakText(firstText, firstLang, firstVoice);
