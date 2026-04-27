@@ -403,13 +403,24 @@ const bunpoDatabase = [
     ]
   },
   {
-    pattern: "よく / だいたい / たくさん / すこし / あまり / ぜんぜん + K.Kerja",
-    explanation: "Kata keterangan pada pola ini diletakkan sebelum kata kerja atau sebelum bagian predikat terkait. Khusus あまり dan ぜんぜん biasanya dipakai bersama bentuk negatif untuk menyatakan kadar yang rendah atau tidak sama sekali.",
+    pattern: "よく / だいたい / すこし / あまり / ぜんぜん + K.Kerja (tingkat)",
+    explanation: "Kata keterangan ini dipakai sebelum kata kerja untuk menyatakan seberapa tinggi atau rendah tingkat pemahaman atau kemampuan seseorang. よく dan だいたい dipakai untuk kalimat positif, artinya dengan baik dan kira-kira. すこし untuk positif tapi sedikit. あまり dan ぜんぜん dipakai untuk kalimat negatif, artinya tidak begitu dan sama sekali tidak.",
     examples: [
       "ジョンさん は スペインご が よく わかります。 (John memahami bahasa Spanyol dengan baik.)",
-      "タワポンさん は おかね が たくさん あります。 (Tawapon mempunyai banyak uang.)",
+      "にほんご が だいたい わかります。 (Bahasa Jepang kira-kira mengerti.)",
+      "すこし わかります。 (Sedikit mengerti.)",
       "まつもとさん は ドイツご が ぜんぜん わかりません。 (Matsumoto sama sekali tidak mengerti bahasa Jerman.)",
-      "ここ は もり が あまり ありません。 (Di sini tidak begitu banyak hutan.)"
+      "ちゅうごくご が あまり わかりません。 (Bahasa Mandarin tidak begitu mengerti.)"
+    ]
+  },
+  {
+    pattern: "たくさん / すこし / あまり / ぜんぜん + K.Kerja (kuantitas)",
+    explanation: "Kata keterangan ini dipakai sebelum kata kerja untuk menyatakan banyak atau sedikitnya sesuatu. たくさん dipakai untuk kalimat positif artinya banyak. すこし untuk positif artinya sedikit. あまり dan ぜんぜん dipakai untuk kalimat negatif artinya tidak begitu banyak dan sama sekali tidak ada.",
+    examples: [
+      "タワポンさん は おかね が たくさん あります。 (Tawapon mempunyai banyak uang.)",
+      "ここ に ほん が すこし あります。 (Di sini ada sedikit buku.)",
+      "ここ は もり が あまり ありません。 (Di sini tidak begitu banyak hutan.)",
+      "じかん が ぜんぜん ありません。 (Tidak ada waktu sama sekali.)"
     ]
   },
   {

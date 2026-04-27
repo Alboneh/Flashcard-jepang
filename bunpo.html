@@ -5,27 +5,36 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bunpo Jepang</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="bunpo.css">
 </head>
-<body>
-  <main class="page">
-    <header class="top">
-      <h1>Bunpo Jepang</h1>
-      <p class="subtitle">Halaman khusus penjelasan pola tata bahasa dan contohnya.</p>
-      <nav class="nav-links">
-        <a href="index.html">Kosakata</a>
-        <a href="bunpo.html">Bunpo</a>
-        <a href="kanji.html">Kanji</a>
-        <a href="kanji-belajar.html">Belajar Kanji</a>
-        <a href="latihan.html">Latihan Vocab</a>
-        <a href="latihan_kanji.html">Latihan Kanji</a>
-        <a href="latihan_bunpo.html">Latihan Bunpo</a>
-      </nav>
-    </header>
+<body class="has-global-sidebar" data-page="bunpo">
+  <button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
+  <div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
+  <aside id="globalSidebar" class="global-sidebar">
+    <div class="global-sidebar-header">
+      <span class="global-sidebar-title">日本語 Belajar</span>
+      <div class="global-sidebar-subtitle">Navigasi Halaman</div>
+    </div>
+    <nav class="global-sidebar-links" aria-label="Sidebar navigasi utama">
+      <a href="index.html" data-page="kosakata">Kosakata</a>
+      <a href="semua_kosakata.html" data-page="semua-kosakata">Semua Kosakata</a>
+      <a href="bunpo.html" data-page="bunpo">Bunpo</a>
+      <a href="kanji-n5.html" data-page="kanji">Kanji</a>
+      <a href="kanji-n5.html" data-page="kanji-n5">Belajar Kanji</a>
+      <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
+      <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
+    </nav>
+  </aside>
+  <main class="page global-app-main">
 
     <section class="controls">
-      <label for="bunpoSearch">Cari bunpo</label>
+      <div class="view-mode-row">
+        <label for="bunpoSearch">Cari bunpo</label>
+        <button id="cardModeToggle" class="card-mode-btn" onclick="toggleCardMode()">▦ Mode Kartu</button>
+      </div>
       <input id="bunpoSearch" type="text" placeholder="Contoh: wa, ga, desu" />
+      <div class="filter-label">Filter Bab</div>
       <div class="bab-filter" id="babFilter">
         <button class="level-btn active" onclick="setBabFilter('Semua')">Semua</button>
         <button class="level-btn" onclick="setBabFilter('Bab 1')">Bab 1</button>
@@ -38,6 +47,22 @@
         <button class="level-btn" onclick="setBabFilter('Bab 8')">Bab 8</button>
         <button class="level-btn" onclick="setBabFilter('Bab 9')">Bab 9</button>
         <button class="level-btn" onclick="setBabFilter('Bab 10')">Bab 10</button>
+      </div>
+      <div class="filter-label" style="margin-top:0.9rem;">Filter Partikel</div>
+      <div class="bab-filter" id="particleFilter">
+        <button class="level-btn particle-btn active" onclick="setParticleFilter('')">Semua</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('は')">は</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('が')">が</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('を')">を</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('に')">に</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('で')">で</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('へ')">へ</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('と')">と</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('も')">も</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('の')">の</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('から')">から</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('まで')">まで</button>
+        <button class="level-btn particle-btn" onclick="setParticleFilter('か')">か</button>
       </div>
     </section>
 
@@ -58,8 +83,20 @@
     </section>
 
     <section class="list" id="bunpoList" aria-live="polite"></section>
+
+    <div id="cardModeView" class="card-mode-view" style="display:none;">
+      <div class="card-nav-bar">
+        <span id="cardCounter" class="card-counter">1 / 1</span>
+      </div>
+      <div id="cardModeCard" class="card-mode-card"></div>
+      <div class="card-nav-btns">
+        <button class="card-nav-btn" id="cardPrevBtn" onclick="cardNav(-1)">← Sebelumnya</button>
+        <button class="card-nav-btn card-nav-btn--next" id="cardNextBtn" onclick="cardNav(1)">Berikutnya →</button>
+      </div>
+    </div>
   </main>
 
+  <script src="sidebar.js"></script>
   <script src="bunpo_database.js"></script>
   <script src="bunpo.js"></script>
 </body>

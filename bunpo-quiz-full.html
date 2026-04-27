@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latihan Bunpo Jepang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sidebar.css">
+  <link rel="stylesheet" href="bunpo-quiz-full.css">
+</head>
+<body class="has-global-sidebar" data-page="latihan-bunpo">
+  <button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
+  <div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
+  <aside id="globalSidebar" class="global-sidebar">
+    <div class="global-sidebar-header">
+      <span class="global-sidebar-title">日本語 Belajar</span>
+      <div class="global-sidebar-subtitle">Navigasi Halaman</div>
+    </div>
+    <nav class="global-sidebar-links" aria-label="Sidebar navigasi utama">
+      <a href="index.html" data-page="kosakata">Kosakata</a>
+      <a href="semua_kosakata.html" data-page="semua-kosakata">Semua Kosakata</a>
+      <a href="bunpo.html" data-page="bunpo">Bunpo</a>
+      <a href="kanji-n5.html" data-page="kanji">Kanji</a>
+      <a href="kanji-n5.html" data-page="kanji-n5">Belajar Kanji</a>
+      <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
+      <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
+    </nav>
+  </aside>
+
+  <main class="global-app-main">
+    <div class="quiz-page">
+      <section class="hero-card">
+        <div class="hero-tag">Latihan Bunpo</div>
+        <h1>文法クイズ N5-N4</h1>
+        <p>Belajar pola bunpo dengan mode latihan cepat. Tampilan sudah dibuat nyaman untuk Android: tombol besar, teks lebih jelas, dan navigasi sederhana.</p>
+      </section>
+
+      <section class="panel">
+        <div class="q-meta" style="justify-content:space-between; margin-bottom:0.8rem;">
+          <span class="pill">Skor: <b id="hScore">0</b></span>
+          <span class="pill">Benar: <b id="hCorrect">0</b></span>
+        </div>
+
+        <div id="introPanel">
+          <div class="stats-row">
+            <div class="stat-box"><div class="s-n">53</div><div class="s-l">Pola Bunpo</div></div>
+            <div class="stat-box"><div class="s-n">159</div><div class="s-l">Total Soal</div></div>
+            <div class="stat-box"><div class="s-n">Acak</div><div class="s-l">Urutan Soal</div></div>
+          </div>
+
+          <div class="section-label">Pilih Kategori</div>
+          <div class="cat-grid" id="catGrid"></div>
+
+          <div class="section-label">Jumlah Soal per Sesi</div>
+          <div class="mode-row" id="modeRow">
+            <button class="mode-btn" onclick="setMode(this,20)">20 Soal</button>
+            <button class="mode-btn on" onclick="setMode(this,40)">40 Soal</button>
+            <button class="mode-btn" onclick="setMode(this,80)">80 Soal</button>
+            <button class="mode-btn" onclick="setMode(this,159)">Semua</button>
+          </div>
+
+          <button class="start-btn" onclick="startQuiz()">Mulai Latihan</button>
+        </div>
+
+        <div id="quizPanel" style="display:none;">
+          <div class="prog-wrap">
+            <div class="prog-info">
+              <span id="pLabel">Soal 1</span>
+              <span id="pScore">0 benar</span>
+            </div>
+            <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+          </div>
+          <div id="qWrap" class="q-wrap"></div>
+        </div>
+
+        <div id="resultPanel" class="result-panel" style="display:none;">
+          <div class="result-circle">
+            <div>
+              <div class="rn" id="rScore">0</div>
+              <div class="rd" id="rDenom">/40</div>
+            </div>
+          </div>
+          <h2 id="rTitle">Hasil</h2>
+          <p class="result-msg" id="rMsg"></p>
+
+          <div class="r-stats">
+            <div class="r-stat g"><div class="sn" id="rC">0</div><div class="sl">Benar</div></div>
+            <div class="r-stat r"><div class="sn" id="rW">0</div><div class="sl">Salah</div></div>
+            <div class="r-stat"><div class="sn" id="rP">0%</div><div class="sl">Akurasi</div></div>
+          </div>
+
+          <div class="review-box" id="reviewBox"></div>
+          <div class="btn-row">
+            <button class="start-btn" onclick="retryQuiz()">Ulangi Lagi</button>
+            <button class="btn-outline" onclick="backMenu()">Kembali ke Menu</button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script src="sidebar.js"></script>
+  <script src="bunpo_quiz_database.js"></script>
+  <script src="bunpo-quiz-full.js"></script>
+</body>
+</html>

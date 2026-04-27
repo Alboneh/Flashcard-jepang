@@ -151,7 +151,16 @@ function parseExample(exampleText) {
     'この へや は きれい ですが、せまい です。': 'Kamar ini bersih/cantik, tetapi sempit.',
     'この えいが は おもしろい ですが、ちょっと ながい です。': 'Film ini menarik, tetapi agak panjang.',
     'あなた の かばん は どれ ですか。': 'Tas kamu yang mana?',
-    'どれ が すき ですか。': 'Yang mana yang kamu suka?'
+    'どれ が すき ですか。': 'Yang mana yang kamu suka?',
+    'ジョンさん は スペインご が よく わかります。': 'John memahami bahasa Spanyol dengan baik.',
+    'にほんご が だいたい わかります。': 'Bahasa Jepang kira-kira mengerti.',
+    'すこし わかります。': 'Sedikit mengerti.',
+    'まつもとさん は ドイツご が ぜんぜん わかりません。': 'Matsumoto sama sekali tidak mengerti bahasa Jerman.',
+    'ちゅうごくご が あまり わかりません。': 'Bahasa Mandarin tidak begitu mengerti.',
+    'タワポンさん は おかね が たくさん あります。': 'Tawapon mempunyai banyak uang.',
+    'ここ に ほん が すこし あります。': 'Di sini ada sedikit buku.',
+    'ここ は もり が あまり ありません。': 'Di sini tidak begitu banyak hutan.',
+    'じかん が ぜんぜん ありません。': 'Tidak ada waktu sama sekali.'
   };
   const match = raw.match(/^(.*)\s\(([^()]*)\)\s*$/);
 
@@ -182,6 +191,7 @@ function getBabByIndex(index) {
 }
 
 let selectedBab = 'Semua';
+let selectedParticle = '';
 
 function setBabFilter(bab) {
   selectedBab = bab;
@@ -191,13 +201,24 @@ function setBabFilter(bab) {
   renderBunpo();
 }
 
+function setParticleFilter(particle) {
+  selectedParticle = particle;
+  document.querySelectorAll('#particleFilter .level-btn').forEach(btn => {
+    const btnParticle = btn.getAttribute('onclick').match(/setParticleFilter\('(.*)'\)/)[1];
+    btn.classList.toggle('active', btnParticle === particle);
+  });
+  renderBunpo();
+}
+
 function renderBunpo() {
   const q = normalize(bunpoSearch.value);
   const filtered = bunpoDatabase.filter((item, index) => {
     const bab = getBabByIndex(index);
     const babMatch = selectedBab === 'Semua' || bab === selectedBab;
+    const particleMatch = !selectedParticle || item.pattern.includes(selectedParticle);
     return (
       babMatch &&
+      particleMatch &&
       (!q ||
         normalize(bab).includes(q) ||
         normalize(item.pattern).includes(q) ||
@@ -238,7 +259,112 @@ function renderBunpo() {
     .join('');
 
   bunpoEmptyState.style.display = filtered.length ? 'none' : '';
+
+  // If card mode is active, re-render card view
+  if (cardMode) renderCardView(filtered);
 }
+
+// ---- CARD MODE ----
+let cardMode = false;
+let cardIndex = 0;
+let cardItems = [];
+
+function buildItemHtml(item) {
+  const examples = (item.examples || [])
+    .map((ex) => {
+      const parsed = parseExample(ex);
+      return `<li><div class="ex-jp">${escapeHtml(parsed.jp)}</div><div class="ex-id">Arti: ${escapeHtml(parsed.id)}</div></li>`;
+    })
+    .join('');
+  const rawPattern = item.pattern || '-';
+  const easyPattern = expandShorthand(rawPattern);
+  const easyExplanation = simplifyExplanation(item.explanation || '-');
+  const dataIndex = bunpoDatabase.indexOf(item);
+  const bab = getBabByIndex(dataIndex);
+  return `
+    <div class="item-top">
+      <h3>Pola Asli</h3>
+      <span class="bab-badge">${escapeHtml(bab)}</span>
+    </div>
+    <p class="pattern-main">${escapeHtml(rawPattern)}</p>
+    <p class="easy-read"><strong>Cara Baca:</strong> ${escapeHtml(easyPattern)}</p>
+    <p class="core-meaning"><strong>Penjelasan Gampang:</strong> ${escapeHtml(easyExplanation)}</p>
+    <p><strong>Contoh:</strong></p>
+    <ul>${examples}</ul>
+  `;
+}
+
+function renderCardView(items) {
+  cardItems = items;
+  if (cardIndex >= cardItems.length) cardIndex = 0;
+  const card = document.getElementById('cardModeCard');
+  const counter = document.getElementById('cardCounter');
+  const prevBtn = document.getElementById('cardPrevBtn');
+  const nextBtn = document.getElementById('cardNextBtn');
+  if (!cardItems.length) {
+    card.innerHTML = '<p style="color:var(--faded);text-align:center;">Tidak ada kartu.</p>';
+    counter.textContent = '0 / 0';
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    return;
+  }
+  counter.textContent = `${cardIndex + 1} / ${cardItems.length}`;
+  card.innerHTML = buildItemHtml(cardItems[cardIndex]);
+  prevBtn.disabled = cardIndex === 0;
+  nextBtn.disabled = cardIndex === cardItems.length - 1;
+}
+
+function cardNav(dir) {
+  cardIndex = Math.max(0, Math.min(cardItems.length - 1, cardIndex + dir));
+  renderCardView(cardItems);
+  document.getElementById('cardModeCard').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function toggleCardMode() {
+  cardMode = !cardMode;
+  const btn = document.getElementById('cardModeToggle');
+  const listView = document.getElementById('bunpoList');
+  const cardView = document.getElementById('cardModeView');
+  const helperCard = document.querySelector('.helper-card');
+  if (cardMode) {
+    btn.textContent = '☰ Mode List';
+    btn.classList.add('active');
+    listView.style.display = 'none';
+    if (helperCard) helperCard.style.display = 'none';
+    cardView.style.display = 'block';
+    cardIndex = 0;
+    // collect current filtered items
+    const q = normalize(bunpoSearch.value);
+    cardItems = bunpoDatabase.filter((item, index) => {
+      const bab = getBabByIndex(index);
+      const babMatch = selectedBab === 'Semua' || bab === selectedBab;
+      const particleMatch = !selectedParticle || item.pattern.includes(selectedParticle);
+      return babMatch && particleMatch && (!q ||
+        normalize(bab).includes(q) ||
+        normalize(item.pattern).includes(q) ||
+        normalize(item.explanation).includes(q) ||
+        (item.examples || []).some((ex) => normalize(ex).includes(q)));
+    });
+    renderCardView(cardItems);
+  } else {
+    btn.textContent = '▦ Mode Kartu';
+    btn.classList.remove('active');
+    listView.style.display = '';
+    if (helperCard) helperCard.style.display = '';
+    cardView.style.display = 'none';
+  }
+}
+
+// Swipe support for card mode
+(function() {
+  let startX = 0;
+  document.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    if (!cardMode) return;
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) cardNav(diff > 0 ? 1 : -1);
+  }, { passive: true });
+})();
 
 bunpoSearch.addEventListener('input', renderBunpo);
 renderBunpo();

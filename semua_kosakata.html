@@ -5,25 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Semua Kosakata Jepang</title>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sidebar.css">
   <link rel="stylesheet" href="flashcard_kosakata_bab1_10.css">
   <link rel="stylesheet" href="semua_kosakata.css">
 </head>
-<body>
-  <div class="fc-wrap all-wrap">
-    <div class="header">
-      <h1>📚 Semua Kosakata</h1>
-      <span class="header-subtitle">Lihat semua kata tanpa next satu-satu</span>
-      <div class="page-nav" aria-label="Navigasi halaman belajar">
-        <a class="page-nav-link" href="index.html">Kosakata</a>
-        <a class="page-nav-link active" href="semua_kosakata.html">Semua Kosakata</a>
-        <a class="page-nav-link" href="bunpo.html">Bunpo</a>
-        <a class="page-nav-link" href="kanji.html">Kanji</a>
-        <a class="page-nav-link" href="kanji-belajar.html">Belajar Kanji</a>
-        <a class="page-nav-link" href="latihan.html">Latihan Vocab</a>
-        <a class="page-nav-link" href="latihan_kanji.html">Latihan Kanji</a>
-        <a class="page-nav-link" href="latihan_bunpo.html">Latihan Bunpo</a>
-      </div>
+<body class="has-global-sidebar" data-page="semua-kosakata">
+  <button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
+  <div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
+  <aside id="globalSidebar" class="global-sidebar">
+    <div class="global-sidebar-header">
+      <span class="global-sidebar-title">日本語 Belajar</span>
+      <div class="global-sidebar-subtitle">Navigasi Halaman</div>
     </div>
+    <nav class="global-sidebar-links" aria-label="Sidebar navigasi utama">
+      <a href="index.html" data-page="kosakata">Kosakata</a>
+      <a href="semua_kosakata.html" data-page="semua-kosakata">Semua Kosakata</a>
+      <a href="bunpo.html" data-page="bunpo">Bunpo</a>
+      <a href="kanji-n5.html" data-page="kanji">Kanji</a>
+      <a href="kanji-n5.html" data-page="kanji-n5">Belajar Kanji</a>
+      <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
+      <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
+    </nav>
+  </aside>
+  <main class="global-app-main">
+  <div class="fc-wrap all-wrap">
 
     <div class="controls all-controls">
       <div class="search-row">
@@ -54,6 +59,9 @@
     <div class="all-grid" id="allGrid"></div>
   </div>
 
+  </main>
+
+  <script src="sidebar.js"></script>
   <script src="database.js"></script>
   <script src="semua_kosakata.js"></script>
 </body>

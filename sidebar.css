@@ -1,0 +1,200 @@
+/* Global sidebar shared by all pages */
+:root {
+  --global-ink: #1a1108;
+  --global-paper: #f5f0e8;
+  --global-paper-warm: #f4f1ea;
+  --global-paper-card: #ffffff;
+  --global-aged: #e8dfc8;
+  --global-border: #e2ddd5;
+  --global-ink-soft: #6d5d4f;
+  --global-gold: #b8860b;
+  --global-shadow: 0 2px 12px rgba(26, 17, 8, 0.08);
+  --global-shadow-md: 0 4px 24px rgba(26, 17, 8, 0.12);
+  --global-radius-sm: 8px;
+}
+
+body.has-global-sidebar {
+  min-height: 100vh;
+}
+
+.global-side-toggle {
+  display: none;
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  z-index: 1400;
+  border: 2px solid var(--global-ink);
+  background: var(--global-paper-card);
+  color: var(--global-ink);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: var(--global-shadow-md);
+}
+
+.global-side-backdrop {
+  display: none;
+}
+
+.global-sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 240px;
+  background: var(--global-paper-card);
+  border-right: 2px solid var(--global-ink);
+  box-shadow: 4px 0 0 rgba(26, 17, 8, 0.12);
+  z-index: 1300;
+  overflow-y: auto;
+}
+
+.global-sidebar-header {
+  padding: 28px 20px 20px;
+  border-bottom: 2px solid var(--global-ink);
+  background: var(--global-paper-warm);
+}
+
+.global-sidebar-title {
+  display: block;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.55rem;
+  letter-spacing: 0.05em;
+  color: var(--global-ink);
+  margin-bottom: 4px;
+}
+
+.global-sidebar-subtitle {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--global-ink-soft);
+}
+
+.global-sidebar-links {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+}
+
+.global-sidebar-links::before {
+  content: 'Menu';
+  font-size: 9px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--global-ink-soft);
+  padding: 10px 20px 6px;
+}
+
+.global-sidebar-links a {
+  text-decoration: none;
+  border: 1.5px solid transparent;
+  color: var(--global-ink-soft);
+  border-radius: var(--global-radius-sm);
+  padding: 9px 12px;
+  margin: 0 12px 6px;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: all 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.global-sidebar-links a::before {
+  width: 22px;
+  min-width: 22px;
+  text-align: center;
+  font-size: 15px;
+}
+
+.global-sidebar-links a[data-page='kosakata']::before { content: '📘'; }
+.global-sidebar-links a[data-page='semua-kosakata']::before { content: '📚'; }
+.global-sidebar-links a[data-page='bunpo']::before { content: '✍'; }
+.global-sidebar-links a[data-page='kanji']::before { content: '字'; font-family: 'Noto Serif JP', serif; }
+.global-sidebar-links a[data-page='kanji-n5']::before { content: '漢'; font-family: 'Noto Serif JP', serif; }
+.global-sidebar-links a[data-page='latihan-vocab']::before { content: '📝'; }
+.global-sidebar-links a[data-page='latihan-bunpo']::before { content: '💬'; }
+
+.global-sidebar-links a::after {
+  content: '';
+  margin-left: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.15s;
+}
+
+.global-sidebar-links a:hover {
+  border-color: var(--global-ink);
+  color: var(--global-ink);
+  background: var(--global-paper-warm);
+}
+
+.global-sidebar-links a.active {
+  background: var(--global-ink);
+  color: var(--global-paper);
+  border-color: var(--global-ink);
+  box-shadow: var(--global-shadow);
+}
+
+.global-sidebar-links a.active::after {
+  background: var(--global-gold);
+}
+
+.global-app-main {
+  margin-left: 240px;
+  min-height: 100vh;
+  padding: 18px 14px;
+}
+
+@media (max-width: 900px) {
+  .global-side-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .global-side-backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 1250;
+    background: rgba(0, 0, 0, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .global-side-backdrop.show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .global-sidebar {
+    transform: translateX(-104%);
+    transition: transform 0.2s ease;
+    width: min(84vw, 300px);
+    box-shadow: var(--global-shadow-md);
+  }
+
+  .global-sidebar.open {
+    transform: translateX(0);
+  }
+
+  body.has-global-sidebar.sidebar-open {
+    overflow: hidden;
+  }
+
+  .global-app-main {
+    margin-left: 0;
+    padding: 58px 10px 14px;
+  }
+}
