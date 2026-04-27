@@ -126,12 +126,105 @@ body {
   flex-wrap: wrap;
   padding: 1rem;
   border-bottom: 2px solid var(--ink);
-  align-items: center;
+  align-items: stretch;
   background: var(--aged);
 }
 
-.controls select,
-.controls input {
+.search-row {
+  width: 100%;
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.multi-select {
+  position: relative;
+  min-width: 250px;
+}
+
+.multi-select-btn {
+  width: 100%;
+  padding: 0.5rem 0.7rem;
+  border: 1.5px solid var(--ink);
+  background: white;
+  color: var(--ink);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-align: left;
+  cursor: pointer;
+}
+
+.multi-select-panel {
+  position: absolute;
+  top: calc(100% + 0.35rem);
+  left: 0;
+  width: 320px;
+  max-width: min(92vw, 320px);
+  max-height: 310px;
+  overflow: auto;
+  padding: 0.6rem;
+  border: 1.5px solid var(--ink);
+  background: white;
+  box-shadow: 4px 4px 0 var(--ink);
+  display: none;
+  z-index: 20;
+}
+
+.multi-select-panel.show {
+  display: block;
+}
+
+.multi-option {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.45rem;
+  font-size: 0.82rem;
+  padding: 0.35rem 0.25rem;
+  cursor: pointer;
+  text-align: left;
+}
+
+.multi-option:hover {
+  background: var(--paper);
+}
+
+.multi-option span {
+  line-height: 1.35;
+}
+
+.multi-option input[type="checkbox"] {
+  width: 15px;
+  height: 15px;
+  accent-color: var(--red);
+}
+
+.multi-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.6rem;
+  padding-top: 0.55rem;
+  border-top: 1px dashed var(--ink);
+}
+
+.multi-actions button {
+  padding: 0.35rem 0.65rem;
+  border: 1.5px solid var(--ink);
+  background: white;
+  color: var(--ink);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.multi-actions button:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.search-row > input[type="text"] {
   padding: 0.5rem 0.7rem;
   border: 1.5px solid var(--ink);
   background: white;
@@ -142,8 +235,7 @@ body {
   min-width: 120px;
 }
 
-.controls select:focus,
-.controls input:focus {
+.search-row > input[type="text"]:focus {
   outline: none;
   background: var(--paper);
 }
@@ -153,6 +245,10 @@ body {
   font-size: 0.72rem;
   color: var(--faded);
   letter-spacing: 0.05em;
+  margin-left: auto;
+}
+
+.search-row .stats {
   margin-left: auto;
 }
 
@@ -338,5 +434,9 @@ body {
   body { padding: 10px; }
   .fc-wrap { box-shadow: none; }
   .card-area { padding: 1rem; }
+  .search-row { flex-direction: column; align-items: stretch; }
+  .search-row .stats { margin-left: 0; }
+  .multi-select { min-width: 100%; }
+  .multi-select-panel { width: 100%; max-width: 100%; }
   .grid-view { grid-template-columns: 1fr 1fr; padding: 1rem; }
 }

@@ -11,31 +11,45 @@ let autoVoiceRunId = 0;
 const JAPANESE_TO_MEANING_DELAY_MS = 1000;
 const AUTO_NEXT_DELAY_MS = 1500;
 let reverseMode = false;
-const QUERY_BAB_KEY = 'bab';
 
-function getValidCategoryOrEmpty(value) {
-  const sel = document.getElementById('catFilter');
-  if(!sel) return '';
-  const options = Array.from(sel.options).map(o => o.value);
-  return options.includes(value) ? value : '';
+function getSelectedBabs() {
+  const checkboxes = document.querySelectorAll('.multi-option input[type="checkbox"]:checked');
+  return Array.from(checkboxes).map((cb) => cb.value);
 }
 
-function applyCategoryFromQuery() {
-  const sel = document.getElementById('catFilter');
-  if(!sel) return;
-  const url = new URL(window.location.href);
-  const babFromQuery = url.searchParams.get(QUERY_BAB_KEY) || '';
-  sel.value = getValidCategoryOrEmpty(babFromQuery);
-}
+function updateBabFilterButtonLabel() {
+  const btn = document.getElementById('babFilterBtn');
+  if(!btn) return;
+  const selected = getSelectedBabs();
 
-function syncCategoryQuery(catValue) {
-  const url = new URL(window.location.href);
-  if(catValue) {
-    url.searchParams.set(QUERY_BAB_KEY, catValue);
-  } else {
-    url.searchParams.delete(QUERY_BAB_KEY);
+  if(selected.length === 0) {
+    btn.textContent = 'Filter Bab: Semua';
+    return;
   }
-  window.history.replaceState({}, '', url.toString());
+
+  if(selected.length <= 2) {
+    btn.textContent = 'Filter Bab: ' + selected.join(', ');
+    return;
+  }
+
+  btn.textContent = 'Filter Bab: ' + selected.length + ' Bab dipilih';
+}
+
+function toggleBabDropdown() {
+  const panel = document.getElementById('babFilterPanel');
+  if(!panel) return;
+  panel.classList.toggle('show');
+}
+
+function closeBabDropdown() {
+  const panel = document.getElementById('babFilterPanel');
+  if(!panel) return;
+  panel.classList.remove('show');
+}
+
+function onBabSelectionChange() {
+  updateBabFilterButtonLabel();
+  filterCards();
 }
 
 function waitMs(ms) {
@@ -132,15 +146,9 @@ function setMode(m) {
   document.querySelectorAll('.tab').forEach((t)=>{
     t.classList.toggle('active', t.dataset.mode === m);
   });
-  document.getElementById('flashMode').style.display = m==='flash'?'':'none';
-  document.getElementById('gridMode').style.display = m==='grid'?'':'none';
 
-  if(m==='grid') {
-    renderGrid();
-  } else {
-    document.getElementById('flashMode').style.display = '';
-    renderCard();
-  }
+  document.getElementById('flashMode').style.display = '';
+  renderCard();
 
   if(m === 'auto') {
     startAutoVoice(true);
@@ -150,11 +158,10 @@ function setMode(m) {
 }
 
 function filterCards() {
-  const cat = document.getElementById('catFilter').value;
+  const selectedBabs = getSelectedBabs();
   const q = document.getElementById('search').value.toLowerCase();
-  syncCategoryQuery(cat);
   filtered = vocab.filter(v => {
-    const matchCat = !cat || v.cat === cat;
+    const matchCat = selectedBabs.length === 0 || selectedBabs.includes(v.cat);
     const isKanji = v.type === 'kanji';
     let matchQ = !q;
     if(q && !matchQ) {
@@ -168,13 +175,30 @@ function filterCards() {
   });
   idx = 0;
   document.getElementById('stats').textContent = filtered.length + ' kata';
-  if(mode==='flash') renderCard();
-  else if(mode==='grid') renderGrid();
+  renderCard();
 
   if(mode==='auto') {
     renderCard();
     startAutoVoice(true);
   }
+}
+
+function selectAllBabs() {
+  const checkboxes = document.querySelectorAll('.multi-option input[type="checkbox"]');
+  checkboxes.forEach((cb) => {
+    cb.checked = true;
+  });
+  updateBabFilterButtonLabel();
+  filterCards();
+}
+
+function clearAllBabs() {
+  const checkboxes = document.querySelectorAll('.multi-option input[type="checkbox"]');
+  checkboxes.forEach((cb) => {
+    cb.checked = false;
+  });
+  updateBabFilterButtonLabel();
+  filterCards();
 }
 
 function renderCard() {
@@ -373,7 +397,6 @@ function isTypingElement(el) {
 
 function handleArrowNavigation(e) {
   if(isTypingElement(e.target)) return;
-  if(mode === 'grid') return;
 
   if(e.key === 'ArrowLeft') {
     e.preventDefault();
@@ -386,26 +409,15 @@ function handleArrowNavigation(e) {
   }
 }
 
-function renderGrid() {
-  const c = document.getElementById('gridContainer');
-  c.innerHTML = filtered.map(v => {
-    const isKanji = v.type === 'kanji';
-    let exampleHtml = '';
-    if(isKanji && v.example) {
-      exampleHtml = `<div style="font-size: 10px; color: #999; margin-top: 4px; border-top: 1px solid #e0e0e0; padding-top: 4px;">📝 ${v.example}</div>`;
-    }
-    return `
-    <div class="grid-card">
-      <div class="grid-jp">${isKanji ? v.kanji : v.jp}</div>
-      <div class="grid-romaji">${isKanji ? v.unyomi + ' / ' + v.kunyomi : v.rom}</div>
-      <div class="grid-id">${v.id}</div>
-      ${exampleHtml}
-    </div>
-  `;
-  }).join('');
-}
+document.addEventListener('click', (e) => {
+  const root = document.getElementById('babFilter');
+  if(!root) return;
+  if(!root.contains(e.target)) {
+    closeBabDropdown();
+  }
+});
 
-applyCategoryFromQuery();
+updateBabFilterButtonLabel();
 filterCards();
 renderCard();
 updateReverseButton();

@@ -14,6 +14,7 @@
     <span class="header-subtitle">Bab 1-8: Kosakata</span>
     <div class="page-nav" aria-label="Navigasi halaman belajar">
       <a class="page-nav-link active" href="index.html">Kosakata</a>
+      <a class="page-nav-link" href="semua_kosakata.html">Semua Kosakata</a>
       <a class="page-nav-link" href="bunpo.html">Bunpo</a>
       <a class="page-nav-link" href="kanji.html">Kanji</a>
       <a class="page-nav-link" href="kanji-belajar.html">Belajar Kanji</a>
@@ -25,26 +26,33 @@
   
   <div class="tab-row">
     <button class="tab active" data-mode="flash" onclick="setMode('flash')">🎴 Flashcard</button>
-    <button class="tab" data-mode="grid" onclick="setMode('grid')">📋 Semua Kata</button>
     <button class="tab" data-mode="auto" onclick="setMode('auto')">🔊 Auto Voice</button>
   </div>
   
   <div class="controls">
-    <select id="catFilter" onchange="filterCards()">
-      <option value="">Semua Bab</option>
-      <option value="Bab 1">Bab 1 – Perkenalan</option>
-      <option value="Bab 2">Bab 2 – Benda</option>
-      <option value="Bab 3">Bab 3 – Tempat</option>
-      <option value="Bab 4">Bab 4 – Waktu & Jam</option>
-      <option value="Bab 5">Bab 5 – Transportasi</option>
-      <option value="Bab 6">Bab 6 – Aktivitas & Makanan</option>
-      <option value="Bab 7">Bab 7 – Memberi, Menerima, & Benda</option>
-      <option value="Bab 8">Bab 8 – Sifat, Kehidupan, & Ungkapan</option>
-      <option value="Bab 9">Bab 9 - Kesukaan dan Kemahiran</option>
-      <option value="Bab 10">Bab 10 – Keberadaan & Posisi</option>
-    </select>
-    <input id="search" type="text" placeholder="Cari kata..." oninput="filterCards()" />
-    <span class="stats" id="stats"></span>
+    <div class="search-row">
+      <div class="multi-select" id="babFilter">
+        <button type="button" class="multi-select-btn" id="babFilterBtn" onclick="toggleBabDropdown()">Filter Bab: Semua</button>
+        <div class="multi-select-panel" id="babFilterPanel">
+          <label class="multi-option"><input type="checkbox" value="Bab 1" onchange="onBabSelectionChange()"><span>Bab 1 - Perkenalan</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 2" onchange="onBabSelectionChange()"><span>Bab 2 - Benda</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 3" onchange="onBabSelectionChange()"><span>Bab 3 - Tempat</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 4" onchange="onBabSelectionChange()"><span>Bab 4 - Waktu & Jam</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 5" onchange="onBabSelectionChange()"><span>Bab 5 - Transportasi</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 6" onchange="onBabSelectionChange()"><span>Bab 6 - Aktivitas & Makanan</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 7" onchange="onBabSelectionChange()"><span>Bab 7 - Memberi, Menerima, & Benda</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 8" onchange="onBabSelectionChange()"><span>Bab 8 - Sifat, Kehidupan, & Ungkapan</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 9" onchange="onBabSelectionChange()"><span>Bab 9 - Kesukaan dan Kemahiran</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 10" onchange="onBabSelectionChange()"><span>Bab 10 - Keberadaan & Posisi</span></label>
+          <div class="multi-actions">
+            <button type="button" onclick="selectAllBabs()">Pilih Semua</button>
+            <button type="button" onclick="clearAllBabs()">Reset</button>
+          </div>
+        </div>
+      </div>
+      <input id="search" type="text" placeholder="Cari kata..." oninput="filterCards()" />
+      <span class="stats" id="stats"></span>
+    </div>
   </div>
 
   <div id="flashMode">
@@ -76,9 +84,6 @@
     </div>
   </div>
 
-  <div id="gridMode" style="display:none;">
-    <div class="grid-view" id="gridContainer"></div>
-  </div>
 </div>
 
 <script src="database.js"></script>

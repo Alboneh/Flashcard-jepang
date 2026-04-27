@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semua Kosakata Jepang</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="flashcard_kosakata_bab1_10.css">
+  <link rel="stylesheet" href="semua_kosakata.css">
+</head>
+<body>
+  <div class="fc-wrap all-wrap">
+    <div class="header">
+      <h1>📚 Semua Kosakata</h1>
+      <span class="header-subtitle">Lihat semua kata tanpa next satu-satu</span>
+      <div class="page-nav" aria-label="Navigasi halaman belajar">
+        <a class="page-nav-link" href="index.html">Kosakata</a>
+        <a class="page-nav-link active" href="semua_kosakata.html">Semua Kosakata</a>
+        <a class="page-nav-link" href="bunpo.html">Bunpo</a>
+        <a class="page-nav-link" href="kanji.html">Kanji</a>
+        <a class="page-nav-link" href="kanji-belajar.html">Belajar Kanji</a>
+        <a class="page-nav-link" href="latihan.html">Latihan Vocab</a>
+        <a class="page-nav-link" href="latihan_kanji.html">Latihan Kanji</a>
+        <a class="page-nav-link" href="latihan_bunpo.html">Latihan Bunpo</a>
+      </div>
+    </div>
+
+    <div class="controls all-controls">
+      <div class="search-row">
+        <div class="multi-select" id="babFilter">
+          <button type="button" class="multi-select-btn" id="babFilterBtn" onclick="toggleBabDropdown()">Filter Bab: Semua</button>
+          <div class="multi-select-panel" id="babFilterPanel">
+            <label class="multi-option"><input type="checkbox" value="Bab 1" onchange="onBabSelectionChange()"><span>Bab 1 - Perkenalan</span></label>
+            <label class="multi-option"><input type="checkbox" value="Bab 2" onchange="onBabSelectionChange()"><span>Bab 2 - Benda</span></label>
+            <label class="multi-option"><input type="checkbox" value="Bab 3" onchange="onBabSelectionChange()"><span>Bab 3 - Tempat</span></label>
+            <label class="multi-option"><input type="checkbox" value="Bab 4" onchange="onBabSelectionChange()"><span>Bab 4 - Waktu & Jam</span></label>
+            <label class="multi-option"><input type="checkbox" value="Bab 5" onchange="onBabSelectionChange()"><span>Bab 5 - Transportasi</span></label>
+            <label class="multi-option"><input type="checkbox" value="Bab 6" onchange="onBabSelectionChange()"><span>Bab 6 - Aktivitas & Makanan</span></label>
+            <label class="multi-option"><input type="checkbox" value="Bab 7" onchange="onBabSelectionChange()"><span>Bab 7 - Memberi, Menerima, & Benda</span></label>
+            <label class="multi-option"><input type="checkbox" value="Bab 8" onchange="onBabSelectionChange()"><span>Bab 8 - Sifat, Kehidupan, & Ungkapan</span></label>
+            <label class="multi-option"><input type="checkbox" value="Bab 9" onchange="onBabSelectionChange()"><span>Bab 9 - Kesukaan dan Kemahiran</span></label>
+            <label class="multi-option"><input type="checkbox" value="Bab 10" onchange="onBabSelectionChange()"><span>Bab 10 - Keberadaan & Posisi</span></label>
+            <div class="multi-actions">
+              <button type="button" onclick="selectAllBabs()">Pilih Semua</button>
+              <button type="button" onclick="clearAllBabs()">Reset</button>
+            </div>
+          </div>
+        </div>
+        <input id="search" type="text" placeholder="Cari kata Jepang / romaji / arti..." oninput="renderAllKosakata()">
+        <span class="stats" id="stats"></span>
+      </div>
+    </div>
+
+    <div class="all-grid" id="allGrid"></div>
+  </div>
+
+  <script src="database.js"></script>
+  <script src="semua_kosakata.js"></script>
+</body>
+</html>
