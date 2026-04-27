@@ -1,402 +1,402 @@
 const bunpoDatabase = [
   {
     pattern: "KB1 は KB2 です",
-    explanation: "Ini pola kalimat nominal paling dasar dalam bahasa Jepang. Pola ini dipakai untuk menyatakan identitas atau kategori, jadi artinya KB1 adalah KB2.",
+    explanation: "KB1 adalah topik utama kalimat — hal yang sedang dibicarakan. は menandai topik itu. Lalu KB2 adalah penjelasan tentang topik tersebut. Contoh: わたし は イブラヒム です — 'watashi' (saya) adalah topik utama kalimat, dan 'Ibrahim' adalah penjelasannya.",
     examples: [
-      "わたし は がくせい です。 (Saya adalah pelajar.)",
-      "たなかさん は せんせい です。 (Tanaka-san adalah guru.)"
+      "わたし は がくせい です。 (Saya adalah pelajar. — 'saya' topik utama, 'pelajar' penjelasannya.)",
+      "たなかさん は せんせい です。 (Tanaka-san adalah guru. — 'Tanaka-san' topik utama, 'guru' penjelasannya.)"
     ]
   },
   {
     pattern: "KB1 は KB2 では ありません / じゃ ありません",
-    explanation: "Ini bentuk negatif dari kalimat nominal dasar. Pola ini dipakai saat ingin menyangkal informasi, jadi artinya KB1 bukan KB2.",
+    explanation: "Kebalikan dari pola は です. KB1 tetap topik utama kalimat, tapi penjelasannya dinegasikan. Artinya: KB1 bukan KB2. じゃ ありません lebih santai, では ありません lebih formal — artinya sama.",
     examples: [
-      "わたし は いしゃ では ありません。 (Saya bukan dokter.)",
+      "わたし は いしゃ では ありません。 (Saya bukan dokter. — 'saya' topik utama, 'dokter' dinegasikan.)",
       "あのひと は がくせい じゃ ありません。 (Orang itu bukan pelajar.)"
     ]
   },
   {
     pattern: "KB1 は KB2 ですか",
-    explanation: "Ini bentuk tanya dari kalimat nominal. Tambahkan か di akhir kalimat untuk menandai bahwa kalimat tersebut adalah pertanyaan.",
+    explanation: "Sama seperti pola は です, tapi diubah jadi pertanyaan dengan menambahkan か di akhir. KB1 tetap topik utama kalimat. か = tanda tanya bahasa Jepang.",
     examples: [
-      "あなた は せんせい ですか。 (Apakah Anda guru?)",
+      "あなた は せんせい ですか。 (Apakah Anda guru? — 'Anda' topik utama, ditanyakan apakah 'guru'.)",
       "ミラーさん は アメリカじん ですか。 (Apakah Miller-san orang Amerika?)"
     ]
   },
   {
     pattern: "KB1 は KB2 の KB3 です",
-    explanation: "Partikel の dipakai untuk menghubungkan dua kata benda dalam satu frasa. Fungsinya biasanya untuk menunjukkan milik, asal, afiliasi, atau jenis dari kata benda yang dijelaskan.",
+    explanation: "KB1 adalah topik utama kalimat. の menghubungkan dua kata benda — KB2 menerangkan KB3. Bisa menunjukkan milik, asal, jenis, atau afiliasi.",
     examples: [
-      "わたし は IMC の しゃいん です。 (Saya karyawan IMC.)",
-      "これは にほん の ほん です。 (Ini buku Jepang.)"
+      "わたし は IMC の しゃいん です。 (Saya adalah karyawan IMC. — 'saya' topik utama, 'karyawan IMC' penjelasannya.)",
+      "これは にほん の ほん です。 (Ini adalah buku Jepang. — 'ini' topik utama, 'buku Jepang' penjelasannya.)"
     ]
   },
   {
     pattern: "KB1 は KB2 です。KB3 も KB2 です",
-    explanation: "Partikel も artinya juga. Dipakai ketika informasi pada kalimat berikutnya sama atau sejenis dengan informasi pada kalimat sebelumnya.",
+    explanation: "も menggantikan は ketika topik baru memiliki penjelasan yang sama dengan kalimat sebelumnya. Artinya: KB3 juga memiliki penjelasan yang sama dengan KB1.",
     examples: [
-      "サントスさん は がくせい です。わたし も がくせい です。",
-      "たなかさん は にほんじん です。やまださん も にほんじん です。"
+      "サントスさん は がくせい です。わたし も がくせい です。 (Santos adalah pelajar. Saya juga pelajar.)",
+      "たなかさん は にほんじん です。やまださん も にほんじん です。 (Tanaka-san orang Jepang. Yamada-san juga orang Jepang.)"
     ]
   },
   {
     pattern: "KB1 は KB2 さい です",
-    explanation: "Pola ini dipakai untuk menyebut umur seseorang. Angka umur diletakkan sebelum さい, lalu diakhiri です untuk bentuk sopan.",
+    explanation: "KB1 adalah topik utama kalimat — orang yang sedang dibicarakan umurnya. さい adalah satuan umur. Angka diletakkan sebelum さい.",
     examples: [
-      "わたし は 20さい です。 (Saya 20 tahun.)",
-      "むすめ は 7さい です。 (Anak perempuan saya 7 tahun.)"
+      "わたし は 20さい です。 (Saya berumur 20 tahun. — 'saya' topik utama, '20 tahun' penjelasannya.)",
+      "むすめ は 7さい です。 (Anak perempuan saya berumur 7 tahun.)"
     ]
   },
   {
     pattern: "これ / それ / あれ は KB1 です",
-    explanation: "Pola ini dipakai untuk menunjuk benda. これ dipakai untuk benda yang dekat pembicara, それ untuk benda yang dekat lawan bicara, dan あれ untuk benda yang jauh dari keduanya.",
+    explanation: "これ/それ/あれ menjadi topik utama kalimat — benda yang sedang ditunjuk dan dibicarakan. KB1 adalah penjelasan tentang benda itu. これ = benda dekat pembicara, それ = dekat lawan bicara, あれ = jauh dari keduanya.",
     examples: [
-      "これ は じしょ です。 (Ini kamus.)",
-      "あれ は かさ です。 (Itu payung di sana.)"
+      "これ は じしょ です。 (Ini adalah kamus. — 'ini' topik utama, 'kamus' penjelasannya.)",
+      "あれ は かさ です。 (Itu adalah payung.)"
     ]
   },
   {
     pattern: "それ は KB1 ですか、KB2 ですか",
-    explanation: "Ini pola pertanyaan pilihan. Dipakai saat penanya memberi dua opsi dan menanyakan apakah sesuatu itu A atau B.",
+    explanation: "Pertanyaan pilihan. Topik utama kalimat adalah benda yang ditunjuk (それ), lalu penanya memberi dua opsi penjelasan dan bertanya yang mana yang benar.",
     examples: [
-      "それ は かばん ですか、にもつ ですか。",
-      "これは てちょう ですか、ノート ですか。"
+      "それ は かばん ですか、にもつ ですか。 (Itu tas atau barang bawaan?)",
+      "これは てちょう ですか、ノート ですか。 (Ini buku agenda atau buku catatan?)"
     ]
   },
   {
     pattern: "これ / それ / あれ は KB1 の KB2 です",
-    explanation: "Pola ini dipakai untuk menyebut suatu benda sekaligus keterangan asal, pemilik, atau jenisnya menggunakan partikel の. Bagian sebelum の berfungsi sebagai penjelas untuk benda setelahnya.",
+    explanation: "Benda yang ditunjuk (これ/それ/あれ) menjadi topik utama kalimat. Penjelasannya berupa KB1 の KB2 — menyebut benda sekaligus asal, pemilik, atau jenisnya.",
     examples: [
-      "これは にほん の カメラ です。",
-      "それ は わたし の ほん です。"
+      "これは にほん の カメラ です。 (Ini adalah kamera Jepang. — 'ini' topik utama.)",
+      "それ は わたし の ほん です。 (Itu adalah buku saya.)"
     ]
   },
   {
     pattern: "この / その / あの KB1 は KB2 の です",
-    explanation: "この/その/あの selalu dipakai langsung di depan kata benda, tidak berdiri sendiri. Pola ini dipakai untuk menunjuk benda tertentu, lalu KB2 の です menjelaskan pemilik atau asal benda itu.",
+    explanation: "KB1 yang ditunjuk dengan この/その/あの menjadi topik utama kalimat. Penjelasannya adalah KB2 の です — menyatakan pemilik atau asal benda itu. Catatan: この/その/あの harus selalu diikuti kata benda, tidak bisa berdiri sendiri.",
     examples: [
-      "この かばん は わたし の です。",
-      "あの くるま は しゃちょう の です。"
+      "この かばん は わたし の です。 (Tas ini adalah milik saya. — 'tas ini' topik utama.)",
+      "あの くるま は しゃちょう の です。 (Mobil itu adalah milik direktur.)"
     ]
   },
   {
     pattern: "ここ / そこ / あそこ は KB (Tempat) です",
-    explanation: "Pola ini dipakai untuk menyebutkan lokasi suatu tempat. ここ berarti di sini, そこ di situ, dan あそこ di sana.",
+    explanation: "Lokasi yang ditunjuk (ここ/そこ/あそこ) menjadi topik utama kalimat. Penjelasannya adalah nama atau jenis tempat tersebut. ここ = di sini, そこ = di situ, あそこ = di sana.",
     examples: [
-      "ここ は きょうしつ です。",
-      "あそこ は しょくどう です。"
+      "ここ は きょうしつ です。 (Di sini adalah ruang kelas. — 'di sini' topik utama.)",
+      "あそこ は しょくどう です。 (Di sana adalah kafetaria.)"
     ]
   },
   {
     pattern: "KB / Orang / Tempat は ここ / そこ / あそこ です",
-    explanation: "Pada pola ini, topiknya adalah benda/orang/tempat yang dibicarakan, lalu diikuti keterangan lokasinya. Jadi urutannya: sebut objek dulu, baru sebut di mana posisinya.",
+    explanation: "Benda, orang, atau tempat yang ingin diketahui lokasinya menjadi topik utama kalimat. Penjelasannya adalah lokasi keberadaannya.",
     examples: [
-      "トイレ は あそこ です。",
-      "やまださん は そこ です。"
+      "トイレ は あそこ です。 (Toilet ada di sana. — 'toilet' topik utama, lokasinya penjelasannya.)",
+      "やまださん は そこ です。 (Yamada-san ada di situ.)"
     ]
   },
   {
     pattern: "KB / Orang / Tempat は Ket.Tempat です",
-    explanation: "Pola ini dipakai untuk menjelaskan posisi suatu benda atau orang secara lebih spesifik, misalnya di lantai berapa, di samping apa, atau di depan apa.",
+    explanation: "Benda, orang, atau tempat menjadi topik utama kalimat. Penjelasannya adalah posisi lebih spesifik — lantai berapa, di sebelah apa, di depan apa, dan sebagainya.",
     examples: [
-      "じむしょ は 2かい です。",
-      "エレベーター は うけつけ の となり です。"
+      "じむしょ は 2かい です。 (Kantor ada di lantai 2. — 'kantor' topik utama.)",
+      "エレベーター は うけつけ の となり です。 (Lift ada di sebelah resepsionis.)"
     ]
   },
   {
     pattern: "Orang / Tempat は こちら / そちら / あちら です",
-    explanation: "こちら/そちら/あちら adalah bentuk yang lebih sopan daripada ここ/そこ/あそこ. Pola ini sering dipakai saat berbicara dengan tamu, pelanggan, atau situasi formal.",
+    explanation: "Orang atau tempat menjadi topik utama kalimat. Penjelasannya adalah arah keberadaannya menggunakan こちら/そちら/あちら — versi lebih sopan dari ここ/そこ/あそこ. Dipakai dalam situasi formal atau saat melayani tamu.",
     examples: [
-      "うけつけ は こちら です。",
-      "やまださん は あちら です。"
+      "うけつけ は こちら です。 (Resepsionis ada di sini. — 'resepsionis' topik utama.)",
+      "やまださん は あちら です。 (Yamada-san ada di sana.)"
     ]
   },
   {
     pattern: "これ / それ / あれ は Negara / Perusahaan の Benda です",
-    explanation: "Pola ini dipakai untuk menyebut asal suatu benda, misalnya dari negara atau perusahaan tertentu. Keterangan asal diletakkan sebelum partikel の.",
+    explanation: "Benda yang ditunjuk menjadi topik utama kalimat. Penjelasannya menyebut asal negara atau perusahaan dari benda itu menggunakan の.",
     examples: [
-      "これは にほん の くるま です。",
-      "それ は IMC の コンピューター です。"
+      "これは にほん の くるま です。 (Ini adalah mobil Jepang. — 'ini' topik utama.)",
+      "それ は IMC の コンピューター です。 (Itu adalah komputer IMC.)"
     ]
   },
   {
     pattern: "Benda は Bilangan + えん です",
-    explanation: "Pola ini dipakai untuk menyebut harga barang. Bilangan diletakkan sebelum えん untuk menyatakan nilai dalam mata uang yen.",
+    explanation: "Benda yang ingin diketahui harganya menjadi topik utama kalimat. Penjelasannya adalah harganya dalam satuan yen (えん).",
     examples: [
-      "この ほん は 1200えん です。",
-      "その かさ は 800えん です。"
+      "この ほん は 1200えん です。 (Buku ini harganya 1200 yen. — 'buku ini' topik utama.)",
+      "その かさ は 800えん です。 (Payung itu harganya 800 yen.)"
     ]
   },
   {
     pattern: "いま KW です",
-    explanation: "Pola ini dipakai untuk memberitahu waktu sekarang. Biasanya digunakan saat menjawab pertanyaan jam berapa sekarang.",
+    explanation: "いま (sekarang) menjadi topik utama kalimat. Penjelasannya adalah waktu saat ini. Pola ini dipakai untuk memberitahu jam berapa sekarang.",
     examples: [
-      "いま 7じ です。",
-      "いま 9じ はん です。"
+      "いま 7じ です。 (Sekarang jam 7. — 'sekarang' topik utama, 'jam 7' penjelasannya.)",
+      "いま 9じ はん です。 (Sekarang jam setengah 10.)"
     ]
   },
   {
     pattern: "〜 は Ket.Hari です",
-    explanation: "Pola ini dipakai untuk menyebut hari pelaksanaan suatu kegiatan, jadwal, atau acara. Bagian sebelum は adalah kegiatan, bagian setelahnya adalah harinya.",
+    explanation: "Kegiatan atau acara menjadi topik utama kalimat. Penjelasannya adalah hari pelaksanaannya.",
     examples: [
-      "しけん は げつようび です。",
-      "やすみ は にちようび です。"
+      "しけん は げつようび です。 (Ujian adalah hari Senin. — 'ujian' topik utama, 'hari Senin' penjelasannya.)",
+      "やすみ は にちようび です。 (Hari libur adalah hari Minggu.)"
     ]
   },
   {
     pattern: "〜 は KW1 から KW2 まで です",
-    explanation: "Pola ini dipakai untuk menyebut rentang waktu. から berarti dari dan まで berarti sampai.",
+    explanation: "Kegiatan atau tempat menjadi topik utama kalimat. Penjelasannya adalah rentang waktunya. から = mulai dari, まで = sampai.",
     examples: [
-      "ぎんこう は 9じ から 3じ まで です。",
-      "べんきょう は 7じ から 9じ まで です。"
+      "ぎんこう は 9じ から 3じ まで です。 (Bank buka dari jam 9 sampai jam 3. — 'bank' topik utama.)",
+      "べんきょう は 7じ から 9じ まで です。 (Belajar dari jam 7 sampai jam 9.)"
     ]
   },
   {
     pattern: "〜 は KW に KK",
-    explanation: "Partikel に dipakai untuk menunjukkan titik waktu terjadinya kegiatan, seperti jam atau tanggal tertentu. Pola ini umum dipakai untuk kebiasaan atau jadwal.",
+    explanation: "Topik utama kalimat melakukan aktivitas pada waktu yang ditandai に. に dipakai untuk waktu spesifik seperti jam atau tanggal. Tidak dipakai untuk kata waktu umum seperti まいにち atau きのう.",
     examples: [
-      "わたし は 6じ に おきます。",
-      "まいにち 11じ に ねます。"
+      "わたし は 6じ に おきます。 (Saya bangun jam 6. — 'saya' topik utama, aktivitasnya terjadi 'jam 6'.)",
+      "まいにち 11じ に ねます。 (Setiap hari tidur jam 11.)"
     ]
   },
   {
     pattern: "〜 は KW1 から KW2 まで KK",
-    explanation: "Pola ini menjelaskan kegiatan yang berlangsung dalam rentang waktu tertentu. Gunakan から untuk waktu mulai dan まで untuk waktu selesai.",
+    explanation: "Topik utama kalimat melakukan aktivitas dalam rentang waktu tertentu. から = mulai, まで = sampai.",
     examples: [
-      "わたし は 8じ から 5じ まで はたらきます。",
-      "べんきょう は 7じ から 10じ まで します。"
+      "わたし は 8じ から 5じ まで はたらきます。 (Saya bekerja dari jam 8 sampai jam 5. — 'saya' topik utama.)",
+      "べんきょう は 7じ から 10じ まで します。 (Belajar dari jam 7 sampai jam 10.)"
     ]
   },
   {
     pattern: "KK ます / ません / ました / ませんでした",
-    explanation: "Ini empat bentuk dasar kata kerja sopan yang harus dikuasai pemula: sekarang positif, sekarang negatif, lampau positif, dan lampau negatif. Pola ini dipakai untuk menyatakan aktivitas pada waktu yang berbeda.",
+    explanation: "Empat bentuk kata kerja sopan. ます = sekarang/akan (positif). ません = sekarang/akan (negatif). ました = sudah terjadi (positif). ませんでした = sudah terjadi (negatif). Hanya akhirannya yang berubah.",
     examples: [
-      "きょう べんきょうします。きのう べんきょうしました。",
-      "あした はたらきません。おととい はたらきませんでした。"
+      "きょう べんきょうします。きのう べんきょうしました。 (Hari ini belajar. Kemarin belajar.)",
+      "あした はたらきません。おととい はたらきませんでした。 (Besok tidak kerja. Kemarin lusa tidak kerja.)"
     ]
   },
   {
     pattern: "KK ます / ません / ました / ませんでした か",
-    explanation: "Ini bentuk tanya dari keempat pola kata kerja sopan. Cara membuatnya sederhana: gunakan pola verb yang sesuai, lalu tambahkan か di akhir.",
+    explanation: "Bentuk tanya dari keempat pola kata kerja sopan. Tambahkan か di akhir untuk menjadikannya pertanyaan.",
     examples: [
-      "きのう べんきょうしましたか。",
-      "けさ あさごはん を たべましたか。"
+      "きのう べんきょうしましたか。 (Apakah kemarin belajar?)",
+      "けさ あさごはん を たべましたか。 (Apakah tadi pagi sarapan?)"
     ]
   },
   {
     pattern: "KB (Tempat) へ いきます / きます / かえります",
-    explanation: "Partikel へ dipakai untuk menunjukkan arah tujuan pergerakan. Pola ini dipakai bersama kata kerja pergi, datang, dan pulang.",
+    explanation: "Topik utama kalimat bergerak menuju tempat yang ditandai へ. へ menunjukkan arah tujuan. Dipakai bersama tiga kata kerja: いきます (pergi), きます (datang), かえります (pulang).",
     examples: [
-      "がっこう へ いきます。",
-      "うち へ かえります。"
+      "がっこう へ いきます。 (Pergi ke sekolah.)",
+      "うち へ かえります。 (Pulang ke rumah.)"
     ]
   },
   {
     pattern: "KB (Kendaraan) で KB (Tempat) へ いきます / きます / かえります",
-    explanation: "Partikel で pada pola ini menunjukkan alat transportasi yang dipakai untuk bergerak ke suatu tempat. Misalnya naik kereta, bus, atau taksi.",
+    explanation: "Topik utama kalimat menggunakan kendaraan (ditandai で) untuk pergi ke suatu tempat (ditandai へ). で di sini menunjukkan alat atau cara yang dipakai.",
     examples: [
-      "でんしゃ で えき へ いきます。",
-      "バス で だいがく へ きます。"
+      "でんしゃ で えき へ いきます。 (Pergi ke stasiun naik kereta.)",
+      "バス で だいがく へ きます。 (Datang ke kampus naik bus.)"
     ]
   },
   {
     pattern: "KB と KB (Tempat) へ いきます / きます / かえります",
-    explanation: "Partikel と pada pola ini berarti bersama atau dengan seseorang. Dipakai untuk menyebut teman perjalanan saat pergi, datang, atau pulang.",
+    explanation: "Topik utama kalimat pergi bersama seseorang yang ditandai と. と di sini berarti 'bersama' atau 'dengan'.",
     examples: [
-      "ともだち と デパート へ いきます。",
-      "かぞく と うち へ かえります。"
+      "ともだち と デパート へ いきます。 (Pergi ke department store bersama teman.)",
+      "かぞく と うち へ かえります。 (Pulang ke rumah bersama keluarga.)"
     ]
   },
   {
     pattern: "KB (Waktu) に KB (Tempat) へ いきます / きます / かえります",
-    explanation: "Pola ini menggabungkan dua informasi penting dalam satu kalimat: kapan pergerakan terjadi dan ke mana tujuannya. Waktu biasanya ditandai dengan に.",
+    explanation: "Topik utama kalimat bergerak ke suatu tempat (ditandai へ) pada waktu tertentu (ditandai に). Satu kalimat memuat dua informasi sekaligus: kapan dan ke mana.",
     examples: [
-      "7じ に がっこう へ いきます。",
-      "にちようび に うち へ かえります。"
+      "7じ に がっこう へ いきます。 (Pergi ke sekolah jam 7.)",
+      "にちようび に うち へ かえります。 (Pulang ke rumah hari Minggu.)"
     ]
   },
   {
     pattern: "K.Benda を K.Kerja Transitif",
-    explanation: "Partikel を menandai objek langsung yang dikenai tindakan. Pola ini dipakai saat kata kerja membutuhkan objek, seperti membaca buku atau minum air.",
+    explanation: "Topik utama kalimat melakukan tindakan pada benda yang ditandai を. を menandai benda yang dikenai tindakan. Kata kerja setelahnya harus membutuhkan objek.",
     examples: [
-      "ほん を よみます。",
-      "みず を のみます。"
+      "ほん を よみます。 (Membaca buku. — 'buku' dikenai tindakan membaca.)",
+      "みず を のみます。 (Minum air. — 'air' dikenai tindakan minum.)"
     ]
   },
   {
     pattern: "K.Benda を します",
-    explanation: "Pola ini dipakai untuk aktivitas umum yang berpasangan dengan します, seperti olahraga, belajar, atau mengerjakan tugas. Kata benda aktivitas diletakkan sebelum を します.",
+    explanation: "Topik utama kalimat melakukan aktivitas yang dinyatakan dengan kata benda + を + します. Pola ini dipakai untuk aktivitas umum seperti olahraga atau mengerjakan tugas.",
     examples: [
-      "テニス を します。",
-      "しゅくだい を します。"
+      "テニス を します。 (Bermain tenis.)",
+      "しゅくだい を します。 (Mengerjakan PR.)"
     ]
   },
   {
     pattern: "なに を しますか",
-    explanation: "Ini pola pertanyaan untuk menanyakan aktivitas yang dilakukan atau akan dilakukan. Jawabannya biasanya berupa K.Benda を します atau kata kerja aktivitas lain.",
+    explanation: "Pertanyaan untuk menanyakan aktivitas apa yang dilakukan topik utama kalimat. Jawabannya berupa kata benda aktivitas + を します.",
     examples: [
-      "にちようび なに を しますか。",
-      "こんばん なに を しますか。"
+      "にちようび なに を しますか。 (Hari Minggu mau ngapain?)",
+      "こんばん なに を しますか。 (Malam ini mau ngapain?)"
     ]
   },
   {
     pattern: "なん dan なに",
-    explanation: "なに dan なん sama-sama berarti apa, tetapi pemakaiannya tergantung kata setelahnya. なん sering dipakai sebelum kata hitung atau bunyi tertentu agar pengucapan lebih alami.",
+    explanation: "Keduanya berarti 'apa'. なに dipakai secara umum. なん dipakai sebelum kata hitung atau bunyi tertentu agar lebih mudah diucapkan — seperti なんさい (umur berapa), なんようび (hari apa).",
     examples: [
-      "これは なに ですか。",
-      "なんさい ですか。なんようび ですか。"
+      "これは なに ですか。 (Ini apa?)",
+      "なんさい ですか。なんようび ですか。 (Umur berapa? Hari apa?)"
     ]
   },
   {
     pattern: "K.Benda (Tempat) で K.Kerja",
-    explanation: "Partikel で pada pola ini menunjukkan lokasi terjadinya aktivitas, bukan arah tujuan. Jadi fokusnya adalah tempat melakukan tindakan.",
+    explanation: "Topik utama kalimat melakukan aktivitas di tempat yang ditandai で. で di sini menunjukkan lokasi terjadinya aktivitas. Berbeda dari へ yang menunjukkan tujuan pergerakan.",
     examples: [
-      "わたし は とうきょうで おみやげを かいました。",
-      "レストラン で ごはん を たべます。"
+      "わたし は とうきょうで おみやげを かいました。 (Saya membeli oleh-oleh di Tokyo. — 'Tokyo' tempat aktivitas membeli.)",
+      "レストラン で ごはん を たべます。 (Makan di restoran.)"
     ]
   },
   {
     pattern: "K.Kerja ませんか",
-    explanation: "K.Kerja ませんか adalah bentuk ajakan yang halus dan sopan. Nuansanya seperti menawarkan: mau ...? atau bagaimana kalau ...?",
+    explanation: "Mengajak lawan bicara melakukan sesuatu dengan sopan. Nuansanya seperti menawarkan pilihan — tidak memaksa. Secara harfiah seperti bertanya 'tidak mau ... kah?'",
     examples: [
-      "いっしょに えいが を みませんか。",
-      "コーヒー を のみませんか。"
+      "いっしょに えいが を みませんか。 (Mau nonton film bersama?)",
+      "コーヒー を のみませんか。 (Mau minum kopi?)"
     ]
   },
   {
     pattern: "K.Kerja ましょう",
-    explanation: "K.Kerja ましょう adalah bentuk ajakan yang lebih langsung. Nuansanya seperti ayo atau mari kita melakukan sesuatu bersama.",
+    explanation: "Mengajak lawan bicara melakukan sesuatu secara langsung. Nuansanya seperti 'ayo kita ...' — lebih langsung dari ませんか. Biasanya dipakai saat sudah ada kesepakatan atau dengan teman dekat.",
     examples: [
-      "ちょっと やすみましょう。",
-      "いっしょに かえりましょう。"
+      "ちょっと やすみましょう。 (Ayo istirahat sebentar.)",
+      "いっしょに かえりましょう。 (Ayo pulang bersama.)"
     ]
   },
   {
     pattern: "KB (Alat/Cara) で K.Kerja",
-    explanation: "Pola ini dipakai untuk menyebut alat, sarana, atau cara yang dipakai saat melakukan tindakan. Bagian sebelum で menjawab pertanyaan pakai apa.",
+    explanation: "Topik utama kalimat melakukan tindakan menggunakan alat atau cara yang ditandai で. で di sini menjawab pertanyaan 'pakai apa' atau 'dengan cara apa'.",
     examples: [
-      "はし で たべます。 (Makan dengan sumpit.)",
+      "はし で たべます。 (Makan dengan sumpit. — 'sumpit' alat yang dipakai.)",
       "にほんご で かきます。 (Menulis dengan bahasa Jepang.)"
     ]
   },
   {
     pattern: "Kata/Kalimat は 〜ご で Kata/Kalimat です",
-    explanation: "Pola ini dipakai untuk menanyakan atau menyebutkan bagaimana suatu kata diucapkan dalam bahasa lain. Struktur ini sering dipakai saat belajar kosakata lintas bahasa.",
+    explanation: "Kata atau ungkapan menjadi topik utama kalimat. Penjelasannya adalah padanan kata tersebut dalam bahasa lain yang ditandai で setelah nama bahasanya.",
     examples: [
-      "ありがとう は インドネシアご で なん ですか。",
-      "Thank you は にほんご で ありがとう です。"
+      "ありがとう は インドネシアご で なん ですか。 ('Arigatou' dalam bahasa Indonesia apa? — 'arigatou' topik utama.)",
+      "Thank you は にほんご で ありがとう です。 ('Thank you' dalam bahasa Jepang adalah 'arigatou'.)"
     ]
   },
   {
     pattern: "KB1 (Pemberi) は KB2 (Penerima) に 〜 を あげます",
-    explanation: "Ini pola memberi dengan kata kerja あげます. Urutannya jelas: pemberi は penerima に benda を あげます.",
+    explanation: "KB1 (pemberi) adalah topik utama kalimat. Penerima ditandai に, benda yang diberikan ditandai を, dan kata kerjanya あげます. Urutan: pemberi は penerima に benda を あげます.",
     examples: [
-      "わたし は ともだち に はな を あげます。",
-      "せんせい は わたし に ほん を あげました。"
+      "わたし は ともだち に はな を あげます。 (Saya memberikan bunga kepada teman. — 'saya' topik utama.)",
+      "せんせい は わたし に ほん を あげました。 (Guru memberikan buku kepada saya.)"
     ]
   },
   {
     pattern: "KB1 (Penerima) は KB2 (Pemberi) に 〜 を もらいます",
-    explanation: "Ini pola menerima dengan kata kerja もらいます. Urutannya: penerima は pemberi に benda を もらいます.",
+    explanation: "KB1 (penerima) adalah topik utama kalimat. Pemberi ditandai に, benda yang diterima ditandai を, dan kata kerjanya もらいます. Urutan: penerima は pemberi に benda を もらいます.",
     examples: [
-      "わたし は ちち に とけい を もらいました。",
-      "マリアさん は たなかさん に プレゼント を もらいました。"
+      "わたし は ちち に とけい を もらいました。 (Saya mendapat jam tangan dari ayah. — 'saya' topik utama.)",
+      "マリアさん は たなかさん に プレゼント を もらいました。 (Maria mendapat hadiah dari Tanaka-san.)"
     ]
   },
   {
     pattern: "もう K.Kerja ました",
-    explanation: "もう + ました dipakai untuk menyatakan bahwa suatu tindakan sudah selesai dilakukan. Nuansanya menekankan bahwa aksinya sudah terjadi sekarang.",
+    explanation: "もう + ました menyatakan bahwa topik utama kalimat sudah selesai melakukan tindakan tersebut. もう menegaskan bahwa aksinya sudah terjadi.",
     examples: [
-      "もう しゅくだい を しました。",
-      "もう ひるごはん を たべました。"
+      "もう しゅくだい を しました。 (PR sudah dikerjakan.)",
+      "もう ひるごはん を たべました。 (Makan siang sudah.)"
     ]
   },
   {
     pattern: "K.Benda は K.Sifat な です / K.Benda は K.Sifat い です",
-    explanation: "Pola ini dipakai saat kata sifat berfungsi sebagai predikat kalimat. Perhatikan pengecualian penting: きれい dan ゆうめい tetap termasuk na-adjective walaupun berakhiran い.",
+    explanation: "Kata benda menjadi topik utama kalimat. Penjelasannya adalah kata sifat yang menggambarkan benda tersebut. Catatan penting: きれい dan ゆうめい termasuk na-adjective meski berakhiran い.",
     examples: [
-      "この へや は しずか です。",
-      "この まち は きれい です。 (きれい tetap na-adjective)",
-      "あの ひと は ゆうめい です。 (ゆうめい tetap na-adjective)",
-      "この ほん は おもしろい です。"
+      "この へや は しずか です。 (Kamar ini tenang. — 'kamar ini' topik utama, 'tenang' penjelasannya.)",
+      "この まち は きれい です。 (Kota ini indah. — きれい adalah na-adjective.)",
+      "あの ひと は ゆうめい です。 (Orang itu terkenal. — ゆうめい adalah na-adjective.)",
+      "この ほん は おもしろい です。 (Buku ini menarik.)"
     ]
   },
   {
     pattern: "K.Sifat な + K.Benda / K.Sifat い + K.Benda",
-    explanation: "Pola ini dipakai saat kata sifat langsung digabungkan dengan kata benda. Jika kata sifatnya na-adjective, tambahkan な sebelum kata benda. Jika kata sifatnya i-adjective, langsung sambung tanpa な. Pengecualian yang harus diingat: きれい dan ゆうめい tetap pakai な walaupun berakhiran い.",
+    explanation: "Kata sifat langsung menerangkan kata benda. Na-adjective tambahkan な sebelum kata benda. I-adjective langsung sambung tanpa tambahan. Pengecualian: きれい dan ゆうめい tetap pakai な meski berakhiran い.",
     examples: [
-      "しんせつな ひと です。",
-      "きれいな へや です。",
-      "ゆうめいな だいがく です。",
-      "あたらしい くるま です。"
+      "しんせつな ひと です。 (Orang yang baik hati. — na-adjective + な + benda.)",
+      "きれいな へや です。 (Kamar yang indah. — きれい pakai な.)",
+      "ゆうめいな だいがく です。 (Universitas yang terkenal. — ゆうめい pakai な.)",
+      "あたらしい くるま です。 (Mobil baru. — i-adjective langsung sambung.)"
     ]
   },
   {
     pattern: "Bentuk negatif sifat: な-adjective / い-adjective",
-    explanation: "Untuk membuat bentuk negatif kata sifat, aturannya berbeda tergantung jenisnya. Na-adjective memakai じゃ ありません, sedangkan i-adjective diubah dengan mengganti akhiran い menjadi くない です.",
+    explanation: "Cara membuat negatif kata sifat berbeda tergantung jenisnya. Na-adjective: ganti です dengan じゃ ありません. I-adjective: ubah akhiran い menjadi くない です. Ingat: きれい dan ゆうめい adalah na-adjective, jadi pakai じゃ ありません.",
     examples: [
-      "この へや は しずか じゃ ありません。",
-      "この まち は きれい じゃ ありません。 (きれい = na-adjective)",
-      "あの ひと は ゆうめい じゃ ありません。 (ゆうめい = na-adjective)",
-      "この ほん は おもしろくない です。",
-      "この くるま は たかくない です。"
+      "この へや は しずか じゃ ありません。 (Kamar ini tidak tenang. — na-adjective.)",
+      "この まち は きれい じゃ ありません。 (Kota ini tidak indah. — きれい adalah na-adjective.)",
+      "あの ひと は ゆうめい じゃ ありません。 (Orang itu tidak terkenal. — ゆうめい adalah na-adjective.)",
+      "この ほん は おもしろくない です。 (Buku ini tidak menarik. — i-adjective: い → くない.)",
+      "この くるま は たかくない です。 (Mobil ini tidak mahal. — i-adjective: い → くない.)"
     ]
   },
   {
     pattern: "とても / あまり",
-    explanation: "とても dipakai untuk memperkuat makna positif, setara dengan sangat. あまり biasanya dipakai bersama bentuk negatif dan artinya menjadi tidak begitu.",
+    explanation: "とても dipakai sebelum kata sifat positif, artinya 'sangat'. あまり dipakai sebelum kata sifat negatif, artinya 'tidak begitu'. Jangan pakai あまり dengan kalimat positif.",
     examples: [
-      "この えいが は とても おもしろい です。",
-      "にほんご は あまり むずかしく ありません。"
+      "この えいが は とても おもしろい です。 (Film ini sangat menarik.)",
+      "にほんご は あまり むずかしく ありません。 (Bahasa Jepang tidak begitu sulit.)"
     ]
   },
   {
     pattern: "K.Benda は どうですか",
-    explanation: "Pola ini dipakai untuk menanyakan pendapat, kesan, atau kondisi tentang sesuatu. Bisa dipakai untuk benda, orang, tempat, maupun situasi.",
+    explanation: "Benda, tempat, atau situasi menjadi topik utama kalimat. Penanya menanyakan pendapat atau kesan lawan bicara tentang topik tersebut dengan どうですか.",
     examples: [
-      "にほん の せいかつ は どうですか。",
-      "この くるま は どうですか。"
+      "にほん の せいかつ は どうですか。 (Kehidupan di Jepang bagaimana? — 'kehidupan di Jepang' topik utama.)",
+      "この くるま は どうですか。 (Mobil ini bagaimana menurut kamu?)"
     ]
   },
   {
     pattern: "K.Benda1 は どんな K.Benda2 ですか",
-    explanation: "どんな dipakai untuk menanyakan seperti apa jenis, karakter, atau sifat dari kata benda yang disebut setelahnya. Jawaban biasanya berisi kata sifat atau deskripsi.",
+    explanation: "KB1 menjadi topik utama kalimat. Penanya menanyakan seperti apa jenis atau karakter dari topik tersebut menggunakan どんな. Jawaban biasanya berisi kata sifat.",
     examples: [
-      "にほんご は どんな ことば ですか。",
-      "たなかさん は どんな ひと ですか。"
+      "にほんご は どんな ことば ですか。 (Bahasa Jepang itu bahasa yang seperti apa? — 'bahasa Jepang' topik utama.)",
+      "たなかさん は どんな ひと ですか。 (Tanaka-san itu orang yang seperti apa?)"
     ]
   },
   {
     pattern: "Kalimat 1 が、Kalimat 2",
-    explanation: "Partikel が pada pola ini berfungsi sebagai penghubung antarkalimat dengan makna tetapi atau namun. Dipakai saat bagian belakang kalimat berisi kontras terhadap bagian depan.",
+    explanation: "Dua kalimat dihubungkan dengan が yang berarti 'tetapi'. Bagian pertama berisi satu fakta tentang topik, bagian kedua berisi fakta lain yang kontras.",
     examples: [
-      "この へや は きれい ですが、せまい です。",
-      "この えいが は おもしろい ですが、ちょっと ながい です。"
+      "この へや は きれい ですが、せまい です。 (Kamar ini indah, tapi sempit.)",
+      "この えいが は おもしろい ですが、ちょっと ながい です。 (Film ini seru, tapi agak panjang.)"
     ]
   },
   {
     pattern: "どれ",
-    explanation: "どれ dipakai untuk menanyakan yang mana di antara tiga pilihan atau lebih. Jika hanya dua pilihan, biasanya digunakan pola pertanyaan pilihan lain.",
+    explanation: "どれ dipakai untuk menanyakan 'yang mana' di antara tiga pilihan atau lebih. Topik utama pertanyaan adalah benda yang ingin dipilih.",
     examples: [
-      "あなた の かばん は どれ ですか。",
-      "どれ が すき ですか。"
+      "あなた の かばん は どれ ですか。 (Tas kamu yang mana? — 'tas kamu' topik utama.)",
+      "どれ が すき ですか。 (Yang mana yang kamu suka?)"
     ]
   },
   {
     pattern: "K.Benda が あります / わかります",
-    explanation: "Pada pola ini, objek ditandai partikel が, bukan を. Partikel が dipakai untuk menandai hal yang sedang dijelaskan atau dideskripsikan dalam kalimat. あります dipakai untuk menyatakan keberadaan atau kepemilikan, sedangkan わかります dipakai untuk menyatakan paham atau tidak paham.",
+    explanation: "Topik utama kalimat (ditandai は) memiliki atau memahami sesuatu yang ditandai が. あります = mempunyai / ada. わかります = memahami. Benda yang dimiliki atau dipahami ditandai が, bukan を.",
     examples: [
-      "わたし は おかね が あります。 (Saya memiliki uang.)",
-      "わたし は げつようび に やくそく が あります。 (Saya ada janji di hari Senin.)",
-      "わたし は にほんご が わかります。 (Saya paham bahasa Jepang.)",
-      "わたし は えいご が わかりません。 (Saya tidak paham bahasa Inggris.)"
+      "わたし は おかね が あります。 (Saya mempunyai uang. — 'saya' topik utama, 'uang' yang dimiliki ditandai が.)",
+      "わたし は げつようび に やくそく が あります。 (Saya ada janji hari Senin.)",
+      "わたし は にほんご が わかります。 (Saya memahami bahasa Jepang. — 'bahasa Jepang' yang dipahami ditandai が.)",
+      "わたし は えいご が わかりません。 (Saya tidak memahami bahasa Inggris.)"
     ]
   },
   {
     pattern: "K.Benda が すきです / きらいです / じょうずです / へたです",
-    explanation: "Pola ini dipakai untuk menyatakan suka, tidak suka, pandai, atau tidak pandai terhadap suatu hal. Objek hal yang dibicarakan ditandai dengan partikel が. Dalam pola ini, が menandai hal yang sedang dijelaskan atau dideskripsikan oleh kata sifat seperti すき, きらい, じょうず, dan へた.",
+    explanation: "Topik utama kalimat (ditandai は) memiliki perasaan atau kemampuan tertentu terhadap sesuatu yang ditandai が. Benda yang disukai, tidak disukai, atau yang menjadi bidang kemampuan selalu ditandai が.",
     examples: [
-      "わたし は スポーツ が すき です。 (Saya suka olahraga.)",
+      "わたし は スポーツ が すき です。 (Saya suka olahraga. — 'saya' topik utama, 'olahraga' yang disukai ditandai が.)",
       "おかあさん は やきゅう が きらい です。 (Ibu tidak suka baseball.)",
       "サントスさん は りょうり が じょうず です。 (Santos pandai memasak.)",
       "わたし は すうがく が へた です。 (Saya tidak pandai matematika.)"
@@ -404,7 +404,7 @@ const bunpoDatabase = [
   },
   {
     pattern: "よく / だいたい / すこし / あまり / ぜんぜん + K.Kerja (tingkat)",
-    explanation: "Kata keterangan ini dipakai sebelum kata kerja untuk menyatakan seberapa tinggi atau rendah tingkat pemahaman atau kemampuan seseorang. よく dan だいたい dipakai untuk kalimat positif, artinya dengan baik dan kira-kira. すこし untuk positif tapi sedikit. あまり dan ぜんぜん dipakai untuk kalimat negatif, artinya tidak begitu dan sama sekali tidak.",
+    explanation: "Kata keterangan ini menyatakan seberapa tinggi atau rendah kemampuan atau pemahaman topik utama kalimat. よく dan だいたい untuk kalimat positif. すこし untuk positif tapi sedikit. あまり dan ぜんぜん harus diikuti bentuk negatif.",
     examples: [
       "ジョンさん は スペインご が よく わかります。 (John memahami bahasa Spanyol dengan baik.)",
       "にほんご が だいたい わかります。 (Bahasa Jepang kira-kira mengerti.)",
@@ -415,7 +415,7 @@ const bunpoDatabase = [
   },
   {
     pattern: "たくさん / すこし / あまり / ぜんぜん + K.Kerja (kuantitas)",
-    explanation: "Kata keterangan ini dipakai sebelum kata kerja untuk menyatakan banyak atau sedikitnya sesuatu. たくさん dipakai untuk kalimat positif artinya banyak. すこし untuk positif artinya sedikit. あまり dan ぜんぜん dipakai untuk kalimat negatif artinya tidak begitu banyak dan sama sekali tidak ada.",
+    explanation: "Kata keterangan ini menyatakan banyak atau sedikitnya sesuatu yang dimiliki atau ada. たくさん untuk kalimat positif artinya banyak. すこし untuk positif artinya sedikit. あまり dan ぜんぜん harus diikuti bentuk negatif.",
     examples: [
       "タワポンさん は おかね が たくさん あります。 (Tawapon mempunyai banyak uang.)",
       "ここ に ほん が すこし あります。 (Di sini ada sedikit buku.)",
@@ -425,78 +425,76 @@ const bunpoDatabase = [
   },
   {
     pattern: "Kalimat 1 から、Kalimat 2",
-    explanation: "から artinya karena atau sebab. Bagian sebelum から berisi alasan, sedangkan bagian setelahnya berisi hasil, akibat, atau keputusan.",
+    explanation: "Kalimat pertama berisi alasan, kalimat kedua berisi akibat atau keputusan. から artinya 'karena'. Urutan di bahasa Jepang: alasan dulu baru akibatnya — kebalikan dari bahasa Indonesia.",
     examples: [
-      "いそがしい です から、テレビ を みません。 (Tidak menonton TV, karena sibuk.)",
-      "にほんご が わかりません から、アニメ を みません。 (Tidak menonton anime, karena tidak paham bahasa Jepang.)",
-      "じかん が ありません から、りょこう を しません。 (Tidak bertamasya, karena tidak ada waktu.)"
+      "いそがしい です から、テレビ を みません。 (Tidak nonton TV, karena sibuk. — alasan dulu, akibat belakangan.)",
+      "にほんご が わかりません から、アニメ を みません。 (Tidak nonton anime, karena tidak mengerti bahasa Jepang.)",
+      "じかん が ありません から、りょこう を しません。 (Tidak jalan-jalan, karena tidak ada waktu.)"
     ]
   },
   {
     pattern: "どうして + Kalimat? / ... から",
-    explanation: "どうして dipakai untuk menanyakan alasan terjadinya sesuatu. Jawaban yang natural biasanya menyebut alasan lalu diakhiri dengan から.",
+    explanation: "どうして dipakai untuk menanyakan alasan. Jawabannya selalu diakhiri から. Pasangan yang tidak terpisahkan: tanya pakai どうして, jawab pakai から.",
     examples: [
-      "どうして きょうと へ いきませんか。 (Mengapa tidak pergi ke Kyoto?)",
+      "どうして きょうと へ いきませんか。 (Kenapa tidak pergi ke Kyoto?)",
       "やくそく が あります から。 (Karena ada janji.)",
-      "どうして あさ しんぶん を よみませんか。 (Mengapa tidak baca koran saat pagi?)",
-      "じかん が ありません から。 (Karena tidak ada waktu.)",
-      "どうして はやく かえりますか。 (Mengapa pulang lebih awal?)",
-      "こども の たんじょうび です から。 (Karena anak saya ulang tahun.)"
+      "どうして はやく かえりますか。 (Kenapa pulang lebih awal?)",
+      "こども の たんじょうび です から。 (Karena ulang tahun anak saya.)"
     ]
   },
 
   // ===== BAB 10 =====
   {
     pattern: "[KB] が あります / います",
-    explanation: "あります dipakai untuk menyatakan keberadaan benda mati dan tumbuhan. います dipakai untuk orang atau hewan yang bergerak sendiri. Objeknya ditandai dengan partikel が.",
+    explanation: "Menyatakan keberadaan sesuatu di suatu tempat. Benda yang ada ditandai が. あります untuk benda mati dan tumbuhan. います untuk orang dan hewan yang bisa bergerak sendiri.",
     examples: [
-      "あそこ に こうえん が あります。 (Di sana ada taman.)",
-      "にわ に ねこ が います。 (Di halaman ada kucing.)",
-      "きょうしつ に せんせい が います。 (Di kelas ada guru.)",
-      "あそこ に ポスト が あります。 (Di sana ada kotak pos.)"
+      "あそこ に こうえん が あります。 (Di sana ada taman. — taman = benda mati → あります.)",
+      "にわ に ねこ が います。 (Di halaman ada kucing. — kucing = hewan → います.)",
+      "きょうしつ に せんせい が います。 (Di kelas ada guru. — guru = orang → います.)",
+      "あそこ に ポスト が あります。 (Di sana ada kotak pos. — kotak pos = benda mati → あります.)"
     ]
   },
   {
     pattern: "[Posisi/Tempat] に [KB] が あります / います",
-    explanation: "Pola ini menyatakan keberadaan benda atau orang di suatu tempat. Tempat keberadaan ditandai dengan partikel に. Untuk menanyakan benda gunakan なに が ありますか, untuk orang gunakan だれ が いますか.",
+    explanation: "Tempat keberadaan ditandai に, benda atau orang yang ada ditandai が. Pola ini menjawab pertanyaan 'di tempat ini ada apa / ada siapa?'",
     examples: [
-      "スーパー の となり に きっさてん が あります。 (Di sebelah supermarket ada coffee shop.)",
+      "スーパー の となり に きっさてん が あります。 (Di sebelah supermarket ada kafe.)",
       "ドア の みぎ に スイッチ が あります。 (Di sebelah kanan pintu ada saklar.)",
       "さとうさん の まえ に カリナさん が います。 (Di depan Sato ada Karina.)"
     ]
   },
   {
     pattern: "[KB] は [Tempat] に あります / います",
-    explanation: "Pola ini menyatakan keberadaan suatu benda atau orang di suatu tempat. KB sebagai topik diletakkan sebelum は, lalu tempat ditandai dengan に. Bentuk lain: [KB] は [Tempat] です.",
+    explanation: "KB menjadi topik utama kalimat. Penjelasannya adalah lokasi keberadaannya yang ditandai に. Pola ini menjawab pertanyaan 'benda/orang ini ada di mana?'",
     examples: [
-      "グプタさん は かいぎしつ に います。 (Gupta ada di ruang rapat.)",
+      "グプタさん は かいぎしつ に います。 (Gupta ada di ruang rapat. — 'Gupta' topik utama.)",
       "きむらさん は あそこ に います。 (Kimura ada di sana.)",
-      "じしょ は じむしょ に あります。 (Kamus ada di kantor.)"
+      "じしょ は じむしょ に あります。 (Kamus ada di kantor. — 'kamus' topik utama.)"
     ]
   },
   {
     pattern: "❓ [KB] は どこ に あります / いますか",
-    explanation: "Pertanyaan untuk menanyakan letak atau keberadaan suatu benda atau orang. どこ berarti 'di mana'.",
+    explanation: "KB menjadi topik utama kalimat. Penanya menanyakan lokasi keberadaan topik tersebut dengan どこ (di mana).",
     examples: [
-      "じしょ は どこ に ありますか。 (Kamus ada di mana?)",
-      "グプタさん は どこ に いますか。 (Gupta ada di mana?)"
+      "じしょ は どこ に ありますか。 (Kamus ada di mana? — 'kamus' topik utama.)",
+      "グプタさん は どこ に いますか。 (Gupta ada di mana? — 'Gupta' topik utama.)"
     ]
   },
   {
-    pattern: "[KB1, Orang, Tempat] の [Posisi] に [KB2] が あります / います",
-    explanation: "Pola ini menyatakan posisi KB2 relatif terhadap KB1. Kata posisi yang sering dipakai: うえ、した、まえ、うしろ、みぎ、ひだり、なか、そと、となり、ちかく、あいだ. Catatan: jika diikuti aksi, tempat diberi partikel で, bukan に.",
+    pattern: "[KB1] の [Posisi] に [KB2] が あります / います",
+    explanation: "Posisi KB2 dijelaskan relatif terhadap KB1. Kata posisi yang sering dipakai: うえ (atas), した (bawah), まえ (depan), うしろ (belakang), みぎ (kanan), ひだり (kiri), なか (dalam), そと (luar), となり (sebelah), ちかく (dekat), あいだ (antara). Catatan: jika diikuti aktivitas, tempat pakai で bukan に.",
     examples: [
       "ゆうびんきょく の となり に ぎんこう が あります。 (Di sebelah kantor pos ada bank.)",
       "まつもとさん の うしろ に いしかわさん が います。 (Di belakang Matsumoto ada Ishikawa.)",
       "テーブル と たな の あいだ に いす が あります。 (Di antara meja dan lemari ada kursi.)",
-      "えき の ちかく で ともだち に あいます。 (Saya bertemu teman di dekat stasiun.)"
+      "えき の ちかく で ともだち に あいます。 (Bertemu teman di dekat stasiun. — aktivitas → pakai で.)"
     ]
   },
   {
     pattern: "[KB1] や [KB2] (など)",
-    explanation: "Partikel や dipakai untuk menyebutkan beberapa benda secara setara sebagai perwakilan dari banyak hal lain (tidak semuanya disebutkan). Berbeda dengan と yang menyebutkan semua secara lengkap. Tambahkan など di akhir untuk menegaskan masih ada benda lain yang tidak disebutkan, artinya 'dan lainnya'.",
+    explanation: "や menyebutkan beberapa benda sebagai contoh — tidak semuanya disebutkan. Berbeda dari と yang menyebutkan semua benda secara lengkap. Tambahkan など di akhir untuk menegaskan masih ada benda lain.",
     examples: [
-      "はこ の なか に てがみ や しゃしん など が あります。 (Di dalam kotak ada surat, foto, dan lainnya.)",
+      "はこ の なか に てがみ や しゃしん など が あります。 (Di dalam kotak ada surat, foto, dan lainnya. — masih ada benda lain yang tidak disebutkan.)",
       "ベッド の うえ に かみ や じしょ が あります。 (Di atas kasur ada kertas dan kamus.)",
       "かいぎしつ の なか に ミラーさん や やまださん など が います。 (Di dalam ruang rapat ada Miller, Yamada, dan lainnya.)"
     ]
