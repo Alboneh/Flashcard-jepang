@@ -492,5 +492,109 @@ const KANJI_N5_EXTRA = [
       { w: "金曜日", f: "きんようび (kinyobi)", r: "kinyobi", m: "Jumat" },
       { w: "土曜日", f: "どようび (doyobi)", r: "doyobi", m: "Sabtu" }
     ]
+  },
+  {
+    bab: "Bab 11",
+    char: "作",
+    mean: "Membuat, memproduksi",
+    desc: "Membuat atau menghasilkan sesuatu",
+    vocab: [
+      { w: "作る", f: "つくる (tsukuru)", r: "tsukuru", m: "Membuat" },
+      { w: "作文", f: "さくぶん (sakubun)", r: "sakubun", m: "Karangan" },
+      { w: "作品", f: "さくひん (sakuhin)", r: "sakuhin", m: "Karya" },
+      { w: "作家", f: "さっか (sakka)", r: "sakka", m: "Pengarang" },
+      { w: "制作", f: "せいさく (seisaku)", r: "seisaku", m: "Produksi" }
+    ]
+  },
+  {
+    bab: "Bab 11",
+    char: "泳",
+    mean: "Berenang",
+    desc: "Gerakan berenang di air",
+    vocab: [
+      { w: "泳ぐ", f: "およぐ (oyogu)", r: "oyogu", m: "Berenang" },
+      { w: "水泳", f: "すいえい (suiei)", r: "suiei", m: "Renang" },
+      { w: "競泳", f: "きょうえい (kyoei)", r: "kyoei", m: "Renang lomba" },
+      { w: "泳ぎ", f: "およぎ (oyogi)", r: "oyogi", m: "Gaya renang" },
+      { w: "泳者", f: "えいしゃ (eisha)", r: "eisha", m: "Perenang" }
+    ]
+  },
+  {
+    bab: "Bab 11",
+    char: "油",
+    mean: "Minyak",
+    desc: "Cairan minyak",
+    vocab: [
+      { w: "油", f: "あぶら (abura)", r: "abura", m: "Minyak" },
+      { w: "石油", f: "せきゆ (sekiyu)", r: "sekiyu", m: "Minyak bumi" },
+      { w: "油田", f: "ゆでん (yuden)", r: "yuden", m: "Ladang minyak" },
+      { w: "油絵", f: "あぶらえ (aburae)", r: "aburae", m: "Lukisan minyak" },
+      { w: "食用油", f: "しょくようあぶら (shokuyo abura)", r: "shokuyo abura", m: "Minyak goreng" }
+    ]
+  },
+  {
+    bab: "Bab 11",
+    char: "海",
+    mean: "Laut",
+    desc: "Laut atau samudra",
+    vocab: [
+      { w: "海", f: "うみ (umi)", r: "umi", m: "Laut" },
+      { w: "海外", f: "かいがい (kaigai)", r: "kaigai", m: "Luar negeri" },
+      { w: "海岸", f: "かいがん (kaigan)", r: "kaigan", m: "Pantai" },
+      { w: "日本海", f: "にほんかい (nihonkai)", r: "nihonkai", m: "Laut Jepang" },
+      { w: "海水", f: "かいすい (kaisui)", r: "kaisui", m: "Air laut" }
+    ]
+  },
+  {
+    bab: "Bab 11",
+    char: "待",
+    mean: "Menunggu, keramahtamahan",
+    desc: "Menunggu atau melayani tamu",
+    vocab: [
+      { w: "待つ", f: "まつ (matsu)", r: "matsu", m: "Menunggu" },
+      { w: "期待", f: "きたい (kitai)", r: "kitai", m: "Harapan" },
+      { w: "招待", f: "しょうたい (shotai)", r: "shotai", m: "Undangan" },
+      { w: "待合室", f: "まちあいしつ (machiaishitsu)", r: "machiaishitsu", m: "Ruang tunggu" },
+      { w: "接待", f: "せったい (settai)", r: "settai", m: "Menjamu tamu" }
+    ]
+  },
+  {
+    bab: "Bab 11",
+    char: "言",
+    mean: "Berkata",
+    desc: "Ucapan atau perkataan",
+    vocab: [
+      { w: "言う", f: "いう (iu)", r: "iu", m: "Berkata" },
+      { w: "発言", f: "はつげん (hatsugen)", r: "hatsugen", m: "Pernyataan" },
+      { w: "言語", f: "げんご (gengo)", r: "gengo", m: "Bahasa" },
+      { w: "言葉", f: "ことば (kotoba)", r: "kotoba", m: "Kata-kata" },
+      { w: "伝言", f: "でんごん (dengon)", r: "dengon", m: "Pesan titipan" }
+    ]
+  },
+  {
+    bab: "Bab 11",
+    char: "計",
+    mean: "Mengukur",
+    desc: "Menghitung atau mengukur",
+    vocab: [
+      { w: "計る", f: "はかる (hakaru)", r: "hakaru", m: "Mengukur" },
+      { w: "時計", f: "とけい (tokei)", r: "tokei", m: "Jam" },
+      { w: "会計", f: "かいけい (kaikei)", r: "kaikei", m: "Kasir / akuntansi" },
+      { w: "計画", f: "けいかく (keikaku)", r: "keikaku", m: "Rencana" },
+      { w: "合計", f: "ごうけい (gokei)", r: "gokei", m: "Total" }
+    ]
+  },
+  {
+    bab: "Bab 11",
+    char: "飯",
+    mean: "Nasi, makanan",
+    desc: "Nasi atau hidangan makan",
+    vocab: [
+      { w: "ご飯", f: "ごはん (gohan)", r: "gohan", m: "Nasi / makanan" },
+      { w: "朝ご飯", f: "あさごはん (asagohan)", r: "asagohan", m: "Sarapan" },
+      { w: "昼ご飯", f: "ひるごはん (hirugohan)", r: "hirugohan", m: "Makan siang" },
+      { w: "晩ご飯", f: "ばんごはん (bangohan)", r: "bangohan", m: "Makan malam" },
+      { w: "炊飯", f: "すいはん (suihan)", r: "suihan", m: "Memasak nasi" }
+    ]
   }
 ];

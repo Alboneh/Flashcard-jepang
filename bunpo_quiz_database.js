@@ -742,6 +742,90 @@
     ch:["と、が","や、などが","も、もが","か、かが"], ans:1,
     ex:"「〜や〜などが　います」= 'Ada Miller, Yamada, dsb'. 「など」menunjukkan masih ada yang lain." }
 
+  // ===== POLA 54: (KB)が (Ket. jumlah)あります =====
+  ,{ cat:"bab11", pola:"Pola 54: ～が～あります (jumlah benda)", topic:"Bab 11 - Jumlah Benda",
+    solo:"りんご（___）　とお　あります。",
+    ch:["を","に","が","で"], ans:2,
+    ex:"Jumlah benda pada pola ini memakai 「が」 + あります. Jadi: りんごが とお あります." }
+  ,{ cat:"bab11", pola:"Pola 54: ～が～あります (jumlah benda)", topic:"Bab 11 - Jumlah Benda",
+    dlg:[{s:"A",t:"この　はこに　みかんが　むっつ　あります。"},{s:"B",t:"みかんが　（___）　ありますか。"}],
+    ch:["なんにん","いくつ","なんかい","どのくらい"], ans:1,
+    ex:"Untuk menanyakan jumlah benda kecil, pakai 「いくつ」." }
+  ,{ cat:"bab11", pola:"Pola 54: ～が～あります (jumlah benda)", topic:"Bab 11 - Jumlah Benda",
+    solo:"スイカが　ひとつ（___）。",
+    ch:["います","かかります","あります","ですか"], ans:2,
+    ex:"Benda mati memakai あります. Jadi: スイカが ひとつ あります." }
+
+  // ===== POLA 55: (Ket)の(KB)を(ket.jumlah)かいました =====
+  ,{ cat:"bab11", pola:"Pola 55: ～を～かいました", topic:"Bab 11 - Membeli Jumlah",
+    solo:"きって（___）　ごまい　かいました。",
+    ch:["が","を","に","で"], ans:1,
+    ex:"Karena diikuti kata kerja membeli (かいました), objek memakai 「を」." }
+  ,{ cat:"bab11", pola:"Pola 55: ～を～かいました", topic:"Bab 11 - Membeli Jumlah",
+    dlg:[{s:"A",t:"なにを　かいましたか。"},{s:"B",t:"はがきを　さん（___）　かいました。"}],
+    ch:["だい","にん","まい","かい"], ans:2,
+    ex:"はがき dihitung dengan satuan lembar, jadi pakai 「まい」." }
+  ,{ cat:"bab11", pola:"Pola 55: ～を～かいました", topic:"Bab 11 - Membeli Jumlah",
+    solo:"くるまを　いち（___）　かいました。",
+    ch:["だい","まい","にん","つ"], ans:0,
+    ex:"Untuk mesin/mobil pakai satuan 「だい」." }
+
+  // ===== POLA 56: (KB)が (Jumlah orang)人 います =====
+  ,{ cat:"bab11", pola:"Pola 56: ～が～人います", topic:"Bab 11 - Jumlah Orang",
+    solo:"この　クラスに　りゅうがくせいが　よにん（___）。",
+    ch:["あります","います","です","かかります"], ans:1,
+    ex:"Orang/makhluk hidup pakai 「います」." }
+  ,{ cat:"bab11", pola:"Pola 56: ～が～人います", topic:"Bab 11 - Jumlah Orang",
+    dlg:[{s:"A",t:"かぞくは　なんにん　いますか。"},{s:"B",t:"ろくにん（___）。"}],
+    ch:["あります","います","ですか","でした"], ans:1,
+    ex:"Menjawab jumlah anggota keluarga: ～にん います." }
+  ,{ cat:"bab11", pola:"Pola 56: ～が～人います", topic:"Bab 11 - Jumlah Orang",
+    solo:"かいしゃの　しゃいんが　100にん（___）　います。",
+    ch:["ぐらい","だけ","まで","しか"], ans:0,
+    ex:"「ぐらい」artinya kira-kira/kurang lebih." }
+
+  // ===== POLA 57: (Ket waktu)に (berapa kali)かい ... =====
+  ,{ cat:"bab11", pola:"Pola 57: ～に～かい", topic:"Bab 11 - Frekuensi",
+    solo:"1しゅうかんに　1（___）　えいがを　みます。",
+    ch:["にん","だい","かい","まい"], ans:2,
+    ex:"Frekuensi 'kali' memakai satuan 「かい」." }
+  ,{ cat:"bab11", pola:"Pola 57: ～に～かい", topic:"Bab 11 - Frekuensi",
+    dlg:[{s:"A",t:"1かげつに　なんかい　ほんを　かりますか。"},{s:"B",t:"8かい（___）　かります。"}],
+    ch:["だけ","ぐらい","まで","しか"], ans:1,
+    ex:"Untuk bilang kira-kira, tambahkan 「ぐらい」 setelah angka frekuensi." }
+  ,{ cat:"bab11", pola:"Pola 57: ～に～かい", topic:"Bab 11 - Frekuensi",
+    solo:"いちねんに　ごかい　ワインを　（___）。",
+    ch:["のみます","のみません","のみました","のめます"], ans:0,
+    ex:"Kalimat kebiasaan/frekuensi umum biasanya memakai bentuk non-lampau 「ます」." }
+
+  // ===== POLA 58: (Ket durasi) (KB)を (KK) =====
+  ,{ cat:"bab11", pola:"Pola 58: durasi + を + KK", topic:"Bab 11 - Durasi Aktivitas",
+    solo:"くにで　ごしゅうかん　にほんごを　（___）。",
+    ch:["べんきょうします","べんきょうしました","べんきょうしません","べんきょうできません"], ans:1,
+    ex:"Contoh aktivitas yang sudah dilakukan selama durasi tertentu memakai bentuk lampau: べんきょうしました." }
+  ,{ cat:"bab11", pola:"Pola 58: durasi + を + KK", topic:"Bab 11 - Durasi Aktivitas",
+    dlg:[{s:"A",t:"こうこうで　さんねんかん　なにを　しましたか。"},{s:"B",t:"クラブに　（___）。"}],
+    ch:["さんかしました","さんかします","さんかしません","さんかでした"], ans:0,
+    ex:"Kalimat pengalaman lampau: さんかしました." }
+  ,{ cat:"bab11", pola:"Pola 58: durasi + を + KK", topic:"Bab 11 - Durasi Aktivitas",
+    solo:"7にちかん　りょこうを　（___）。",
+    ch:["します","しませんか","しましょう","しましたか"], ans:0,
+    ex:"Pola dasar rutinitas/pernyataan umum bisa memakai 「します」." }
+
+  // ===== POLA 59: AからBまで Transportasiで Durasiかかります =====
+  ,{ cat:"bab11", pola:"Pola 59: ～から～まで～で～かかります", topic:"Bab 11 - Waktu Tempuh",
+    solo:"わたしの　くに（___）　にほんまで　ひこうきで　ごじかんはん　かかります。",
+    ch:["に","を","から","で"], ans:2,
+    ex:"Titik awal memakai 「から」 (dari)." }
+  ,{ cat:"bab11", pola:"Pola 59: ～から～まで～で～かかります", topic:"Bab 11 - Waktu Tempuh",
+    dlg:[{s:"A",t:"おおさかから　ならまで　くるまで　いちじかん　かかります。"},{s:"B",t:"AからB（___）　どのくらい　かかりますか。"}],
+    ch:["に","を","まで","へ"], ans:2,
+    ex:"Pasangan tetapnya: 「から ... まで」 = dari ... sampai ..." }
+  ,{ cat:"bab11", pola:"Pola 59: ～から～まで～で～かかります", topic:"Bab 11 - Waktu Tempuh",
+    solo:"AからBまで　でんしゃで　どのくらい（___）か。",
+    ch:["かかります","いきます","あります","います"], ans:0,
+    ex:"Untuk menanyakan/menyatakan waktu tempuh pakai kata kerja 「かかります」." }
+
 ];
 
 const BUNPO_QUIZ_CATEGORIES = [
@@ -759,6 +843,7 @@ const BUNPO_QUIZ_CATEGORIES = [
   { id:"suki_kirai",name:"好き/嫌い",     icon:"❤️" },
   { id:"fukushi2",  name:"Kata Ket.",     icon:"📊" },
   { id:"masu",      name:"ます活用",      icon:"📝" },
+  { id:"bab11",     name:"Bab 11",        icon:"1️⃣1️⃣" },
 ];
 
 window.BUNPO_QUIZ_QUESTIONS = BUNPO_QUIZ_QUESTIONS;

@@ -187,7 +187,8 @@ function getBabByIndex(index) {
   if (index <= 38) return 'Bab 7';
   if (index <= 46) return 'Bab 8';
   if (index <= 51) return 'Bab 9';
-  return 'Bab 10';
+  if (index <= 57) return 'Bab 10';
+  return 'Bab 11';
 }
 
 let selectedBab = 'Semua';

@@ -500,5 +500,65 @@ const bunpoDatabase = [
       "ベッド の うえ に かみ や じしょ が あります。 (Di atas kasur ada kertas dan kamus.)",
       "かいぎしつ の なか に ミラーさん や やまださん など が います。 (Di dalam ruang rapat ada Miller, Yamada, dan lainnya.)"
     ]
+  },
+
+  // ===== BAB 11 =====
+  {
+    pattern: "(KB) が (Ket. jumlah) あります",
+    explanation: "Pola ini dipakai untuk bilang jumlah benda yang tidak terlalu besar (hitungan buah). Benda diberi partikel が, lalu jumlahnya diletakkan sebelum あります.",
+    examples: [
+      "りんご が とお あります。 (Ada 10 buah apel.)",
+      "みかん が むっつ あります。 (Ada 6 buah jeruk.)",
+      "スイカ が ひとつ あります。 (Ada 1 buah semangka.)",
+      "❓ KB が いくつ ありますか。 (Ada berapa buah KB?)"
+    ]
+  },
+  {
+    pattern: "(Ket) の (KB) を (Ket. jumlah) かいました",
+    explanation: "Pola ini dipakai untuk bilang jenis barang dan jumlah yang dibeli. Partikel を dipakai karena diikuti kata kerja かいました (membeli).",
+    examples: [
+      "りんご の ジュース を 2ほん かいました。 (Saya membeli 2 botol jus apel.)",
+      "きって を 5まい かいました。 (Saya membeli 5 lembar perangko.)",
+      "くるま を 1だい かいました。 (Saya membeli 1 unit mobil.)"
+    ]
+  },
+  {
+    pattern: "(KB) が (Jumlah orang) 人 です / います",
+    explanation: "Pola ini dipakai untuk menyebut jumlah orang dalam kelompok atau di suatu tempat. Kalau mau bilang kira-kira, tambahkan ぐらい setelah angka.",
+    examples: [
+      "この クラス に りゅうがくせい が 4人 います。 (Di kelas ini ada 4 pelajar asing.)",
+      "かぞく が 6人 います。 (Keluarga saya ada 6 orang.)",
+      "かいしゃ の しゃいん が 100人 ぐらい います。 (Ada kira-kira 100 karyawan perusahaan.)",
+      "❓ なんにん ぐらい いますか。 (Ada kira-kira berapa orang?)"
+    ]
+  },
+  {
+    pattern: "(Ket waktu) に (berapa kali) かい (KB) を (KK)",
+    explanation: "Pola ini dipakai untuk bilang frekuensi kegiatan dalam kurun waktu tertentu. 回(かい) artinya kali, jadi angka + かい menunjukkan berapa kali aktivitas dilakukan.",
+    examples: [
+      "1しゅうかん に 1かい えいが を みます。 (Menonton film 1 kali dalam seminggu.)",
+      "1かげつ に 8かい ぐらい ほん を かります。 (Meminjam buku kira-kira 8 kali dalam sebulan.)",
+      "1ねん に 5かい ワイン を のみます。 (Minum wine 5 kali dalam setahun.)",
+      "❓ Ket. waktu に なんかい KB を KK か。 (Dalam Ket. waktu, berapa kali melakukan KK?)"
+    ]
+  },
+  {
+    pattern: "(Ket durasi) (KB) を (KK)",
+    explanation: "Pola ini dipakai untuk bilang lamanya melakukan aktivitas. Keterangan durasi bisa tahun, bulan, minggu, hari, jam, menit, dan seterusnya.",
+    examples: [
+      "くに で 5しゅうかん にほんご を べんきょうしました。 (Di negara saya belajar bahasa Jepang selama 5 minggu.)",
+      "こうこう で 3ねんかん クラブ に さんかしました。 (Ikut klub di SMA selama 3 tahun.)",
+      "7にちかん りょこう を します。 (Bertamasya selama 7 hari.)",
+      "❓ くに で どのくらい Ket. durasi KB を KK か。 (Di negara, melakukan KB selama berapa lama?)"
+    ]
+  },
+  {
+    pattern: "(A) から (B) まで (Transportasi) で (Durasi) かかります",
+    explanation: "Pola ini dipakai untuk bilang waktu tempuh dari titik awal ke titik tujuan dengan alat transportasi tertentu. から artinya dari, まで artinya sampai, dan かかります artinya memerlukan waktu.",
+    examples: [
+      "わたし の くに から にほん まで ひこうき で 5じかんはん かかります。 (Dari negara saya sampai Jepang perlu 5 jam setengah dengan pesawat.)",
+      "おおさか から なら まで くるま で 1じかん かかります。 (Dari Osaka sampai Nara perlu 1 jam dengan mobil.)",
+      "❓ A から B まで Transportasi で どのくらい かかりますか。 (Dari A ke B dengan transportasi itu butuh berapa lama?)"
+    ]
   }
 ];
