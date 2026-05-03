@@ -5,6 +5,28 @@ let wrongAnswers = 0;
 let currentQuestion = null;
 let answerSubmitted = false;
 
+function getJapaneseText(item) {
+  return item.type === 'kanji' ? item.kanji : item.jp;
+}
+
+function formatOptionHtml(item, isJpToId) {
+  const jp = getJapaneseText(item) || '-';
+  const id = item.id || '-';
+  const rom = item.rom ? ` <span class="option-romaji">(${item.rom})</span>` : '';
+
+  if (isJpToId) {
+    return `
+      <div class="option-main">${id}</div>
+      <div class="option-sub">${jp}${rom}</div>
+    `;
+  }
+
+  return `
+    <div class="option-main jp">${jp}</div>
+    <div class="option-sub">Arti: ${id}${rom}</div>
+  `;
+}
+
 function getSelectedBabs() {
   const checkboxes = document.querySelectorAll('.bab-checkbox input[type="checkbox"]:checked');
   return Array.from(checkboxes).map(cb => cb.value);
@@ -71,7 +93,8 @@ function generateNewQuestion() {
   currentQuestion = {
     vocab: vocab,
     isJpToId: isJpToId,
-    correctAnswer: isJpToId ? vocab.id : (vocab.type === 'kanji' ? vocab.kanji : vocab.jp)
+    correctAnswer: isJpToId ? vocab.id : getJapaneseText(vocab),
+    options: []
   };
 
   renderQuestion();
@@ -112,78 +135,90 @@ function renderQuestion() {
 }
 
 function renderMultipleChoice() {
-  const correctAnswer = currentQuestion.correctAnswer;
   const allVocab = currentExerciseList;
+  const correctVocab = currentQuestion.vocab;
   
-  // Get 3 random wrong answers
-  const wrongAnswers = [];
-  const vocabPool = allVocab.filter(v => v !== currentQuestion.vocab);
+  // Get 3 random wrong entries
+  const wrongOptionEntries = [];
+  const vocabPool = allVocab.filter(v => v !== correctVocab);
   
-  while (wrongAnswers.length < 3 && vocabPool.length > 0) {
+  while (wrongOptionEntries.length < 3 && vocabPool.length > 0) {
     const randomIdx = Math.floor(Math.random() * vocabPool.length);
     const wrongVocab = vocabPool.splice(randomIdx, 1)[0];
-    
-    const wrongAnswer = currentQuestion.isJpToId 
-      ? wrongVocab.id 
-      : (wrongVocab.type === 'kanji' ? wrongVocab.kanji : wrongVocab.jp);
-    
-    if (!wrongAnswers.includes(wrongAnswer)) {
-      wrongAnswers.push(wrongAnswer);
+
+    const exists = wrongOptionEntries.some((item) => {
+      const sameId = (item.id || '').trim() === (wrongVocab.id || '').trim();
+      const sameJp = getJapaneseText(item) === getJapaneseText(wrongVocab);
+      return sameId && sameJp;
+    });
+
+    if (!exists) {
+      wrongOptionEntries.push(wrongVocab);
     }
   }
 
-  // Create options array with correct answer
-  let options = [correctAnswer, ...wrongAnswers];
+  // Create options array with correct entry
+  let options = [correctVocab, ...wrongOptionEntries];
   options = shuffleArray(options);
+  currentQuestion.options = options;
 
   // Render options
   const optionsGrid = document.getElementById('optionsGrid');
   optionsGrid.innerHTML = '';
 
-  options.forEach(option => {
+  options.forEach((option, idx) => {
     const btn = document.createElement('button');
     btn.className = 'option-btn';
-    btn.textContent = option;
-    btn.onclick = () => selectAnswer(option, correctAnswer, btn);
+    btn.innerHTML = formatOptionHtml(option, currentQuestion.isJpToId);
+    btn.dataset.optionIndex = String(idx);
+    btn.onclick = () => selectAnswer(option, btn);
     optionsGrid.appendChild(btn);
   });
 }
 
-function selectAnswer(selectedOption, correctAnswer, btnElement) {
+function selectAnswer(selectedOptionEntry, btnElement) {
   if (answerSubmitted) return;
 
   answerSubmitted = true;
+  const correctEntry = currentQuestion.vocab;
 
   // Disable all buttons
   document.querySelectorAll('.option-btn').forEach(btn => {
     btn.classList.add('disabled');
+    btn.disabled = true;
+  });
+
+  // Show JP/arti helper text only after user has answered
+  document.querySelectorAll('.option-btn').forEach(btn => {
+    btn.classList.add('show-detail');
   });
 
   // Check if correct
-  const isCorrect = selectedOption === correctAnswer;
+  const isCorrect = selectedOptionEntry === correctEntry;
 
   if (isCorrect) {
     btnElement.classList.add('correct');
     correctAnswers++;
-    showFeedback(true, selectedOption, correctAnswer);
+    showFeedback(true);
   } else {
     btnElement.classList.add('wrong');
     wrongAnswers++;
     
     // Highlight correct answer
-    document.querySelectorAll('.option-btn').forEach(btn => {
-      if (btn.textContent === correctAnswer) {
+    document.querySelectorAll('.option-btn').forEach((btn) => {
+      const idx = Number(btn.dataset.optionIndex);
+      if (currentQuestion.options[idx] === correctEntry) {
         btn.classList.add('correct');
       }
     });
     
-    showFeedback(false, selectedOption, correctAnswer);
+    showFeedback(false);
   }
 
   updateStats();
 }
 
-function showFeedback(isCorrect, selectedOption, correctAnswer) {
+function showFeedback(isCorrect) {
   const vocab = currentQuestion.vocab;
   const feedbackArea = document.getElementById('feedbackArea');
   const feedbackContent = document.getElementById('feedbackContent');
@@ -212,7 +247,6 @@ function showFeedback(isCorrect, selectedOption, correctAnswer) {
   
   feedbackContent.innerHTML = html;
   feedbackArea.style.display = 'block';
-  document.getElementById('multipleChoiceMode').style.display = 'none';
 }
 
 function nextQuestion() {

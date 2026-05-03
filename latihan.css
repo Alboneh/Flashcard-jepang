@@ -278,6 +278,33 @@ button.option-btn {
   min-height: 52px;
 }
 
+.option-main {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.option-main.jp {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 1.02rem;
+}
+
+.option-sub {
+  margin-top: 0.22rem;
+  font-size: 0.76rem;
+  color: var(--faded);
+  line-height: 1.35;
+  display: none;
+}
+
+.option-btn.show-detail .option-sub {
+  display: block;
+}
+
+.option-romaji {
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.02em;
+}
+
 .option-btn:hover:not(.disabled) {
   background: var(--aged);
   border-color: var(--ink);
@@ -396,16 +423,20 @@ button.option-btn {
   padding: 1rem;
   margin-bottom: 1rem;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 1rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
 }
 
 #feedbackContent {
-  flex: 1;
+  width: 100%;
   font-size: 0.9rem;
   line-height: 1.6;
+}
+
+.feedback-area .next-btn {
+  align-self: flex-end;
 }
 
 .feedback-correct {
