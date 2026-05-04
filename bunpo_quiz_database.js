@@ -812,20 +812,75 @@
     ch:["します","しませんか","しましょう","しましたか"], ans:0,
     ex:"Pola dasar rutinitas/pernyataan umum bisa memakai 「します」." }
 
-  // ===== POLA 59: AからBまで Transportasiで Durasiかかります =====
-  ,{ cat:"bab11", pola:"Pola 59: ～から～まで～で～かかります", topic:"Bab 11 - Waktu Tempuh",
-    solo:"わたしの　くに（___）　にほんまで　ひこうきで　ごじかんはん　かかります。",
-    ch:["に","を","から","で"], ans:2,
-    ex:"Titik awal memakai 「から」 (dari)." }
-  ,{ cat:"bab11", pola:"Pola 59: ～から～まで～で～かかります", topic:"Bab 11 - Waktu Tempuh",
-    dlg:[{s:"A",t:"おおさかから　ならまで　くるまで　いちじかん　かかります。"},{s:"B",t:"AからB（___）　どのくらい　かかりますか。"}],
-    ch:["に","を","まで","へ"], ans:2,
-    ex:"Pasangan tetapnya: 「から ... まで」 = dari ... sampai ..." }
-  ,{ cat:"bab11", pola:"Pola 59: ～から～まで～で～かかります", topic:"Bab 11 - Waktu Tempuh",
-    solo:"AからBまで　でんしゃで　どのくらい（___）か。",
-    ch:["かかります","いきます","あります","います"], ans:0,
-    ex:"Untuk menanyakan/menyatakan waktu tempuh pakai kata kerja 「かかります」." }
+  // ===== POLA 60-62: BAB 12 - Sifat Benda & Sifat い =====
+  ,{ cat:"bab12_sifat", pola:"Pola 60: ～は [K.Sifat(な)] ～です/でした", topic:"Bab 12 - Sifat Benda",
+    dlg:[{s:"A",t:"サントスさんは　げんきですか。"},{s:"B",t:"はい、（___）。"}],
+    ch:["げんきです","げんきじゃありません","げんきでした","げんくないです"], ans:0,
+    ex:"Sifat [な] positif sekarang: 「元気です」= sehat/bugar. Jawaban persis mengulangi pola." }
+  ,{ cat:"bab12_sifat", pola:"Pola 60: ～は [K.Sifat(な)] ～です/でした", topic:"Bab 12 - Sifat Benda",
+    solo:"きのうの　あめは　すてき（___）。",
+    ch:["です","じゃありません","でした","だった"], ans:2,
+    ex:"Lampau: [な]sifat + でした. 「すてきでした」= indah/bagus (kemarin)." }
+  ,{ cat:"bab12_sifat", pola:"Pola 60: ～は [K.Sifat(な)] ～です/でした", topic:"Bab 12 - Sifat Benda",
+    dlg:[{s:"A",t:"ホテルは　きれいでしたか。"},{s:"B",t:"いいえ、きれい（___）。"}],
+    ch:["じゃありませんでした","じゃありません","ではありました","ではないです"], ans:0,
+    ex:"Lampau negatif: 「きれいじゃありませんでした」= tidak indah (dulu)." }
 
+  // ===== POLA 63-65: BAB 12 - Sifat い =====
+  ,{ cat:"bab12_sifat_i", pola:"Pola 63: ～は [K.Sifat(い)] ～いです/かったです", topic:"Bab 12 - Sifat い",
+    solo:"このえいがは　とても　おもしろい（___）。",
+    ch:["です","でした","ですか","ました"], ans:0,
+    ex:"Sifat い positif sekarang: 「おもしろいです」= menarik. Ujung い tetap, langsung tambah です." }
+  ,{ cat:"bab12_sifat_i", pola:"Pola 63: ～は [K.Sifat(い)] ～いです/かったです", topic:"Bab 12 - Sifat い",
+    dlg:[{s:"A",t:"パーティーの　りょうりは　おいしかったですか。"},{s:"B",t:"はい、（___）。"}],
+    ch:["おいしかったです","おいしいです","おいしくないです","おいしくなかったです"], ans:0,
+    ex:"Lampau: い → かった + です. 「おいしかったです」= enak (dulu)." }
+  ,{ cat:"bab12_sifat_i", pola:"Pola 63: ～は [K.Sifat(い)] ～いです/かったです", topic:"Bab 12 - Sifat い",
+    solo:"セーターは　どうでしたか。パン は　あまり　（___）。",
+    ch:["あまくないです","あまいです","あまかったです","あまくなかったです"], ans:0,
+    ex:"Negatif sekarang: い → くない + です. 「あまくないです」= tidak begitu manis." }
+
+  // ===== POLA 66-68: BAB 12 - Perbandingan dengan より =====
+  ,{ cat:"bab12_perbandingan", pola:"Pola 66: [KB1]は [KB2]より [K.Sifat]です", topic:"Bab 12 - Perbandingan",
+    solo:"とうきょうは　おおさかより　（___）です。",
+    ch:["ことに","とくに","おおきい","より大きい"], ans:2,
+    ex:"Pola perbandingan: KB1 は KB2 より Sifat です. 「大きい」= besar." }
+  ,{ cat:"bab12_perbandingan", pola:"Pola 66: [KB1]は [KB2]より [K.Sifat]です", topic:"Bab 12 - Perbandingan",
+    dlg:[{s:"A",t:"ボゴールは　ソロより　（___）ですか。"},{s:"B",t:"ええ、ボゴールの　ほうが　すずしいです。"}],
+    ch:["どう","どんな","すずしい","ゆうめい"], ans:2,
+    ex:"Jawab dengan sifat yang cocok. 「すずしい」= sejuk." }
+  ,{ cat:"bab12_perbandingan", pola:"Pola 66: [KB1]は [KB2]より [K.Sifat]です", topic:"Bab 12 - Perbandingan",
+    solo:"このシャツは　そのシャツより　（___）です。",
+    ch:["ちいさい","あたらしい","やすい","たかい"], ans:2,
+    ex:"Pola dasar: yang pertama dibanding dengan yang kedua. 「やすい」= murah." }
+
+  // ===== POLA 69-71: BAB 12 - Pertanyaan Pilihan dengan どちら =====
+  ,{ cat:"bab12_dochira", pola:"Pola 69: [KB1]と [KB2]と どちらが [K.Sifat]ですか", topic:"Bab 12 - どちら",
+    dlg:[{s:"A",t:"ほんと　えいがと　どちらが（___）ですか。"},{s:"B",t:"えいがの　ほうが　おもしろいです。"}],
+    ch:["おもしろい","おもしろいいいです","より好き","と同じ"], ans:0,
+    ex:"Pertanyaan perbandingan dua hal: KB1 と KB2 と どちらが Sifat ですか." }
+  ,{ cat:"bab12_dochira", pola:"Pola 69: [KB1]と [KB2]と どちらが [K.Sifat]ですか", topic:"Bab 12 - どちら",
+    solo:"サッカーと　やきゅうと　どちらが　むずかしいですか。…サッカーの　ほうが　（___）。",
+    ch:["むずかしいです","むずかしい","より難しい","ほうが難しい"], ans:0,
+    ex:"Jawab dengan 「~ の ほうが ~です」 untuk memilih salah satu. 「むずかしい」= susah." }
+  ,{ cat:"bab12_dochira", pola:"Pola 69: [KB1]と [KB2]と どちらが [K.Sifat]ですか", topic:"Bab 12 - どちら",
+    dlg:[{s:"A",t:"にほんと　アメリカと　どちらが　にぎやかですか。"},{s:"B",t:"（___）　にぎやかです。"}],
+    ch:["どちらも","どちらか","どちらまで","どちらと"], ans:0,
+    ex:"Jawab 「どちらも」 jika dua pilihan sama-sama memenuhi sifatnya." }
+
+  // ===== POLA 72-74: BAB 12 - Superlatif dengan いちばん =====
+  ,{ cat:"bab12_ichiban", pola:"Pola 72: [KB]の 中で なにが いちばん [K.Sifat]ですか", topic:"Bab 12 - いちばん",
+    solo:"おかあさんの　りょうりの　なかで　なにが　（___）　おいしいですか。",
+    ch:["いちばん","ほぼ","やや","ずっと"], ans:0,
+    ex:"Superlatif: 「いちばん」= paling. Pola: [KB] の 中で [Kata Tanya] が いちばん [Sifat]." }
+  ,{ cat:"bab12_ichiban", pola:"Pola 72: [KB]の 中で なにが いちばん [K.Sifat]ですか", topic:"Bab 12 - いちばん",
+    dlg:[{s:"A",t:"すべての　ほんの　なかで　どれが　いちばん　（___）ですか。"},{s:"B",t:"このほんです。"}],
+    ch:["おもしろい","とても","より","ほうが"], ans:0,
+    ex:"Jawab dengan benda yang dipilih. 「どれ」untuk memilih benda." }
+  ,{ cat:"bab12_ichiban", pola:"Pola 72: [KB]の 中で なにが いちばん [K.Sifat]ですか", topic:"Bab 12 - いちばん",
+    solo:"せかいの　なかで　どこが　いちばん　きれいですか。…（___）が　いちばん　きれいです。",
+    ch:["おきなわ","ここ","そこ","どこ"], ans:0,
+    ex:"Jawab dengan tempat/pilihan spesifik. 「Jawaban の が いちばん ...」." }
 ];
 
 const BUNPO_QUIZ_CATEGORIES = [
@@ -844,6 +899,11 @@ const BUNPO_QUIZ_CATEGORIES = [
   { id:"fukushi2",  name:"Kata Ket.",     icon:"📊" },
   { id:"masu",      name:"ます活用",      icon:"📝" },
   { id:"bab11",     name:"Bab 11",        icon:"1️⃣1️⃣" },
+  { id:"bab12_sifat", name:"Bab 12 - Sifat [な]", icon:"✨" },
+  { id:"bab12_sifat_i", name:"Bab 12 - Sifat [い]", icon:"🌡️" },
+  { id:"bab12_perbandingan", name:"Bab 12 - Perbandingan", icon:"⚖️" },
+  { id:"bab12_dochira", name:"Bab 12 - どちら", icon:"🤔" },
+  { id:"bab12_ichiban", name:"Bab 12 - いちばん", icon:"🏆" },
 ];
 
 window.BUNPO_QUIZ_QUESTIONS = BUNPO_QUIZ_QUESTIONS;

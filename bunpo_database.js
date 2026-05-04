@@ -560,5 +560,56 @@ const bunpoDatabase = [
       "おおさか から なら まで くるま で 1じかん かかります。 (Dari Osaka sampai Nara perlu 1 jam dengan mobil.)",
       "❓ A から B まで Transportasi で どのくらい かかりますか。 (Dari A ke B dengan transportasi itu butuh berapa lama?)"
     ]
+  },
+
+  // ===== BAB 12 =====
+  {
+    pattern: "～は [K.Benda]/[K.Sifat(な)] ～です/でした/じゃありません/じゃありませんでした",
+    explanation: "Pola ini untuk menyatakan sifat, keadaan, atau karakter dari subjek. Digunakan mengubah kata sifat [な] (na-adjective) dan kata benda menurut bentuk dan waktunya. Pertanyaan: どうでしたか?",
+    examples: [
+      "サントスさん は 元気(げんき) です。 (Santos sehat.)",
+      "きのう は 雨(あめ) でした。 (Kemarin hujan.)",
+      "セーター は とても すてき でした。 (Sweater sangat bagus.)",
+      "雨(あめ) じゃ ありません でした。 (Tidak hujan.)"
+    ]
+  },
+  {
+    pattern: "～は [K.Sifat(い)] ～いです/かったです/くないです/くなかったです",
+    explanation: "Pola ini untuk menyatakan sifat, keadaan, atau karakter dari subjek. Digunakan mengubah kata sifat [い] (i-adjective) menurut bentuk dan waktunya. Pertanyaan: どうでしたか?",
+    examples: [
+      "先週(せんしゅう) の りょこう は たのしかった です。 (Liburan minggu lalu menyenangkan.)",
+      "パーティー の 料理(りょうり) は おいしかった です。 (Masakan di pesta enak.)",
+      "さむい です。 (Dingin.)",
+      "おいしくない です。 (Tidak enak.)"
+    ]
+  },
+  {
+    pattern: "[K.Benda 1]は [K.Benda 2]より [K.Sifat]です",
+    explanation: "Pola ini untuk menyatakan perbandingan keadaan/kualitas antara dua benda. 「より」 berarti lebih ~ dibandingkan ~, sebagai penanda perbandingan.",
+    examples: [
+      "とうきょう は おおさか より 大(おお)きい です。 (Tokyo lebih besar dibandingkan Osaka.)",
+      "ボゴール は ソロ より すずしい です。 (Bogor lebih sejuk dibandingkan Solo.)",
+      "この シャツ は その シャツ より やすい です。 (Kemeja ini lebih murah dibandingkan kemeja itu.)"
+    ]
+  },
+  {
+    pattern: "[K.Benda 1] と [K.Benda 2] と どちらが [K.Sifat]ですか",
+    explanation: "Pola ini untuk membandingkan 2 hal (benda, tempat, atau orang). Partikel 「と」 setelah kedua benda menandai perbandingan. Jawaban pakai 「～の ほうが」 untuk memilih salah satu, atau 「どちらも」 untuk menyatakan sama.",
+    examples: [
+      "ほん と えいが と どちらが おもしろい ですか。 (Yang mana lebih menarik, buku atau film?)",
+      "えいが の ほうが おもしろい です。 (Film yang lebih menarik.)",
+      "どちらも にぎやか です。 (Dua-duanya ramai.)",
+      "どちらも ひま じゃ ありません。 (Dua-duanya tidak senggang.)"
+    ]
+  },
+  {
+    pattern: "[K.Benda]の 中(なか)で なに/どこ/だれ/いつが いちばん [K.Sifat]ですか",
+    explanation: "Pola ini untuk memilih salah satu dari kelompok benda/tempat/orang/waktu yang memiliki tingkatan 'paling' dari kategori itu. 「の 中で」 artinya di antara ~. 「いちばん」 artinya paling.",
+    examples: [
+      "お母(かあ)さん の 料理(りょうり) の なか で なに が いちばん おいしい ですか。 (Di antara masakan ibu, masakan apa paling enak?)",
+      "カレー が いちばん おいしい です。 (Kare paling enak.)",
+      "せかい の なか で どこ が いちばん きれい ですか。 (Di manakah tempat paling indah di dunia?)",
+      "おきなわ が いちばん きれい です。 (Okinawa paling indah.)"
+    ]
   }
 ];
