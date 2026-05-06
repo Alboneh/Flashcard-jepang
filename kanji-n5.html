@@ -574,16 +574,85 @@ function selectKanji(idx) {
       </div>
       <div class="vocab-section-title">Kosakata yang mengandung ${k.char}</div>
       <div class="vocab-list">
-        ${vocabList.map(v => `
+        ${vocabList.map(v => {
+          const furiganaRaw = v.f.split('(')[0].trim();
+          const word = v.w;
+          
+          // Extract kanji positions
+          const kanji = [];
+          for (let i = 0; i < word.length; i++) {
+            const char = word[i];
+            // Check if character is NOT hiragana or katakana
+            if (!/[ぁ-ん]/.test(char) && !/[ァ-ヴー]/.test(char)) {
+              kanji.push(char);
+            }
+          }
+          
+          let furiganaWithDots = furiganaRaw;
+          
+          // If more than one kanji, try to split the furigana
+          if (kanji.length > 1 && furiganaRaw && typeof KANJI_READINGS !== 'undefined') {
+            const parts = [];
+            let pos = 0;
+            
+            for (let i = 0; i < kanji.length; i++) {
+              const char = kanji[i];
+              const readings = KANJI_READINGS[char];
+              let matched = false;
+              
+              if (readings) {
+                // Try both kun and on readings
+                const kunReadings = readings.kun ? readings.kun.split('・') : [];
+                const onReadings = readings.on ? readings.on.split('・') : [];
+                const allReadings = [...kunReadings, ...onReadings];
+                
+                for (let reading of allReadings) {
+                  // Clean up the reading (remove parentheses and take base form)
+                  const cleaned = reading.replace(/\([^)]*\)/g, '');
+                  if (furiganaRaw.substr(pos).startsWith(cleaned)) {
+                    parts.push(cleaned);
+                    pos += cleaned.length;
+                    matched = true;
+                    break;
+                  }
+                }
+              }
+              
+              // If no match found, take remaining characters up to next potential break
+              if (!matched) {
+                // For unmatched kanji, take a reasonable chunk (usually 1-3 characters)
+                let chunk = '';
+                const remainingKanji = kanji.length - i - 1;
+                const maxLen = Math.max(1, (furiganaRaw.length - pos) - remainingKanji);
+                
+                for (let j = 0; j < maxLen && pos < furiganaRaw.length; j++) {
+                  chunk += furiganaRaw[pos + j];
+                }
+                if (chunk) {
+                  parts.push(chunk);
+                  pos += chunk.length;
+                }
+              }
+            }
+            
+            if (parts.length > 1) {
+              furiganaWithDots = parts.join('・');
+            }
+          }
+          
+          return `
           <div class="vocab-row">
-            <div class="vocab-word">${v.w}</div>
-            <div class="vocab-furi">
-              ${v.f.split('(')[0].trim()}
-              <span class="romaji">${v.r}</span>
+            <div class="vocab-word-furi">
+              <div class="vocab-word">${v.w}</div>
+              <div class="vocab-furi">
+                ${furiganaWithDots}
+                <span class="romaji">${v.r}</span>
+              </div>
             </div>
             <div class="vocab-meaning-tag">${v.m}</div>
           </div>
-        `).join('')}
+        `;
+        }).join('')}
         ${vocabList.length === 0 ? '<div class="vocab-row"><div class="vocab-word">-</div><div class="vocab-furi">Belum ada kosakata</div><div class="vocab-meaning-tag">Data</div></div>' : ''}
       </div>
       <div class="btn-row" style="margin-top:12px">
