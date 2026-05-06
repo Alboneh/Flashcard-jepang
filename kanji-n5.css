@@ -371,6 +371,42 @@ body.sidebar-open {
   color: rgba(255,255,255,0.5);
 }
 
+.readings-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.reading-badge {
+  display: flex;
+  flex-direction: column;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  padding: 5px 10px;
+  min-width: 100px;
+}
+
+.reading-badge.on { border-left: 3px solid #f0c040; }
+.reading-badge.kun { border-left: 3px solid #60d0a0; }
+
+.reading-label {
+  font-size: 9px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+
+.reading-val {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 14px;
+  color: #fff;
+  line-height: 1.4;
+}
+
 .detail-body {
   padding: 20px 28px 24px;
 }

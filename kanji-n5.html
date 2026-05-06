@@ -136,6 +136,7 @@
 </div>
 
 <script src="kanji_n5_extra_data.js"></script>
+<script src="kanji_n5_readings.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
 <script>
 // ================================================================
@@ -202,7 +203,7 @@ function buildDisplayCategoriesByBab() {
       char: k.char,
       mean: k.mean || "-",
       desc: k.desc || "Kanji tambahan",
-      vocab: Array.isArray(k.vocab) ? k.vocab.slice(0, 5) : [],
+      vocab: Array.isArray(k.vocab) ? k.vocab : [],
       story: k.story || null,
       example: k.example || null,
       originCatId: `extra_${bab.replace(/\s+/g, '_').toLowerCase()}_${idx}`
@@ -537,6 +538,20 @@ function selectKanji(idx) {
   }
 
   // Render detail
+  const readings = (typeof KANJI_READINGS !== 'undefined' && KANJI_READINGS[k.char]) ? KANJI_READINGS[k.char] : null;
+  const readingsHtml = readings ? `
+    <div class="readings-row">
+      <div class="reading-badge on">
+        <span class="reading-label">音読み</span>
+        <span class="reading-val">${readings.on}</span>
+      </div>
+      <div class="reading-badge kun">
+        <span class="reading-label">訓読み</span>
+        <span class="reading-val">${readings.kun}</span>
+      </div>
+    </div>
+  ` : '';
+
   const panel = document.getElementById('detailPanel');
   panel.style.display = '';
   panel.innerHTML = `
@@ -545,6 +560,7 @@ function selectKanji(idx) {
       <div class="detail-info">
         <h2>${k.mean}</h2>
         <div class="detail-desc">${k.desc}</div>
+        ${readingsHtml}
       </div>
     </div>
     <div class="detail-body">
@@ -639,6 +655,8 @@ function startQuiz(mode = 'bab') {
 
     const allM = allMeanings();
     const allF = allFurigana();
+    const allReadingsOn = Object.values(typeof KANJI_READINGS !== 'undefined' ? KANJI_READINGS : {}).map(r => r.on).filter(Boolean);
+    const allReadingsKun = Object.values(typeof KANJI_READINGS !== 'undefined' ? KANJI_READINGS : {}).map(r => r.kun).filter(r => r && r !== '—');
     const questions = [];
     const sourceKanji = isSingle ? [singleKanji] : cat.kanji;
 
@@ -670,14 +688,36 @@ function startQuiz(mode = 'bab') {
       });
 
       if (isSingle) {
-        // Untuk kuis 1 kata: ambil beberapa kosakata agar soal tidak cuma 2.
-        const picked = shuffle(vocabList).slice(0, Math.min(4, vocabList.length));
-        picked.forEach(v => {
+        // Soal onyomi
+        const readings = (typeof KANJI_READINGS !== 'undefined' && KANJI_READINGS[k.char]) ? KANJI_READINGS[k.char] : null;
+        if (readings && readings.on && readings.on !== '—') {
+          let wrongOn = shuffle(allReadingsOn.filter(r => r && r !== readings.on)).slice(0, 3);
+          while (wrongOn.length < 3) wrongOn.push(`on-${wrongOn.length + 1}`);
+          questions.push({
+            type: 'reading',
+            kanji: k.char,
+            prompt: `音読み (onyomi) dari kanji ini?`,
+            answer: readings.on,
+            choices: shuffle([readings.on, ...wrongOn])
+          });
+        }
+        // Soal kunyomi
+        if (readings && readings.kun && readings.kun !== '—') {
+          let wrongKun = shuffle(allReadingsKun.filter(r => r && r !== readings.kun)).slice(0, 3);
+          while (wrongKun.length < 3) wrongKun.push(`kun-${wrongKun.length + 1}`);
+          questions.push({
+            type: 'reading',
+            kanji: k.char,
+            prompt: `訓読み (kunyomi) dari kanji ini?`,
+            answer: readings.kun,
+            choices: shuffle([readings.kun, ...wrongKun])
+          });
+        }
+        // Semua vocab: soal furigana + soal arti kosakata
+        vocabList.forEach(v => {
           const correctF = v.f.split(' ')[0];
           let wrongF = shuffle(allF.filter(f => f && f !== correctF)).slice(0, 3);
-          while (wrongF.length < 3) {
-            wrongF.push(`pilihan-${wrongF.length + 1}`);
-          }
+          while (wrongF.length < 3) wrongF.push(`pilihan-${wrongF.length + 1}`);
           questions.push({
             type: 'furigana',
             kanji: v.w,
@@ -718,7 +758,7 @@ function startQuiz(mode = 'bab') {
 
     resetQuizViewShell();
 
-    quizQuestions = shuffle(questions).slice(0, Math.min(16, questions.length));
+    quizQuestions = isSingle ? shuffle(questions) : shuffle(questions).slice(0, Math.min(16, questions.length));
     quizIdx = 0;
     quizResults = [];
     awaitingNext = false;
@@ -727,7 +767,7 @@ function startQuiz(mode = 'bab') {
     document.getElementById('quizView').style.display = 'block';
     if (isSingle) {
       document.getElementById('quizTitle').textContent = `Kuis Kata: ${singleKanji.char}`;
-      document.getElementById('quizSubtitle').textContent = `${quizQuestions.length} soal untuk 1 kata`;
+      document.getElementById('quizSubtitle').textContent = `${quizQuestions.length} soal · Furigana, Arti, Onyomi, Kunyomi`;
     } else {
       document.getElementById('quizTitle').textContent = `Kuis: ${cat.emoji} ${cat.name}`;
       document.getElementById('quizSubtitle').textContent = `${quizQuestions.length} soal`;
@@ -765,8 +805,14 @@ function renderQuizQuestion() {
 
   // Card
   document.getElementById('quizCard').style.display = '';
+  const pillLabel = {
+    meaning: 'Arti Kanji',
+    furigana: 'Furigana',
+    reading: q.prompt.includes('onyomi') ? 'Onyomi 音読み' : 'Kunyomi 訓読み',
+    vocab_meaning: 'Arti Kosakata'
+  }[q.type] || q.type;
   document.getElementById('quizCard').innerHTML = `
-    <div class="quiz-type-pill">${q.type === 'meaning' ? 'Arti Kanji' : 'Furigana'}</div>
+    <div class="quiz-type-pill">${pillLabel}</div>
     <div class="quiz-kanji-display">${q.kanji}</div>
     <div class="quiz-sub">${q.prompt}</div>
   `;
@@ -802,11 +848,11 @@ function answer(chosen, btn) {
   const fb = document.getElementById('quizFeedback');
   if (q.type === 'furigana') {
     const meaningText = q.meaning ? ` (${q.meaning})` : '';
-    if (correct) {
-      fb.textContent = `✓ Benar!\n${q.answer}${meaningText}`;
-    } else {
-      fb.textContent = `✗ Salah!\n${q.answer}${meaningText}`;
-    }
+    fb.textContent = correct ? `✓ Benar!\n${q.answer}${meaningText}` : `✗ Salah!\n${q.answer}${meaningText}`;
+  } else if (q.type === 'reading') {
+    fb.textContent = correct ? `✓ Benar! ${q.answer}` : `✗ Salah! Jawaban: ${q.answer}`;
+  } else if (q.type === 'vocab_meaning') {
+    fb.textContent = correct ? `✓ Benar! ${q.answer}` : `✗ Salah! Arti: ${q.answer}`;
   } else {
     fb.textContent = correct ? '✓ Benar!' : `✗ Jawaban yang benar: ${q.answer}`;
   }

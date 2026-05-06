@@ -34,6 +34,36 @@ const KANJI_N5_EXTRA = [
         "f": "にっき (nikki)",
         "r": "nikki",
         "m": "Buku harian"
+      },
+      {
+        "w": "日光",
+        "f": "にっこう (nikkō)",
+        "r": "nikkō",
+        "m": "Sinar matahari"
+      },
+      {
+        "w": "祝日",
+        "f": "しゅくじつ (shukujitsu)",
+        "r": "shukujitsu",
+        "m": "Hari libur nasional"
+      },
+      {
+        "w": "日帰り",
+        "f": "ひがえり (higaeri)",
+        "r": "higaeri",
+        "m": "Pergi-pulang dalam sehari"
+      },
+      {
+        "w": "誕生日",
+        "f": "たんじょうび (tanjōbi)",
+        "r": "tanjōbi",
+        "m": "Hari ulang tahun"
+      },
+      {
+        "w": "一日",
+        "f": "ついたち (tsuitachi)",
+        "r": "tsuitachi",
+        "m": "Tanggal 1 dalam sebulan"
       }
     ],
     "story": "Bentuk kotak ini seperti gambar matahari. Mudah diingat sebagai hari yang terang.",
@@ -78,6 +108,18 @@ const KANJI_N5_EXTRA = [
         "f": "せんげつ (sengetsu)",
         "r": "sengetsu",
         "m": "Bulan lalu"
+      },
+      {
+        "w": "一月",
+        "f": "いちがつ (ichigatsu)",
+        "r": "ichigatsu",
+        "m": "Januari / bulan ke-1"
+      },
+      {
+        "w": "月見",
+        "f": "つきみ (tsukimi)",
+        "r": "tsukimi",
+        "m": "Menikmati pemandangan bulan"
       }
     ],
     "story": "Bentuk 月 mirip bulan sabit. Jadi mudah diingat sebagai bulan di langit.",
@@ -298,6 +340,24 @@ const KANJI_N5_EXTRA = [
         "f": "がいこくじん (gaikokujin)",
         "r": "gaikokujin",
         "m": "Orang asing"
+      },
+      {
+        "w": "二人",
+        "f": "ふたり (futari)",
+        "r": "futari",
+        "m": "Dua orang"
+      },
+      {
+        "w": "人形",
+        "f": "にんぎょう (ningyō)",
+        "r": "ningyō",
+        "m": "Boneka"
+      },
+      {
+        "w": "人数",
+        "f": "にんずう (ninzū)",
+        "r": "ninzū",
+        "m": "Jumlah orang"
       }
     ],
     "story": "Bentuk ini seperti orang sedang melangkah. Karena itu artinya orang atau manusia.",
@@ -342,6 +402,18 @@ const KANJI_N5_EXTRA = [
         "f": "まどぐち (madoguchi)",
         "r": "madoguchi",
         "m": "Loket / jendela layanan"
+      },
+      {
+        "w": "人口",
+        "f": "じんこう (jinkō)",
+        "r": "jinkō",
+        "m": "Jumlah penduduk"
+      },
+      {
+        "w": "口調",
+        "f": "くちょう (kuchō)",
+        "r": "kuchō",
+        "m": "Nada bicara / cara berkata"
       }
     ],
     "story": "Kotak sederhana ini dibayangkan sebagai bukaan mulut. Jadi artinya mulut atau bukaan.",
@@ -383,9 +455,21 @@ const KANJI_N5_EXTRA = [
       },
       {
         "w": "入院",
-        "f": "にゅういん (nyuin)",
-        "r": "nyuin",
-        "m": "Masuk rumah sakit"
+        "f": "にゅういん (nyūin)",
+        "r": "nyūin",
+        "m": "Masuk rumah sakit / dirawat inap"
+      },
+      {
+        "w": "収入",
+        "f": "しゅうにゅう (shūnyū)",
+        "r": "shūnyū",
+        "m": "Penghasilan / pemasukan"
+      },
+      {
+        "w": "入れ物",
+        "f": "いれもの (iremono)",
+        "r": "iremono",
+        "m": "Wadah / tempat menaruh barang"
       }
     ],
     "story": "Dua garis yang bertemu — menunjukkan tempat masuk ke dalam. Seperti membuka pintu dan masuk.",
