@@ -134,6 +134,23 @@
   </div>
 
 </main>
+
+<!-- KANJI INFO MODAL -->
+<div id="kanjiModal" class="kanji-modal" style="display:none">
+  <div class="modal-backdrop" onclick="closeKanjiModal()"></div>
+  <div class="modal-content">
+    <div class="modal-header">
+      <div class="modal-kanji" id="modalKanji">字</div>
+      <button class="modal-close" onclick="closeKanjiModal()">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-reading" id="modalReading"></div>
+      <div class="modal-meaning" id="modalMeaning"></div>
+      <div class="modal-info" id="modalInfo"></div>
+    </div>
+  </div>
+</div>
+
 </div>
 
 <script src="kanji_n5_extra_data.js"></script>
@@ -382,7 +399,6 @@ function buildSidebar() {
     item.className = 'nav-item';
     item.id = 'nav_' + cat.id;
     item.innerHTML = `
-      <span class="nav-kanji-preview">${cat.emoji}</span>
       <span>${cat.name}</span>
       ${done ? `<span class="done-badge">✓</span>` : `<span class="nav-count">${cat.kanji.length}</span>`}
     `;
@@ -423,7 +439,6 @@ function buildCatOverview() {
     const card = document.createElement('div');
     card.className = 'cat-card';
     card.innerHTML = `
-      <div class="cat-emoji">${cat.emoji}</div>
       <div class="cat-name">${cat.name} ${done ? '✓' : ''}</div>
       <div class="cat-count">${cat.kanji.length} kanji &nbsp;·&nbsp; ${learnedCount} dipelajari</div>
       <div class="cat-progress-bar"><div class="cat-progress-fill" style="width:${pct}%"></div></div>
@@ -450,7 +465,7 @@ function showCategory(catId) {
   document.getElementById('quizView').style.display = 'none';
   setActiveNav(catId);
 
-  document.getElementById('catViewTitle').textContent = currentCat.emoji + ' ' + currentCat.name;
+  document.getElementById('catViewTitle').textContent = currentCat.name;
   document.getElementById('catViewDesc').textContent = currentCat.desc;
   document.getElementById('catViewSubtitle').textContent = `${currentCat.kanji.length} Kanji dalam kategori ini`;
 
@@ -528,6 +543,9 @@ function selectKanji(idx) {
       meaningHtml = parts[1] || '';
     }
     
+    // Make kanji in example clickable
+    sentenceHtml = makeKanjiClickable(sentenceHtml);
+    
     extraSections += `
       <div class="example-section">
         <div class="example-label">💬 Contoh Kalimat</div>
@@ -543,11 +561,11 @@ function selectKanji(idx) {
   const readingsHtml = readings ? `
     <div class="readings-row">
       <div class="reading-badge on">
-        <span class="reading-label">音読み</span>
+        <span class="reading-label">onyomi</span>
         <span class="reading-val">${readings.on}</span>
       </div>
       <div class="reading-badge kun">
-        <span class="reading-label">訓読み</span>
+        <span class="reading-label">kunyomi</span>
         <span class="reading-val">${readings.kun}</span>
       </div>
     </div>
@@ -643,7 +661,7 @@ function selectKanji(idx) {
           return `
           <div class="vocab-row">
             <div class="vocab-word-furi">
-              <div class="vocab-word">${v.w}</div>
+              <div class="vocab-word">${makeKanjiClickable(v.w)}</div>
               <div class="vocab-furi">
                 ${furiganaWithDots}
                 <span class="romaji">${v.r}</span>
@@ -995,6 +1013,92 @@ function retryQuiz() {
     selectedKanjiIdx = lastQuizKanjiIdx;
   }
   startQuiz(lastQuizMode);
+}
+
+// ================================================================
+// KANJI MODAL FUNCTIONS
+// ================================================================
+function showKanjiModal(char) {
+  // Find the kanji in all categories
+  let kanjiData = null;
+  for (let cat of DISPLAY_CATEGORIES) {
+    for (let k of cat.kanji) {
+      if (k.char === char) {
+        kanjiData = k;
+        break;
+      }
+    }
+    if (kanjiData) break;
+  }
+  
+  if (!kanjiData) {
+    console.warn(`Kanji ${char} tidak ditemukan`);
+    return;
+  }
+  
+  // Get readings if available
+  const readings = (typeof KANJI_READINGS !== 'undefined' && KANJI_READINGS[char]) ? KANJI_READINGS[char] : null;
+  
+  // Build reading text
+  let readingText = '';
+  if (readings) {
+    readingText = `onyomi: ${readings.on}<br/>kunyomi: ${readings.kun}`;
+  } else {
+    readingText = '(データなし)';
+  }
+  
+  // Build info/meaning
+  let infoText = `${kanjiData.mean}`;
+  if (kanjiData.desc) {
+    infoText += `<br/><small>${kanjiData.desc}</small>`;
+  }
+  
+  // Set modal content
+  document.getElementById('modalKanji').textContent = char;
+  document.getElementById('modalReading').innerHTML = readingText;
+  document.getElementById('modalMeaning').textContent = kanjiData.mean;
+  document.getElementById('modalInfo').innerHTML = infoText;
+  
+  // Show modal
+  document.getElementById('kanjiModal').style.display = 'flex';
+}
+
+function closeKanjiModal() {
+  document.getElementById('kanjiModal').style.display = 'none';
+}
+
+// Close modal when clicking outside
+document.addEventListener('DOMContentLoaded', function() {
+  const modal = document.getElementById('kanjiModal');
+  if (modal) {
+    modal.addEventListener('click', function(e) {
+      if (e.target === modal) {
+        closeKanjiModal();
+      }
+    });
+  }
+  
+  // Close modal with ESC key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('kanjiModal').style.display === 'flex') {
+      closeKanjiModal();
+    }
+  });
+});
+
+// Make text clickable for kanji
+function makeKanjiClickable(text) {
+  if (!text) return text;
+  
+  // Replace each kanji character with a clickable span only if it exists in database
+  return text.replace(/[\u4e00-\u9fff]/g, function(char) {
+    // Check if kanji exists in KANJI_READINGS (meaning it's in database)
+    if (typeof KANJI_READINGS !== 'undefined' && KANJI_READINGS[char]) {
+      return `<span class="kanji-link" onclick="event.stopPropagation(); showKanjiModal('${char}')">${char}</span>`;
+    }
+    // If not in database, return as plain text
+    return char;
+  });
 }
 
 // ================================================================

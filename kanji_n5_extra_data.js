@@ -5318,5 +5318,43 @@ const KANJI_N5_EXTRA = [
       "reading": "これ は ごはん です",
       "meaning": "Ini nasi / makanan."
     }
+  },
+  {
+    "bab": "Belum Dipelajari",
+    "char": "今",
+    "mean": "Sekarang / Saat ini",
+    "desc": "Waktu saat ini",
+    "vocab": [
+      {
+        "w": "今日",
+        "f": "きょう (kyō)",
+        "r": "kyō",
+        "m": "Hari ini"
+      },
+      {
+        "w": "今月",
+        "f": "こんげつ (kongetsu)",
+        "r": "kongetsu",
+        "m": "Bulan ini"
+      },
+      {
+        "w": "今年",
+        "f": "ことし (kotoshi)",
+        "r": "kotoshi",
+        "m": "Tahun ini"
+      },
+      {
+        "w": "今",
+        "f": "いま (ima)",
+        "r": "ima",
+        "m": "Sekarang"
+      }
+    ],
+    "story": "Kanji 今 adalah kombinasi 人 (orang) + 八 (pemisah). Menunjukkan waktu sekarang.",
+    "example": {
+      "sentence": "今、何をしていますか",
+      "reading": "いま、 なに を していますか",
+      "meaning": "Sekarang, apa yang sedang kamu lakukan?"
+    }
   }
 ];

@@ -926,6 +926,124 @@ body.sidebar-open {
   transition: width 0.5s;
 }
 
+/* ============ KANJI MODAL ============ */
+.kanji-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 300;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 26, 46, 0.5);
+  cursor: pointer;
+}
+
+.modal-content {
+  position: relative;
+  background: var(--paper-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 32px;
+  max-width: 400px;
+  width: 90vw;
+  animation: slideUp 0.3s ease;
+  z-index: 301;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 2px solid var(--border);
+  padding-bottom: 16px;
+}
+
+.modal-kanji {
+  font-family: 'Noto Serif JP', serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  padding: 4px;
+  transition: color 0.15s;
+}
+
+.modal-close:hover {
+  color: var(--ink);
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-reading {
+  font-size: 14px;
+  color: var(--ink-soft);
+  font-family: 'Noto Sans JP', sans-serif;
+  word-break: break-word;
+}
+
+.modal-meaning {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--ink);
+  word-break: break-word;
+}
+
+.modal-info {
+  font-size: 13px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+/* Make kanji clickable in text */
+.kanji-link {
+  cursor: pointer;
+  text-decoration: underline;
+  color: var(--blue);
+  transition: color 0.15s;
+  border-radius: 2px;
+}
+
+.kanji-link:hover {
+  color: var(--blue-light);
+  background: rgba(26, 74, 122, 0.1);
+}
+
 /* ============ RESPONSIVE ============ */
 @media (max-width: 1024px) {
   .main { padding: 24px; }
