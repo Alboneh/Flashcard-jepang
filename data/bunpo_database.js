@@ -96,7 +96,7 @@ const bunpoDatabase = [
       "ここ は きょうしつ です。",
       "あそこ は しょくどう です。"
     ],
-    bab: "Bab 2",
+    bab: "Bab 3",
   },
   {
     pattern: "KB / Orang / Tempat は ここ / そこ / あそこ です",
@@ -150,7 +150,7 @@ const bunpoDatabase = [
       "いま 7じ です。",
       "いま 9じ はん です。"
     ],
-    bab: "Bab 3",
+    bab: "Bab 4",
   },
   {
     pattern: "〜 は Ket.Hari です",
@@ -495,7 +495,7 @@ const bunpoDatabase = [
       "どうして はやく かえりますか。 (Mengapa pulang lebih awal?)",
       "こども の たんじょうび です から。 (Karena anak saya ulang tahun.)"
     ],
-    bab: "Bab 10",
+    bab: "Bab 9",
   },
 
   // ===== BAB 10 =====
@@ -558,7 +558,7 @@ const bunpoDatabase = [
       "ベッド の うえ に かみ や じしょ が あります。 (Di atas kasur ada kertas dan kamus.)",
       "かいぎしつ の なか に ミラーさん や やまださん など が います。 (Di dalam ruang rapat ada Miller, Yamada, dan lainnya.)"
     ],
-    bab: "Bab 11",
+    bab: "Bab 10",
   },
 
   // ===== BAB 11 =====
@@ -624,7 +624,7 @@ const bunpoDatabase = [
       "おおさか から なら まで くるま で 1じかん かかります。 (Dari Osaka sampai Nara perlu 1 jam dengan mobil.)",
       "❓ A から B まで Transportasi で どのくらい かかりますか。 (Dari A ke B dengan transportasi itu butuh berapa lama?)"
     ],
-    bab: "Bab 12",
+    bab: "Bab 11",
   },
 
   // ===== BAB 12 =====
@@ -813,12 +813,12 @@ const bunpoDatabase = [
     bab: "Bab 15",
   },
   {
-    pattern: "[K.Benda] に [K.Kerja]",
-    explanation: "Partikel に digunakan bersama kata kerja tertentu untuk menunjukkan tujuan, lokasi masuk, atau hal yang dikenai tindakan.",
+    pattern: "[K.Benda] に [K.Kerja: はいります / すわります / のります]",
+    explanation: "Tiga kata kerja ini selalu memakai partikel に: はいります (masuk), すわります (duduk), のります (naik). Di Bab 15 pola ini sering digabung dengan bentuk izin/larangan (〜てもいいですか, 〜てはいけません) atau permintaan (〜てください) supaya kata kerjanya berfungsi penuh dalam konteks aturan dan instruksi.",
     examples: [
-      "ここに はいります。 (Masuk ke sini.)",
-      "すわります。 (Duduk.)",
-      "のります。 (Naik.)"
+      "ここ に はいっては いけません。 (Tidak boleh masuk di sini.)",
+      "ここ に すわっても いいですか。 (Bolehkah saya duduk di sini?)",
+      "とうきょうえき から 4ばん の バス に のって ください。 (Silakan naik bus nomor 4 dari stasiun Tokyo.)"
     ],
     bab: "Bab 15",
   },
