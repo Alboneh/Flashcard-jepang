@@ -74,9 +74,25 @@
 }
 
 .all-cat {
-  margin-top: 0.3rem;
-  align-self: flex-start;
   border: 1.5px solid var(--ink);
+  padding: 0.2rem 0.5rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.all-card-footer {
+  margin-top: 0.3rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.all-golong {
+  border: 1.5px solid var(--red);
+  color: var(--red);
   padding: 0.2rem 0.5rem;
   font-family: 'DM Mono', monospace;
   font-size: 0.7rem;

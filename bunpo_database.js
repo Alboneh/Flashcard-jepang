@@ -5,7 +5,8 @@ const bunpoDatabase = [
     examples: [
       "わたし は がくせい です。 (Saya adalah pelajar.)",
       "たなかさん は せんせい です。 (Tanaka-san adalah guru.)"
-    ]
+    ],
+    bab: "Bab 1",
   },
   {
     pattern: "KB1 は KB2 では ありません / じゃ ありません",
@@ -13,7 +14,8 @@ const bunpoDatabase = [
     examples: [
       "わたし は いしゃ では ありません。 (Saya bukan dokter.)",
       "あのひと は がくせい じゃ ありません。 (Orang itu bukan pelajar.)"
-    ]
+    ],
+    bab: "Bab 1",
   },
   {
     pattern: "KB1 は KB2 ですか",
@@ -21,7 +23,8 @@ const bunpoDatabase = [
     examples: [
       "あなた は せんせい ですか。 (Apakah Anda guru?)",
       "ミラーさん は アメリカじん ですか。 (Apakah Miller-san orang Amerika?)"
-    ]
+    ],
+    bab: "Bab 1",
   },
   {
     pattern: "KB1 は KB2 の KB3 です",
@@ -29,7 +32,8 @@ const bunpoDatabase = [
     examples: [
       "わたし は IMC の しゃいん です。 (Saya karyawan IMC.)",
       "これは にほん の ほん です。 (Ini buku Jepang.)"
-    ]
+    ],
+    bab: "Bab 1",
   },
   {
     pattern: "KB1 は KB2 です。KB3 も KB2 です",
@@ -37,7 +41,8 @@ const bunpoDatabase = [
     examples: [
       "サントスさん は がくせい です。わたし も がくせい です。",
       "たなかさん は にほんじん です。やまださん も にほんじん です。"
-    ]
+    ],
+    bab: "Bab 1",
   },
   {
     pattern: "KB1 は KB2 さい です",
@@ -45,7 +50,8 @@ const bunpoDatabase = [
     examples: [
       "わたし は 20さい です。 (Saya 20 tahun.)",
       "むすめ は 7さい です。 (Anak perempuan saya 7 tahun.)"
-    ]
+    ],
+    bab: "Bab 1",
   },
   {
     pattern: "これ / それ / あれ は KB1 です",
@@ -53,7 +59,8 @@ const bunpoDatabase = [
     examples: [
       "これ は じしょ です。 (Ini kamus.)",
       "あれ は かさ です。 (Itu payung di sana.)"
-    ]
+    ],
+    bab: "Bab 2",
   },
   {
     pattern: "それ は KB1 ですか、KB2 ですか",
@@ -61,7 +68,8 @@ const bunpoDatabase = [
     examples: [
       "それ は かばん ですか、にもつ ですか。",
       "これは てちょう ですか、ノート ですか。"
-    ]
+    ],
+    bab: "Bab 2",
   },
   {
     pattern: "これ / それ / あれ は KB1 の KB2 です",
@@ -69,7 +77,8 @@ const bunpoDatabase = [
     examples: [
       "これは にほん の カメラ です。",
       "それ は わたし の ほん です。"
-    ]
+    ],
+    bab: "Bab 2",
   },
   {
     pattern: "この / その / あの KB1 は KB2 の です",
@@ -77,7 +86,8 @@ const bunpoDatabase = [
     examples: [
       "この かばん は わたし の です。",
       "あの くるま は しゃちょう の です。"
-    ]
+    ],
+    bab: "Bab 2",
   },
   {
     pattern: "ここ / そこ / あそこ は KB (Tempat) です",
@@ -85,7 +95,8 @@ const bunpoDatabase = [
     examples: [
       "ここ は きょうしつ です。",
       "あそこ は しょくどう です。"
-    ]
+    ],
+    bab: "Bab 2",
   },
   {
     pattern: "KB / Orang / Tempat は ここ / そこ / あそこ です",
@@ -93,7 +104,8 @@ const bunpoDatabase = [
     examples: [
       "トイレ は あそこ です。",
       "やまださん は そこ です。"
-    ]
+    ],
+    bab: "Bab 3",
   },
   {
     pattern: "KB / Orang / Tempat は Ket.Tempat です",
@@ -101,7 +113,8 @@ const bunpoDatabase = [
     examples: [
       "じむしょ は 2かい です。",
       "エレベーター は うけつけ の となり です。"
-    ]
+    ],
+    bab: "Bab 3",
   },
   {
     pattern: "Orang / Tempat は こちら / そちら / あちら です",
@@ -109,7 +122,8 @@ const bunpoDatabase = [
     examples: [
       "うけつけ は こちら です。",
       "やまださん は あちら です。"
-    ]
+    ],
+    bab: "Bab 3",
   },
   {
     pattern: "これ / それ / あれ は Negara / Perusahaan の Benda です",
@@ -117,7 +131,8 @@ const bunpoDatabase = [
     examples: [
       "これは にほん の くるま です。",
       "それ は IMC の コンピューター です。"
-    ]
+    ],
+    bab: "Bab 3",
   },
   {
     pattern: "Benda は Bilangan + えん です",
@@ -125,7 +140,8 @@ const bunpoDatabase = [
     examples: [
       "この ほん は 1200えん です。",
       "その かさ は 800えん です。"
-    ]
+    ],
+    bab: "Bab 3",
   },
   {
     pattern: "いま KW です",
@@ -133,7 +149,8 @@ const bunpoDatabase = [
     examples: [
       "いま 7じ です。",
       "いま 9じ はん です。"
-    ]
+    ],
+    bab: "Bab 3",
   },
   {
     pattern: "〜 は Ket.Hari です",
@@ -141,7 +158,8 @@ const bunpoDatabase = [
     examples: [
       "しけん は げつようび です。",
       "やすみ は にちようび です。"
-    ]
+    ],
+    bab: "Bab 4",
   },
   {
     pattern: "〜 は KW1 から KW2 まで です",
@@ -149,7 +167,8 @@ const bunpoDatabase = [
     examples: [
       "ぎんこう は 9じ から 3じ まで です。",
       "べんきょう は 7じ から 9じ まで です。"
-    ]
+    ],
+    bab: "Bab 4",
   },
   {
     pattern: "〜 は KW に KK",
@@ -157,7 +176,8 @@ const bunpoDatabase = [
     examples: [
       "わたし は 6じ に おきます。",
       "まいにち 11じ に ねます。"
-    ]
+    ],
+    bab: "Bab 4",
   },
   {
     pattern: "〜 は KW1 から KW2 まで KK",
@@ -165,7 +185,8 @@ const bunpoDatabase = [
     examples: [
       "わたし は 8じ から 5じ まで はたらきます。",
       "べんきょう は 7じ から 10じ まで します。"
-    ]
+    ],
+    bab: "Bab 4",
   },
   {
     pattern: "KK ます / ません / ました / ませんでした",
@@ -173,7 +194,8 @@ const bunpoDatabase = [
     examples: [
       "きょう べんきょうします。きのう べんきょうしました。",
       "あした はたらきません。おととい はたらきませんでした。"
-    ]
+    ],
+    bab: "Bab 4",
   },
   {
     pattern: "KK ます / ません / ました / ませんでした か",
@@ -181,7 +203,8 @@ const bunpoDatabase = [
     examples: [
       "きのう べんきょうしましたか。",
       "けさ あさごはん を たべましたか。"
-    ]
+    ],
+    bab: "Bab 4",
   },
   {
     pattern: "KB (Tempat) へ いきます / きます / かえります",
@@ -189,7 +212,8 @@ const bunpoDatabase = [
     examples: [
       "がっこう へ いきます。",
       "うち へ かえります。"
-    ]
+    ],
+    bab: "Bab 5",
   },
   {
     pattern: "KB (Kendaraan) で KB (Tempat) へ いきます / きます / かえります",
@@ -197,7 +221,8 @@ const bunpoDatabase = [
     examples: [
       "でんしゃ で えき へ いきます。",
       "バス で だいがく へ きます。"
-    ]
+    ],
+    bab: "Bab 5",
   },
   {
     pattern: "KB と KB (Tempat) へ いきます / きます / かえります",
@@ -205,7 +230,8 @@ const bunpoDatabase = [
     examples: [
       "ともだち と デパート へ いきます。",
       "かぞく と うち へ かえります。"
-    ]
+    ],
+    bab: "Bab 5",
   },
   {
     pattern: "KB (Waktu) に KB (Tempat) へ いきます / きます / かえります",
@@ -213,7 +239,8 @@ const bunpoDatabase = [
     examples: [
       "7じ に がっこう へ いきます。",
       "にちようび に うち へ かえります。"
-    ]
+    ],
+    bab: "Bab 5",
   },
   {
     pattern: "K.Benda を K.Kerja Transitif",
@@ -221,7 +248,8 @@ const bunpoDatabase = [
     examples: [
       "ほん を よみます。",
       "みず を のみます。"
-    ]
+    ],
+    bab: "Bab 6",
   },
   {
     pattern: "K.Benda を します",
@@ -229,7 +257,8 @@ const bunpoDatabase = [
     examples: [
       "テニス を します。",
       "しゅくだい を します。"
-    ]
+    ],
+    bab: "Bab 6",
   },
   {
     pattern: "なに を しますか",
@@ -237,7 +266,8 @@ const bunpoDatabase = [
     examples: [
       "にちようび なに を しますか。",
       "こんばん なに を しますか。"
-    ]
+    ],
+    bab: "Bab 6",
   },
   {
     pattern: "なん dan なに",
@@ -245,7 +275,8 @@ const bunpoDatabase = [
     examples: [
       "これは なに ですか。",
       "なんさい ですか。なんようび ですか。"
-    ]
+    ],
+    bab: "Bab 6",
   },
   {
     pattern: "K.Benda (Tempat) で K.Kerja",
@@ -253,7 +284,8 @@ const bunpoDatabase = [
     examples: [
       "わたし は とうきょうで おみやげを かいました。",
       "レストラン で ごはん を たべます。"
-    ]
+    ],
+    bab: "Bab 6",
   },
   {
     pattern: "K.Kerja ませんか",
@@ -261,7 +293,8 @@ const bunpoDatabase = [
     examples: [
       "いっしょに えいが を みませんか。",
       "コーヒー を のみませんか。"
-    ]
+    ],
+    bab: "Bab 6",
   },
   {
     pattern: "K.Kerja ましょう",
@@ -269,7 +302,8 @@ const bunpoDatabase = [
     examples: [
       "ちょっと やすみましょう。",
       "いっしょに かえりましょう。"
-    ]
+    ],
+    bab: "Bab 6",
   },
   {
     pattern: "KB (Alat/Cara) で K.Kerja",
@@ -277,7 +311,8 @@ const bunpoDatabase = [
     examples: [
       "はし で たべます。 (Makan dengan sumpit.)",
       "にほんご で かきます。 (Menulis dengan bahasa Jepang.)"
-    ]
+    ],
+    bab: "Bab 6",
   },
   {
     pattern: "Kata/Kalimat は 〜ご で Kata/Kalimat です",
@@ -285,7 +320,8 @@ const bunpoDatabase = [
     examples: [
       "ありがとう は インドネシアご で なん ですか。",
       "Thank you は にほんご で ありがとう です。"
-    ]
+    ],
+    bab: "Bab 6",
   },
   {
     pattern: "KB1 (Pemberi) は KB2 (Penerima) に 〜 を あげます",
@@ -293,7 +329,8 @@ const bunpoDatabase = [
     examples: [
       "わたし は ともだち に はな を あげます。",
       "せんせい は わたし に ほん を あげました。"
-    ]
+    ],
+    bab: "Bab 7",
   },
   {
     pattern: "KB1 (Penerima) は KB2 (Pemberi) に 〜 を もらいます",
@@ -301,7 +338,8 @@ const bunpoDatabase = [
     examples: [
       "わたし は ちち に とけい を もらいました。",
       "マリアさん は たなかさん に プレゼント を もらいました。"
-    ]
+    ],
+    bab: "Bab 7",
   },
   {
     pattern: "もう K.Kerja ました",
@@ -309,7 +347,8 @@ const bunpoDatabase = [
     examples: [
       "もう しゅくだい を しました。",
       "もう ひるごはん を たべました。"
-    ]
+    ],
+    bab: "Bab 7",
   },
   {
     pattern: "K.Benda は K.Sifat な です / K.Benda は K.Sifat い です",
@@ -319,7 +358,8 @@ const bunpoDatabase = [
       "この まち は きれい です。 (きれい tetap na-adjective)",
       "あの ひと は ゆうめい です。 (ゆうめい tetap na-adjective)",
       "この ほん は おもしろい です。"
-    ]
+    ],
+    bab: "Bab 8",
   },
   {
     pattern: "K.Sifat な + K.Benda / K.Sifat い + K.Benda",
@@ -329,7 +369,8 @@ const bunpoDatabase = [
       "きれいな へや です。",
       "ゆうめいな だいがく です。",
       "あたらしい くるま です。"
-    ]
+    ],
+    bab: "Bab 8",
   },
   {
     pattern: "Bentuk negatif sifat: な-adjective / い-adjective",
@@ -340,7 +381,8 @@ const bunpoDatabase = [
       "あの ひと は ゆうめい じゃ ありません。 (ゆうめい = na-adjective)",
       "この ほん は おもしろくない です。",
       "この くるま は たかくない です。"
-    ]
+    ],
+    bab: "Bab 8",
   },
   {
     pattern: "とても / あまり",
@@ -348,7 +390,8 @@ const bunpoDatabase = [
     examples: [
       "この えいが は とても おもしろい です。",
       "にほんご は あまり むずかしく ありません。"
-    ]
+    ],
+    bab: "Bab 8",
   },
   {
     pattern: "K.Benda は どうですか",
@@ -356,7 +399,8 @@ const bunpoDatabase = [
     examples: [
       "にほん の せいかつ は どうですか。",
       "この くるま は どうですか。"
-    ]
+    ],
+    bab: "Bab 8",
   },
   {
     pattern: "K.Benda1 は どんな K.Benda2 ですか",
@@ -364,7 +408,8 @@ const bunpoDatabase = [
     examples: [
       "にほんご は どんな ことば ですか。",
       "たなかさん は どんな ひと ですか。"
-    ]
+    ],
+    bab: "Bab 8",
   },
   {
     pattern: "Kalimat 1 が、Kalimat 2",
@@ -372,7 +417,8 @@ const bunpoDatabase = [
     examples: [
       "この へや は きれい ですが、せまい です。",
       "この えいが は おもしろい ですが、ちょっと ながい です。"
-    ]
+    ],
+    bab: "Bab 8",
   },
   {
     pattern: "どれ",
@@ -380,7 +426,8 @@ const bunpoDatabase = [
     examples: [
       "あなた の かばん は どれ ですか。",
       "どれ が すき ですか。"
-    ]
+    ],
+    bab: "Bab 8",
   },
   {
     pattern: "K.Benda が あります / わかります",
@@ -390,7 +437,8 @@ const bunpoDatabase = [
       "わたし は げつようび に やくそく が あります。 (Saya ada janji di hari Senin.)",
       "わたし は にほんご が わかります。 (Saya paham bahasa Jepang.)",
       "わたし は えいご が わかりません。 (Saya tidak paham bahasa Inggris.)"
-    ]
+    ],
+    bab: "Bab 9",
   },
   {
     pattern: "K.Benda が すきです / きらいです / じょうずです / へたです",
@@ -400,7 +448,8 @@ const bunpoDatabase = [
       "おかあさん は やきゅう が きらい です。 (Ibu tidak suka baseball.)",
       "サントスさん は りょうり が じょうず です。 (Santos pandai memasak.)",
       "わたし は すうがく が へた です。 (Saya tidak pandai matematika.)"
-    ]
+    ],
+    bab: "Bab 9",
   },
   {
     pattern: "よく / だいたい / すこし / あまり / ぜんぜん + K.Kerja (tingkat)",
@@ -411,7 +460,8 @@ const bunpoDatabase = [
       "すこし わかります。 (Sedikit mengerti.)",
       "まつもとさん は ドイツご が ぜんぜん わかりません。 (Matsumoto sama sekali tidak mengerti bahasa Jerman.)",
       "ちゅうごくご が あまり わかりません。 (Bahasa Mandarin tidak begitu mengerti.)"
-    ]
+    ],
+    bab: "Bab 9",
   },
   {
     pattern: "たくさん / すこし / あまり / ぜんぜん + K.Kerja (kuantitas)",
@@ -421,7 +471,8 @@ const bunpoDatabase = [
       "ここ に ほん が すこし あります。 (Di sini ada sedikit buku.)",
       "ここ は もり が あまり ありません。 (Di sini tidak begitu banyak hutan.)",
       "じかん が ぜんぜん ありません。 (Tidak ada waktu sama sekali.)"
-    ]
+    ],
+    bab: "Bab 9",
   },
   {
     pattern: "Kalimat 1 から、Kalimat 2",
@@ -430,7 +481,8 @@ const bunpoDatabase = [
       "いそがしい です から、テレビ を みません。 (Tidak menonton TV, karena sibuk.)",
       "にほんご が わかりません から、アニメ を みません。 (Tidak menonton anime, karena tidak paham bahasa Jepang.)",
       "じかん が ありません から、りょこう を しません。 (Tidak bertamasya, karena tidak ada waktu.)"
-    ]
+    ],
+    bab: "Bab 9",
   },
   {
     pattern: "どうして + Kalimat? / ... から",
@@ -442,7 +494,8 @@ const bunpoDatabase = [
       "じかん が ありません から。 (Karena tidak ada waktu.)",
       "どうして はやく かえりますか。 (Mengapa pulang lebih awal?)",
       "こども の たんじょうび です から。 (Karena anak saya ulang tahun.)"
-    ]
+    ],
+    bab: "Bab 10",
   },
 
   // ===== BAB 10 =====
@@ -454,7 +507,8 @@ const bunpoDatabase = [
       "にわ に ねこ が います。 (Di halaman ada kucing.)",
       "きょうしつ に せんせい が います。 (Di kelas ada guru.)",
       "あそこ に ポスト が あります。 (Di sana ada kotak pos.)"
-    ]
+    ],
+    bab: "Bab 10",
   },
   {
     pattern: "[Posisi/Tempat] に [KB] が あります / います",
@@ -463,7 +517,8 @@ const bunpoDatabase = [
       "スーパー の となり に きっさてん が あります。 (Di sebelah supermarket ada coffee shop.)",
       "ドア の みぎ に スイッチ が あります。 (Di sebelah kanan pintu ada saklar.)",
       "さとうさん の まえ に カリナさん が います。 (Di depan Sato ada Karina.)"
-    ]
+    ],
+    bab: "Bab 10",
   },
   {
     pattern: "[KB] は [Tempat] に あります / います",
@@ -472,7 +527,8 @@ const bunpoDatabase = [
       "グプタさん は かいぎしつ に います。 (Gupta ada di ruang rapat.)",
       "きむらさん は あそこ に います。 (Kimura ada di sana.)",
       "じしょ は じむしょ に あります。 (Kamus ada di kantor.)"
-    ]
+    ],
+    bab: "Bab 10",
   },
   {
     pattern: "❓ [KB] は どこ に あります / いますか",
@@ -480,7 +536,8 @@ const bunpoDatabase = [
     examples: [
       "じしょ は どこ に ありますか。 (Kamus ada di mana?)",
       "グプタさん は どこ に いますか。 (Gupta ada di mana?)"
-    ]
+    ],
+    bab: "Bab 10",
   },
   {
     pattern: "[KB1, Orang, Tempat] の [Posisi] に [KB2] が あります / います",
@@ -490,7 +547,8 @@ const bunpoDatabase = [
       "まつもとさん の うしろ に いしかわさん が います。 (Di belakang Matsumoto ada Ishikawa.)",
       "テーブル と たな の あいだ に いす が あります。 (Di antara meja dan lemari ada kursi.)",
       "えき の ちかく で ともだち に あいます。 (Saya bertemu teman di dekat stasiun.)"
-    ]
+    ],
+    bab: "Bab 10",
   },
   {
     pattern: "[KB1] や [KB2] (など)",
@@ -499,7 +557,8 @@ const bunpoDatabase = [
       "はこ の なか に てがみ や しゃしん など が あります。 (Di dalam kotak ada surat, foto, dan lainnya.)",
       "ベッド の うえ に かみ や じしょ が あります。 (Di atas kasur ada kertas dan kamus.)",
       "かいぎしつ の なか に ミラーさん や やまださん など が います。 (Di dalam ruang rapat ada Miller, Yamada, dan lainnya.)"
-    ]
+    ],
+    bab: "Bab 11",
   },
 
   // ===== BAB 11 =====
@@ -511,7 +570,8 @@ const bunpoDatabase = [
       "みかん が むっつ あります。 (Ada 6 buah jeruk.)",
       "スイカ が ひとつ あります。 (Ada 1 buah semangka.)",
       "❓ KB が いくつ ありますか。 (Ada berapa buah KB?)"
-    ]
+    ],
+    bab: "Bab 11",
   },
   {
     pattern: "(Ket) の (KB) を (Ket. jumlah) かいました",
@@ -520,7 +580,8 @@ const bunpoDatabase = [
       "りんご の ジュース を 2ほん かいました。 (Saya membeli 2 botol jus apel.)",
       "きって を 5まい かいました。 (Saya membeli 5 lembar perangko.)",
       "くるま を 1だい かいました。 (Saya membeli 1 unit mobil.)"
-    ]
+    ],
+    bab: "Bab 11",
   },
   {
     pattern: "(KB) が (Jumlah orang) 人 です / います",
@@ -530,7 +591,8 @@ const bunpoDatabase = [
       "かぞく が 6人 います。 (Keluarga saya ada 6 orang.)",
       "かいしゃ の しゃいん が 100人 ぐらい います。 (Ada kira-kira 100 karyawan perusahaan.)",
       "❓ なんにん ぐらい いますか。 (Ada kira-kira berapa orang?)"
-    ]
+    ],
+    bab: "Bab 11",
   },
   {
     pattern: "(Ket waktu) に (berapa kali) かい (KB) を (KK)",
@@ -540,7 +602,8 @@ const bunpoDatabase = [
       "1かげつ に 8かい ぐらい ほん を かります。 (Meminjam buku kira-kira 8 kali dalam sebulan.)",
       "1ねん に 5かい ワイン を のみます。 (Minum wine 5 kali dalam setahun.)",
       "❓ Ket. waktu に なんかい KB を KK か。 (Dalam Ket. waktu, berapa kali melakukan KK?)"
-    ]
+    ],
+    bab: "Bab 11",
   },
   {
     pattern: "(Ket durasi) (KB) を (KK)",
@@ -550,7 +613,8 @@ const bunpoDatabase = [
       "こうこう で 3ねんかん クラブ に さんかしました。 (Ikut klub di SMA selama 3 tahun.)",
       "7にちかん りょこう を します。 (Bertamasya selama 7 hari.)",
       "❓ くに で どのくらい Ket. durasi KB を KK か。 (Di negara, melakukan KB selama berapa lama?)"
-    ]
+    ],
+    bab: "Bab 11",
   },
   {
     pattern: "(A) から (B) まで (Transportasi) で (Durasi) かかります",
@@ -559,7 +623,8 @@ const bunpoDatabase = [
       "わたし の くに から にほん まで ひこうき で 5じかんはん かかります。 (Dari negara saya sampai Jepang perlu 5 jam setengah dengan pesawat.)",
       "おおさか から なら まで くるま で 1じかん かかります。 (Dari Osaka sampai Nara perlu 1 jam dengan mobil.)",
       "❓ A から B まで Transportasi で どのくらい かかりますか。 (Dari A ke B dengan transportasi itu butuh berapa lama?)"
-    ]
+    ],
+    bab: "Bab 12",
   },
 
   // ===== BAB 12 =====
@@ -571,7 +636,8 @@ const bunpoDatabase = [
       "きのう は 雨(あめ) でした。 (Kemarin hujan.)",
       "セーター は とても すてき でした。 (Sweater sangat bagus.)",
       "雨(あめ) じゃ ありません でした。 (Tidak hujan.)"
-    ]
+    ],
+    bab: "Bab 12",
   },
   {
     pattern: "～は [K.Sifat(い)] ～いです/かったです/くないです/くなかったです",
@@ -581,7 +647,8 @@ const bunpoDatabase = [
       "パーティー の 料理(りょうり) は おいしかった です。 (Masakan di pesta enak.)",
       "さむい です。 (Dingin.)",
       "おいしくない です。 (Tidak enak.)"
-    ]
+    ],
+    bab: "Bab 12",
   },
   {
     pattern: "[K.Benda 1]は [K.Benda 2]より [K.Sifat]です",
@@ -590,7 +657,8 @@ const bunpoDatabase = [
       "とうきょう は おおさか より 大(おお)きい です。 (Tokyo lebih besar dibandingkan Osaka.)",
       "ボゴール は ソロ より すずしい です。 (Bogor lebih sejuk dibandingkan Solo.)",
       "この シャツ は その シャツ より やすい です。 (Kemeja ini lebih murah dibandingkan kemeja itu.)"
-    ]
+    ],
+    bab: "Bab 12",
   },
   {
     pattern: "[K.Benda 1] と [K.Benda 2] と どちらが [K.Sifat]ですか",
@@ -600,7 +668,8 @@ const bunpoDatabase = [
       "えいが の ほうが おもしろい です。 (Film yang lebih menarik.)",
       "どちらも にぎやか です。 (Dua-duanya ramai.)",
       "どちらも ひま じゃ ありません。 (Dua-duanya tidak senggang.)"
-    ]
+    ],
+    bab: "Bab 12",
   },
   {
     pattern: "[K.Benda]の 中(なか)で なに/どこ/だれ/いつが いちばん [K.Sifat]ですか",
@@ -610,6 +679,116 @@ const bunpoDatabase = [
       "カレー が いちばん おいしい です。 (Kare paling enak.)",
       "せかい の なか で どこ が いちばん きれい ですか。 (Di manakah tempat paling indah di dunia?)",
       "おきなわ が いちばん きれい です。 (Okinawa paling indah.)"
-    ]
+    ],
+    bab: "Bab 12",
+  },
+
+  // ===== BAB 13 =====
+  {
+    pattern: "[K.Benda] が ほしい",
+    explanation: "Pola ini dipakai untuk menyatakan keinginan memiliki suatu benda. Benda yang diinginkan ditandai dengan partikel が, lalu diikuti ほしい (ingin).",
+    examples: [
+      "わたし は あたらしい コンピューター が ほしい です。 (Saya ingin punya komputer baru.)",
+      "きむらさん は すうじゅつ が ほしい です。 (Kimura ingin punya jam tangan.)",
+      "むすこ は あたらしい おもちゃ が ほしい です。 (Anak saya ingin punya mainan baru.)"
+    ],
+    bab: "Bab 13",
+  },
+  {
+    pattern: "[K.Kerja-~~ます~~] たい",
+    explanation: "Pola ini dipakai untuk menyatakan keinginan melakukan suatu aktivitas. Gunakan bentuk kata kerja tanpa ます, lalu tambahkan たい. Untuk bentuk sopan, gunakan たいです.",
+    examples: [
+      "わたし は にほん へ いきたい です。 (Saya ingin pergi ke Jepang.)",
+      "ともだち と えいが を みたい です。 (Saya ingin nonton film dengan teman.)",
+      "らいねん りょこう を したい です。 (Tahun depan saya ingin bertamasya.)"
+    ],
+    bab: "Bab 13",
+  },
+  {
+    pattern: "[KB Tempat] へ [K.Kerja non-~~ます~~] に",
+    explanation: "Pola ini menyatakan tujuan aktivitas (bukan hanya tujuan tempat). Partikel へ menunjukkan ke mana, partikel に menunjukkan untuk apa pergi ke sana.",
+    examples: [
+      "がっこう へ べんきょう に いきます。 (Pergi ke sekolah untuk belajar.)",
+      "きっさてん へ コーヒー を のみ に きました。 (Datang ke kafe untuk minum kopi.)",
+      "こうえん へ あそび に いきましょう。 (Mari pergi ke taman untuk bermain.)"
+    ],
+    bab: "Bab 13",
+  },
+  {
+    pattern: "[K.Benda に K.Kerja] / [K.Benda を K.Kerja]",
+    explanation: "Pola ini menunjukkan arah masuk (に) atau keluar (を) dari tempat atau kendaraan. Partikel に untuk memasuki, partikel を untuk keluar.",
+    examples: [
+      "へや に はいります。 (Masuk ke ruangan.)",
+      "へや を でます。 (Keluar dari ruangan.)",
+      "でんしゃ に のります。 (Naik kereta.)",
+      "でんしゃ を おります。 (Turun dari kereta.)"
+    ],
+    bab: "Bab 13",
+  },
+  {
+    pattern: "どこか / なにか",
+    explanation: "どこか berarti suatu tempat yang tidak spesifik (di mana saja, di mana-mana), sedangkan なにか berarti sesuatu yang tidak spesifik. Keduanya digunakan saat tidak tahu atau tidak penting tempat/benda yang spesifik.",
+    examples: [
+      "どこか へ いきたい です。 (Saya ingin pergi ke mana-mana.)",
+      "なにか を たべたい です。 (Saya ingin makan sesuatu.)",
+      "きのう どこか で ともだち に あいました。 (Kemarin saya bertemu teman di suatu tempat.)"
+    ],
+    bab: "Bab 13",
+  },
+
+  // ===== BAB 14 =====
+  {
+    pattern: "[K.Kerja] → 形(-て)",
+    explanation: "Pola ini tentang perubahan bentuk kata kerja menjadi bentuk -て. Bentuk ini adalah dasar untuk pola-pola lanjutan. Aturan: Golongan 1 dan 2 punya pola khusus, Golongan 3 berubah menjadi して.",
+    examples: [
+      "いく → いって (pergi)",
+      "のむ → のんで (minum)",
+      "かく → かいて (menulis)",
+      "たべる → たべて (makan)",
+      "する → して (melakukan)"
+    ],
+    bab: "Bab 14",
+  },
+  {
+    pattern: "[K.Kerja-て] ください",
+    explanation: "Pola ini dipakai untuk membuat permintaan atau perintah dengan sopan. Gunakan bentuk -て dari kata kerja, lalu tambahkan ください (silakan / tolong).",
+    examples: [
+      "ここ に すわって ください。 (Silakan duduk di sini.)",
+      "ほん を よんで ください。 (Tolong baca buku itu.)",
+      "もう いちど いって ください。 (Silakan ulangi/katakan sekali lagi.)"
+    ],
+    bab: "Bab 14",
+  },
+  {
+    pattern: "[K.Kerja-て] ます",
+    explanation: "Pola ini dipakai untuk menyatakan tindakan yang sedang berlangsung atau sudah dimulai dan masih terus berlanjut. Bentuk ini menunjukkan keadaan/kondisi yang sedang terjadi.",
+    examples: [
+      "なに を して いますか。 (Apa yang sedang Anda lakukan?)",
+      "いま しごと を して います。 (Sekarang saya sedang bekerja.)",
+      "ともだち は えいが を みて います。 (Teman sedang menonton film.)"
+    ],
+    bab: "Bab 14",
+  },
+  {
+    pattern: "[K.Kerja-ます] ましょうか",
+    explanation: "Pola ini dipakai untuk menawarkan atau menyarankan sesuatu dengan sopan. Artinya seperti 'bagaimana kalau ~?' atau 'mari kita ~?' bersama-sama.",
+    examples: [
+      "コーヒー を のみましょうか。 (Bagaimana kalau kita minum kopi?)",
+      "一緒(いっしょ) に いきましょうか。 (Bagaimana kalau kita pergi bersama?)",
+      "ちょっと やすみましょうか。 (Mari kita istirahat sebentar.)"
+    ],
+    bab: "Bab 14",
+  },
+  {
+    pattern: "KB が～ (Fenomena/Fakta Objektif)",
+    explanation: "Pola ini dipakai untuk menyatakan fenomena atau fakta yang sedang terjadi. Partikel が menandai subjek yang sedang dijelaskan. Berbeda dengan は yang menandai topik, が lebih menunjuk pada apa yang sedang terjadi.",
+    examples: [
+      "はる が きました。 (Musim semi sudah tiba.)",
+      "ゆき が ふっています。 (Salju sedang turun.)",
+      "はな が さいています。 (Bunga sedang mekar.)",
+      "ともだち が きました。 (Ada teman yang datang.)"
+    ],
+    bab: "Bab 14",
   }
 ];
+

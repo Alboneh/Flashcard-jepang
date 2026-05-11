@@ -82,12 +82,16 @@ function renderAllKosakata() {
     const romajiText = item.rom || [item.unyomi, item.kunyomi].filter(Boolean).join(' / ');
     const meaningText = item.id || '-';
 
+    const golongBadge = item.golong ? `<span class="all-golong">${item.golong}</span>` : '';
     return `
       <article class="all-card">
         <p class="all-jp">${jpText}</p>
         <p class="all-romaji">${romajiText || '-'}</p>
         <p class="all-meaning">${meaningText}</p>
-        <span class="all-cat">${item.cat}</span>
+        <div class="all-card-footer">
+          <span class="all-cat">${item.cat}</span>
+          ${golongBadge}
+        </div>
       </article>
     `;
   }).join('');
