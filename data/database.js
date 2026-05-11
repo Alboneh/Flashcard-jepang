@@ -603,32 +603,4 @@ const vocab = [
   {jp:"しんごう（信号）",rom:"shingou",id:"Lampu lalu lintas",cat:"Bab 14"},
   {jp:"まがって ください",rom:"magatte kudasai",id:"Tolong belok",cat:"Bab 14"},
   {jp:"おつり（お釣り）",rom:"otsuri",id:"Uang kembalian",cat:"Bab 14"},
-
-  // ===== BAB 15 =====
-  // Verba
-  {jp:"つくります（作ります）",rom:"tsukurimasu",id:"Membuat, memproduksi, membangun",cat:"Bab 15",golong:"Gol. 1"},
-  {jp:"うります（売ります）",rom:"urimasu",id:"Menjual",cat:"Bab 15",golong:"Gol. 1"},
-  {jp:"しります（知ります）",rom:"shirimasu",id:"Mengenal, mengetahui",cat:"Bab 15",golong:"Gol. 1"},
-  {jp:"すみます（住みます）",rom:"sumimasu",id:"Tinggal, berdomisili",cat:"Bab 15",golong:"Gol. 1"},
-  {jp:"けんきゅう します（研究します）",rom:"kenkyuu shimasu",id:"Meneliti",cat:"Bab 15",golong:"Gol. 3"},
-  {jp:"おもいだします（思い出します）",rom:"omoidashimasu",id:"Teringat, mengingat kembali",cat:"Bab 15",golong:"Gol. 1"},
-  {jp:"いらっしゃいます",rom:"irasshaimasu",id:"Datang, berada (hormat dari きます/います)",cat:"Bab 15",golong:"Gol. 2"},
-  
-  // Kata Benda
-  {jp:"カタログ",rom:"katarogu",id:"Katalog",cat:"Bab 15"},
-  {jp:"じこく ひょう（時刻表）",rom:"jikoku hyou",id:"Jadwal, tabel waktu",cat:"Bab 15"},
-  {jp:"ふく（服）",rom:"fuku",id:"Baju, pakaian",cat:"Bab 15"},
-  {jp:"せいひん（製品）",rom:"seihin",id:"Produk, hasil produksi",cat:"Bab 15"},
-  {jp:"ソフト",rom:"sofuto",id:"Perangkat lunak, software",cat:"Bab 15"},
-  {jp:"でんし じしょ（電子辞書）",rom:"denshi jisho",id:"Kamus elektronik",cat:"Bab 15"},
-  {jp:"けいざい（経済）",rom:"keizai",id:"Ekonomi",cat:"Bab 15"},
-  {jp:"しやく しょ（市役所）",rom:"shiyakusho",id:"Balai kota, kantor pemerintah kota",cat:"Bab 15"},
-  {jp:"こうこう（高校）",rom:"koukou",id:"SMA, sekolah menengah atas",cat:"Bab 15"},
-  {jp:"はいしゃ（歯医者）",rom:"haisha",id:"Dokter gigi",cat:"Bab 15"},
-  {jp:"どくしん（独身）",rom:"dokushin",id:"Lajang, bujang, belum menikah",cat:"Bab 15"},
-  {jp:"みなさん（皆さん）",rom:"mina san",id:"Semuanya, Bapak dan Ibu sekalian (hormat)",cat:"Bab 15"},
-  {jp:"おきます（置きます）",rom:"okimasu",id:"Menaruh, meletakkan",cat:"Bab 15",golong:"Gol. 1"},
-  {jp:"すみません",rom:"sumimasen",id:"Maaf, permisi",cat:"Bab 15"},
-  {jp:"いろいろ",rom:"iroiro",id:"Berbagai macam, bermacam-macam",cat:"Bab 15"},
 ];
-

@@ -1,15 +1,15 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bunpo Jepang</title>
+  <title>Fasih Kanji</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/sidebar.css">
-  <link rel="stylesheet" href="css/bunpo.css">
+  <link rel="stylesheet" href="css/fasih-kanji.css">
 </head>
-<body class="has-global-sidebar" data-page="bunpo">
+<body class="has-global-sidebar" data-page="fasih-kanji">
   <button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
   <div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
   <aside id="globalSidebar" class="global-sidebar">
@@ -32,20 +32,20 @@
 
     <section class="hero">
       <div class="hero-inner">
-        <div class="hero-kanji">文法</div>
+        <div class="hero-kanji">流</div>
         <div class="hero-text">
-          <h1>Bunpo Jepang</h1>
-          <p>Satu pola, satu langkah. <span class="accent">がんばって！</span></p>
+          <h1>Fasih Kanji</h1>
+          <p>Latih sampai mengalir lancar. <span class="accent">流暢に！</span></p>
         </div>
       </div>
     </section>
 
     <section class="controls">
       <div class="view-mode-row">
-        <label for="bunpoSearch">Cari bunpo</label>
+        <label for="kanjiSearch">Cari kanji</label>
         <button id="cardModeToggle" class="card-mode-btn" onclick="toggleCardMode()">▦ Mode Kartu</button>
       </div>
-      <input id="bunpoSearch" type="text" placeholder="Contoh: wa, ga, desu" />
+      <input id="kanjiSearch" type="text" placeholder="Cari kanji, arti, atau cara baca..." />
       <div class="filter-label">Filter Bab</div>
       <div class="bab-filter" id="babFilter">
         <button class="level-btn active" onclick="setBabFilter('Semua')">Semua</button>
@@ -63,27 +63,15 @@
         <button class="level-btn" onclick="setBabFilter('Bab 12')">Bab 12</button>
         <button class="level-btn" onclick="setBabFilter('Bab 13')">Bab 13</button>
         <button class="level-btn" onclick="setBabFilter('Bab 14')">Bab 14</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 15')">Bab 15</button>
       </div>
     </section>
 
-    <section class="card helper-card">
-      <h2>Singkatan di Pola</h2>
-      <p>Pola Asli memakai singkatan ini:</p>
-      <div class="helper-grid">
-        <div><strong>KB</strong>: Kata Benda</div>
-        <div><strong>KK</strong>: Kata Kerja</div>
-        <div><strong>KW</strong>: Keterangan Waktu</div>
-        <div><strong>Ket.Tempat</strong>: Keterangan Tempat</div>
-      </div>
+    <section class="card" id="kanjiEmptyState">
+      <h2>Belum ada data kanji</h2>
+      <p>Data akan dimuat dari <code>data/fasih_kanji_database.js</code> begitu dikirim.</p>
     </section>
 
-    <section class="card" id="bunpoEmptyState">
-      <h2>Belum ada data bunpo</h2>
-      <p>List bunpo akan dimasukkan setelah kamu kirim data.</p>
-    </section>
-
-    <section class="list" id="bunpoList" aria-live="polite"></section>
+    <section class="list" id="kanjiList" aria-live="polite"></section>
 
     <div id="cardModeView" class="card-mode-view" style="display:none;">
       <div class="card-nav-bar">
@@ -98,8 +86,7 @@
   </main>
 
   <script src="js/sidebar.js"></script>
-  <script src="data/bunpo_database.js"></script>
-  <script src="js/bunpo.js"></script>
+  <script src="data/fasih_kanji_database.js"></script>
+  <script src="js/fasih-kanji.js"></script>
 </body>
 </html>
-

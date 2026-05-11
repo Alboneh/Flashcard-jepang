@@ -33,39 +33,6 @@ function expandShorthand(text) {
     .replace(/KB/g, 'Kata Benda');
 }
 
-function simplifyExplanation(text) {
-  let out = String(text || '');
-  const replacements = [
-    [/Menyatakan/g, 'Dipakai untuk bilang'],
-    [/menyatakan/gi, 'dipakai untuk bilang'],
-    [/Partikel/g, 'Kata bantu'],
-    [/partikel/g, 'kata bantu'],
-    [/menandai/gi, 'menunjukkan'],
-    [/digunakan/gi, 'dipakai'],
-    [/menunjukkan/gi, 'untuk menunjukkan'],
-    [/Bentuk negatif/gi, 'Versi negatif'],
-    [/kalimat nominal/gi, 'kalimat kata benda'],
-    [/Konjugasi kata kerja bentuk sopan/gi, 'Perubahan bentuk kata kerja sopan'],
-    [/rentang waktu/gi, 'jangka waktu'],
-    [/arah tujuan/gi, 'tujuan arah'],
-    [/objek langsung/gi, 'objek utama'],
-    [/terjadinya kegiatan/gi, 'waktu terjadinya kegiatan'],
-    [/keterangan tempat/gi, 'info tempat'],
-    [/keterangan waktu/gi, 'info waktu'],
-    [/namun/gi, 'tetapi']
-  ];
-
-  replacements.forEach(([pattern, replacement]) => {
-    out = out.replace(pattern, replacement);
-  });
-
-  if (!out.endsWith('.')) {
-    out += '.';
-  }
-
-  return out;
-}
-
 function parseExample(exampleText) {
   const raw = String(exampleText || '').trim();
   const match = raw.match(/^(.*)\s\(([^()]*)\)\s*$/);
@@ -84,7 +51,6 @@ function parseExample(exampleText) {
 }
 
 let selectedBab = 'Semua';
-let selectedParticle = '';
 
 function setBabFilter(bab) {
   selectedBab = bab;
@@ -94,24 +60,13 @@ function setBabFilter(bab) {
   renderBunpo();
 }
 
-function setParticleFilter(particle) {
-  selectedParticle = particle;
-  document.querySelectorAll('#particleFilter .level-btn').forEach(btn => {
-    const btnParticle = btn.getAttribute('onclick').match(/setParticleFilter\('(.*)'\)/)[1];
-    btn.classList.toggle('active', btnParticle === particle);
-  });
-  renderBunpo();
-}
-
 function renderBunpo() {
   const q = normalize(bunpoSearch.value);
   const filtered = bunpoDatabase.filter((item, index) => {
     const bab = item.bab || 'Bab Lanjutan';
     const babMatch = selectedBab === 'Semua' || bab === selectedBab;
-    const particleMatch = !selectedParticle || item.pattern.includes(selectedParticle);
     return (
       babMatch &&
-      particleMatch &&
       (!q ||
         normalize(bab).includes(q) ||
         normalize(item.pattern).includes(q) ||
@@ -130,8 +85,7 @@ function renderBunpo() {
         .join('');
 
       const rawPattern = item.pattern || '-';
-      const easyPattern = expandShorthand(rawPattern);
-      const easyExplanation = simplifyExplanation(item.explanation || '-');
+      const explanation = expandShorthand(item.explanation || '-');
       const bab = item.bab || 'Bab Lanjutan';
 
       return `
@@ -141,8 +95,7 @@ function renderBunpo() {
             <span class="bab-badge">${escapeHtml(bab)}</span>
           </div>
           <p class="pattern-main">${escapeHtml(rawPattern).replace(/~~([^~]+)~~/g, '<s>$1</s>')}</p>
-          <p class="easy-read"><strong>Cara Baca:</strong> ${escapeHtml(easyPattern)}</p>
-          <p class="core-meaning"><strong>Penjelasan Gampang:</strong> ${escapeHtml(easyExplanation)}</p>
+          <p class="core-meaning"><strong>Penjelasan:</strong> ${escapeHtml(explanation)}</p>
           <p><strong>Contoh:</strong></p>
           <ul>${examples}</ul>
         </article>
@@ -169,8 +122,7 @@ function buildItemHtml(item) {
     })
     .join('');
   const rawPattern = item.pattern || '-';
-  const easyPattern = expandShorthand(rawPattern);
-  const easyExplanation = simplifyExplanation(item.explanation || '-');
+  const explanation = expandShorthand(item.explanation || '-');
   const bab = item.bab || 'Bab Lanjutan';
   return `
     <div class="item-top">
@@ -178,8 +130,7 @@ function buildItemHtml(item) {
       <span class="bab-badge">${escapeHtml(bab)}</span>
     </div>
     <p class="pattern-main">${escapeHtml(rawPattern).replace(/~~([^~]+)~~/g, '<s>$1</s>')}</p>
-    <p class="easy-read"><strong>Cara Baca:</strong> ${escapeHtml(easyPattern)}</p>
-    <p class="core-meaning"><strong>Penjelasan Gampang:</strong> ${escapeHtml(easyExplanation)}</p>
+    <p class="core-meaning"><strong>Penjelasan:</strong> ${escapeHtml(explanation)}</p>
     <p><strong>Contoh:</strong></p>
     <ul>${examples}</ul>
   `;
@@ -229,8 +180,7 @@ function toggleCardMode() {
     cardItems = bunpoDatabase.filter((item, index) => {
       const bab = item.bab || 'Bab Lanjutan';
       const babMatch = selectedBab === 'Semua' || bab === selectedBab;
-      const particleMatch = !selectedParticle || item.pattern.includes(selectedParticle);
-      return babMatch && particleMatch && (!q ||
+      return babMatch && (!q ||
         normalize(bab).includes(q) ||
         normalize(item.pattern).includes(q) ||
         normalize(item.explanation).includes(q) ||
@@ -259,3 +209,4 @@ function toggleCardMode() {
 
 bunpoSearch.addEventListener('input', renderBunpo);
 renderBunpo();
+toggleCardMode();

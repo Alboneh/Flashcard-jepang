@@ -3,10 +3,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latihan Kosakata Jepang</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="sidebar.css">
-  <link rel="stylesheet" href="latihan.css">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/latihan.css">
 </head>
 <body class="has-global-sidebar" data-page="latihan-vocab">
 
@@ -19,10 +19,10 @@
   </div>
   <nav class="global-sidebar-links" aria-label="Sidebar navigasi utama">
     <a href="index.html" data-page="kosakata">Kosakata</a>
-    <a href="semua_kosakata.html" data-page="semua-kosakata">Semua Kosakata</a>
     <a href="bunpo.html" data-page="bunpo">Bunpo</a>
     <a href="kanji-n5.html" data-page="kanji">Kanji</a>
     <a href="kanji-n5.html" data-page="kanji-n5">Belajar Kanji</a>
+    <a href="fasih-kanji.html" data-page="fasih-kanji">Fasih Kanji</a>
     <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
     <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
     <a href="latihan_baca_kanji.html" data-page="latihan-baca-kanji">Latihan Baca Kanji</a>
@@ -88,6 +88,10 @@
         <label class="bab-checkbox">
           <input type="checkbox" value="Bab 14" onchange="startNewExercise()">
           <span>Bab 14 – Perintah &amp; Aktivitas</span>
+        </label>
+        <label class="bab-checkbox">
+          <input type="checkbox" value="Bab 15" onchange="startNewExercise()">
+          <span>Bab 15 – Izin &amp; Larangan</span>
         </label>
       </div>
     </div>
@@ -167,9 +171,9 @@
 
 </main>
 
-<script src="sidebar.js"></script>
-<script src="database.js"></script>
-<script src="latihan.js"></script>
+<script src="js/sidebar.js"></script>
+<script src="data/database.js"></script>
+<script src="js/latihan.js"></script>
 
 </body>
 </html>
