@@ -241,5 +241,181 @@ const fasihKanjiDatabase = [
       "私立大学 (し・りつ・だい・がく) — Universitas swasta"
     ],
     bab: "Bab 2"
+  },
+  {
+    kanji: "一",
+    meaning: "Satu",
+    kunyomi: ["ひと-つ"],
+    onyomi: ["イチ"],
+    examples: [
+      "一月 (いち・がつ) — Januari",
+      "一人 (ひと・り) — Seorang",
+      "一年 (いち・ねん) — Setahun"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "二",
+    meaning: "Dua",
+    kunyomi: ["ふた-つ"],
+    onyomi: ["ニ"],
+    examples: [
+      "2人 (ふた・り) — 2 orang",
+      "二年 (に・ねん) — 2 tahun",
+      "二月 (に・がつ) — Februari"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "三",
+    meaning: "Tiga",
+    kunyomi: ["みっ-つ"],
+    onyomi: ["サン"],
+    examples: [
+      "三月 (さん・がつ) — Maret",
+      "三日 (みっ・か) — Tanggal 3",
+      "三人 (さん・にん) — 3 orang"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "四",
+    meaning: "Empat",
+    kunyomi: ["よっ-つ", "よん", "よ"],
+    onyomi: ["シ"],
+    examples: [
+      "四日 (よっ・か) — Tanggal 4",
+      "四人 (よ・にん) — 4 orang",
+      "四月 (し・がつ) — April"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "五",
+    meaning: "Lima",
+    kunyomi: ["いつ-つ"],
+    onyomi: ["ゴ"],
+    examples: [
+      "五人 (ご・にん) — 5 orang",
+      "五年 (ご・ねん) — 5 tahun",
+      "五日 (いつ・か) — Tanggal 5"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "六",
+    meaning: "Enam",
+    kunyomi: ["むっ-つ"],
+    onyomi: ["ロク", "ロッ-"],
+    examples: [
+      "六人 (ろく・にん) — 6 orang",
+      "六月 (ろく・がつ) — Juni",
+      "六日 (むい・か) — Tanggal 6"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "七",
+    meaning: "Tujuh",
+    kunyomi: ["なな-つ"],
+    onyomi: ["シチ"],
+    examples: [
+      "七日 (なの・か) — Tanggal 7",
+      "七年 (しち・ねん) — 7 tahun",
+      "七人 (なな・にん / しち・にん) — 7 orang"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "八",
+    meaning: "Delapan",
+    kunyomi: ["やっ-つ"],
+    onyomi: ["ハチ", "ハッ-"],
+    examples: [
+      "八百 (はっ・ぴゃく) — 800",
+      "八年 (はち・ねん) — 8 tahun",
+      "八日 (よう・か) — Tanggal 8"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "九",
+    meaning: "Sembilan",
+    kunyomi: ["ここの-つ"],
+    onyomi: ["ク", "キュウ"],
+    examples: [
+      "九日 (ここの・か) — Tanggal 9",
+      "九月 (く・がつ) — September",
+      "九百 (きゅう・ひゃく) — 900"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "十",
+    meaning: "Sepuluh",
+    kunyomi: ["とお"],
+    onyomi: ["ジュウ", "ジュッ-", "ジッ-"],
+    examples: [
+      "十日 (とお・か) — Tanggal 10",
+      "十月 (じゅう・がつ) — Oktober",
+      "十人 (じゅう・にん) — 10 orang"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "百",
+    meaning: "Seratus",
+    kunyomi: [],
+    onyomi: ["ヒャク", "-ビャク", "-ピャク"],
+    examples: [
+      "二百 (に・ひゃく) — 200",
+      "三百 (さん・びゃく) — 300",
+      "八百 (はっ・ぴゃく) — 800"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "千",
+    meaning: "Seribu",
+    kunyomi: ["ち"],
+    onyomi: ["セン", "-ゼン"],
+    examples: [
+      "千円 (せん・えん) — 1000 yen",
+      "三千 (さん・ぜん) — 3000"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "万",
+    meaning: "Sepuluh ribu, semua",
+    kunyomi: [],
+    onyomi: ["マン", "バン"],
+    examples: [
+      "一万円 (いち・まん・えん) — 10.000 yen",
+      "万国 (ばん・こく) — Semua negara"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "円",
+    meaning: "Lingkaran, yen",
+    kunyomi: [],
+    onyomi: ["エン"],
+    examples: [
+      "五千円 (ご・せん・えん) — 5000 yen",
+      "百円 (ひゃく・えん) — 100 yen"
+    ],
+    bab: "Bab 3"
+  },
+  {
+    kanji: "年",
+    meaning: "Tahun, usia",
+    kunyomi: ["とし"],
+    onyomi: ["ネン"],
+    examples: [
+      "年上 (とし・うえ) — Lebih tua",
+      "来年 (らい・ねん) — Tahun depan"
+    ],
+    bab: "Bab 3"
   }
 ];
