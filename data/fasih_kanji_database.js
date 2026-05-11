@@ -125,5 +125,121 @@ const fasihKanjiDatabase = [
       "専門 (せん・もん) — Keahlian, jurusan"
     ],
     bab: "Bab 1"
+  },
+  {
+    kanji: "火",
+    meaning: "Api",
+    kunyomi: ["ひ"],
+    onyomi: ["カ"],
+    examples: [
+      "火 (ひ) — Api",
+      "火山 (か・ざん) — Gunung berapi"
+    ],
+    bab: "Bab 2"
+  },
+  {
+    kanji: "水",
+    meaning: "Air",
+    kunyomi: ["みず"],
+    onyomi: ["スイ"],
+    examples: [
+      "水 (みず) — Air",
+      "水曜日 (すい・よう・び) — Hari Rabu",
+      "水田 (すい・でん) — Sawah"
+    ],
+    bab: "Bab 2"
+  },
+  {
+    kanji: "金",
+    meaning: "Emas, uang",
+    kunyomi: ["かね"],
+    onyomi: ["キン"],
+    examples: [
+      "お金 (お・かね) — Uang",
+      "金 (きん) — Emas",
+      "金曜日 (きん・よう・び) — Hari Jumat"
+    ],
+    bab: "Bab 2"
+  },
+  {
+    kanji: "土",
+    meaning: "Tanah, daratan",
+    kunyomi: ["つち"],
+    onyomi: ["ド"],
+    examples: [
+      "土 (つち) — Tanah",
+      "土曜日 (ど・よう・び) — Hari Sabtu",
+      "土木 (ど・ぼく) — Teknik sipil"
+    ],
+    bab: "Bab 2"
+  },
+  {
+    kanji: "子",
+    meaning: "Anak",
+    kunyomi: ["こ"],
+    onyomi: ["シ"],
+    examples: [
+      "子ども (こ・ども) — Anak",
+      "女子学生 (じょ・し・がく・せい) — Murid perempuan",
+      "女の子 (おんな・の・こ) — Anak perempuan"
+    ],
+    bab: "Bab 2"
+  },
+  {
+    kanji: "女",
+    meaning: "Wanita",
+    kunyomi: ["おんな"],
+    onyomi: ["ジョ"],
+    examples: [
+      "彼女 (かの・じょ) — Dia (perempuan)",
+      "女の人 (おんな・の・ひと) — Perempuan, wanita"
+    ],
+    bab: "Bab 2"
+  },
+  {
+    kanji: "学",
+    meaning: "Belajar",
+    kunyomi: ["まな-ぶ"],
+    onyomi: ["ガク", "ガッ-"],
+    examples: [
+      "学生 (がく・せい) — Murid",
+      "学校 (がっ・こう) — Sekolah",
+      "大学 (だい・がく) — Universitas"
+    ],
+    bab: "Bab 2"
+  },
+  {
+    kanji: "生",
+    meaning: "Hidup, lahir",
+    kunyomi: ["い-きる", "う-まれる"],
+    onyomi: ["セイ"],
+    examples: [
+      "生きる (い・きる) — Hidup",
+      "生まれる (う・まれる) — Lahir",
+      "先生 (せん・せい) — Guru"
+    ],
+    bab: "Bab 2"
+  },
+  {
+    kanji: "先",
+    meaning: "Sebelumnya",
+    kunyomi: ["さき"],
+    onyomi: ["セン"],
+    examples: [
+      "先 (さき) — Duluan",
+      "先月 (せん・げつ) — Bulan lalu"
+    ],
+    bab: "Bab 2"
+  },
+  {
+    kanji: "私",
+    meaning: "Saya / aku, privasi",
+    kunyomi: ["わたし", "わたくし"],
+    onyomi: ["シ"],
+    examples: [
+      "私 (わたし / わたくし) — Saya, aku",
+      "私立大学 (し・りつ・だい・がく) — Universitas swasta"
+    ],
+    bab: "Bab 2"
   }
 ];

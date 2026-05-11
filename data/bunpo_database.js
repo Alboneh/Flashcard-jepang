@@ -789,6 +789,48 @@ const bunpoDatabase = [
       "ともだち が きました。 (Ada teman yang datang.)"
     ],
     bab: "Bab 14",
+  },
+
+  // ===== BAB 15 =====
+  {
+    pattern: "[K.Kerja-て] も いいですか",
+    explanation: "Pola ini dipakai untuk meminta izin dengan sopan. Artinya 'bolehkah saya ~?' atau 'apakah OK jika saya ~?'",
+    examples: [
+      "このペンを つかっても いいですか。 (Bolehkah saya gunakan pena ini?)",
+      "ここに すわっても いいですか。 (Bolehkah saya duduk di sini?)",
+      "もう いちど いってもいいですか。 (Bolehkah saya ulangi/katakan sekali lagi?)"
+    ],
+    bab: "Bab 15",
+  },
+  {
+    pattern: "[K.Kerja-て] は いけません",
+    explanation: "Pola ini dipakai untuk mengekspresikan larangan atau melarang sesuatu. Artinya 'tidak boleh ~' atau 'jangan ~'.",
+    examples: [
+      "ここに くるまを とめては いけません。 (Tidak boleh memarkirkan mobil di sini.)",
+      "おさけを のんでは いけません。 (Tidak boleh minum alkohol.)",
+      "ここで しゃしんを とっては いけません。 (Tidak boleh memfoto di sini.)"
+    ],
+    bab: "Bab 15",
+  },
+  {
+    pattern: "[K.Benda] に [K.Kerja]",
+    explanation: "Partikel に digunakan bersama kata kerja tertentu untuk menunjukkan tujuan, lokasi masuk, atau hal yang dikenai tindakan.",
+    examples: [
+      "ここに はいります。 (Masuk ke sini.)",
+      "すわります。 (Duduk.)",
+      "のります。 (Naik.)"
+    ],
+    bab: "Bab 15",
+  },
+  {
+    pattern: "[K.Kerja-て] います",
+    explanation: "Pola ini punya 2 fungsi: (1) Keadaan/state - aktivitas sedang berlangsung. (2) Kebiasaan/status pekerjaan - menunjukkan pekerjaan atau status saat ini.",
+    examples: [
+      "わたし は かながわ に すんで います。 (Saya tinggal di Kanagawa. = state)",
+      "わたし は げっこん して います。 (Saya sudah menikah. = state)",
+      "わたし は かいしゃ で はたらいて います。 (Saya bekerja di perusahaan. = job status)"
+    ],
+    bab: "Bab 15",
   }
 ];
 

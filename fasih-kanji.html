@@ -43,7 +43,10 @@
     <section class="controls">
       <div class="view-mode-row">
         <label for="kanjiSearch">Cari kanji</label>
-        <button id="cardModeToggle" class="card-mode-btn" onclick="toggleCardMode()">▦ Mode Kartu</button>
+        <div class="view-mode-buttons">
+          <button id="cardModeToggle" class="card-mode-btn" onclick="toggleCardMode()">▦ Mode Kartu</button>
+          <button id="testModeToggle" class="card-mode-btn" onclick="toggleTestMode()">🎯 Test</button>
+        </div>
       </div>
       <input id="kanjiSearch" type="text" placeholder="Cari kanji, arti, atau cara baca..." />
       <div class="filter-label">Filter Bab</div>
@@ -81,6 +84,38 @@
       <div class="card-nav-btns">
         <button class="card-nav-btn" id="cardPrevBtn" onclick="cardNav(-1)">← Sebelumnya</button>
         <button class="card-nav-btn card-nav-btn--next" id="cardNextBtn" onclick="cardNav(1)">Berikutnya →</button>
+      </div>
+    </div>
+
+    <div id="testModeView" class="test-mode-view" style="display:none;">
+      <div id="testIntro" class="test-intro">
+        <h2 class="test-title">🎯 Test Kanji</h2>
+        <div id="testIntroInfo"></div>
+        <button id="testStartBtn" class="test-start-btn" onclick="startTest()">Mulai Test</button>
+      </div>
+
+      <div id="testQuestion" class="test-question" style="display:none;">
+        <div class="test-progress">
+          <span id="testProgressText">Soal 1 / 10</span>
+          <span id="testScore">Skor: 0</span>
+        </div>
+        <div class="test-prompt">Apa arti kanji ini?</div>
+        <div class="test-kanji" id="testKanjiChar">日</div>
+        <div class="test-options" id="testOptions"></div>
+        <div id="testFeedback" class="test-feedback" style="display:none;"></div>
+        <button id="testNextBtn" class="test-next-btn" onclick="nextTestQuestion()" style="display:none;">Berikutnya →</button>
+      </div>
+
+      <div id="testResult" class="test-result" style="display:none;">
+        <h2 class="test-title">Hasil Test</h2>
+        <div class="test-result-score">
+          <span id="finalScore">0</span><span class="slash">/</span><span id="finalTotal">10</span>
+        </div>
+        <p class="test-result-msg" id="testResultMsg"></p>
+        <div class="test-result-btns">
+          <button class="test-restart-btn" onclick="restartTest()">Ulang Test</button>
+          <button class="test-close-btn" onclick="toggleTestMode()">Tutup</button>
+        </div>
       </div>
     </div>
   </main>

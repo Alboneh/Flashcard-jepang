@@ -37,6 +37,11 @@ function setBabFilter(bab) {
   document.querySelectorAll('#babFilter .level-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent === bab);
   });
+  if (testMode) {
+    showTestIntro();
+    document.getElementById('testQuestion').style.display = 'none';
+    document.getElementById('testResult').style.display = 'none';
+  }
   renderKanji();
 }
 
@@ -103,6 +108,18 @@ function buildExamplesHtml(item) {
   `;
 }
 
+function buildStrokeOrderHtml(kanji) {
+  if (!kanji || kanji === '?') return '';
+  return `
+    <div class="stroke-order">
+      <p class="stroke-order-label"><strong>Urutan Goresan:</strong></p>
+      <div class="stroke-boxes" data-kanji="${escapeHtml(kanji)}">
+        <span class="stroke-loading">Memuat goresan…</span>
+      </div>
+    </div>
+  `;
+}
+
 function buildItemHtml(item) {
   const kanji = item.kanji || '?';
   const meaning = item.meaning || '-';
@@ -117,6 +134,7 @@ function buildItemHtml(item) {
     </div>
     ${buildReadingsHtml(item)}
     ${buildExamplesHtml(item)}
+    ${buildStrokeOrderHtml(kanji)}
   `;
 }
 
@@ -124,7 +142,11 @@ function renderKanji() {
   const q = normalize(kanjiSearch.value);
   const filtered = fasihKanjiDatabase.filter((item) => matchesBab(item) && matchesQuery(item, q));
 
-  if (!filtered.length) {
+  // Hide empty state when not in list mode — handled by applyViewMode
+  if (cardMode || testMode) {
+    kanjiList.innerHTML = '';
+    kanjiEmptyState.style.display = 'none';
+  } else if (!filtered.length) {
     kanjiList.innerHTML = '';
     kanjiEmptyState.style.display = '';
     if (!fasihKanjiDatabase.length) {
@@ -140,6 +162,7 @@ function renderKanji() {
   }
 
   if (cardMode) renderCardView(filtered);
+  populateStrokeBoxes();
 }
 
 // ---- CARD MODE ----
@@ -160,6 +183,7 @@ function renderCardView(items) {
   document.getElementById('cardModeCard').innerHTML = buildItemHtml(cardItems[cardIndex]);
   document.getElementById('cardPrevBtn').disabled = cardIndex === 0;
   document.getElementById('cardNextBtn').disabled = cardIndex === cardItems.length - 1;
+  populateStrokeBoxes();
 }
 
 function cardNav(dir) {
@@ -169,25 +193,46 @@ function cardNav(dir) {
 }
 
 function toggleCardMode() {
+  if (testMode) testMode = false;
   cardMode = !cardMode;
-  const btn = document.getElementById('cardModeToggle');
+  applyViewMode();
+}
+
+function toggleTestMode() {
+  if (cardMode) cardMode = false;
+  testMode = !testMode;
+  applyViewMode();
+}
+
+function applyViewMode() {
   const listView = document.getElementById('kanjiList');
   const cardView = document.getElementById('cardModeView');
+  const testView = document.getElementById('testModeView');
+  const cardBtn = document.getElementById('cardModeToggle');
+  const testBtn = document.getElementById('testModeToggle');
+
+  listView.style.display = (cardMode || testMode) ? 'none' : '';
+  cardView.style.display = cardMode ? 'block' : 'none';
+  testView.style.display = testMode ? 'block' : 'none';
+
+  cardBtn.textContent = cardMode ? '☰ Mode List' : '▦ Mode Kartu';
+  cardBtn.classList.toggle('active', cardMode);
+  testBtn.textContent = testMode ? '✕ Tutup Test' : '🎯 Test';
+  testBtn.classList.toggle('active', testMode);
+
   if (cardMode) {
-    btn.textContent = '☰ Mode List';
-    btn.classList.add('active');
-    listView.style.display = 'none';
-    cardView.style.display = 'block';
     cardIndex = 0;
     const q = normalize(kanjiSearch.value);
     cardItems = fasihKanjiDatabase.filter((item) => matchesBab(item) && matchesQuery(item, q));
     renderCardView(cardItems);
-  } else {
-    btn.textContent = '▦ Mode Kartu';
-    btn.classList.remove('active');
-    listView.style.display = '';
-    cardView.style.display = 'none';
   }
+  if (testMode) {
+    showTestIntro();
+    document.getElementById('testQuestion').style.display = 'none';
+    document.getElementById('testResult').style.display = 'none';
+  }
+  // list mode visibility + empty state handled by renderKanji
+  renderKanji();
 }
 
 // Swipe support for card mode
@@ -200,6 +245,223 @@ function toggleCardMode() {
     if (Math.abs(diff) > 50) cardNav(diff > 0 ? 1 : -1);
   }, { passive: true });
 })();
+
+// ---- TEST MODE ----
+let testMode = false;
+let testQuestions = [];
+let testIndex = 0;
+let testScore = 0;
+let testAnswered = false;
+const TEST_MAX_QUESTIONS = 15;
+
+function getTestPool() {
+  const q = normalize(kanjiSearch.value);
+  return fasihKanjiDatabase.filter((item) => matchesBab(item) && matchesQuery(item, q));
+}
+
+function getDistractorPool(pool) {
+  // Use bab pool if it has at least 4 entries, otherwise use full database
+  return pool.length >= 4 ? pool : fasihKanjiDatabase;
+}
+
+function showTestIntro() {
+  const intro = document.getElementById('testIntro');
+  const info = document.getElementById('testIntroInfo');
+  const startBtn = document.getElementById('testStartBtn');
+  intro.style.display = 'block';
+
+  const pool = getTestPool();
+  const distractorPool = getDistractorPool(pool);
+  const babLabel = selectedBab === 'Semua' ? 'semua bab' : selectedBab;
+
+  if (pool.length === 0) {
+    info.innerHTML = `<p class="test-error">Belum ada kanji untuk ${escapeHtml(babLabel)}. Pilih bab lain atau tambah data.</p>`;
+    startBtn.disabled = true;
+  } else if (distractorPool.length < 4) {
+    info.innerHTML = `<p class="test-error">Butuh minimal 4 kanji di database untuk membuat pilihan ganda.</p>`;
+    startBtn.disabled = true;
+  } else {
+    const sessionSize = Math.min(pool.length, TEST_MAX_QUESTIONS);
+    info.innerHTML = `<p>Pilihan ganda untuk <strong>${escapeHtml(babLabel)}</strong>:<br>${sessionSize} soal dari ${pool.length} kanji.</p>`;
+    startBtn.disabled = false;
+  }
+}
+
+function makeTestQuestion(correct, distractorPool) {
+  const distractors = distractorPool.filter((k) => k.kanji !== correct.kanji && k.meaning !== correct.meaning);
+  const shuffled = [...distractors].sort(() => Math.random() - 0.5).slice(0, 3);
+  const options = [correct, ...shuffled].sort(() => Math.random() - 0.5);
+  return { correct, options };
+}
+
+function startTest() {
+  const pool = getTestPool();
+  const distractorPool = getDistractorPool(pool);
+  if (distractorPool.length < 4) return;
+
+  const sessionSize = Math.min(pool.length, TEST_MAX_QUESTIONS);
+  const shuffled = [...pool].sort(() => Math.random() - 0.5).slice(0, sessionSize);
+  testQuestions = shuffled.map((kanji) => makeTestQuestion(kanji, distractorPool));
+  testIndex = 0;
+  testScore = 0;
+  testAnswered = false;
+
+  document.getElementById('testIntro').style.display = 'none';
+  document.getElementById('testResult').style.display = 'none';
+  document.getElementById('testQuestion').style.display = 'block';
+  renderTestQuestion();
+}
+
+function renderTestQuestion() {
+  const q = testQuestions[testIndex];
+  document.getElementById('testKanjiChar').textContent = q.correct.kanji;
+  document.getElementById('testProgressText').textContent = `Soal ${testIndex + 1} / ${testQuestions.length}`;
+  document.getElementById('testScore').textContent = `Skor: ${testScore}`;
+
+  const optionsContainer = document.getElementById('testOptions');
+  optionsContainer.innerHTML = q.options.map((opt) =>
+    `<button class="test-option" data-correct="${opt.kanji === q.correct.kanji}" onclick="pickAnswer(this)">${escapeHtml(opt.meaning)}</button>`
+  ).join('');
+
+  document.getElementById('testFeedback').style.display = 'none';
+  document.getElementById('testNextBtn').style.display = 'none';
+  testAnswered = false;
+}
+
+function pickAnswer(btn) {
+  if (testAnswered) return;
+  testAnswered = true;
+  const isCorrect = btn.dataset.correct === 'true';
+  if (isCorrect) testScore++;
+
+  document.querySelectorAll('.test-option').forEach((b) => {
+    b.disabled = true;
+    if (b.dataset.correct === 'true') b.classList.add('correct');
+    if (b === btn && !isCorrect) b.classList.add('wrong');
+  });
+
+  const feedback = document.getElementById('testFeedback');
+  feedback.className = `test-feedback ${isCorrect ? 'correct' : 'wrong'}`;
+  feedback.textContent = isCorrect
+    ? '✓ Benar!'
+    : `✗ Jawaban: ${testQuestions[testIndex].correct.meaning}`;
+  feedback.style.display = 'block';
+
+  document.getElementById('testScore').textContent = `Skor: ${testScore}`;
+  const nextBtn = document.getElementById('testNextBtn');
+  nextBtn.textContent = testIndex === testQuestions.length - 1 ? 'Lihat Hasil →' : 'Berikutnya →';
+  nextBtn.style.display = 'block';
+}
+
+function nextTestQuestion() {
+  testIndex++;
+  if (testIndex >= testQuestions.length) {
+    showTestResult();
+  } else {
+    renderTestQuestion();
+  }
+}
+
+function showTestResult() {
+  document.getElementById('testQuestion').style.display = 'none';
+  document.getElementById('testResult').style.display = 'block';
+  const total = testQuestions.length;
+  const pct = Math.round((testScore / total) * 100);
+  document.getElementById('finalScore').textContent = testScore;
+  document.getElementById('finalTotal').textContent = total;
+
+  let msg;
+  if (pct === 100) msg = 'Sempurna! Sudah fasih untuk bab ini. 🌸';
+  else if (pct >= 80) msg = `Mantap! Akurasi ${pct}%.`;
+  else if (pct >= 60) msg = `Lumayan, akurasi ${pct}%. Coba ulang biar lebih fasih.`;
+  else msg = `Akurasi ${pct}%. Pelajari ulang kanjinya di mode kartu lalu coba lagi.`;
+  document.getElementById('testResultMsg').textContent = msg;
+}
+
+function restartTest() {
+  showTestIntro();
+}
+
+// ---- STROKE ORDER (KanjiVG) ----
+const strokeCache = new Map();
+const STROKE_LS_PREFIX = 'fasih:strokes:v1:';
+
+async function fetchStrokeOrder(kanji) {
+  if (strokeCache.has(kanji)) return strokeCache.get(kanji);
+
+  const lsKey = STROKE_LS_PREFIX + kanji;
+  try {
+    const cached = localStorage.getItem(lsKey);
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      strokeCache.set(kanji, parsed);
+      return parsed;
+    }
+  } catch (e) { /* ignore */ }
+
+  const codepoint = kanji.codePointAt(0).toString(16).padStart(5, '0');
+  const url = `https://cdn.jsdelivr.net/gh/KanjiVG/kanjivg@master/kanji/${codepoint}.svg`;
+  try {
+    const res = await fetch(url);
+    if (!res.ok) throw new Error('not found');
+    const text = await res.text();
+    const doc = new DOMParser().parseFromString(text, 'image/svg+xml');
+    const paths = [...doc.querySelectorAll('path[id]')]
+      .filter((p) => /-s\d+$/.test(p.id))
+      .sort((a, b) => {
+        const an = +a.id.match(/-s(\d+)$/)[1];
+        const bn = +b.id.match(/-s(\d+)$/)[1];
+        return an - bn;
+      })
+      .map((p) => p.getAttribute('d'));
+    strokeCache.set(kanji, paths);
+    try { localStorage.setItem(lsKey, JSON.stringify(paths)); } catch (e) { /* quota */ }
+    return paths;
+  } catch (e) {
+    strokeCache.set(kanji, null);
+    return null;
+  }
+}
+
+function buildStrokeBoxHtml(strokes, upToIndex) {
+  const grid = `
+    <line x1="54.5" y1="0" x2="54.5" y2="109" stroke="rgba(0,0,0,0.18)" stroke-width="0.5" stroke-dasharray="2,2"/>
+    <line x1="0" y1="54.5" x2="109" y2="54.5" stroke="rgba(0,0,0,0.18)" stroke-width="0.5" stroke-dasharray="2,2"/>
+  `;
+  const paths = strokes.slice(0, upToIndex + 1).map((d, j) => {
+    const isNew = j === upToIndex;
+    const color = isNew ? '#ec407a' : '#1a1108';
+    return `<path d="${d}" stroke="${color}" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }).join('');
+  return `
+    <div class="stroke-box">
+      <svg viewBox="0 0 109 109" xmlns="http://www.w3.org/2000/svg">
+        ${grid}
+        ${paths}
+      </svg>
+    </div>
+  `;
+}
+
+async function renderStrokeBoxes(container, kanji) {
+  if (!container || container.dataset.loaded === 'true' || container.dataset.loaded === 'loading') return;
+  container.dataset.loaded = 'loading';
+  const strokes = await fetchStrokeOrder(kanji);
+  if (!strokes || !strokes.length) {
+    container.innerHTML = '<span class="stroke-error">Belum ada data goresan untuk kanji ini.</span>';
+    container.dataset.loaded = 'true';
+    return;
+  }
+  container.innerHTML = strokes.map((_, i) => buildStrokeBoxHtml(strokes, i)).join('');
+  container.dataset.loaded = 'true';
+}
+
+function populateStrokeBoxes() {
+  document.querySelectorAll('.stroke-boxes[data-kanji]').forEach((el) => {
+    if (el.dataset.loaded === 'true' || el.dataset.loaded === 'loading') return;
+    renderStrokeBoxes(el, el.dataset.kanji);
+  });
+}
 
 kanjiSearch.addEventListener('input', renderKanji);
 renderKanji();
