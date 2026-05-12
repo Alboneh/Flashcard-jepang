@@ -32,36 +32,48 @@
   <main class="global-app-main">
     <div class="quiz-page">
       <section class="hero-card">
-        <div class="hero-tag">Latihan Bunpo</div>
+        <div class="hero-tag">⚡ Latihan Bunpo</div>
         <h1>文法クイズ N5-N4</h1>
-        <p>Belajar pola bunpo dengan mode latihan cepat. Tampilan sudah dibuat nyaman untuk Android: tombol besar, teks lebih jelas, dan navigasi sederhana.</p>
+        <p>Latihan pola bunpo dengan sistem nyawa, beruntun, dan XP — mirip Duolingo. Pilih bab yang ingin kamu pelajari, atau biarkan semua untuk latihan campuran.</p>
       </section>
 
       <section class="panel">
-        <div class="q-meta" style="justify-content:space-between; margin-bottom:0.8rem;">
-          <span class="pill">Skor: <b id="hScore">0</b></span>
-          <span class="pill">Benar: <b id="hCorrect">0</b></span>
+        <div class="q-meta" id="topMeta" style="justify-content:space-between; margin-bottom:1rem;">
+          <span class="pill hearts">❤️ <b id="hHearts">5</b></span>
+          <span class="pill streak">🔥 <b id="hStreak">0</b></span>
+          <span class="pill xp">⭐ <b id="hScore">0</b> XP</span>
+          <button class="sound-btn" id="soundBtn" type="button" onclick="toggleSound()" title="Toggle suara">🔊</button>
         </div>
 
         <div id="introPanel">
           <div class="stats-row">
-            <div class="stat-box"><div class="s-n">59</div><div class="s-l">Pola Bunpo</div></div>
-            <div class="stat-box"><div class="s-n">177</div><div class="s-l">Total Soal</div></div>
-            <div class="stat-box"><div class="s-n">Acak</div><div class="s-l">Urutan Soal</div></div>
+            <div class="stat-box"><div class="s-n" id="iPola">0</div><div class="s-l">Bab Tersedia</div></div>
+            <div class="stat-box"><div class="s-n" id="iTotal">0</div><div class="s-l">Total Soal</div></div>
+            <div class="stat-box"><div class="s-n">🎲</div><div class="s-l">Urutan Acak</div></div>
           </div>
 
-          <div class="section-label">Pilih Kategori</div>
-          <div class="cat-grid" id="catGrid"></div>
+          <div class="section-label"><span>📚 Pilih Bab</span></div>
+          <div class="bab-dropdown" id="babDropdown">
+            <button class="bab-btn" id="babBtn" type="button" onclick="toggleDropdown(event)">
+              <span id="babBtnText">Semua Bab (1–15)</span>
+              <span class="bab-arrow">▾</span>
+            </button>
+            <div class="bab-panel" id="babPanel">
+              <div class="bab-hint">Kosongkan = semua bab. Centang bab tertentu untuk fokus.</div>
+              <div class="bab-list" id="babList"></div>
+            </div>
+          </div>
+          <div class="selection-summary" id="selSummary">Semua bab · 231 soal</div>
 
-          <div class="section-label">Jumlah Soal per Sesi</div>
+          <div class="section-label"><span>🎯 Jumlah Soal per Sesi</span></div>
           <div class="mode-row" id="modeRow">
+            <button class="mode-btn" onclick="setMode(this,10)">10 Soal</button>
             <button class="mode-btn" onclick="setMode(this,20)">20 Soal</button>
-            <button class="mode-btn on" onclick="setMode(this,40)">40 Soal</button>
-            <button class="mode-btn" onclick="setMode(this,80)">80 Soal</button>
-            <button class="mode-btn" onclick="setMode(this,177)">Semua</button>
+            <button class="mode-btn" onclick="setMode(this,40)">40 Soal</button>
+            <button class="mode-btn on" onclick="setMode(this,9999)">Semua</button>
           </div>
 
-          <button class="start-btn" onclick="startQuiz()">Mulai Latihan</button>
+          <button class="start-btn" id="startBtn" onclick="startQuiz()">▶ Mulai Latihan</button>
         </div>
 
         <div id="quizPanel" style="display:none;">
