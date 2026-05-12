@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Latihan Bunpo Jepang</title>
+  <title>Latihan Susun Kalimat</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/sidebar.css">
-  <link rel="stylesheet" href="css/bunpo-quiz-full.css">
+  <link rel="stylesheet" href="css/latihan-susun.css">
 </head>
-<body class="has-global-sidebar" data-page="latihan-bunpo">
+<body class="has-global-sidebar" data-page="latihan-susun">
   <button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
   <div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
   <aside id="globalSidebar" class="global-sidebar">
@@ -31,11 +31,11 @@
   </aside>
 
   <main class="global-app-main">
-    <div class="quiz-page">
+    <div class="fc-wrap">
       <section class="hero-card">
-        <div class="hero-tag">⚡ Latihan Bunpo</div>
-        <h1>文法クイズ N5-N4</h1>
-        <p>Latihan pola bunpo dengan sistem nyawa, beruntun, dan XP — mirip Duolingo. Pilih bab yang ingin kamu pelajari, atau biarkan semua untuk latihan campuran.</p>
+        <div class="hero-tag">⚡ Susun Kalimat</div>
+        <h1>文を組み立てよう</h1>
+        <p>Susun kalimat Jepang dari chip kata yang tersedia. Soal diambil dari contoh kalimat di pelajaran bunpo — pas untuk latihan urutan partikel & struktur.</p>
       </section>
 
       <div class="sticky-bar" id="stickyBar">
@@ -45,13 +45,13 @@
         <div class="mascot-wrap" id="mascotWrap">
           <svg id="mascot" class="mascot" viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
             <ellipse cx="60" cy="124" rx="36" ry="3" fill="rgba(0,0,0,0.12)"/>
-            <ellipse class="wing wing-l" cx="20" cy="78" rx="10" ry="20" fill="#e6a200" stroke="#b88b00" stroke-width="2"/>
-            <ellipse class="wing wing-r" cx="100" cy="78" rx="10" ry="20" fill="#e6a200" stroke="#b88b00" stroke-width="2"/>
+            <ellipse cx="20" cy="78" rx="10" ry="20" fill="#e6a200" stroke="#b88b00" stroke-width="2"/>
+            <ellipse cx="100" cy="78" rx="10" ry="20" fill="#e6a200" stroke="#b88b00" stroke-width="2"/>
             <ellipse cx="60" cy="72" rx="44" ry="50" fill="#ffd93d" stroke="#b88b00" stroke-width="2.5"/>
             <ellipse cx="60" cy="84" rx="30" ry="32" fill="#fff4b3"/>
             <path d="M52,20 Q58,5 64,18 Q66,10 68,20 Z" fill="#e6a200" stroke="#b88b00" stroke-width="2" stroke-linejoin="round"/>
-            <ellipse class="cheek" cx="36" cy="78" rx="6" ry="3.5" fill="#ff8fa6" opacity="0.7"/>
-            <ellipse class="cheek" cx="84" cy="78" rx="6" ry="3.5" fill="#ff8fa6" opacity="0.7"/>
+            <ellipse cx="36" cy="78" rx="6" ry="3.5" fill="#ff8fa6" opacity="0.7"/>
+            <ellipse cx="84" cy="78" rx="6" ry="3.5" fill="#ff8fa6" opacity="0.7"/>
             <circle class="eye" cx="46" cy="58" r="8" fill="white" stroke="#2a2a2a" stroke-width="2"/>
             <circle class="eye" cx="74" cy="58" r="8" fill="white" stroke="#2a2a2a" stroke-width="2"/>
             <circle class="pupil" cx="47" cy="59" r="4" fill="#2a2a2a"/>
@@ -64,45 +64,40 @@
             <path class="eye-sad" d="M68,60 Q74,66 80,60" fill="none" stroke="#2a2a2a" stroke-width="2.5" stroke-linecap="round"/>
             <polygon points="54,70 66,70 60,78" fill="#ff9600" stroke="#b86c00" stroke-width="1.5" stroke-linejoin="round"/>
             <path class="mouth-smile" d="M53,88 Q60,94 67,88" fill="none" stroke="#2a2a2a" stroke-width="2.2" stroke-linecap="round"/>
-            <path class="mouth-big" d="M50,84 Q60,100 70,84 Z" fill="#d33b3b" stroke="#2a2a2a" stroke-width="2" stroke-linejoin="round"/>
+            <path class="mouth-big" d="M50,84 Q60,100 70,84 Z" fill="#d33b3b" stroke="#2a2a2a" stroke-width="2"/>
             <path class="mouth-sad" d="M53,94 Q60,86 67,94" fill="none" stroke="#2a2a2a" stroke-width="2.2" stroke-linecap="round"/>
-            <ellipse class="tear" cx="42" cy="72" rx="2.2" ry="4" fill="#1cb0f6" opacity="0.85"/>
-            <text class="sparkle" x="14" y="40" font-size="14" fill="#ffc800">✦</text>
-            <text class="sparkle" x="98" y="36" font-size="16" fill="#ffc800">✦</text>
-            <text class="sparkle" x="20" y="18" font-size="11" fill="#ffc800">✦</text>
           </svg>
         </div>
         <button class="sound-btn" id="soundBtn" type="button" onclick="toggleSound()" title="Toggle suara">🔊</button>
       </div>
 
       <section class="panel">
-
         <div id="introPanel">
           <div class="stats-row">
-            <div class="stat-box"><div class="s-n" id="iPola">0</div><div class="s-l">Bab Tersedia</div></div>
-            <div class="stat-box"><div class="s-n" id="iTotal">0</div><div class="s-l">Total Soal</div></div>
+            <div class="stat-box"><div class="s-n" id="iBab">0</div><div class="s-l">Bab Tersedia</div></div>
+            <div class="stat-box"><div class="s-n" id="iTotal">0</div><div class="s-l">Total Kalimat</div></div>
             <div class="stat-box"><div class="s-n">🎲</div><div class="s-l">Urutan Acak</div></div>
           </div>
 
-          <div class="section-label"><span>📚 Pilih Bab</span></div>
+          <div class="section-label">📚 Pilih Bab</div>
           <div class="bab-dropdown" id="babDropdown">
             <button class="bab-btn" id="babBtn" type="button" onclick="toggleDropdown(event)">
-              <span id="babBtnText">Semua Bab (1–15)</span>
+              <span id="babBtnText">Semua Bab</span>
               <span class="bab-arrow">▾</span>
             </button>
             <div class="bab-panel" id="babPanel">
-              <div class="bab-hint">Kosongkan = semua bab. Centang bab tertentu untuk fokus.</div>
+              <div class="bab-hint">Kosongkan = semua bab. Centang untuk fokus pada bab tertentu.</div>
               <div class="bab-list" id="babList"></div>
             </div>
           </div>
-          <div class="selection-summary" id="selSummary">Semua bab · 231 soal</div>
+          <div class="selection-summary" id="selSummary">Semua bab · 232 kalimat</div>
 
-          <div class="section-label"><span>🎯 Jumlah Soal per Sesi</span></div>
+          <div class="section-label">🎯 Jumlah Soal per Sesi</div>
           <div class="mode-row" id="modeRow">
-            <button class="mode-btn" onclick="setMode(this,10)">10 Soal</button>
-            <button class="mode-btn" onclick="setMode(this,20)">20 Soal</button>
-            <button class="mode-btn" onclick="setMode(this,40)">40 Soal</button>
-            <button class="mode-btn on" onclick="setMode(this,9999)">Semua</button>
+            <button class="mode-btn" onclick="setMode(this,10)">10</button>
+            <button class="mode-btn on" onclick="setMode(this,20)">20</button>
+            <button class="mode-btn" onclick="setMode(this,40)">40</button>
+            <button class="mode-btn" onclick="setMode(this,9999)">Semua</button>
           </div>
 
           <button class="start-btn" id="startBtn" onclick="startQuiz()">▶ Mulai Latihan</button>
@@ -116,14 +111,42 @@
             </div>
             <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
           </div>
-          <div id="qWrap" class="q-wrap"></div>
+
+          <div class="q-card-meta">
+            <span class="pill q-num" id="qNum">No.1</span>
+            <span class="pill q-bab" id="qBab">Bab -</span>
+            <span class="pill q-pola" id="qPola">-</span>
+          </div>
+
+          <div class="prompt-card">
+            <div class="prompt-label">Susun kalimat berikut:</div>
+            <div class="prompt-text" id="promptText">-</div>
+          </div>
+
+          <div class="answer-area" id="answerArea" aria-label="Susunan jawaban">
+            <div class="answer-placeholder" id="answerPlaceholder">Tap chip di bawah untuk menyusun...</div>
+          </div>
+
+          <div class="source-area" id="sourceArea" aria-label="Chip kata"></div>
+
+          <div class="fb" id="fb">
+            <div class="fb-icon" id="fbIcon">✓</div>
+            <div class="fb-content" id="fbContent"></div>
+          </div>
+
+          <div class="q-nav">
+            <button class="skip-btn" onclick="skipQ()" id="skipBtn">Lewati</button>
+            <button class="undo-btn" onclick="undoLast()" id="undoBtn" type="button" title="Hapus chip terakhir">⌫ Hapus</button>
+            <button class="submit-btn" onclick="submitQ()" id="submitBtn">Periksa ✓</button>
+            <button class="next-btn" onclick="nextQ()" id="nextBtn">Lanjut ▶</button>
+          </div>
         </div>
 
         <div id="resultPanel" class="result-panel" style="display:none;">
           <div class="result-circle">
             <div>
               <div class="rn" id="rScore">0</div>
-              <div class="rd" id="rDenom">/40</div>
+              <div class="rd" id="rDenom">/0</div>
             </div>
           </div>
           <h2 id="rTitle">Hasil</h2>
@@ -146,7 +169,7 @@
   </main>
 
   <script src="js/sidebar.js"></script>
-  <script src="data/bunpo_quiz_database.js"></script>
-  <script src="js/bunpo-quiz-full.js"></script>
+  <script src="data/bunpo_database.js"></script>
+  <script src="js/latihan-susun.js"></script>
 </body>
 </html>

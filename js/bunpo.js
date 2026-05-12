@@ -35,7 +35,8 @@ function expandShorthand(text) {
 
 function parseExample(exampleText) {
   const raw = String(exampleText || '').trim();
-  const match = raw.match(/^(.*)\s\(([^()]*)\)\s*$/);
+  // Ambil kelompok parens TERAKHIR sebagai arti — boleh ada kurung di dalam.
+  const match = raw.match(/^(.*)\s\((.+)\)\s*$/);
 
   if (!match) {
     return {
@@ -212,5 +213,6 @@ bunpoSearch.addEventListener('input', () => {
   cardIndex = 0;
   renderBunpo();
 });
+
 renderBunpo();
 toggleCardMode();
