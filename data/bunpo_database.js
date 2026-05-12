@@ -739,13 +739,18 @@ const bunpoDatabase = [
   // ===== BAB 14 =====
   {
     pattern: "[K.Kerja] → 形(-て)",
-    explanation: "Pola ini tentang perubahan bentuk kata kerja menjadi bentuk -て. Bentuk ini adalah dasar untuk pola-pola lanjutan. Aturan: Golongan 1 dan 2 punya pola khusus, Golongan 3 berubah menjadi して.",
+    explanation: "📌 APA ITU BENTUK -て?\nBentuk -て adalah salah satu bentuk perubahan kata kerja Jepang. Bentuk ini TIDAK dipakai sendirian — ia selalu digabung dengan kata/pola lain.\n\n🎯 UNTUK APA DIPAKAI?\nBentuk -て adalah 'lem' untuk menyambung kata kerja ke pola lain. Beberapa fungsi utamanya:\n  1. Meminta dengan sopan → V-て ください ('Tolong ~')\n  2. Menyatakan sedang berlangsung → V-て います ('sedang ~')\n  3. Meminta izin → V-て も いいですか ('Bolehkah ~?')\n  4. Larangan → V-て は いけません ('Tidak boleh ~')\n  5. Menyambung 2 aktivitas berurutan → V-て, V (lakukan A lalu B)\n\nIntinya: kalau ingin pakai pola-pola di atas, kata kerjanya WAJIB diubah ke bentuk -て dulu.\n\n📝 ATURAN PERUBAHAN (lihat golongan kata kerja):\n\n● GOLONGAN 1 (akhiran bentuk kamus: う/つ/る/む/ぶ/ぬ/く/ぐ/す):\n  • ～う・～つ・～る → ～って\n  • ～む・～ぶ・～ぬ → ～んで\n  • ～く → ～いて  (*kecuali いく → いって, khusus)\n  • ～ぐ → ～いで\n  • ～す → ～して\n\n● GOLONGAN 2 (umumnya akhiran -iru / -eru):\n  • る → て  (たべる→たべて, みる→みて)\n\n● GOLONGAN 3 (tak beraturan, hanya 2 kata):\n  • する → して\n  • くる → きて",
     examples: [
-      "いく → いって (pergi)",
-      "のむ → のんで (minum)",
-      "かく → かいて (menulis)",
-      "たべる → たべて (makan)",
-      "する → して (melakukan)"
+      "[Gol 1・の む] まいあさ コーヒー を のんで、しんぶん を よみます。 (Setiap pagi minum kopi lalu baca koran — menyambung 2 aktivitas)",
+      "[Gol 1・か く] ノート に なまえ を かいて ください。 (Tolong tulis nama Anda di buku catatan — permintaan sopan)",
+      "[Gol 1・い く] あした わたし は がっこう へ いって、ともだち に あいます。 (Besok saya pergi ke sekolah lalu bertemu teman — いく khusus → いって)",
+      "[Gol 1・か う] スーパー で たまご を かって ください。 (Tolong belikan telur di supermarket — pola ～う→～って)",
+      "[Gol 1・およ ぐ] こども が プール で およいで います。 (Anak-anak sedang berenang di kolam — pola ～ぐ→～いで, sedang berlangsung)",
+      "[Gol 2・た べる] いま ばんごはん を たべて います。 (Sekarang saya sedang makan malam — る→て + います)",
+      "[Gol 2・み る] この えいが を みて ください。 (Tolong tonton film ini — る→て + ください)",
+      "[Gol 2・ね る] はやく ねて ください。 (Tolong tidur lebih awal — る→て + ください)",
+      "[Gol 3・す る] ここ で べんきょう して も いいですか。 (Bolehkah saya belajar di sini? — する→して + も いいですか, minta izin)",
+      "[Gol 3・く る] あした 9じ に きて ください。 (Tolong datang besok jam 9 — くる→きて + ください)"
     ],
     bab: "Bab 14",
   },

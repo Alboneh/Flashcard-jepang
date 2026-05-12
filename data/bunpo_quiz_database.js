@@ -881,6 +881,202 @@
     solo:"せかいの　なかで　どこが　いちばん　きれいですか。…（___）が　いちばん　きれいです。",
     ch:["おきなわ","ここ","そこ","どこ"], ans:0,
     ex:"Jawab dengan tempat/pilihan spesifik. 「Jawaban の が いちばん ...」." }
+
+  // ===== BAB 13 - Pola 75: ～が ほしい =====
+  ,{ cat:"bab13", pola:"Pola 75: [KB] が ほしい", topic:"Bab 13 - Keinginan Benda",
+    solo:"わたしは　あたらしい　くるま（___）ほしいです。",
+    ch:["を","に","が","は"], ans:2,
+    ex:"「ほしい」menggunakan partikel が untuk menandai benda yang diinginkan." }
+  ,{ cat:"bab13", pola:"Pola 75: [KB] が ほしい", topic:"Bab 13 - Keinginan Benda",
+    dlg:[{s:"A",t:"なに（___）ほしいですか。"},{s:"B",t:"コンピューターが　ほしいです。"}],
+    ch:["を","に","が","へ"], ans:2,
+    ex:"「なにがほしいですか」= 'Apa yang Anda inginkan?'. Partikel が wajib pada pola ほしい." }
+  ,{ cat:"bab13", pola:"Pola 75: [KB] が ほしい", topic:"Bab 13 - Keinginan Benda",
+    solo:"こどもは　あたらしい　おもちゃが　（___）。",
+    ch:["ほしいです","ほしいでした","ほしいません","ほしくなかったでした"], ans:0,
+    ex:"「ほしい」adalah K.Sifat い. Bentuk positif sekarang: ほしいです." }
+
+  // ===== BAB 13 - Pola 76: ～たい =====
+  ,{ cat:"bab13", pola:"Pola 76: [KK-ます] たい", topic:"Bab 13 - Keinginan Aktivitas",
+    solo:"わたしは　にほんへ　（___）です。",
+    ch:["いきます","いきたい","いきましょう","いきません"], ans:1,
+    ex:"Bentuk たい dari いきます → いきたい. 'Ingin pergi'." }
+  ,{ cat:"bab13", pola:"Pola 76: [KK-ます] たい", topic:"Bab 13 - Keinginan Aktivitas",
+    dlg:[{s:"A",t:"なつやすみに　なにを　しますか。"},{s:"B",t:"うみで　（___）です。"}],
+    ch:["およぎたい","およぎます","およぎませんか","およぎましょう"], ans:0,
+    ex:"Pola V-たい menyatakan keinginan diri: およぎます → およぎたい (ingin berenang)." }
+  ,{ cat:"bab13", pola:"Pola 76: [KK-ます] たい", topic:"Bab 13 - Keinginan Aktivitas",
+    solo:"きょうは　つかれましたから、なにも　（___）です。",
+    ch:["したい","したくない","したくありません","しません"], ans:1,
+    ex:"Bentuk negatif たい: たい → たくない. 'Tidak ingin melakukan apa-apa'." }
+
+  // ===== BAB 13 - Pola 77: ～へ ～に いきます (tujuan) =====
+  ,{ cat:"bab13", pola:"Pola 77: [KB Tempat]へ [KK]に いきます", topic:"Bab 13 - Tujuan Aktivitas",
+    solo:"レストランへ　しょくじ（___）いきます。",
+    ch:["を","に","で","と"], ans:1,
+    ex:"Pola tujuan aktivitas: [Tempat]へ [aktivitas]に いきます. Partikel に menandai tujuan aktivitas." }
+  ,{ cat:"bab13", pola:"Pola 77: [KB Tempat]へ [KK]に いきます", topic:"Bab 13 - Tujuan Aktivitas",
+    dlg:[{s:"A",t:"デパートへ　なにを　（___）に　いきましたか。"},{s:"B",t:"プレゼントを　かいに　いきました。"}],
+    ch:["かい","かう","かって","かいます"], ans:0,
+    ex:"Pola V-stem + に + いきます. かいます → かい + に (untuk membeli)." }
+  ,{ cat:"bab13", pola:"Pola 77: [KB Tempat]へ [KK]に いきます", topic:"Bab 13 - Tujuan Aktivitas",
+    solo:"きっさてんへ　コーヒーを　（___）に　きました。",
+    ch:["のみ","のむ","のんで","のみます"], ans:0,
+    ex:"Bentuk masu-stem dari のみます adalah のみ. のみ + に = untuk minum." }
+
+  // ===== BAB 13 - Pola 78: に/を masuk/keluar =====
+  ,{ cat:"bab13", pola:"Pola 78: [KB] に/を (masuk/keluar)", topic:"Bab 13 - Masuk/Keluar",
+    solo:"へや（___）はいります。",
+    ch:["を","に","で","へ"], ans:1,
+    ex:"「はいります」selalu memakai partikel に: 'masuk ke ruangan'." }
+  ,{ cat:"bab13", pola:"Pola 78: [KB] に/を (masuk/keluar)", topic:"Bab 13 - Masuk/Keluar",
+    solo:"でんしゃ（___）おります。",
+    ch:["に","を","で","へ"], ans:1,
+    ex:"「おります」memakai partikel を: 'turun dari kereta'. を menandai tempat asal keluar." }
+  ,{ cat:"bab13", pola:"Pola 78: [KB] に/を (masuk/keluar)", topic:"Bab 13 - Masuk/Keluar",
+    dlg:[{s:"A",t:"いま どこ ですか。"},{s:"B",t:"きょうしつ（___）でました。"}],
+    ch:["を","に","で","と"], ans:0,
+    ex:"「でます」(keluar) memakai partikel を: 'keluar dari kelas'." }
+
+  // ===== BAB 13 - Pola 79: どこか / なにか =====
+  ,{ cat:"bab13", pola:"Pola 79: どこか / なにか", topic:"Bab 13 - Tak Spesifik",
+    solo:"のどが　かわきましたから、（___）のみたいです。",
+    ch:["どこか","なにか","なぜか","だれか"], ans:1,
+    ex:"「なにか」= 'sesuatu'. Digunakan untuk benda yang tidak spesifik." }
+  ,{ cat:"bab13", pola:"Pola 79: どこか / なにか", topic:"Bab 13 - Tak Spesifik",
+    dlg:[{s:"A",t:"なつやすみに　（___）いきましたか。"},{s:"B",t:"はい、おきなわへ　いきました。"}],
+    ch:["どこか","だれか","なにか","いつか"], ans:0,
+    ex:"「どこか」= 'ke suatu tempat'. Untuk pertanyaan tempat tidak spesifik." }
+  ,{ cat:"bab13", pola:"Pola 79: どこか / なにか", topic:"Bab 13 - Tak Spesifik",
+    solo:"きのう　（___）で　ともだちに　あいました。",
+    ch:["なにか","だれか","どこか","いつか"], ans:2,
+    ex:"「どこか」= 'suatu tempat'. Tempat tidak spesifik dalam kalimat berita." }
+
+  // ===== BAB 14 - Pola 80: Bentuk -て (formasi) =====
+  ,{ cat:"bab14", pola:"Pola 80: K.Kerja → ～て", topic:"Bab 14 - Bentuk -て",
+    solo:"「のむ」の　てけい は　（___）です。",
+    ch:["のみて","のんで","のって","のいで"], ans:1,
+    ex:"Golongan 1, akhiran ～む → ～んで. 「のむ」→「のんで」." }
+  ,{ cat:"bab14", pola:"Pola 80: K.Kerja → ～て", topic:"Bab 14 - Bentuk -て",
+    solo:"「たべる」の　てけい は　（___）です。",
+    ch:["たべて","たべって","たべいて","たべんで"], ans:0,
+    ex:"Golongan 2: る → て. 「たべる」→「たべて」." }
+  ,{ cat:"bab14", pola:"Pola 80: K.Kerja → ～て", topic:"Bab 14 - Bentuk -て",
+    solo:"「する」の　てけい は　（___）です。",
+    ch:["すて","して","しって","せて"], ans:1,
+    ex:"Golongan 3 (tidak beraturan): 「する」→「して」, 「くる」→「きて」." }
+
+  // ===== BAB 14 - Pola 81: ～て ください =====
+  ,{ cat:"bab14", pola:"Pola 81: [KK-て] ください", topic:"Bab 14 - Permintaan",
+    solo:"もう いちど　（___）ください。",
+    ch:["いうて","いって","いいて","いきて"], ans:1,
+    ex:"「いう」→「いって」(bentuk -te). 「いってください」= 'Tolong ucapkan'." }
+  ,{ cat:"bab14", pola:"Pola 81: [KK-て] ください", topic:"Bab 14 - Permintaan",
+    dlg:[{s:"A",t:"ここに　なまえを　（___）ください。"},{s:"B",t:"はい、わかりました。"}],
+    ch:["かく","かいて","かきて","かいって"], ans:1,
+    ex:"「かく」→「かいて」. Pola V-て + ください untuk permintaan sopan." }
+  ,{ cat:"bab14", pola:"Pola 81: [KK-て] ください", topic:"Bab 14 - Permintaan",
+    solo:"このほんを　（___）ください。",
+    ch:["よみて","よんで","よって","よいで"], ans:1,
+    ex:"「よむ」→「よんで」. Permintaan: 'Silakan baca buku ini'." }
+
+  // ===== BAB 14 - Pola 82: ～て います (sedang) =====
+  ,{ cat:"bab14", pola:"Pola 82: [KK-て] います (sedang)", topic:"Bab 14 - Sedang Berlangsung",
+    dlg:[{s:"A",t:"いま なに を　して　いますか。"},{s:"B",t:"ごはんを　（___）います。"}],
+    ch:["たべて","たべる","たべます","たべた"], ans:0,
+    ex:"V-て + います = sedang melakukan. 「たべています」= 'sedang makan'." }
+  ,{ cat:"bab14", pola:"Pola 82: [KK-て] います (sedang)", topic:"Bab 14 - Sedang Berlangsung",
+    solo:"あめが　（___）います。",
+    ch:["ふって","ふる","ふります","ふった"], ans:0,
+    ex:"「ふる」→「ふって」+ います = sedang turun (hujan)." }
+  ,{ cat:"bab14", pola:"Pola 82: [KK-て] います (sedang)", topic:"Bab 14 - Sedang Berlangsung",
+    dlg:[{s:"A",t:"ミラーさんは　どこですか。"},{s:"B",t:"いま でんわを　（___）います。"}],
+    ch:["かけて","かけって","かけります","かけた"], ans:0,
+    ex:"「かける」(Gol 2): る → て. 「かけて」+ います = sedang menelepon." }
+
+  // ===== BAB 14 - Pola 83: ～ましょうか =====
+  ,{ cat:"bab14", pola:"Pola 83: [KK-ます] ましょうか", topic:"Bab 14 - Menawarkan",
+    dlg:[{s:"A",t:"あつい ですね。"},{s:"B",t:"ええ、まどを　（___）か。"}],
+    ch:["あけます","あけました","あけましょう","あけませんでした"], ans:2,
+    ex:"「ましょうか」= menawarkan bantuan/saran. 'Bagaimana kalau saya buka jendela?'." }
+  ,{ cat:"bab14", pola:"Pola 83: [KK-ます] ましょうか", topic:"Bab 14 - Menawarkan",
+    dlg:[{s:"A",t:"もう おそい です。"},{s:"B",t:"じゃ、（___）か。"}],
+    ch:["かえりましょう","かえります","かえりました","かえりません"], ans:0,
+    ex:"「かえりましょうか」= 'Bagaimana kalau kita pulang?'." }
+  ,{ cat:"bab14", pola:"Pola 83: [KK-ます] ましょうか", topic:"Bab 14 - Menawarkan",
+    solo:"いっしょに　コーヒーを　（___）か。",
+    ch:["のみます","のみましょう","のみません","のみました"], ans:1,
+    ex:"Ajakan/tawaran: V-ましょうか. 「のみましょうか」= 'Mari kita minum?'." }
+
+  // ===== BAB 14 - Pola 84: KB が～ (Fenomena) =====
+  ,{ cat:"bab14", pola:"Pola 84: KB が～ (Fenomena/Fakta)", topic:"Bab 14 - Fenomena",
+    solo:"はる（___）きました。",
+    ch:["は","が","を","に"], ans:1,
+    ex:"Fenomena alam memakai partikel が. 「はるがきました」= 'Musim semi telah tiba'." }
+  ,{ cat:"bab14", pola:"Pola 84: KB が～ (Fenomena/Fakta)", topic:"Bab 14 - Fenomena",
+    dlg:[{s:"A",t:"あ、みて ください！"},{s:"B",t:"ゆき（___）ふって　います。"}],
+    ch:["を","は","が","と"], ans:2,
+    ex:"Fakta objektif yang terjadi: subjek + が. 「ゆきがふっています」= 'Salju sedang turun'." }
+  ,{ cat:"bab14", pola:"Pola 84: KB が～ (Fenomena/Fakta)", topic:"Bab 14 - Fenomena",
+    solo:"こうえんで　はな（___）さいて　います。",
+    ch:["は","を","で","が"], ans:3,
+    ex:"「が」menandai subjek dari fenomena. 'Bunga sedang mekar di taman'." }
+
+  // ===== BAB 15 - Pola 85: ～ても いいですか (izin) =====
+  ,{ cat:"bab15", pola:"Pola 85: [KK-て] も いいですか", topic:"Bab 15 - Izin",
+    dlg:[{s:"A",t:"ここに　（___）いいですか。"},{s:"B",t:"はい、どうぞ。"}],
+    ch:["すわっても","すわって","すわります","すわる"], ans:0,
+    ex:"Pola izin: V-て + も いいですか. 「すわってもいいですか」= 'Bolehkah saya duduk?'." }
+  ,{ cat:"bab15", pola:"Pola 85: [KK-て] も いいですか", topic:"Bab 15 - Izin",
+    solo:"このペンを　（___）いいですか。",
+    ch:["つかっても","つかって","つかいます","つかった"], ans:0,
+    ex:"「つかう」→「つかって」+ も いいですか = 'Bolehkah saya pakai pena ini?'." }
+  ,{ cat:"bab15", pola:"Pola 85: [KK-て] も いいですか", topic:"Bab 15 - Izin",
+    dlg:[{s:"A",t:"しゃしんを　とっても　いいですか。"},{s:"B",t:"はい、（___）。"}],
+    ch:["どうぞ","だめです","いけません","いいえ"], ans:0,
+    ex:"Jawaban setuju terhadap permintaan izin: 「どうぞ」(silakan) atau 「いいですよ」." }
+
+  // ===== BAB 15 - Pola 86: ～ては いけません (larangan) =====
+  ,{ cat:"bab15", pola:"Pola 86: [KK-て] は いけません", topic:"Bab 15 - Larangan",
+    solo:"ここで　しゃしんを　（___）いけません。",
+    ch:["とっては","とって","とります","とった"], ans:0,
+    ex:"Pola larangan: V-て + は いけません. 'Tidak boleh memotret di sini'." }
+  ,{ cat:"bab15", pola:"Pola 86: [KK-て] は いけません", topic:"Bab 15 - Larangan",
+    dlg:[{s:"A",t:"ここで　たばこを　すっても　いいですか。"},{s:"B",t:"いいえ、（___）いけません。"}],
+    ch:["すっては","すって","すいます","すった"], ans:0,
+    ex:"Jawab larangan: V-て + は いけません. 'Tidak boleh merokok'." }
+  ,{ cat:"bab15", pola:"Pola 86: [KK-て] は いけません", topic:"Bab 15 - Larangan",
+    solo:"がっこうで　おさけを　（___）いけません。",
+    ch:["のんでは","のんで","のみます","のむ"], ans:0,
+    ex:"「のむ」→「のんで」+ は いけません = 'Tidak boleh minum (alkohol)'." }
+
+  // ===== BAB 15 - Pola 87: KB に はいります/すわります/のります =====
+  ,{ cat:"bab15", pola:"Pola 87: KB に はいります/すわります/のります", topic:"Bab 15 - Partikel に",
+    solo:"バス（___）のります。",
+    ch:["を","に","で","へ"], ans:1,
+    ex:"「のります」selalu memakai partikel に. 'Naik bus'." }
+  ,{ cat:"bab15", pola:"Pola 87: KB に はいります/すわります/のります", topic:"Bab 15 - Partikel に",
+    dlg:[{s:"A",t:"どこに　すわっても　いいですか。"},{s:"B",t:"あの いす（___）すわって ください。"}],
+    ch:["を","へ","に","で"], ans:2,
+    ex:"「すわります」memakai partikel に untuk menandai tempat duduk." }
+  ,{ cat:"bab15", pola:"Pola 87: KB に はいります/すわります/のります", topic:"Bab 15 - Partikel に",
+    solo:"へや（___）はいる まえに、ノックして　ください。",
+    ch:["を","に","で","と"], ans:1,
+    ex:"「はいります」memakai partikel に: 'masuk ke dalam ruangan'." }
+
+  // ===== BAB 15 - Pola 88: ～て います (state/pekerjaan) =====
+  ,{ cat:"bab15", pola:"Pola 88: [KK-て] います (state/pekerjaan)", topic:"Bab 15 - State/Pekerjaan",
+    dlg:[{s:"A",t:"ミラーさんは　どこに　すんで　いますか。"},{s:"B",t:"とうきょうに　（___）います。"}],
+    ch:["すむ","すんで","すみます","すんだ"], ans:1,
+    ex:"「すむ」→「すんで」. V-て + います menyatakan state: 'tinggal di Tokyo'." }
+  ,{ cat:"bab15", pola:"Pola 88: [KK-て] います (state/pekerjaan)", topic:"Bab 15 - State/Pekerjaan",
+    solo:"わたしは　ぎんこうで　（___）います。",
+    ch:["はたらく","はたらいて","はたらきます","はたらいた"], ans:1,
+    ex:"「はたらく」→「はたらいて」. Menyatakan status pekerjaan saat ini." }
+  ,{ cat:"bab15", pola:"Pola 88: [KK-て] います (state/pekerjaan)", topic:"Bab 15 - State/Pekerjaan",
+    dlg:[{s:"A",t:"ごけっこん して　いますか。"},{s:"B",t:"はい、（___）います。"}],
+    ch:["けっこんして","けっこんします","けっこんしました","けっこんする"], ans:0,
+    ex:"「けっこんする」→「けっこんして」. State permanen: 'sudah menikah'." }
 ];
 
 const BUNPO_QUIZ_CATEGORIES = [
@@ -904,6 +1100,9 @@ const BUNPO_QUIZ_CATEGORIES = [
   { id:"bab12_perbandingan", name:"Bab 12 - Perbandingan", icon:"⚖️" },
   { id:"bab12_dochira", name:"Bab 12 - どちら", icon:"🤔" },
   { id:"bab12_ichiban", name:"Bab 12 - いちばん", icon:"🏆" },
+  { id:"bab13",     name:"Bab 13",        icon:"1️⃣3️⃣" },
+  { id:"bab14",     name:"Bab 14",        icon:"1️⃣4️⃣" },
+  { id:"bab15",     name:"Bab 15",        icon:"1️⃣5️⃣" },
 ];
 
 window.BUNPO_QUIZ_QUESTIONS = BUNPO_QUIZ_QUESTIONS;

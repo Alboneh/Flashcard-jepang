@@ -57,6 +57,7 @@ function setBabFilter(bab) {
   document.querySelectorAll('#babFilter .level-btn').forEach(btn => {
     btn.classList.toggle('active', btn.textContent === bab);
   });
+  cardIndex = 0;
   renderBunpo();
 }
 
@@ -207,6 +208,9 @@ function toggleCardMode() {
   }, { passive: true });
 })();
 
-bunpoSearch.addEventListener('input', renderBunpo);
+bunpoSearch.addEventListener('input', () => {
+  cardIndex = 0;
+  renderBunpo();
+});
 renderBunpo();
 toggleCardMode();

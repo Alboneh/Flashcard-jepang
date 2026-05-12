@@ -399,6 +399,7 @@ body {
   font-size: 0.9rem !important;
   line-height: 1.65 !important;
   color: var(--ink) !important;
+  white-space: pre-line;
 }
 
 .core-meaning strong {
