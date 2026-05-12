@@ -393,17 +393,20 @@ body {
 /* Core meaning / Penjelasan */
 .core-meaning {
   margin-top: 0.85rem !important;
-  padding: 0.8rem 1rem !important;
-  background: var(--green-soft);
-  border-left: 4px solid var(--green);
-  font-size: 0.9rem !important;
-  line-height: 1.65 !important;
+  padding: 0.95rem 1.1rem !important;
+  background: #eef4fb;
+  border: 1px solid #c9d9e9;
+  border-left: 5px solid var(--blue);
+  border-radius: 0 10px 10px 0;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.5);
+  font-size: 0.96rem !important;
+  line-height: 1.75 !important;
   color: var(--ink) !important;
   white-space: pre-line;
 }
 
 .core-meaning strong {
-  color: var(--green);
+  color: var(--blue);
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;

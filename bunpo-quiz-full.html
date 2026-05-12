@@ -37,13 +37,44 @@
         <p>Latihan pola bunpo dengan sistem nyawa, beruntun, dan XP — mirip Duolingo. Pilih bab yang ingin kamu pelajari, atau biarkan semua untuk latihan campuran.</p>
       </section>
 
-      <section class="panel">
-        <div class="q-meta" id="topMeta" style="justify-content:space-between; margin-bottom:1rem;">
-          <span class="pill hearts">❤️ <b id="hHearts">5</b></span>
-          <span class="pill streak">🔥 <b id="hStreak">0</b></span>
-          <span class="pill xp">⭐ <b id="hScore">0</b> XP</span>
-          <button class="sound-btn" id="soundBtn" type="button" onclick="toggleSound()" title="Toggle suara">🔊</button>
+      <div class="sticky-bar" id="stickyBar">
+        <span class="pill hearts">❤️ <b id="hHearts">5</b></span>
+        <span class="pill streak">🔥 <b id="hStreak">0</b></span>
+        <span class="pill xp">⭐ <b id="hScore">0</b> XP</span>
+        <div class="mascot-wrap" id="mascotWrap">
+          <svg id="mascot" class="mascot" viewBox="0 0 120 130" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="60" cy="124" rx="36" ry="3" fill="rgba(0,0,0,0.12)"/>
+            <ellipse class="wing wing-l" cx="20" cy="78" rx="10" ry="20" fill="#e6a200" stroke="#b88b00" stroke-width="2"/>
+            <ellipse class="wing wing-r" cx="100" cy="78" rx="10" ry="20" fill="#e6a200" stroke="#b88b00" stroke-width="2"/>
+            <ellipse cx="60" cy="72" rx="44" ry="50" fill="#ffd93d" stroke="#b88b00" stroke-width="2.5"/>
+            <ellipse cx="60" cy="84" rx="30" ry="32" fill="#fff4b3"/>
+            <path d="M52,20 Q58,5 64,18 Q66,10 68,20 Z" fill="#e6a200" stroke="#b88b00" stroke-width="2" stroke-linejoin="round"/>
+            <ellipse class="cheek" cx="36" cy="78" rx="6" ry="3.5" fill="#ff8fa6" opacity="0.7"/>
+            <ellipse class="cheek" cx="84" cy="78" rx="6" ry="3.5" fill="#ff8fa6" opacity="0.7"/>
+            <circle class="eye" cx="46" cy="58" r="8" fill="white" stroke="#2a2a2a" stroke-width="2"/>
+            <circle class="eye" cx="74" cy="58" r="8" fill="white" stroke="#2a2a2a" stroke-width="2"/>
+            <circle class="pupil" cx="47" cy="59" r="4" fill="#2a2a2a"/>
+            <circle class="pupil" cx="75" cy="59" r="4" fill="#2a2a2a"/>
+            <circle class="shine" cx="48.5" cy="57" r="1.5" fill="white"/>
+            <circle class="shine" cx="76.5" cy="57" r="1.5" fill="white"/>
+            <path class="eye-happy" d="M40,58 Q46,50 52,58" fill="none" stroke="#2a2a2a" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="eye-happy" d="M68,58 Q74,50 80,58" fill="none" stroke="#2a2a2a" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="eye-sad" d="M40,60 Q46,66 52,60" fill="none" stroke="#2a2a2a" stroke-width="2.5" stroke-linecap="round"/>
+            <path class="eye-sad" d="M68,60 Q74,66 80,60" fill="none" stroke="#2a2a2a" stroke-width="2.5" stroke-linecap="round"/>
+            <polygon points="54,70 66,70 60,78" fill="#ff9600" stroke="#b86c00" stroke-width="1.5" stroke-linejoin="round"/>
+            <path class="mouth-smile" d="M53,88 Q60,94 67,88" fill="none" stroke="#2a2a2a" stroke-width="2.2" stroke-linecap="round"/>
+            <path class="mouth-big" d="M50,84 Q60,100 70,84 Z" fill="#d33b3b" stroke="#2a2a2a" stroke-width="2" stroke-linejoin="round"/>
+            <path class="mouth-sad" d="M53,94 Q60,86 67,94" fill="none" stroke="#2a2a2a" stroke-width="2.2" stroke-linecap="round"/>
+            <ellipse class="tear" cx="42" cy="72" rx="2.2" ry="4" fill="#1cb0f6" opacity="0.85"/>
+            <text class="sparkle" x="14" y="40" font-size="14" fill="#ffc800">✦</text>
+            <text class="sparkle" x="98" y="36" font-size="16" fill="#ffc800">✦</text>
+            <text class="sparkle" x="20" y="18" font-size="11" fill="#ffc800">✦</text>
+          </svg>
         </div>
+        <button class="sound-btn" id="soundBtn" type="button" onclick="toggleSound()" title="Toggle suara">🔊</button>
+      </div>
+
+      <section class="panel">
 
         <div id="introPanel">
           <div class="stats-row">

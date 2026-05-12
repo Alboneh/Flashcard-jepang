@@ -872,6 +872,115 @@ body {
   animation: heartLost 0.4s forwards;
 }
 
+/* ===== STICKY BAR ===== */
+.sticky-bar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  background: var(--card);
+  border: 2px solid var(--border);
+  border-bottom-width: 4px;
+  border-radius: 14px;
+  padding: 0.55rem 0.7rem;
+  margin-bottom: 0.7rem;
+  overflow: visible;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+
+.sticky-bar .sound-btn { margin-left: 0; }
+
+/* ===== MASCOT (inline in sticky bar) ===== */
+.mascot-wrap {
+  display: none;
+  margin-left: auto;
+  width: 56px;
+  height: 64px;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.mascot-wrap.active { display: flex; }
+
+.mascot {
+  width: 56px;
+  height: 64px;
+  transform-origin: 50% 90%;
+  animation: idle-bob 3s ease-in-out infinite;
+  overflow: visible;
+}
+
+.mascot.happy { animation: happy-jump 0.7s cubic-bezier(.34,1.56,.64,1) forwards; }
+.mascot.sad   { animation: sad-shake 0.55s ease; }
+
+@keyframes idle-bob {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+}
+
+@keyframes happy-jump {
+  0%   { transform: translateY(0) rotate(0) scale(1); }
+  25%  { transform: translateY(-28px) rotate(-8deg) scale(1.08); }
+  55%  { transform: translateY(-16px) rotate(8deg) scale(1.06); }
+  75%  { transform: translateY(-4px) rotate(-3deg) scale(1.03); }
+  100% { transform: translateY(0) rotate(0) scale(1); }
+}
+
+@keyframes sad-shake {
+  0%, 100% { transform: translateX(0) rotate(0); }
+  15% { transform: translateX(-6px) rotate(-3deg); }
+  35% { transform: translateX(6px) rotate(3deg); }
+  55% { transform: translateX(-4px) rotate(-2deg); }
+  75% { transform: translateX(4px) rotate(2deg); }
+}
+
+.mascot .eye-happy,
+.mascot .eye-sad,
+.mascot .mouth-big,
+.mascot .mouth-sad,
+.mascot .tear,
+.mascot .sparkle {
+  display: none;
+}
+
+.mascot.happy .eye,
+.mascot.happy .pupil,
+.mascot.happy .shine,
+.mascot.happy .mouth-smile { display: none; }
+
+.mascot.happy .eye-happy,
+.mascot.happy .mouth-big,
+.mascot.happy .sparkle { display: block; }
+
+.mascot.sad .eye,
+.mascot.sad .pupil,
+.mascot.sad .shine,
+.mascot.sad .mouth-smile { display: none; }
+
+.mascot.sad .eye-sad,
+.mascot.sad .mouth-sad,
+.mascot.sad .tear { display: block; }
+
+@keyframes sparkleFloat {
+  0% { opacity: 0; transform: translate(0, 0) scale(0.5); }
+  30% { opacity: 1; transform: translate(0, -8px) scale(1); }
+  100% { opacity: 0; transform: translate(0, -22px) scale(0.7); }
+}
+
+.mascot .sparkle { animation: sparkleFloat 0.7s ease forwards; }
+
+@keyframes tearDrop {
+  0% { opacity: 0; transform: translateY(0); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(8px); }
+}
+
+.mascot.sad .tear { animation: tearDrop 0.6s ease 0.1s forwards; }
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 760px) {
   .quiz-page { width: 95vw; margin-top: 14px; }

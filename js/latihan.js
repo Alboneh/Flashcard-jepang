@@ -201,6 +201,7 @@ function startQuiz() {
   el('introPanel').style.display = 'none';
   el('quizPanel').style.display = '';
   el('resultPanel').style.display = 'none';
+  el('mascotWrap').classList.add('active');
   updateTopMeta();
 
   renderQ();
@@ -324,6 +325,16 @@ function loseHeart() {
   setTimeout(() => { hEl.classList.remove('lost'); updateTopMeta(); }, 300);
 }
 
+function reactMascot(correct) {
+  const m = el('mascot');
+  if (!m) return;
+  m.classList.remove('happy', 'sad');
+  // force reflow so animation restarts
+  void m.offsetWidth;
+  m.classList.add(correct ? 'happy' : 'sad');
+  setTimeout(() => m.classList.remove('happy', 'sad'), 1100);
+}
+
 function answer(idx, btnEl) {
   if (answered) return;
   answered = true;
@@ -341,6 +352,7 @@ function answer(idx, btnEl) {
     loseHeart();
     playWrong();
   }
+  reactMascot(correct);
 
   results.push({ q: currentQ, chosenIdx: idx, correct });
   updateTopMeta();
@@ -401,6 +413,7 @@ function nextQ() {
 function showResult(gameOver) {
   el('quizPanel').style.display = 'none';
   el('resultPanel').style.display = '';
+  el('mascotWrap').classList.remove('active');
   el('progFill').style.width = '100%';
 
   const total = results.length;
@@ -487,6 +500,7 @@ function backMenu() {
   el('resultPanel').style.display = 'none';
   el('quizPanel').style.display = 'none';
   el('introPanel').style.display = '';
+  el('mascotWrap').classList.remove('active');
   xp = 0; streak = 0; hearts = MAX_HEARTS; score = 0;
   updateTopMeta();
   updateSummary();

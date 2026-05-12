@@ -214,6 +214,7 @@ function startQuiz() {
   el('introPanel').style.display = 'none';
   el('quizPanel').style.display = '';
   el('resultPanel').style.display = 'none';
+  el('mascotWrap').classList.add('active');
   updateTopMeta();
 
   renderQ();
@@ -307,6 +308,15 @@ function loseHeart() {
   }, 300);
 }
 
+function reactMascot(correct) {
+  const m = el('mascot');
+  if (!m) return;
+  m.classList.remove('happy', 'sad');
+  void m.offsetWidth;
+  m.classList.add(correct ? 'happy' : 'sad');
+  setTimeout(() => m.classList.remove('happy', 'sad'), 1100);
+}
+
 function answer(chosen) {
   const q = activeQ[qIdx];
   const correct = chosen === q.ans;
@@ -323,6 +333,7 @@ function answer(chosen) {
     loseHeart();
     playWrong();
   }
+  reactMascot(correct);
 
   results.push({ q, chosen, correct });
   updateTopMeta();
@@ -375,6 +386,7 @@ function nextQ() {
 function showResult(gameOver) {
   el('quizPanel').style.display = 'none';
   el('resultPanel').style.display = '';
+  el('mascotWrap').classList.remove('active');
   el('progFill').style.width = '100%';
 
   const answered = results.length;
@@ -458,6 +470,7 @@ function backMenu() {
   el('resultPanel').style.display = 'none';
   el('quizPanel').style.display = 'none';
   el('introPanel').style.display = '';
+  el('mascotWrap').classList.remove('active');
   xp = 0; streak = 0; hearts = MAX_HEARTS; score = 0;
   updateTopMeta();
   updateSummary();
