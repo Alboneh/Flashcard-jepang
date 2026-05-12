@@ -62,6 +62,10 @@ function setBabFilter(bab) {
   renderBunpo();
 }
 
+function getOriginalIndex(item) {
+  return bunpoDatabase.indexOf(item);
+}
+
 function renderBunpo() {
   const q = normalize(bunpoSearch.value);
   const filtered = bunpoDatabase.filter((item, index) => {
@@ -89,6 +93,7 @@ function renderBunpo() {
       const rawPattern = item.pattern || '-';
       const explanation = expandShorthand(item.explanation || '-');
       const bab = item.bab || 'Bab Lanjutan';
+      const idx = getOriginalIndex(item);
 
       return `
         <article class="item">
@@ -100,6 +105,9 @@ function renderBunpo() {
           <p class="core-meaning"><strong>Penjelasan:</strong> ${escapeHtml(explanation)}</p>
           <p><strong>Contoh:</strong></p>
           <ul>${examples}</ul>
+          <div class="practice-btn-row">
+            <button type="button" class="practice-btn" onclick="openPracticeModal(${idx})">✎ Coba Pola</button>
+          </div>
         </article>
       `;
     })
@@ -126,6 +134,7 @@ function buildItemHtml(item) {
   const rawPattern = item.pattern || '-';
   const explanation = expandShorthand(item.explanation || '-');
   const bab = item.bab || 'Bab Lanjutan';
+  const idx = getOriginalIndex(item);
   return `
     <div class="item-top">
       <h3>Pola Asli</h3>
@@ -135,6 +144,9 @@ function buildItemHtml(item) {
     <p class="core-meaning"><strong>Penjelasan:</strong> ${escapeHtml(explanation)}</p>
     <p><strong>Contoh:</strong></p>
     <ul>${examples}</ul>
+    <div class="practice-btn-row">
+      <button type="button" class="practice-btn" onclick="openPracticeModal(${idx})">✎ Coba Pola</button>
+    </div>
   `;
 }
 
@@ -212,6 +224,70 @@ function toggleCardMode() {
 bunpoSearch.addEventListener('input', () => {
   cardIndex = 0;
   renderBunpo();
+});
+
+// ---- PRACTICE MODAL ----
+function buildPracticeItemHtml(it, num) {
+  if (it && typeof it === 'object' && (it.q || it.a)) {
+    const q = it.q ? `<div class="practice-qa-q"><span class="practice-qa-label">Q:</span> ${escapeHtml(it.q)}</div>` : '';
+    const a = it.a ? `<div class="practice-qa-a"><span class="practice-qa-label">A:</span> ${escapeHtml(it.a)}　<span class="practice-arrow">＞ …</span></div>` : '';
+    return `<li class="practice-item practice-item--qa"><span class="practice-num">${num}.</span><div class="practice-item-body">${q}${a}</div></li>`;
+  }
+  const text = String((it && it.text) || it || '');
+  return `<li class="practice-item"><span class="practice-num">${num}.</span><div class="practice-item-body">${escapeHtml(text)}　<span class="practice-arrow">＞ …</span></div></li>`;
+}
+
+function openPracticeModal(idx) {
+  const data = (typeof bunpoPractice !== 'undefined') ? bunpoPractice[idx] : null;
+  const item = bunpoDatabase[idx];
+  const body = document.getElementById('practiceModalBody');
+  const modal = document.getElementById('practiceModal');
+  if (!body || !modal) return;
+
+  if (!data) {
+    body.innerHTML = `
+      <div class="practice-modal-header">
+        <span class="practice-modal-eyebrow">Coba Pola</span>
+        <h2 class="practice-modal-title" id="practiceModalTitle">${escapeHtml(item ? item.pattern : 'Pola')}</h2>
+      </div>
+      <p class="practice-empty">Soal latihan belum tersedia untuk pola ini.</p>
+    `;
+  } else {
+    const itemsHtml = (data.items || []).map((it, i) => buildPracticeItemHtml(it, i + 1)).join('');
+    const templateHtml = data.template
+      ? `<p class="practice-template">${escapeHtml(data.template)}</p>`
+      : '';
+    const patternRef = item
+      ? `<div class="practice-pattern-ref"><span class="practice-pattern-ref-label">Pola Asli:</span> ${escapeHtml(item.pattern)}</div>`
+      : '';
+
+    body.innerHTML = `
+      <div class="practice-modal-header">
+        <span class="practice-modal-eyebrow">Coba Pola</span>
+        <h2 class="practice-modal-title" id="practiceModalTitle">${escapeHtml(data.title || 'ぶんしょうを つくりましょう！')}</h2>
+        ${patternRef}
+      </div>
+      ${templateHtml}
+      <ol class="practice-list">${itemsHtml}</ol>
+      <p class="practice-note">※ Coba susun sendiri jawabannya. Soal ini tidak dicek otomatis.</p>
+    `;
+  }
+
+  modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
+  document.body.style.overflow = 'hidden';
+}
+
+function closePracticeModal() {
+  const modal = document.getElementById('practiceModal');
+  if (!modal) return;
+  modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closePracticeModal();
 });
 
 renderBunpo();

@@ -98,8 +98,17 @@
     </div>
   </main>
 
+  <div id="practiceModal" class="practice-modal" aria-hidden="true">
+    <div class="practice-modal-backdrop" onclick="closePracticeModal()"></div>
+    <div class="practice-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="practiceModalTitle">
+      <button class="practice-modal-close" type="button" onclick="closePracticeModal()" aria-label="Tutup">×</button>
+      <div class="practice-modal-body" id="practiceModalBody"></div>
+    </div>
+  </div>
+
   <script src="js/sidebar.js"></script>
   <script src="data/bunpo_database.js"></script>
+  <script src="data/bunpo_practice.js"></script>
   <script src="js/bunpo.js"></script>
 </body>
 </html>

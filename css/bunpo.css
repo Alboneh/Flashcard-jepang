@@ -631,6 +631,268 @@ body {
   box-shadow: 3px 3px 0 var(--ink);
 }
 
+/* ===== Coba Pola button ===== */
+.practice-btn-row {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.practice-btn {
+  padding: 0.6rem 1.1rem;
+  border: 2px solid var(--ink);
+  background: var(--gold-soft);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: all 0.15s ease;
+}
+
+.practice-btn:hover {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.practice-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.card-mode-card .practice-btn-row {
+  margin-top: 1.3rem;
+  justify-content: center;
+}
+
+.card-mode-card .practice-btn {
+  font-size: 0.85rem;
+  padding: 0.75rem 1.4rem;
+}
+
+/* ===== Practice modal ===== */
+.practice-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4vh 1rem;
+  overflow-y: auto;
+}
+
+.practice-modal.is-open {
+  display: flex;
+}
+
+.practice-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 17, 8, 0.55);
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.practice-modal-dialog {
+  position: relative;
+  width: min(680px, 96vw);
+  background: var(--cream);
+  border: 2.5px solid var(--ink);
+  box-shadow: 8px 8px 0 var(--ink);
+  padding: 2rem 1.8rem 2.2rem;
+  margin: auto;
+  animation: slideUp 0.3s ease both;
+}
+
+.practice-modal-dialog::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px dashed rgba(26, 17, 8, 0.22);
+  pointer-events: none;
+}
+
+.practice-modal-dialog > * {
+  position: relative;
+}
+
+.practice-modal-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.6rem;
+  width: 2.3rem;
+  height: 2.3rem;
+  border: 2px solid var(--ink);
+  background: white;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: all 0.15s ease;
+  z-index: 2;
+}
+
+.practice-modal-close:hover {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+  transform: translate(-1px, -1px);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.practice-modal-header {
+  margin-bottom: 1.1rem;
+  text-align: center;
+}
+
+.practice-modal-eyebrow {
+  display: inline-block;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--paper);
+  background: var(--red);
+  padding: 0.25rem 0.75rem;
+  border: 1.5px solid var(--ink);
+  margin-bottom: 0.7rem;
+  font-weight: 700;
+}
+
+.practice-modal-title {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.4rem, 4.5vw, 1.95rem);
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.practice-pattern-ref {
+  margin-top: 0.8rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  background: var(--paper-warm);
+  border: 1px solid rgba(26, 17, 8, 0.2);
+  padding: 0.45rem 0.7rem;
+  display: inline-block;
+}
+
+.practice-pattern-ref-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--faded);
+  margin-right: 0.4rem;
+}
+
+.practice-template {
+  font-family: 'Noto Serif JP', serif;
+  font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+  font-weight: 700;
+  color: var(--red);
+  text-align: center;
+  background: white;
+  border: 1.5px dashed var(--ink);
+  padding: 0.95rem 1.1rem;
+  margin: 0 0 1.3rem;
+  line-height: 1.7;
+}
+
+.practice-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.practice-item {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  background: white;
+  border: 1.5px solid var(--ink);
+  border-left-width: 4px;
+  border-left-color: var(--red);
+  padding: 0.75rem 0.9rem;
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.practice-num {
+  font-family: 'DM Mono', monospace;
+  font-weight: 700;
+  color: var(--red);
+  min-width: 1.5rem;
+}
+
+.practice-item-body {
+  flex: 1;
+}
+
+.practice-item--qa .practice-item-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.practice-qa-label {
+  font-family: 'DM Mono', monospace;
+  font-weight: 700;
+  color: var(--blue);
+  margin-right: 0.3rem;
+}
+
+.practice-qa-a .practice-qa-label {
+  color: var(--green);
+}
+
+.practice-arrow {
+  color: var(--faded);
+  font-family: 'DM Mono', monospace;
+  margin-left: 0.3rem;
+}
+
+.practice-note {
+  margin-top: 1.1rem;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: var(--faded);
+  text-align: center;
+  padding-top: 0.85rem;
+  border-top: 1px dashed rgba(26, 17, 8, 0.2);
+}
+
+.practice-empty {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 0.95rem;
+  color: var(--faded);
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+  font-style: italic;
+}
+
 /* ===== Responsive ===== */
 @media (max-width: 640px) {
   .page { width: 94vw; }
@@ -653,4 +915,10 @@ body {
   }
 
   .card-mode-card::before { inset: 6px; }
+
+  .practice-modal-dialog { padding: 1.5rem 1.1rem 1.7rem; }
+  .practice-modal-dialog::before { inset: 6px; }
+  .practice-modal-close { width: 2rem; height: 2rem; font-size: 1.2rem; }
+  .practice-template { padding: 0.75rem 0.8rem; }
+  .practice-item { font-size: 0.88rem; }
 }
