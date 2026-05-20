@@ -5530,5 +5530,983 @@ const KANJI_N5_EXTRA = [
       "reading": "ほん を うります",
       "meaning": "(Saya) menjual buku."
     }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "広",
+    "mean": "Luas, lebar",
+    "desc": "Ruang yang luas atau lebar",
+    "vocab": [
+      {
+        "w": "広島",
+        "f": "ひろしま (Hiroshima)",
+        "r": "hiroshima",
+        "m": "Hiroshima"
+      },
+      {
+        "w": "広さ",
+        "f": "ひろさ (hirosa)",
+        "r": "hirosa",
+        "m": "Lebarnya, luasnya"
+      },
+      {
+        "w": "広告",
+        "f": "こうこく (kōkoku)",
+        "r": "kokoku",
+        "m": "Iklan"
+      }
+    ],
+    "story": "Kanji 広 menggambarkan ruang yang luas di bawah atap (广).",
+    "example": {
+      "sentence": "この部屋は広いです",
+      "reading": "この へや は ひろい です",
+      "meaning": "Kamar ini luas."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "店",
+    "mean": "Toko, kedai",
+    "desc": "Tempat berjualan",
+    "vocab": [
+      {
+        "w": "店員",
+        "f": "てんいん (ten'in)",
+        "r": "tenin",
+        "m": "Pegawai toko"
+      },
+      {
+        "w": "本店",
+        "f": "ほんてん (honten)",
+        "r": "honten",
+        "m": "Kantor pusat"
+      }
+    ],
+    "story": "Kanji 店 menggabungkan 广 (atap) dengan 占 (menempati) — tempat yang ditempati untuk berjualan.",
+    "example": {
+      "sentence": "あの店は安いです",
+      "reading": "あの みせ は やすい です",
+      "meaning": "Toko itu murah."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "度",
+    "mean": "Tingkatan, frekuensi",
+    "desc": "Derajat, kekerapan, atau ukuran",
+    "vocab": [
+      {
+        "w": "一度",
+        "f": "いちど (ichido)",
+        "r": "ichido",
+        "m": "Satu kali"
+      },
+      {
+        "w": "温度",
+        "f": "おんど (ondo)",
+        "r": "ondo",
+        "m": "Temperatur"
+      },
+      {
+        "w": "速度",
+        "f": "そくど (sokudo)",
+        "r": "sokudo",
+        "m": "Kecepatan"
+      }
+    ],
+    "story": "Kanji 度 menggambarkan tangan yang mengukur dari bawah atap — ukuran atau derajat.",
+    "example": {
+      "sentence": "もう一度お願いします",
+      "reading": "もう いちど おねがい します",
+      "meaning": "Mohon sekali lagi."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "病",
+    "mean": "Sakit",
+    "desc": "Penyakit, kondisi tidak sehat",
+    "vocab": [
+      {
+        "w": "病気",
+        "f": "びょうき (byōki)",
+        "r": "byoki",
+        "m": "Penyakit"
+      },
+      {
+        "w": "病人",
+        "f": "びょうにん (byōnin)",
+        "r": "byonin",
+        "m": "Orang sakit"
+      },
+      {
+        "w": "病院",
+        "f": "びょういん (byōin)",
+        "r": "byoin",
+        "m": "Rumah sakit"
+      }
+    ],
+    "story": "Kanji 病 menggabungkan 疒 (radikal sakit) dengan 丙 — kondisi orang yang sakit.",
+    "example": {
+      "sentence": "彼は病気です",
+      "reading": "かれ は びょうき です",
+      "meaning": "Dia sedang sakit."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "疲",
+    "mean": "Letih, penat, lelah",
+    "desc": "Rasa lelah pada tubuh",
+    "vocab": [
+      {
+        "w": "疲れる",
+        "f": "つかれる (tsukareru)",
+        "r": "tsukareru",
+        "m": "Lelah"
+      },
+      {
+        "w": "疲れ",
+        "f": "つかれ (tsukare)",
+        "r": "tsukare",
+        "m": "Kelelahan"
+      }
+    ],
+    "story": "Kanji 疲 menggabungkan 疒 (radikal sakit) dengan 皮 (kulit) — kondisi tubuh yang lelah.",
+    "example": {
+      "sentence": "今日は疲れました",
+      "reading": "きょう は つかれました",
+      "meaning": "Hari ini (saya) lelah."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "痛",
+    "mean": "Rasa sakit, nyeri",
+    "desc": "Rasa sakit pada tubuh",
+    "vocab": [
+      {
+        "w": "痛む",
+        "f": "いたむ (itamu)",
+        "r": "itamu",
+        "m": "Terluka"
+      },
+      {
+        "w": "痛み止め",
+        "f": "いたみどめ (itamidome)",
+        "r": "itamidome",
+        "m": "Pereda rasa sakit"
+      },
+      {
+        "w": "頭痛",
+        "f": "ずつう (zutsū)",
+        "r": "zutsu",
+        "m": "Sakit kepala"
+      }
+    ],
+    "story": "Kanji 痛 menggabungkan 疒 (radikal sakit) dengan 甬 — rasa sakit yang menusuk.",
+    "example": {
+      "sentence": "頭が痛いです",
+      "reading": "あたま が いたい です",
+      "meaning": "Kepala (saya) sakit."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "屋",
+    "mean": "Atap, toko",
+    "desc": "Atap rumah; juga digunakan untuk menyebut toko",
+    "vocab": [
+      {
+        "w": "肉屋",
+        "f": "にくや (nikuya)",
+        "r": "nikuya",
+        "m": "Toko daging"
+      },
+      {
+        "w": "屋上",
+        "f": "おくじょう (okujō)",
+        "r": "okujo",
+        "m": "Atap, loteng"
+      }
+    ],
+    "story": "Kanji 屋 menggabungkan 尸 (atap miring) dengan 至 (sampai) — tempat singgah di bawah atap.",
+    "example": {
+      "sentence": "本屋に行きます",
+      "reading": "ほんや に いきます",
+      "meaning": "(Saya) pergi ke toko buku."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "国",
+    "mean": "Negara",
+    "desc": "Negara, tanah air",
+    "vocab": [
+      {
+        "w": "国立大学",
+        "f": "こくりつだいがく (kokuritsu daigaku)",
+        "r": "kokuritsu daigaku",
+        "m": "Universitas negeri"
+      },
+      {
+        "w": "外国人",
+        "f": "がいこくじん (gaikokujin)",
+        "r": "gaikokujin",
+        "m": "Orang asing"
+      }
+    ],
+    "story": "Kanji 国 menggambarkan wilayah (口) yang berisi raja dengan giok (玉) — sebuah negara.",
+    "example": {
+      "sentence": "どこの国から来ましたか",
+      "reading": "どこ の くに から きました か",
+      "meaning": "Anda berasal dari negara mana?"
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "回",
+    "mean": "Berbelok, berputar",
+    "desc": "Berputar atau pengulangan",
+    "vocab": [
+      {
+        "w": "回る",
+        "f": "まわる (mawaru)",
+        "r": "mawaru",
+        "m": "Berputar"
+      },
+      {
+        "w": "回す",
+        "f": "まわす (mawasu)",
+        "r": "mawasu",
+        "m": "Memutar"
+      },
+      {
+        "w": "一回",
+        "f": "いっかい (ikkai)",
+        "r": "ikkai",
+        "m": "Satu kali"
+      }
+    ],
+    "story": "Kanji 回 menggambarkan pusaran air — bentuk yang berputar.",
+    "example": {
+      "sentence": "もう一回お願いします",
+      "reading": "もう いっかい おねがい します",
+      "meaning": "Mohon sekali lagi."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "困",
+    "mean": "Masalah, kesulitan",
+    "desc": "Berada dalam keadaan sulit",
+    "vocab": [
+      {
+        "w": "困る",
+        "f": "こまる (komaru)",
+        "r": "komaru",
+        "m": "Bermasalah"
+      },
+      {
+        "w": "困難な",
+        "f": "こんなんな (konnan na)",
+        "r": "konnan na",
+        "m": "Sukar, susah"
+      }
+    ],
+    "story": "Kanji 困 menggambarkan pohon (木) yang terkurung dalam kotak (口) — situasi sulit.",
+    "example": {
+      "sentence": "とても困っています",
+      "reading": "とても こまって います",
+      "meaning": "(Saya) sangat kesulitan."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "開",
+    "mean": "Buka, membuka",
+    "desc": "Membuka pintu, acara, atau toko",
+    "vocab": [
+      {
+        "w": "開会する",
+        "f": "かいかいする (kaikai suru)",
+        "r": "kaikai suru",
+        "m": "Membuka rapat"
+      },
+      {
+        "w": "開店する",
+        "f": "かいてんする (kaiten suru)",
+        "r": "kaiten suru",
+        "m": "Membuka toko"
+      }
+    ],
+    "story": "Kanji 開 menggambarkan dua tangan yang membuka palang dari gerbang (門).",
+    "example": {
+      "sentence": "ドアを開けてください",
+      "reading": "ドア を あけて ください",
+      "meaning": "Tolong buka pintunya."
+    }
+  },
+  {
+    "bab": "Bab 13",
+    "char": "閉",
+    "mean": "Tutup, menutup",
+    "desc": "Menutup pintu, acara, atau toko",
+    "vocab": [
+      {
+        "w": "閉会する",
+        "f": "へいかいする (heikai suru)",
+        "r": "heikai suru",
+        "m": "Menutup rapat"
+      },
+      {
+        "w": "閉店する",
+        "f": "へいてんする (heiten suru)",
+        "r": "heiten suru",
+        "m": "Menutup toko"
+      }
+    ],
+    "story": "Kanji 閉 menggambarkan palang (才) yang dipasang di gerbang (門) — pintu yang ditutup.",
+    "example": {
+      "sentence": "ドアを閉めてください",
+      "reading": "ドア を しめて ください",
+      "meaning": "Tolong tutup pintunya."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "近",
+    "mean": "Dekat, baru-baru ini",
+    "desc": "Jarak yang dekat atau waktu yang baru",
+    "vocab": [
+      {
+        "w": "近く",
+        "f": "ちかく (chikaku)",
+        "r": "chikaku",
+        "m": "Dekat"
+      },
+      {
+        "w": "近所",
+        "f": "きんじょ (kinjo)",
+        "r": "kinjo",
+        "m": "Tetangga"
+      }
+    ],
+    "story": "Kanji 近 menggabungkan 辶 (berjalan) dengan 斤 (kapak) — jarak yang dapat dijangkau dengan berjalan.",
+    "example": {
+      "sentence": "駅は近いです",
+      "reading": "えき は ちかい です",
+      "meaning": "Stasiunnya dekat."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "遠",
+    "mean": "Jauh, jarak jauh",
+    "desc": "Jarak yang jauh",
+    "vocab": [
+      {
+        "w": "遠く",
+        "f": "とおく (tōku)",
+        "r": "toku",
+        "m": "Jauh"
+      },
+      {
+        "w": "遠足",
+        "f": "えんそく (ensoku)",
+        "r": "ensoku",
+        "m": "Piknik"
+      }
+    ],
+    "story": "Kanji 遠 menggabungkan 辶 (berjalan) dengan 袁 (pakaian panjang) — perjalanan jauh.",
+    "example": {
+      "sentence": "学校は遠いです",
+      "reading": "がっこう は とおい です",
+      "meaning": "Sekolahnya jauh."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "速",
+    "mean": "Cepat",
+    "desc": "Kecepatan yang tinggi",
+    "vocab": [
+      {
+        "w": "速い",
+        "f": "はやい (hayai)",
+        "r": "hayai",
+        "m": "Cepat"
+      },
+      {
+        "w": "速度",
+        "f": "そくど (sokudo)",
+        "r": "sokudo",
+        "m": "Kecepatan"
+      }
+    ],
+    "story": "Kanji 速 menggabungkan 辶 (berjalan) dengan 束 (ikat) — bergerak terikat erat, lalu menjadi cepat.",
+    "example": {
+      "sentence": "新幹線は速いです",
+      "reading": "しんかんせん は はやい です",
+      "meaning": "Shinkansen cepat."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "遅",
+    "mean": "Lambat, terlambat",
+    "desc": "Tidak cepat atau melewati waktu",
+    "vocab": [
+      {
+        "w": "遅い",
+        "f": "おそい (osoi)",
+        "r": "osoi",
+        "m": "Lambat"
+      },
+      {
+        "w": "遅れる",
+        "f": "おくれる (okureru)",
+        "r": "okureru",
+        "m": "Terlambat"
+      },
+      {
+        "w": "遅刻する",
+        "f": "ちこくする (chikoku suru)",
+        "r": "chikoku suru",
+        "m": "Datang terlambat"
+      }
+    ],
+    "story": "Kanji 遅 menggabungkan 辶 (berjalan) dengan 犀 (badak) — gerakan yang lambat.",
+    "example": {
+      "sentence": "バスが遅れました",
+      "reading": "バス が おくれました",
+      "meaning": "Bus terlambat."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "道",
+    "mean": "Jalan",
+    "desc": "Jalan atau jalur",
+    "vocab": [
+      {
+        "w": "水道",
+        "f": "すいどう (suidō)",
+        "r": "suido",
+        "m": "Saluran air"
+      },
+      {
+        "w": "車道",
+        "f": "しゃどう (shadō)",
+        "r": "shado",
+        "m": "Jalan raya"
+      },
+      {
+        "w": "歩道",
+        "f": "ほどう (hodō)",
+        "r": "hodo",
+        "m": "Trotoar"
+      }
+    ],
+    "story": "Kanji 道 menggabungkan 辶 (berjalan) dengan 首 (kepala) — orang yang berjalan di jalan.",
+    "example": {
+      "sentence": "この道はせまいです",
+      "reading": "この みち は せまい です",
+      "meaning": "Jalan ini sempit."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "青",
+    "mean": "Biru",
+    "desc": "Warna biru atau hijau muda",
+    "vocab": [
+      {
+        "w": "青信号",
+        "f": "あおしんごう (aoshingō)",
+        "r": "aoshingo",
+        "m": "Lampu lalu lintas (hijau)"
+      },
+      {
+        "w": "青年",
+        "f": "せいねん (seinen)",
+        "r": "seinen",
+        "m": "Pemuda"
+      }
+    ],
+    "story": "Kanji 青 menggambarkan tunas tumbuhan yang hijau-biru di atas tanah — warna biru.",
+    "example": {
+      "sentence": "空が青いです",
+      "reading": "そら が あおい です",
+      "meaning": "Langit berwarna biru."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "晴",
+    "mean": "Bagus, cerah",
+    "desc": "Cuaca yang cerah",
+    "vocab": [
+      {
+        "w": "晴れる",
+        "f": "はれる (hareru)",
+        "r": "hareru",
+        "m": "Membersihkan, menjernihkan (cuaca cerah)"
+      },
+      {
+        "w": "晴れ",
+        "f": "はれ (hare)",
+        "r": "hare",
+        "m": "Cerah"
+      },
+      {
+        "w": "晴天",
+        "f": "せいてん (seiten)",
+        "r": "seiten",
+        "m": "Cuaca cerah"
+      }
+    ],
+    "story": "Kanji 晴 menggabungkan 日 (matahari) dengan 青 (biru) — matahari di langit biru.",
+    "example": {
+      "sentence": "今日は晴れです",
+      "reading": "きょう は はれ です",
+      "meaning": "Hari ini cerah."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "静",
+    "mean": "Tenang, sepi",
+    "desc": "Kondisi yang tenang dan diam",
+    "vocab": [
+      {
+        "w": "静かな",
+        "f": "しずかな (shizuka na)",
+        "r": "shizuka na",
+        "m": "Tenang, diam"
+      },
+      {
+        "w": "静まる",
+        "f": "しずまる (shizumaru)",
+        "r": "shizumaru",
+        "m": "Mendiamkan, menenangkan"
+      }
+    ],
+    "story": "Kanji 静 menggabungkan 青 (biru/bersih) dengan 争 (berebut) — keheningan setelah persaingan reda.",
+    "example": {
+      "sentence": "この部屋は静かです",
+      "reading": "この へや は しずか です",
+      "meaning": "Ruangan ini tenang."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "寺",
+    "mean": "Candi, kuil (Buddha)",
+    "desc": "Tempat ibadah Buddha",
+    "vocab": [
+      {
+        "w": "東大寺",
+        "f": "とうだいじ (Tōdaiji)",
+        "r": "todaiji",
+        "m": "Kuil Todaiji"
+      }
+    ],
+    "story": "Kanji 寺 menggabungkan 土 (tanah) dengan 寸 (tangan) — tempat suci yang dibangun di atas tanah.",
+    "example": {
+      "sentence": "京都にお寺があります",
+      "reading": "きょうと に おてら が あります",
+      "meaning": "Ada kuil di Kyoto."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "持",
+    "mean": "Memegang",
+    "desc": "Memegang atau memiliki sesuatu",
+    "vocab": [
+      {
+        "w": "持ち物",
+        "f": "もちもの (mochimono)",
+        "r": "mochimono",
+        "m": "Aksesoris, barang bawaan"
+      },
+      {
+        "w": "持続する",
+        "f": "じぞくする (jizoku suru)",
+        "r": "jizoku suru",
+        "m": "Melanjutkan"
+      }
+    ],
+    "story": "Kanji 持 menggabungkan 扌 (tangan) dengan 寺 (kuil) — tangan yang memegang erat.",
+    "example": {
+      "sentence": "かばんを持ちます",
+      "reading": "かばん を もちます",
+      "meaning": "(Saya) membawa tas."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "荷",
+    "mean": "Muatan, beban",
+    "desc": "Barang bawaan atau muatan",
+    "vocab": [
+      {
+        "w": "手荷物",
+        "f": "てにもつ (tenimotsu)",
+        "r": "tenimotsu",
+        "m": "Bagasi"
+      },
+      {
+        "w": "荷作りする",
+        "f": "にづくりする (nizukuri suru)",
+        "r": "nizukuri suru",
+        "m": "Mengepak"
+      }
+    ],
+    "story": "Kanji 荷 menggabungkan 艹 (tumbuhan) dengan 何 (apa) — beban yang dibawa.",
+    "example": {
+      "sentence": "荷物が重いです",
+      "reading": "にもつ が おもい です",
+      "meaning": "Barang bawaannya berat."
+    }
+  },
+  {
+    "bab": "Bab 14",
+    "char": "歌",
+    "mean": "Lagu",
+    "desc": "Lagu atau menyanyi",
+    "vocab": [
+      {
+        "w": "歌う",
+        "f": "うたう (utau)",
+        "r": "utau",
+        "m": "Menyanyi"
+      },
+      {
+        "w": "歌手",
+        "f": "かしゅ (kashu)",
+        "r": "kashu",
+        "m": "Penyanyi"
+      }
+    ],
+    "story": "Kanji 歌 menggabungkan 哥 (suara) dengan 欠 (membuka mulut) — orang yang membuka mulut bernyanyi.",
+    "example": {
+      "sentence": "歌を歌います",
+      "reading": "うた を うたいます",
+      "meaning": "(Saya) menyanyikan lagu."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "友",
+    "mean": "Teman",
+    "desc": "Teman atau sahabat",
+    "vocab": [
+      {
+        "w": "友だち",
+        "f": "ともだち (tomodachi)",
+        "r": "tomodachi",
+        "m": "Teman"
+      },
+      {
+        "w": "友人",
+        "f": "ゆうじん (yūjin)",
+        "r": "yujin",
+        "m": "Sahabat"
+      }
+    ],
+    "story": "Kanji 友 menggambarkan dua tangan yang saling bersalaman — simbol persahabatan.",
+    "example": {
+      "sentence": "彼は私の友だちです",
+      "reading": "かれ は わたし の ともだち です",
+      "meaning": "Dia adalah teman saya."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "父",
+    "mean": "Ayah",
+    "desc": "Ayah (untuk menyebut ayah sendiri)",
+    "vocab": [
+      {
+        "w": "父親",
+        "f": "ちちおや (chichioya)",
+        "r": "chichioya",
+        "m": "Ayah"
+      },
+      {
+        "w": "父母",
+        "f": "ふぼ (fubo)",
+        "r": "fubo",
+        "m": "Ayah dan ibu"
+      },
+      {
+        "w": "お父さん",
+        "f": "おとうさん (otōsan)",
+        "r": "otosan",
+        "m": "Ayah (sendiri / orang lain)"
+      }
+    ],
+    "story": "Kanji 父 menggambarkan tangan yang memegang kapak — sosok ayah yang bekerja.",
+    "example": {
+      "sentence": "父は会社員です",
+      "reading": "ちち は かいしゃいん です",
+      "meaning": "Ayah saya karyawan perusahaan."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "母",
+    "mean": "Ibu",
+    "desc": "Ibu (untuk menyebut ibu sendiri)",
+    "vocab": [
+      {
+        "w": "お母さん",
+        "f": "おかあさん (okaasan)",
+        "r": "okaasan",
+        "m": "Ibu (sendiri / orang lain)"
+      },
+      {
+        "w": "母国",
+        "f": "ぼこく (bokoku)",
+        "r": "bokoku",
+        "m": "Tanah air"
+      },
+      {
+        "w": "母親",
+        "f": "ははおや (hahaoya)",
+        "r": "hahaoya",
+        "m": "Ibu"
+      }
+    ],
+    "story": "Kanji 母 menggambarkan sosok ibu yang sedang menyusui anak.",
+    "example": {
+      "sentence": "母は料理が上手です",
+      "reading": "はは は りょうり が じょうず です",
+      "meaning": "Ibu saya pandai memasak."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "兄",
+    "mean": "Kakak laki-laki",
+    "desc": "Kakak laki-laki (untuk menyebut kakak sendiri)",
+    "vocab": [
+      {
+        "w": "お兄さん",
+        "f": "おにいさん (oniisan)",
+        "r": "oniisan",
+        "m": "Kakak laki-laki (orang lain)"
+      },
+      {
+        "w": "兄弟",
+        "f": "きょうだい (kyōdai)",
+        "r": "kyodai",
+        "m": "Saudara"
+      },
+      {
+        "w": "父兄",
+        "f": "ふけい (fukei)",
+        "r": "fukei",
+        "m": "Wali"
+      }
+    ],
+    "story": "Kanji 兄 menggambarkan orang dengan mulut besar yang berbicara — kakak yang memimpin adik.",
+    "example": {
+      "sentence": "兄は東京にいます",
+      "reading": "あに は とうきょう に います",
+      "meaning": "Kakak saya ada di Tokyo."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "姉",
+    "mean": "Kakak perempuan",
+    "desc": "Kakak perempuan (untuk menyebut kakak sendiri)",
+    "vocab": [
+      {
+        "w": "お姉さん",
+        "f": "おねえさん (oneesan)",
+        "r": "oneesan",
+        "m": "Kakak perempuan (orang lain)"
+      },
+      {
+        "w": "姉妹",
+        "f": "しまい (shimai)",
+        "r": "shimai",
+        "m": "Saudari"
+      }
+    ],
+    "story": "Kanji 姉 menggabungkan 女 (perempuan) dengan 市 (pasar) — perempuan yang lebih tua.",
+    "example": {
+      "sentence": "姉は看護師です",
+      "reading": "あね は かんごし です",
+      "meaning": "Kakak perempuan saya perawat."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "弟",
+    "mean": "Adik laki-laki",
+    "desc": "Adik laki-laki",
+    "vocab": [
+      {
+        "w": "子弟",
+        "f": "してい (shitei)",
+        "r": "shitei",
+        "m": "Anak laki-laki"
+      },
+      {
+        "w": "弟子",
+        "f": "でし (deshi)",
+        "r": "deshi",
+        "m": "Murid"
+      }
+    ],
+    "story": "Kanji 弟 menggambarkan tali yang melilit tongkat secara teratur — urutan adik di bawah kakak.",
+    "example": {
+      "sentence": "弟は高校生です",
+      "reading": "おとうと は こうこうせい です",
+      "meaning": "Adik laki-laki saya siswa SMA."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "妹",
+    "mean": "Adik perempuan",
+    "desc": "Adik perempuan",
+    "vocab": [
+      {
+        "w": "姉妹",
+        "f": "しまい (shimai)",
+        "r": "shimai",
+        "m": "Saudari"
+      }
+    ],
+    "story": "Kanji 妹 menggabungkan 女 (perempuan) dengan 未 (belum) — perempuan yang lebih muda/belum dewasa.",
+    "example": {
+      "sentence": "妹は中学生です",
+      "reading": "いもうと は ちゅうがくせい です",
+      "meaning": "Adik perempuan saya siswa SMP."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "夫",
+    "mean": "Suami",
+    "desc": "Suami (sendiri)",
+    "vocab": [
+      {
+        "w": "夫婦",
+        "f": "ふうふ (fūfu)",
+        "r": "fufu",
+        "m": "Pasutri"
+      },
+      {
+        "w": "〜夫人",
+        "f": "〜ふじん (~fujin)",
+        "r": "fujin",
+        "m": "Nyonya ~"
+      }
+    ],
+    "story": "Kanji 夫 menggambarkan orang dewasa (大) dengan ikat kepala — sosok suami.",
+    "example": {
+      "sentence": "夫は医者です",
+      "reading": "おっと は いしゃ です",
+      "meaning": "Suami saya dokter."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "妻",
+    "mean": "Istri",
+    "desc": "Istri (sendiri)",
+    "vocab": [
+      {
+        "w": "夫妻",
+        "f": "ふさい (fusai)",
+        "r": "fusai",
+        "m": "Suami istri"
+      }
+    ],
+    "story": "Kanji 妻 menggambarkan perempuan (女) yang merapikan rambut — sosok istri.",
+    "example": {
+      "sentence": "妻は先生です",
+      "reading": "つま は せんせい です",
+      "meaning": "Istri saya guru."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "彼",
+    "mean": "Dia (laki-laki)",
+    "desc": "Dia laki-laki atau pacar laki-laki",
+    "vocab": [
+      {
+        "w": "彼女",
+        "f": "かのじょ (kanojo)",
+        "r": "kanojo",
+        "m": "Dia (perempuan)"
+      },
+      {
+        "w": "彼ら",
+        "f": "かれら (karera)",
+        "r": "karera",
+        "m": "Mereka"
+      }
+    ],
+    "story": "Kanji 彼 menggabungkan 彳 (langkah) dengan 皮 (kulit) — orang lain di kejauhan.",
+    "example": {
+      "sentence": "彼は学生です",
+      "reading": "かれ は がくせい です",
+      "meaning": "Dia (laki-laki) adalah mahasiswa."
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "主",
+    "mean": "Tuan, pemilik",
+    "desc": "Pemilik atau tuan",
+    "vocab": [
+      {
+        "w": "持ち主",
+        "f": "もちぬし (mochinushi)",
+        "r": "mochinushi",
+        "m": "Pemilik"
+      },
+      {
+        "w": "主人",
+        "f": "しゅじん (shujin)",
+        "r": "shujin",
+        "m": "Tuan rumah"
+      }
+    ],
+    "story": "Kanji 主 menggambarkan nyala lilin di atas tempat lilin — tokoh utama yang menerangi.",
+    "example": {
+      "sentence": "この本の持ち主は誰ですか",
+      "reading": "この ほん の もちぬし は だれ です か",
+      "meaning": "Siapa pemilik buku ini?"
+    }
+  },
+  {
+    "bab": "Bab 15",
+    "char": "奥",
+    "mean": "Dalam, interior, kedalaman",
+    "desc": "Bagian dalam atau ujung yang dalam",
+    "vocab": [
+      {
+        "w": "奥さん",
+        "f": "おくさん (okusan)",
+        "r": "okusan",
+        "m": "Istri (orang lain)"
+      }
+    ],
+    "story": "Kanji 奥 menggambarkan ruang dalam rumah yang terlindung — kedalaman.",
+    "example": {
+      "sentence": "奥さんはお元気ですか",
+      "reading": "おくさん は おげんき です か",
+      "meaning": "Apakah istri Anda sehat?"
+    }
   }
 ];
