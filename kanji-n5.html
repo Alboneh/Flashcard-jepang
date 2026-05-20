@@ -62,6 +62,10 @@
       <span class="nav-kanji-preview">🏠</span>
       <span>Beranda</span>
     </div>
+    <div class="nav-item" onclick="showCardMode()" id="navCardMode">
+      <span class="nav-kanji-preview">▦</span>
+      <span>Mode Kartu</span>
+    </div>
     <div class="nav-section-label">Kategori</div>
     <div id="navList"></div>
   </nav>
@@ -116,6 +120,24 @@
     </div>
   </div>
 
+  <!-- CARD MODE VIEW -->
+  <div id="cardModeView" style="display:none">
+    <div class="page-header">
+      <div class="badge badge-n5">JLPT N5</div>
+      <h1>Mode Kartu Kanji</h1>
+      <p>Pelajari satu kanji per kartu — lengkap dengan arti, animasi goresan, on/kun, dan contoh.</p>
+    </div>
+    <div class="card-mode-filter" id="cardBabFilter">
+      <button type="button" class="cm-bab-btn active" data-bab="Semua" onclick="setCardBab('Semua')">Semua</button>
+    </div>
+    <div class="card-mode-counter" id="cardModeCounter">0 / 0</div>
+    <div class="card-mode-kanji" id="cardModeKanji"></div>
+    <div class="card-mode-nav">
+      <button type="button" class="btn-secondary" id="cardPrevBtn" onclick="cardModeNav(-1)">‹ Sebelumnya</button>
+      <button type="button" class="btn-secondary" id="cardNextBtn" onclick="cardModeNav(1)">Selanjutnya ›</button>
+    </div>
+  </div>
+
   <!-- QUIZ VIEW -->
   <div id="quizView">
     <div class="quiz-header">
@@ -155,6 +177,7 @@
 
 <script src="data/kanji_n5_extra_data.js"></script>
 <script src="data/kanji_n5_readings.js"></script>
+<script src="data/kanji_n5_card_extras.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/hanzi-writer@3.7/dist/hanzi-writer.min.js"></script>
 <script>
 // ================================================================
@@ -334,12 +357,13 @@ function resolveInitialRoute() {
   return localStorage.getItem('kanjiN5LastRoute') || 'home';
 }
 
-function renderStrokeOrder(char) {
-  const canvas = document.getElementById('strokeCanvas');
-  const label = document.getElementById('strokeLabel');
-  if (!canvas || !label) return;
-
-  label.textContent = `Stroke ${char}`;
+function renderStrokeOrder(char, canvasId, labelId) {
+  canvasId = canvasId || 'strokeCanvas';
+  labelId = labelId || 'strokeLabel';
+  const canvas = document.getElementById(canvasId);
+  const label = document.getElementById(labelId);
+  if (!canvas) return;
+  if (label) label.textContent = `Stroke ${char}`;
   canvas.innerHTML = '';
   strokeLoopId += 1;
   const localLoopId = strokeLoopId;
@@ -350,7 +374,7 @@ function renderStrokeOrder(char) {
   }
 
   try {
-    const writer = HanziWriter.create('strokeCanvas', char, {
+    const writer = HanziWriter.create(canvasId, char, {
       width: 180,
       height: 180,
       padding: 6,
@@ -409,7 +433,11 @@ function buildSidebar() {
 
 function setActiveNav(id) {
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-  const el = document.getElementById(id === 'home' ? 'navHome' : 'nav_' + id);
+  let elId;
+  if (id === 'home') elId = 'navHome';
+  else if (id === 'cardmode') elId = 'navCardMode';
+  else elId = 'nav_' + id;
+  const el = document.getElementById(elId);
   if (el) el.classList.add('active');
 }
 
@@ -424,10 +452,245 @@ function showHome() {
   document.getElementById('homeView').style.display = '';
   document.getElementById('catView').style.display = 'none';
   document.getElementById('quizView').style.display = 'none';
+  const cm = document.getElementById('cardModeView');
+  if (cm) cm.style.display = 'none';
   setActiveNav('home');
   updateProgress();
   buildCatOverview();
 }
+
+// ================================================================
+// CARD MODE
+// ================================================================
+let cardModeKanjiList = [];
+let cardModeIdx = 0;
+let cardModeBab = 'Semua';
+
+function buildAllKanjiFlat() {
+  const list = [];
+  if (typeof KANJI_N5_EXTRA === 'undefined') return list;
+  KANJI_N5_EXTRA.forEach((k) => {
+    list.push(k);
+  });
+  return list;
+}
+
+function getCardModeBabs() {
+  const set = new Set();
+  if (typeof KANJI_N5_EXTRA !== 'undefined') {
+    KANJI_N5_EXTRA.forEach((k) => { if (k.bab) set.add(k.bab); });
+  }
+  const arr = Array.from(set);
+  arr.sort((a, b) => {
+    const na = parseInt(String(a).replace(/[^0-9]/g, ''), 10) || 0;
+    const nb = parseInt(String(b).replace(/[^0-9]/g, ''), 10) || 0;
+    return na - nb;
+  });
+  return arr;
+}
+
+function buildCardBabFilter() {
+  const container = document.getElementById('cardBabFilter');
+  if (!container) return;
+  const babs = getCardModeBabs();
+  container.innerHTML = '';
+  const mkBtn = (bab) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cm-bab-btn' + (cardModeBab === bab ? ' active' : '');
+    btn.textContent = bab;
+    btn.dataset.bab = bab;
+    btn.onclick = () => setCardBab(bab);
+    return btn;
+  };
+  container.appendChild(mkBtn('Semua'));
+  babs.forEach((b) => container.appendChild(mkBtn(b)));
+}
+
+function setCardBab(bab) {
+  cardModeBab = bab;
+  cardModeIdx = 0;
+  document.querySelectorAll('#cardBabFilter .cm-bab-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.bab === bab);
+  });
+  refreshCardModeList();
+  renderCardMode();
+}
+
+function refreshCardModeList() {
+  const all = buildAllKanjiFlat();
+  cardModeKanjiList = cardModeBab === 'Semua'
+    ? all
+    : all.filter((k) => k.bab === cardModeBab);
+  if (cardModeIdx >= cardModeKanjiList.length) cardModeIdx = 0;
+}
+
+function showCardMode() {
+  closeSidebar();
+  saveLastRoute('cardmode');
+  document.getElementById('homeView').style.display = 'none';
+  document.getElementById('catView').style.display = 'none';
+  document.getElementById('quizView').style.display = 'none';
+  document.getElementById('cardModeView').style.display = '';
+  setActiveNav('cardmode');
+  buildCardBabFilter();
+  refreshCardModeList();
+  renderCardMode();
+}
+
+function classifyVocabReading(v, kanjiChar, readings) {
+  if (!readings || !v || !v.r) return 'mixed';
+  const stripDiacritics = (s) => String(s)
+    .replace(/ō/g, 'o').replace(/ū/g, 'u').replace(/ā/g, 'a').replace(/ē/g, 'e').replace(/ī/g, 'i')
+    .replace(/Ō/g, 'O').replace(/Ū/g, 'U');
+  const clean = (s) => stripDiacritics(String(s || '').replace(/\([^)]*\)/g, '').replace(/[—\s]/g, '').toLowerCase());
+  const rNorm = stripDiacritics(String(v.r).toLowerCase().replace(/[\s\-']/g, ''));
+
+  const onList = (readings.onR || '').split('・').map(clean).filter((x) => x && x !== '—');
+  const kunList = (readings.kunR || '').split('・').map(clean).filter((x) => x && x !== '—');
+
+  let bestOnLen = 0, bestKunLen = 0;
+  for (const r of onList) { if (r && rNorm.includes(r) && r.length > bestOnLen) bestOnLen = r.length; }
+  for (const r of kunList) { if (r && rNorm.includes(r) && r.length > bestKunLen) bestKunLen = r.length; }
+
+  if (bestOnLen === 0 && bestKunLen === 0) return 'mixed';
+  // Pilih yang substring-match nya lebih panjang (lebih spesifik).
+  // Contoh: untuk 私 dgn r="watashi", on="shi"(3) vs kun="watashi"(7) → kun menang.
+  if (bestKunLen > bestOnLen) return 'kun';
+  if (bestOnLen > bestKunLen) return 'on';
+  // Tie: prefer on (kebanyakan compound jepang on-yomi).
+  return 'on';
+}
+
+function buildReadingExamples(k, readings, kind, max) {
+  const out = [];
+  const seenWords = new Set();
+  const push = (v) => {
+    if (!v || !v.w || seenWords.has(v.w)) return false;
+    seenWords.add(v.w);
+    out.push(v);
+    return out.length >= max;
+  };
+  // 1) Contoh hasil klasifikasi dari vocab utama.
+  if (k && k.vocab) {
+    for (const v of k.vocab) {
+      const cls = classifyVocabReading(v, k.char, readings);
+      if (cls === kind && push(v)) return out;
+    }
+  }
+  // 2) Tambahan eksplisit dari KANJI_CARD_EXTRAS (untuk reading langka).
+  if (typeof KANJI_CARD_EXTRAS !== 'undefined' && k && KANJI_CARD_EXTRAS[k.char]) {
+    const extras = KANJI_CARD_EXTRAS[k.char][kind] || [];
+    for (const v of extras) {
+      if (push(v)) return out;
+    }
+  }
+  return out;
+}
+
+function escapeKanjiHtml(s) {
+  return String(s == null ? '' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
+function renderCardMode() {
+  const counter = document.getElementById('cardModeCounter');
+  const card = document.getElementById('cardModeKanji');
+  const prevBtn = document.getElementById('cardPrevBtn');
+  const nextBtn = document.getElementById('cardNextBtn');
+  if (!card) return;
+
+  if (!cardModeKanjiList.length) {
+    counter.textContent = '0 / 0';
+    card.innerHTML = '<div class="cm-empty">Tidak ada kanji di filter ini.</div>';
+    prevBtn.disabled = true;
+    nextBtn.disabled = true;
+    return;
+  }
+
+  const k = cardModeKanjiList[cardModeIdx];
+  const readings = (typeof KANJI_READINGS !== 'undefined' && KANJI_READINGS[k.char]) ? KANJI_READINGS[k.char] : null;
+  counter.textContent = `${cardModeIdx + 1} / ${cardModeKanjiList.length}`;
+  prevBtn.disabled = cardModeIdx === 0;
+  nextBtn.disabled = cardModeIdx === cardModeKanjiList.length - 1;
+
+  const onExamples = buildReadingExamples(k, readings, 'on', 2);
+  const kunExamples = buildReadingExamples(k, readings, 'kun', 2);
+  // Fallback: if a side is empty, fill with 'mixed' so the card never looks bare
+  if (onExamples.length === 0 && k.vocab) {
+    for (const v of k.vocab) {
+      if (classifyVocabReading(v, k.char, readings) === 'mixed') { onExamples.push(v); break; }
+    }
+  }
+  if (kunExamples.length === 0 && k.vocab) {
+    for (const v of k.vocab) {
+      if (classifyVocabReading(v, k.char, readings) === 'mixed' && !onExamples.includes(v)) { kunExamples.push(v); break; }
+    }
+  }
+
+  const renderExampleList = (list) => list.length
+    ? list.map((v) => `
+      <div class="cm-ex-row">
+        <div class="cm-ex-word">${escapeKanjiHtml(v.w)}</div>
+        <div class="cm-ex-furi">${escapeKanjiHtml(v.f)}</div>
+        <div class="cm-ex-meaning">${escapeKanjiHtml(v.m)}</div>
+      </div>
+    `).join('')
+    : '<div class="cm-ex-empty">— belum ada contoh —</div>';
+
+  card.innerHTML = `
+    <div class="cm-bab-badge">${escapeKanjiHtml(k.bab || '')}</div>
+    <div class="cm-meaning">${escapeKanjiHtml(k.mean || '')}</div>
+    ${k.desc ? `<div class="cm-desc">${escapeKanjiHtml(k.desc)}</div>` : ''}
+    <div class="cm-stroke-wrap">
+      <div id="cardStrokeCanvas" class="cm-stroke-canvas">${escapeKanjiHtml(k.char)}</div>
+    </div>
+    <div class="cm-readings">
+      <div class="cm-reading cm-reading-on">
+        <div class="cm-reading-head">
+          <span class="cm-reading-label">音読み · onyomi</span>
+          <span class="cm-reading-val">${escapeKanjiHtml(readings ? readings.on : '—')}</span>
+          ${readings && readings.onR ? `<span class="cm-reading-rom">${escapeKanjiHtml(readings.onR)}</span>` : ''}
+        </div>
+        <div class="cm-ex-list">${renderExampleList(onExamples)}</div>
+      </div>
+      <div class="cm-reading cm-reading-kun">
+        <div class="cm-reading-head">
+          <span class="cm-reading-label">訓読み · kunyomi</span>
+          <span class="cm-reading-val">${escapeKanjiHtml(readings ? readings.kun : '—')}</span>
+          ${readings && readings.kunR ? `<span class="cm-reading-rom">${escapeKanjiHtml(readings.kunR)}</span>` : ''}
+        </div>
+        <div class="cm-ex-list">${renderExampleList(kunExamples)}</div>
+      </div>
+    </div>
+  `;
+
+  renderStrokeOrder(k.char, 'cardStrokeCanvas');
+}
+
+function cardModeNav(dir) {
+  if (!cardModeKanjiList.length) return;
+  cardModeIdx = Math.max(0, Math.min(cardModeKanjiList.length - 1, cardModeIdx + dir));
+  renderCardMode();
+  const cardEl = document.getElementById('cardModeKanji');
+  if (cardEl) cardEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+// Card mode swipe support
+(function () {
+  let startX = 0;
+  document.addEventListener('touchstart', (e) => { startX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    const cm = document.getElementById('cardModeView');
+    if (!cm || cm.style.display === 'none') return;
+    const diff = startX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 50) cardModeNav(diff > 0 ? 1 : -1);
+  }, { passive: true });
+})();
 
 function buildCatOverview() {
   const grid = document.getElementById('catOverviewGrid');
@@ -463,6 +726,8 @@ function showCategory(catId) {
   document.getElementById('homeView').style.display = 'none';
   document.getElementById('catView').style.display = '';
   document.getElementById('quizView').style.display = 'none';
+  const cm = document.getElementById('cardModeView');
+  if (cm) cm.style.display = 'none';
   setActiveNav(catId);
 
   document.getElementById('catViewTitle').textContent = currentCat.name;
@@ -756,6 +1021,8 @@ function startQuiz(mode = 'bab') {
     resetQuizViewShell();
     document.getElementById('catView').style.display = 'none';
     document.getElementById('quizView').style.display = 'block';
+    const cmHide = document.getElementById('cardModeView');
+    if (cmHide) cmHide.style.display = 'none';
     const prepFb = document.getElementById('quizFeedback');
     prepFb.textContent = 'Menyiapkan kuis...';
     prepFb.className = 'quiz-feedback show';
