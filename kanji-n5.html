@@ -209,7 +209,8 @@ function buildDisplayCategoriesByBab() {
     { bab: "Bab 8", id: "bab_8", emoji: "8️⃣" },
     { bab: "Bab 9", id: "bab_9", emoji: "9️⃣" },
     { bab: "Bab 10", id: "bab_10", emoji: "🔟" },
-    { bab: "Bab 11", id: "bab_11", emoji: "1️⃣1️⃣" }
+    { bab: "Bab 11", id: "bab_11", emoji: "1️⃣1️⃣" },
+    { bab: "Bab 12", id: "bab_12", emoji: "1️⃣2️⃣" }
   ];
   const nextBabCategory = {
     bab: "Belum Dipelajari",
@@ -340,9 +341,20 @@ function allFurigana() {
   return [...new Set(f)];
 }
 
-function saveLastRoute(route) {
+function saveLastRoute(route, params) {
   localStorage.setItem('kanjiN5LastRoute', route);
-  const hash = route === 'home' ? '#home' : `#cat=${encodeURIComponent(route)}`;
+  if (route === 'cardmode' && params && params.bab) {
+    localStorage.setItem('kanjiN5LastCardBab', params.bab);
+  }
+  let hash;
+  if (route === 'home') {
+    hash = '#home';
+  } else if (route === 'cardmode') {
+    const bab = params && params.bab;
+    hash = bab && bab !== 'Semua' ? `#cardmode=${encodeURIComponent(bab)}` : '#cardmode';
+  } else {
+    hash = `#cat=${encodeURIComponent(route)}`;
+  }
   if (window.location.hash !== hash) {
     history.replaceState(null, '', hash);
   }
@@ -351,10 +363,33 @@ function saveLastRoute(route) {
 function resolveInitialRoute() {
   const hash = window.location.hash || '';
   if (hash.startsWith('#cat=')) {
-    return decodeURIComponent(hash.slice(5));
+    return { type: 'cat', id: decodeURIComponent(hash.slice(5)) };
   }
-  if (hash === '#home') return 'home';
-  return localStorage.getItem('kanjiN5LastRoute') || 'home';
+  if (hash === '#home') return { type: 'home' };
+  if (hash === '#cardmode') {
+    return { type: 'cardmode', bab: localStorage.getItem('kanjiN5LastCardBab') || 'Semua' };
+  }
+  if (hash.startsWith('#cardmode=')) {
+    return { type: 'cardmode', bab: decodeURIComponent(hash.slice(10)) };
+  }
+  const stored = localStorage.getItem('kanjiN5LastRoute') || 'home';
+  if (stored === 'home') return { type: 'home' };
+  if (stored === 'cardmode') {
+    return { type: 'cardmode', bab: localStorage.getItem('kanjiN5LastCardBab') || 'Semua' };
+  }
+  return { type: 'cat', id: stored };
+}
+
+function loadKanjiCharData(char) {
+  const enc = encodeURIComponent(char);
+  const cn = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data@2/' + enc + '.json';
+  const jp = 'https://cdn.jsdelivr.net/npm/hanzi-writer-data-jp@latest/' + enc + '.json';
+  return fetch(cn)
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .catch(() => fetch(jp).then(r => {
+      if (!r.ok) throw new Error('No stroke data for ' + char);
+      return r.json();
+    }));
 }
 
 function renderStrokeOrder(char, canvasId, labelId) {
@@ -382,7 +417,16 @@ function renderStrokeOrder(char, canvasId, labelId) {
       delayBetweenStrokes: 250,
       strokeColor: '#1a1a2e',
       radicalColor: '#0d6e6e',
-      outlineColor: '#d7d2c8'
+      outlineColor: '#d7d2c8',
+      charDataLoader: (c, onComplete) => {
+        loadKanjiCharData(c).then(onComplete).catch(() => {});
+      },
+      onLoadCharDataError: () => {
+        if (localLoopId !== strokeLoopId) return;
+        canvas.innerHTML = '';
+        canvas.textContent = char;
+        if (label) label.textContent = `${char} (animasi tidak tersedia)`;
+      }
     });
 
     const loop = () => {
@@ -515,6 +559,7 @@ function setCardBab(bab) {
   });
   refreshCardModeList();
   renderCardMode();
+  saveLastRoute('cardmode', { bab });
 }
 
 function refreshCardModeList() {
@@ -527,7 +572,7 @@ function refreshCardModeList() {
 
 function showCardMode() {
   closeSidebar();
-  saveLastRoute('cardmode');
+  saveLastRoute('cardmode', { bab: cardModeBab });
   document.getElementById('homeView').style.display = 'none';
   document.getElementById('catView').style.display = 'none';
   document.getElementById('quizView').style.display = 'none';
@@ -1377,8 +1422,11 @@ function makeKanjiClickable(text) {
 // ================================================================
 buildSidebar();
 const initialRoute = resolveInitialRoute();
-if (initialRoute !== 'home' && DISPLAY_CATEGORIES.some(c => c.id === initialRoute)) {
-  showCategory(initialRoute);
+if (initialRoute.type === 'cardmode') {
+  if (initialRoute.bab) cardModeBab = initialRoute.bab;
+  showCardMode();
+} else if (initialRoute.type === 'cat' && DISPLAY_CATEGORIES.some(c => c.id === initialRoute.id)) {
+  showCategory(initialRoute.id);
 } else {
   showHome();
 }

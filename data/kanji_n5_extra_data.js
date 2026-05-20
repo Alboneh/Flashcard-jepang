@@ -5320,22 +5320,80 @@ const KANJI_N5_EXTRA = [
     }
   },
   {
-    "bab": "Belum Dipelajari",
+    "bab": "Bab 12",
+    "char": "薬",
+    "mean": "Obat",
+    "desc": "Obat-obatan untuk menyembuhkan",
+    "vocab": [
+      {
+        "w": "薬",
+        "f": "くすり (kusuri)",
+        "r": "kusuri",
+        "m": "Obat"
+      },
+      {
+        "w": "薬屋",
+        "f": "くすりや (kusuriya)",
+        "r": "kusuriya",
+        "m": "Apotik"
+      },
+      {
+        "w": "薬局",
+        "f": "やっきょく (yakkyoku)",
+        "r": "yakkyoku",
+        "m": "Farmasi"
+      }
+    ],
+    "story": "Kanji 薬 menggambarkan tanaman herbal (艹) yang membuat orang merasa nyaman (楽). Berarti obat.",
+    "example": {
+      "sentence": "薬を飲みます",
+      "reading": "くすり を のみます",
+      "meaning": "(Saya) minum obat."
+    }
+  },
+  {
+    "bab": "Bab 12",
+    "char": "会",
+    "mean": "Pertemuan, asosiasi",
+    "desc": "Bertemu atau berkumpul",
+    "vocab": [
+      {
+        "w": "会う",
+        "f": "あう (au)",
+        "r": "au",
+        "m": "Bertemu"
+      },
+      {
+        "w": "会社",
+        "f": "かいしゃ (kaisha)",
+        "r": "kaisha",
+        "m": "Perusahaan"
+      },
+      {
+        "w": "会議",
+        "f": "かいぎ (kaigi)",
+        "r": "kaigi",
+        "m": "Rapat"
+      }
+    ],
+    "story": "Kanji 会 menunjukkan orang-orang berkumpul di bawah satu atap untuk bertemu.",
+    "example": {
+      "sentence": "友達に会います",
+      "reading": "ともだち に あいます",
+      "meaning": "(Saya) bertemu dengan teman."
+    }
+  },
+  {
+    "bab": "Bab 12",
     "char": "今",
     "mean": "Sekarang / Saat ini",
     "desc": "Waktu saat ini",
     "vocab": [
       {
-        "w": "今日",
-        "f": "きょう (kyō)",
-        "r": "kyō",
-        "m": "Hari ini"
-      },
-      {
-        "w": "今月",
-        "f": "こんげつ (kongetsu)",
-        "r": "kongetsu",
-        "m": "Bulan ini"
+        "w": "今",
+        "f": "いま (ima)",
+        "r": "ima",
+        "m": "Sekarang"
       },
       {
         "w": "今年",
@@ -5344,10 +5402,16 @@ const KANJI_N5_EXTRA = [
         "m": "Tahun ini"
       },
       {
-        "w": "今",
-        "f": "いま (ima)",
-        "r": "ima",
-        "m": "Sekarang"
+        "w": "今月",
+        "f": "こんげつ (kongetsu)",
+        "r": "kongetsu",
+        "m": "Bulan ini"
+      },
+      {
+        "w": "今日",
+        "f": "きょう (kyō)",
+        "r": "kyō",
+        "m": "Hari ini"
       }
     ],
     "story": "Kanji 今 adalah kombinasi 人 (orang) + 八 (pemisah). Menunjukkan waktu sekarang.",
@@ -5355,6 +5419,116 @@ const KANJI_N5_EXTRA = [
       "sentence": "今、何をしていますか",
       "reading": "いま、 なに を していますか",
       "meaning": "Sekarang, apa yang sedang kamu lakukan?"
+    }
+  },
+  {
+    "bab": "Bab 12",
+    "char": "雪",
+    "mean": "Salju",
+    "desc": "Salju yang turun di musim dingin",
+    "vocab": [
+      {
+        "w": "雪",
+        "f": "ゆき (yuki)",
+        "r": "yuki",
+        "m": "Salju"
+      },
+      {
+        "w": "雪国",
+        "f": "ゆきぐに (yukiguni)",
+        "r": "yukiguni",
+        "m": "Negara bersalju"
+      }
+    ],
+    "story": "Kanji 雪 menggabungkan 雨 (hujan) dengan tangan yang menyapu — air dingin yang membeku menjadi salju.",
+    "example": {
+      "sentence": "今日は雪が降ります",
+      "reading": "きょう は ゆき が ふります",
+      "meaning": "Hari ini turun salju."
+    }
+  },
+  {
+    "bab": "Bab 12",
+    "char": "雲",
+    "mean": "Awan",
+    "desc": "Awan yang berada di langit",
+    "vocab": [
+      {
+        "w": "雲",
+        "f": "くも (kumo)",
+        "r": "kumo",
+        "m": "Awan"
+      }
+    ],
+    "story": "Kanji 雲 menggabungkan 雨 (hujan) dengan 云 (uap naik) — uap yang naik menjadi awan.",
+    "example": {
+      "sentence": "空に雲があります",
+      "reading": "そら に くも が あります",
+      "meaning": "Ada awan di langit."
+    }
+  },
+  {
+    "bab": "Bab 12",
+    "char": "電",
+    "mean": "Listrik",
+    "desc": "Listrik, kelistrikan",
+    "vocab": [
+      {
+        "w": "電気",
+        "f": "でんき (denki)",
+        "r": "denki",
+        "m": "Listrik, lampu listrik"
+      },
+      {
+        "w": "電話",
+        "f": "でんわ (denwa)",
+        "r": "denwa",
+        "m": "Telepon"
+      },
+      {
+        "w": "電車",
+        "f": "でんしゃ (densha)",
+        "r": "densha",
+        "m": "Kereta listrik"
+      }
+    ],
+    "story": "Kanji 電 berasal dari 雨 (hujan) + 申 (petir) — kilat petir yang menjadi simbol listrik.",
+    "example": {
+      "sentence": "電気をつけてください",
+      "reading": "でんき を つけて ください",
+      "meaning": "Tolong nyalakan lampu."
+    }
+  },
+  {
+    "bab": "Bab 12",
+    "char": "売",
+    "mean": "Menjual",
+    "desc": "Menjual barang",
+    "vocab": [
+      {
+        "w": "売る",
+        "f": "うる (uru)",
+        "r": "uru",
+        "m": "Menjual"
+      },
+      {
+        "w": "売り場",
+        "f": "うりば (uriba)",
+        "r": "uriba",
+        "m": "Tempat penjualan"
+      },
+      {
+        "w": "売店",
+        "f": "ばいてん (baiten)",
+        "r": "baiten",
+        "m": "Kios, toko, kedai"
+      }
+    ],
+    "story": "Kanji 売 menggambarkan orang yang mengeluarkan barang (士) dari toko (冗) — kegiatan menjual.",
+    "example": {
+      "sentence": "本を売ります",
+      "reading": "ほん を うります",
+      "meaning": "(Saya) menjual buku."
     }
   }
 ];

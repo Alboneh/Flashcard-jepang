@@ -117,7 +117,6 @@ body.has-global-sidebar {
 .global-sidebar-links a[data-page='kosakata']::before { content: '📘'; }
 .global-sidebar-links a[data-page='bunpo']::before { content: '✍'; }
 .global-sidebar-links a[data-page='kanji']::before { content: '字'; font-family: 'Noto Serif JP', serif; }
-.global-sidebar-links a[data-page='kanji-n5']::before { content: '漢'; font-family: 'Noto Serif JP', serif; }
 .global-sidebar-links a[data-page='latihan-vocab']::before { content: '📝'; }
 .global-sidebar-links a[data-page='latihan-bunpo']::before { content: '💬'; }
 .global-sidebar-links a[data-page='tersembunyi']::before { content: '🙈'; }

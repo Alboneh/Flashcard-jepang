@@ -121,5 +121,11 @@ const KANJI_READINGS = {
   "計": { on: "けい", onR: "kei", kun: "はか(る)", kunR: "haka(ru)" },
   "語": { on: "ご", onR: "go", kun: "かた(る)", kunR: "kata(ru)" },
   "飯": { on: "はん", onR: "han", kun: "めし", kunR: "meshi" },
-  "今": { on: "こん", onR: "kon", kun: "いま", kunR: "ima" }
+  "今": { on: "こん", onR: "kon", kun: "いま", kunR: "ima" },
+  "薬": { on: "やく", onR: "yaku", kun: "くすり", kunR: "kusuri" },
+  "会": { on: "かい", onR: "kai", kun: "あ(う)", kunR: "a(u)" },
+  "雪": { on: "せつ", onR: "setsu", kun: "ゆき", kunR: "yuki" },
+  "雲": { on: "うん", onR: "un", kun: "くも", kunR: "kumo" },
+  "電": { on: "でん", onR: "den", kun: "—", kunR: "—" },
+  "売": { on: "ばい", onR: "bai", kun: "う(る)", kunR: "u(ru)" }
 };
