@@ -407,6 +407,15 @@ body.sidebar-open {
   line-height: 1.4;
 }
 
+.reading-romaji {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  color: rgba(255,255,255,0.65);
+  margin-top: 2px;
+  letter-spacing: 0.02em;
+  font-style: italic;
+}
+
 .detail-body {
   padding: 20px 28px 24px;
 }

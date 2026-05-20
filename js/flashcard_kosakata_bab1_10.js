@@ -12,6 +12,15 @@ const JAPANESE_TO_MEANING_DELAY_MS = 1000;
 const AUTO_NEXT_DELAY_MS = 1500;
 let reverseMode = false;
 
+function vocabHideKey(v) {
+  if (!v) return '';
+  return v.type === 'kanji' ? 'k:' + v.kanji : 'v:' + v.jp;
+}
+
+function isVocabHidden(v) {
+  return window.HiddenStore && HiddenStore.has('kosakata', vocabHideKey(v));
+}
+
 function getSelectedBabs() {
   const checkboxes = document.querySelectorAll('.multi-option input[type="checkbox"]:checked');
   return Array.from(checkboxes).map((cb) => cb.value);
@@ -157,7 +166,8 @@ function setMode(m) {
   }
 }
 
-function filterCards() {
+function filterCards(opts) {
+  const preservePosition = !!(opts && opts.preservePosition);
   const selectedBabs = getSelectedBabs();
   const q = document.getElementById('search').value.toLowerCase();
   filtered = vocab.filter(v => {
@@ -171,9 +181,15 @@ function filterCards() {
         matchQ = v.jp.includes(q) || v.rom.toLowerCase().includes(q) || v.id.toLowerCase().includes(q);
       }
     }
-    return matchCat && matchQ;
+    const hiddenMatch = !isVocabHidden(v);
+    return matchCat && matchQ && hiddenMatch;
   });
-  idx = 0;
+  if (preservePosition) {
+    if (idx >= filtered.length) idx = Math.max(0, filtered.length - 1);
+    if (idx < 0) idx = 0;
+  } else {
+    idx = 0;
+  }
   document.getElementById('stats').textContent = filtered.length + ' kata';
   renderCard();
 
@@ -209,11 +225,15 @@ function renderCard() {
     document.getElementById('fcRomaji').textContent = '';
     document.getElementById('fcMeaning').textContent = 'Tidak ada kata';
     document.getElementById('fcCat').textContent = '';
+    document.getElementById('fcBabFront').textContent = '';
     document.getElementById('prog').textContent = '0 / 0';
     updateStrokePanel(null, false);
+    updateHideButton(null);
     return;
   }
   const v = filtered[idx];
+  updateHideButton(v);
+  document.getElementById('fcBabFront').textContent = v.cat || '';
   const isKanji = v.type === 'kanji';
   const jpDisplay = isKanji ? v.kanji : v.jp;
   flipped = false;
@@ -416,6 +436,19 @@ document.addEventListener('click', (e) => {
     closeBabDropdown();
   }
 });
+
+function updateHideButton(v) {
+  const btn = document.getElementById('hideBtn');
+  if (!btn) return;
+  btn.disabled = !v;
+}
+
+function hideCurrentCard() {
+  if (!filtered.length || !window.HiddenStore) return;
+  const v = filtered[idx];
+  HiddenStore.add('kosakata', vocabHideKey(v));
+  filterCards({ preservePosition: true });
+}
 
 updateBabFilterButtonLabel();
 filterCards();

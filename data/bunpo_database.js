@@ -836,6 +836,75 @@ const bunpoDatabase = [
       "わたし は かいしゃ で はたらいて います。 (Saya bekerja di perusahaan. = job status)"
     ],
     bab: "Bab 15",
+  },
+  {
+    pattern: "KK1-て、KK2-て、KK3 ~ます／~ました",
+    explanation: "Bentuk-て dipakai untuk menyambung 2 aksi atau lebih yang dilakukan berturut-turut dalam satu kalimat. Waktu (sekarang/lampau) ditentukan oleh kata kerja TERAKHIR — semua aksi sebelumnya ikut waktunya.",
+    examples: [
+      "あした こうべへ 行って、えいがを 見て、買い物します。 (Besok pergi ke Kobe, menonton film, kemudian berbelanja.)",
+      "きのうの 晩 本を 読んで、CDを 聞いて、寝ました。 (Kemarin malam membaca buku, mendengarkan CD, kemudian tidur.)",
+      "日曜日 10時ごろ おきて、さんぽして、しょくじします。 (Hari Minggu bangun kira-kira jam 10, berjalan-jalan, kemudian makan.)"
+    ],
+    bab: "Bab 16",
+  },
+  {
+    pattern: "K.Sifat-い → ~くて (menyambung K.Sifat)",
+    explanation: "Untuk menyambung dua kata sifat atau menjelaskan kondisi/alasan ringan, ubah akhiran い pada Kata Sifat-い menjadi ~くて. Contoh: たかい → たかくて, やすい → やすくて. Pengecualian: いい → よくて.",
+    examples: [
+      "わたしの あには せが たかくて、ハンサムです。 (Kakak laki-lakiku tinggi dan tampan.)",
+      "山田さんは あたまが よくて、わかいです。 (Yamada orang yang pintar dan muda.)",
+      "さっぽろは すずしくて、しずかな まちです。 (Sapporo adalah kota yang sejuk dan tenang.)"
+    ],
+    bab: "Bab 16",
+  },
+  {
+    pattern: "K.Sifat-な → ~で (menyambung K.Sifat)",
+    explanation: "Untuk Kata Sifat-な, cukup tambahkan ~で di belakang kata sifatnya (tanpa な). Sama seperti ~くて, bentuk ~で dipakai untuk menyambung 2 kata sifat, memberi alasan ringan, atau menjelaskan kondisi.",
+    examples: [
+      "ミラーさんは ハンサムで、しんせつな 人です。 (Miller orang yang tampan dan baik hati.)",
+      "この カメラは ゆうめいで、かるいです。 (Kamera ini terkenal dan ringan.)",
+      "この サービスは べんりで、やすいです。 (Layanan ini praktis dan murah.)"
+    ],
+    bab: "Bab 16",
+  },
+  {
+    pattern: "[KK1-て] から、[KK2]",
+    explanation: "Pola ini menyatakan bahwa kegiatan kedua (KK2) baru bisa/akan dilakukan SETELAH kegiatan pertama (KK1) selesai. KK1 wajib berbentuk-て, lalu ditambah から. Bisa diartikan 'setelah melakukan KK1, melakukan KK2'.",
+    examples: [
+      "うちへ 帰ってから、晩ごはんを 食べます。 (Setelah pulang ke rumah, saya makan malam.)",
+      "しごとが おわってから、泳ぎに 行きました。 (Setelah pekerjaan selesai, saya pergi berenang.)",
+      "電話を かけてから、友だちの うちへ 行きます。 (Pergi ke rumah teman setelah menelepon.)"
+    ],
+    bab: "Bab 16",
+  },
+  {
+    pattern: "[KB1] は [KB2] が [K.Sifat] です",
+    explanation: "Pola ini dipakai untuk menyatakan bahwa subjek KB1 memiliki KB2 yang bersifat K.Sifat. Sering dipakai untuk menjelaskan anggota tubuh, kemampuan, atau karakteristik benda/tempat. Tips: cari siapa/apa yang dibicarakan (KB1), lalu bagian/ciri yang punya sifat (KB2).",
+    examples: [
+      "カリナさんは 目が 大きいです。 (Karina mempunyai mata yang besar.)",
+      "おおさかは 食べ物が おいしいです。 (Makanan di Osaka rasanya enak.)",
+      "この ホテルは サービスが いいです。 (Hotel ini memiliki pelayanan yang baik.)"
+    ],
+    bab: "Bab 16",
+  },
+  {
+    pattern: "どうやって ~ ますか",
+    explanation: "「どうやって」adalah kata tanya untuk menanyakan CARA melakukan sesuatu atau cara berpindah ke suatu tempat. Bisa diartikan 'dengan cara bagaimana ~' atau 'bagaimana caranya ~'.",
+    examples: [
+      "どうやって 学校へ 行きますか。 (Bagaimana caranya pergi ke sekolah?)",
+      "この りょうりは どうやって 作りますか。 (Bagaimana caranya membuat masakan ini?)",
+      "どうやって 英語を べんきょうして いますか。 (Bagaimana caranya belajar Bahasa Inggris?)"
+    ],
+    bab: "Bab 16",
+  },
+  {
+    pattern: "どの [KB] ですか",
+    explanation: "Kata tanya 「どの」dipakai saat meminta lawan bicara menunjuk satu dari LEBIH DARI 3 pilihan yang ditunjukkan secara konkret. Bedanya dengan 「どれ」: どの WAJIB diikuti Kata Benda di belakangnya, sedangkan どれ tidak boleh diikuti KB.",
+    examples: [
+      "マリアさんは どの 人ですか。 …あの かみが 長くて、きれいな 人です。 (Maria orangnya yang mana? …Orang yang rambutnya panjang dan cantik itu.)",
+      "ワンさんの かばんは どれですか。 …この しろくて、ちいさい かばんです。 (Tasnya Wang yang mana? …Tas yang berwarna putih dan kecil ini.)"
+    ],
+    bab: "Bab 16",
   }
 ];
 

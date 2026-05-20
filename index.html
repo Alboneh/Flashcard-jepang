@@ -22,11 +22,9 @@
     <a href="bunpo.html" data-page="bunpo">Bunpo</a>
     <a href="kanji-n5.html" data-page="kanji">Kanji</a>
     <a href="kanji-n5.html" data-page="kanji-n5">Belajar Kanji</a>
-    <a href="fasih-kanji.html" data-page="fasih-kanji">Fasih Kanji</a>
     <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
     <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
-      <a href="latihan-susun.html" data-page="latihan-susun">Susun Kalimat</a>
-    <a href="latihan_baca_kanji.html" data-page="latihan-baca-kanji">Latihan Baca Kanji</a>
+    <a href="sembunyikan.html" data-page="tersembunyi">Tersembunyi</a>
   </nav>
 </aside>
 
@@ -59,6 +57,7 @@
           <label class="multi-option"><input type="checkbox" value="Bab 13" onchange="onBabSelectionChange()"><span>Bab 13 - Hobi, Kondisi, & Akhir Pekan</span></label>
           <label class="multi-option"><input type="checkbox" value="Bab 14" onchange="onBabSelectionChange()"><span>Bab 14 - Perintah & Aktivitas</span></label>
           <label class="multi-option"><input type="checkbox" value="Bab 15" onchange="onBabSelectionChange()"><span>Bab 15 - Izin & Larangan</span></label>
+          <label class="multi-option"><input type="checkbox" value="Bab 16" onchange="onBabSelectionChange()"><span>Bab 16 - Tubuh, Bank, & Aktivitas</span></label>
           <div class="multi-actions">
             <button type="button" onclick="selectAllBabs()">Pilih Semua</button>
             <button type="button" onclick="clearAllBabs()">Reset</button>
@@ -74,6 +73,7 @@
     <div class="card-area">
       <div class="flashcard" onclick="flipCard()" id="fc">
         <div class="card-front" id="front">
+          <div class="card-bab-badge" id="fcBabFront"></div>
           <div class="card-jp" id="fcJp"></div>
           <div class="card-hint">Ketuk untuk melihat arti</div>
         </div>
@@ -92,6 +92,9 @@
         <button onclick="speakCurrentCard()">🔊 Baca: Jepang lalu arti</button>
       </div>
       <div class="nav-row">
+        <button id="hideBtn" class="hide-btn" onclick="hideCurrentCard()">🙈 Sembunyikan</button>
+      </div>
+      <div class="nav-row">
         <button id="reverseBtn" onclick="toggleReverseMode()">↔ Reverse: OFF (Jepang dulu)</button>
       </div>
       <div class="header-subtitle" id="autoVoiceStatus" style="text-align:center; margin-top:4px;"></div>
@@ -104,6 +107,7 @@
 </main>
 
 <script src="js/sidebar.js"></script>
+<script src="js/hidden.js"></script>
 <script src="data/database.js"></script>
 <script src="js/flashcard_kosakata_bab1_10.js"></script>
 

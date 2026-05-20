@@ -53,6 +53,15 @@ function parseExample(exampleText) {
 
 let selectedBab = 'Semua';
 
+function bunpoHideKey(item) {
+  if (!item) return '';
+  return String(item.pattern || '');
+}
+
+function isBunpoHidden(item) {
+  return window.HiddenStore && HiddenStore.has('bunpo', bunpoHideKey(item));
+}
+
 function setBabFilter(bab) {
   selectedBab = bab;
   document.querySelectorAll('#babFilter .level-btn').forEach(btn => {
@@ -71,8 +80,10 @@ function renderBunpo() {
   const filtered = bunpoDatabase.filter((item, index) => {
     const bab = item.bab || 'Bab Lanjutan';
     const babMatch = selectedBab === 'Semua' || bab === selectedBab;
+    const hiddenMatch = !isBunpoHidden(item);
     return (
       babMatch &&
+      hiddenMatch &&
       (!q ||
         normalize(bab).includes(q) ||
         normalize(item.pattern).includes(q) ||
@@ -106,6 +117,7 @@ function renderBunpo() {
           <p><strong>Contoh:</strong></p>
           <ul>${examples}</ul>
           <div class="practice-btn-row">
+            <button type="button" class="hide-btn" onclick="hideBunpoItem(${idx})">🙈 Sembunyikan</button>
             <button type="button" class="practice-btn" onclick="openPracticeModal(${idx})">✎ Coba Pola</button>
           </div>
         </article>
@@ -145,6 +157,7 @@ function buildItemHtml(item) {
     <p><strong>Contoh:</strong></p>
     <ul>${examples}</ul>
     <div class="practice-btn-row">
+      <button type="button" class="hide-btn" onclick="hideBunpoItem(${idx})">🙈 Sembunyikan</button>
       <button type="button" class="practice-btn" onclick="openPracticeModal(${idx})">✎ Coba Pola</button>
     </div>
   `;
@@ -194,7 +207,8 @@ function toggleCardMode() {
     cardItems = bunpoDatabase.filter((item, index) => {
       const bab = item.bab || 'Bab Lanjutan';
       const babMatch = selectedBab === 'Semua' || bab === selectedBab;
-      return babMatch && (!q ||
+      const hiddenMatch = !isBunpoHidden(item);
+      return babMatch && hiddenMatch && (!q ||
         normalize(bab).includes(q) ||
         normalize(item.pattern).includes(q) ||
         normalize(item.explanation).includes(q) ||
@@ -289,6 +303,21 @@ function closePracticeModal() {
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closePracticeModal();
 });
+
+function hideBunpoItem(idx) {
+  if (!window.HiddenStore) return;
+  const item = bunpoDatabase[idx];
+  if (!item) return;
+  HiddenStore.add('bunpo', bunpoHideKey(item));
+  renderBunpo();
+}
+
+if (window.HiddenStore) {
+  HiddenStore.subscribe((scope) => {
+    if (scope !== 'bunpo') return;
+    renderBunpo();
+  });
+}
 
 renderBunpo();
 toggleCardMode();

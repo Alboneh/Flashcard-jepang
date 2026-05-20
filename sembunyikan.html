@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tersembunyi — Kelola Item</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/sidebar.css">
+  <link rel="stylesheet" href="css/sembunyikan.css">
+</head>
+<body class="has-global-sidebar" data-page="tersembunyi">
+  <button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
+  <div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
+  <aside id="globalSidebar" class="global-sidebar">
+    <div class="global-sidebar-header">
+      <span class="global-sidebar-title">日本語 Belajar</span>
+      <div class="global-sidebar-subtitle">Navigasi Halaman</div>
+    </div>
+    <nav class="global-sidebar-links" aria-label="Sidebar navigasi utama">
+      <a href="index.html" data-page="kosakata">Kosakata</a>
+      <a href="bunpo.html" data-page="bunpo">Bunpo</a>
+      <a href="kanji-n5.html" data-page="kanji">Kanji</a>
+      <a href="kanji-n5.html" data-page="kanji-n5">Belajar Kanji</a>
+      <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
+      <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
+      <a href="sembunyikan.html" data-page="tersembunyi">Tersembunyi</a>
+    </nav>
+  </aside>
+
+  <main class="global-app-main">
+   <div class="page">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-kanji">隠</div>
+        <div class="hero-text">
+          <h1>Daftar Tersembunyi</h1>
+          <p>Kelola item yang sebelumnya kamu sembunyikan dari Kosakata &amp; Bunpo.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sync-card">
+      <h2>Sinkronisasi Antar Perangkat</h2>
+      <p>Export data tersembunyi sebagai file JSON, lalu import di perangkat lain.</p>
+      <div class="sync-row">
+        <button type="button" class="sync-btn" onclick="HiddenStore.downloadExport()">📤 Export</button>
+        <label class="sync-btn">
+          📥 Import
+          <input type="file" accept="application/json,.json" onchange="importHiddenFile(this)" hidden />
+        </label>
+      </div>
+    </section>
+
+    <section class="scope-section">
+      <header class="scope-header">
+        <h2>Kosakata Tersembunyi <span class="count-badge" id="kosakataCount">0</span></h2>
+        <button type="button" class="bulk-btn" id="clearKosakataBtn" onclick="clearScope('kosakata')">↺ Tampilkan Semua</button>
+      </header>
+      <div class="hidden-list" id="kosakataList"></div>
+      <p class="empty-state" id="kosakataEmpty">Belum ada kosakata yang disembunyikan.</p>
+    </section>
+
+    <section class="scope-section">
+      <header class="scope-header">
+        <h2>Bunpo Tersembunyi <span class="count-badge" id="bunpoCount">0</span></h2>
+        <button type="button" class="bulk-btn" id="clearBunpoBtn" onclick="clearScope('bunpo')">↺ Tampilkan Semua</button>
+      </header>
+      <div class="hidden-list" id="bunpoList"></div>
+      <p class="empty-state" id="bunpoEmpty">Belum ada bunpo yang disembunyikan.</p>
+    </section>
+   </div>
+  </main>
+
+  <script src="js/sidebar.js"></script>
+  <script src="js/hidden.js"></script>
+  <script src="data/database.js"></script>
+  <script src="data/bunpo_database.js"></script>
+  <script src="js/sembunyikan.js"></script>
+</body>
+</html>

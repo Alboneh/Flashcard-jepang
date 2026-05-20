@@ -45,21 +45,17 @@
       <span class="nav-kanji-preview">字</span>
       <span>Kanji</span>
     </a>
-    <a class="nav-item" href="fasih-kanji.html">
-      <span class="nav-kanji-preview">流</span>
-      <span>Fasih Kanji</span>
-    </a>
     <a class="nav-item" href="latihan.html">
       <span class="nav-kanji-preview">📝</span>
       <span>Latihan Vocab</span>
     </a>
-    <a class="nav-item" href="latihan_baca_kanji.html">
-      <span class="nav-kanji-preview">📖</span>
-      <span>Latihan Baca Kanji</span>
-    </a>
     <a class="nav-item" href="bunpo-quiz-full.html">
       <span class="nav-kanji-preview">💬</span>
       <span>Latihan Bunpo</span>
+    </a>
+    <a class="nav-item" href="sembunyikan.html">
+      <span class="nav-kanji-preview">🙈</span>
+      <span>Tersembunyi</span>
     </a>
     <div class="nav-section-label">Menu</div>
     <div class="nav-item active" onclick="showHome()" id="navHome">
@@ -567,10 +563,12 @@ function selectKanji(idx) {
       <div class="reading-badge on">
         <span class="reading-label">onyomi</span>
         <span class="reading-val">${readings.on}</span>
+        ${readings.onR ? `<span class="reading-romaji">${readings.onR}</span>` : ''}
       </div>
       <div class="reading-badge kun">
         <span class="reading-label">kunyomi</span>
         <span class="reading-val">${readings.kun}</span>
+        ${readings.kunR ? `<span class="reading-romaji">${readings.kunR}</span>` : ''}
       </div>
     </div>
   ` : '';
@@ -1046,7 +1044,9 @@ function showKanjiModal(char) {
   // Build reading text
   let readingText = '';
   if (readings) {
-    readingText = `onyomi: ${readings.on}<br/>kunyomi: ${readings.kun}`;
+    const onLine = `onyomi: ${readings.on}` + (readings.onR ? ` <span style="color:var(--ink-soft);font-size:0.85em">(${readings.onR})</span>` : '');
+    const kunLine = `kunyomi: ${readings.kun}` + (readings.kunR ? ` <span style="color:var(--ink-soft);font-size:0.85em">(${readings.kunR})</span>` : '');
+    readingText = `${onLine}<br/>${kunLine}`;
   } else {
     readingText = '(データなし)';
   }

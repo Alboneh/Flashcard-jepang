@@ -631,11 +631,46 @@ body {
   box-shadow: 3px 3px 0 var(--ink);
 }
 
+/* ===== Hide button ===== */
+.hide-btn {
+  padding: 0.55rem 1rem;
+  border: 2px solid var(--faded);
+  background: white;
+  color: var(--faded);
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-weight: 700;
+  box-shadow: 3px 3px 0 var(--ink);
+  transition: all 0.15s ease;
+}
+
+.hide-btn:hover {
+  background: var(--faded);
+  color: white;
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.hide-btn:active {
+  transform: translate(1px, 1px);
+  box-shadow: 1px 1px 0 var(--ink);
+}
+
+.card-mode-card .hide-btn {
+  font-size: 0.82rem;
+  padding: 0.7rem 1.2rem;
+}
+
 /* ===== Coba Pola button ===== */
 .practice-btn-row {
   margin-top: 1rem;
   display: flex;
   justify-content: flex-end;
+  gap: 0.6rem;
+  flex-wrap: wrap;
 }
 
 .practice-btn {
