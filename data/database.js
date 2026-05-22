@@ -734,5 +734,28 @@ const vocab = [
   {jp:"かえます（換えます）",rom:"kaemasu",id:"Mengganti, menukar",cat:"Bab 18"},
   {jp:"うんてんします（運転します）",rom:"unten shimasu",id:"Mengendarai, menyetir",cat:"Bab 18"},
   {jp:"よやくします（予約します）",rom:"yoyaku shimasu",id:"Memesan",cat:"Bab 18"},
+
+  // Bab 19
+  {jp:"ねむい（眠い）",rom:"nemui",id:"Mengantuk",cat:"Bab 19"},
+  {jp:"つよい（強い）",rom:"tsuyoi",id:"Kuat",cat:"Bab 19"},
+  {jp:"よわい（弱い）",rom:"yowai",id:"Lemah",cat:"Bab 19"},
+  {jp:"れんしゅう（練習）",rom:"renshuu",id:"Latihan",cat:"Bab 19"},
+  {jp:"ゴルフ",rom:"gorufu",id:"Golf",cat:"Bab 19"},
+  {jp:"お茶（ちゃ）",rom:"ocha",id:"Upacara minum teh",cat:"Bab 19"},
+  {jp:"ちょうし（調子）",rom:"choushi",id:"Kondisi",cat:"Bab 19"},
+  {jp:"いちど（一度）",rom:"ichido",id:"Sekali",cat:"Bab 19"},
+  {jp:"いちども（一度も）",rom:"ichido mo",id:"Sekali pun (diikuti bentuk negatif)",cat:"Bab 19"},
+  {jp:"だんだん",rom:"dandan",id:"Berangsur-angsur",cat:"Bab 19"},
+  {jp:"もうすぐ",rom:"mou sugu",id:"Tidak lama lagi",cat:"Bab 19"},
+  {jp:"おかげさまで",rom:"okagesama de",id:"Atas berkat (untuk menyatakan terima kasih atas bantuan/kebaikan hati dari orang)",cat:"Bab 19"},
+  {jp:"でも",rom:"demo",id:"Tetapi",cat:"Bab 19"},
+  {jp:"かんぱい（乾杯）",rom:"kanpai",id:"Bersulang",cat:"Bab 19"},
+  {jp:"むり（無理）[な]",rom:"muri [na]",id:"Berlebihan, paksa",cat:"Bab 19"},
+  {jp:"体（からだ）に いい",rom:"karada ni ii",id:"Baik untuk tubuh",cat:"Bab 19"},
+  {jp:"のぼります（登ります、上ります）",rom:"noborimasu",id:"Naik",cat:"Bab 19"},
+  {jp:"とまります（泊まります）",rom:"tomarimasu",id:"Menginap",cat:"Bab 19"},
+  {jp:"なります",rom:"narimasu",id:"Menjadi",cat:"Bab 19"},
+  {jp:"そうじ します（掃除します）",rom:"souji shimasu",id:"Membersihkan",cat:"Bab 19"},
+  {jp:"せんたく します（洗濯します）",rom:"sentaku shimasu",id:"Mencuci pakaian",cat:"Bab 19"},
 ];
 
