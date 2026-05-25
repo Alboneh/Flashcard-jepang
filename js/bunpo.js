@@ -113,9 +113,16 @@ function renderBunpo() {
             <span class="bab-badge">${escapeHtml(bab)}</span>
           </div>
           <p class="pattern-main">${escapeHtml(rawPattern).replace(/~~([^~]+)~~/g, '<s>$1</s>')}</p>
-          <p class="core-meaning"><strong>Penjelasan:</strong> ${escapeHtml(explanation)}</p>
-          <p><strong>Contoh:</strong></p>
-          <ul>${examples}</ul>
+          <div class="bunpo-body">
+            <div class="bunpo-body-col bunpo-body-col--explain">
+              <p class="bunpo-section-title"><strong>Penjelasan:</strong></p>
+              <div class="core-meaning">${escapeHtml(explanation)}</div>
+            </div>
+            <div class="bunpo-body-col bunpo-body-col--examples">
+              <p class="bunpo-section-title"><strong>Contoh:</strong></p>
+              <ul>${examples}</ul>
+            </div>
+          </div>
           <div class="practice-btn-row">
             <button type="button" class="hide-btn" onclick="hideBunpoItem(${idx})">🙈 Sembunyikan</button>
             <button type="button" class="practice-btn" onclick="openPracticeModal(${idx})">✎ Coba Pola</button>
@@ -153,9 +160,16 @@ function buildItemHtml(item) {
       <span class="bab-badge">${escapeHtml(bab)}</span>
     </div>
     <p class="pattern-main">${escapeHtml(rawPattern).replace(/~~([^~]+)~~/g, '<s>$1</s>')}</p>
-    <p class="core-meaning"><strong>Penjelasan:</strong> ${escapeHtml(explanation)}</p>
-    <p><strong>Contoh:</strong></p>
-    <ul>${examples}</ul>
+    <div class="bunpo-body">
+      <div class="bunpo-body-col bunpo-body-col--explain">
+        <p class="bunpo-section-title"><strong>Penjelasan:</strong></p>
+        <div class="core-meaning">${escapeHtml(explanation)}</div>
+      </div>
+      <div class="bunpo-body-col bunpo-body-col--examples">
+        <p class="bunpo-section-title"><strong>Contoh:</strong></p>
+        <ul>${examples}</ul>
+      </div>
+    </div>
     <div class="practice-btn-row">
       <button type="button" class="hide-btn" onclick="hideBunpoItem(${idx})">🙈 Sembunyikan</button>
       <button type="button" class="practice-btn" onclick="openPracticeModal(${idx})">✎ Coba Pola</button>
