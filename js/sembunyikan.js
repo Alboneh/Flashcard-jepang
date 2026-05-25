@@ -130,6 +130,11 @@
     const scope = btn.getAttribute('data-scope');
     const key = btn.getAttribute('data-key');
     if (!scope || !key) return;
+    const card = btn.closest('.hidden-card');
+    const jpEl = card ? card.querySelector('.hidden-card-jp, .hidden-card-pattern') : null;
+    const itemLabel = jpEl ? jpEl.textContent.trim() : key;
+    const label = scope === 'kosakata' ? 'kosakata' : 'bunpo';
+    if (!confirm(`Tampilkan kembali ${label} "${itemLabel}"?`)) return;
     HiddenStore.remove(scope, key);
   });
 

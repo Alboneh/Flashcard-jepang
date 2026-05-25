@@ -340,6 +340,8 @@ function shuffle() {
 function hideCurrentCard() {
   if (!filtered.length || !window.HiddenStore) return;
   const v = filtered[idx];
+  const label = v.type === 'kanji' ? v.kanji : v.jp;
+  if (!confirm(`Sembunyikan "${label}" dari daftar kosakata?`)) return;
   HiddenStore.add('kosakata', vocabHideKey(v));
   renderBabFilter();
   filterCards({ preservePosition: true });

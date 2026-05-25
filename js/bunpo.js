@@ -325,6 +325,8 @@ bunpoSearch.addEventListener('input', () => {
 hideAction.addEventListener('click', () => {
   if (!window.HiddenStore || !cardItems.length) return;
   const item = cardItems[cardIndex];
+  const label = (item && item.pattern ? String(item.pattern) : '').replace(/~~([^~]+)~~/g, '$1');
+  if (!confirm(`Sembunyikan pola "${label}" dari daftar bunpo?`)) return;
   HiddenStore.add('bunpo', bunpoHideKey(item));
   renderBabFilter();
   renderCard();
