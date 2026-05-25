@@ -240,6 +240,7 @@ function updateNavBtns() {
 
 /* ===== Navigation ===== */
 function flipCard() {
+  if (mode === 'side') return;
   flipped = !flipped;
   updateFlipState();
 }
@@ -264,6 +265,9 @@ function setMode(m) {
   document.querySelectorAll('.mode-tab').forEach((t) => {
     t.classList.toggle('active', t.dataset.mode === m);
   });
+  const fc = $k('fc');
+  if (fc) fc.classList.toggle('mode-side', m === 'side');
+  if (m === 'side') { flipped = false; updateFlipState(); }
   if (m === 'auto') startAutoVoice(true);
   else { stopAutoVoice(); updateAutoVoiceStatus(); }
 }

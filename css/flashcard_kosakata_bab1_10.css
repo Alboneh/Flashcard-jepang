@@ -53,6 +53,42 @@
   cursor: pointer;
 }
 
+/* ===== Side-by-side mode (JP | Arti) ===== */
+.flashcard.mode-side {
+  cursor: default;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-height: 260px;
+}
+
+.flashcard.mode-side .card-front,
+.flashcard.mode-side .card-back {
+  position: static;
+  opacity: 1;
+  transform: none;
+  pointer-events: auto;
+  min-height: 260px;
+  padding: 28px 20px;
+}
+
+.flashcard.mode-side .card-front.hide { opacity: 1; transform: none; pointer-events: auto; }
+.flashcard.mode-side .card-back { z-index: auto; }
+
+.flashcard.mode-side .card-hint { display: none; }
+
+@media (max-width: 640px) {
+  .flashcard.mode-side {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .flashcard.mode-side .card-front,
+  .flashcard.mode-side .card-back {
+    min-height: 200px;
+    padding: 22px 18px;
+  }
+}
+
 .card-front,
 .card-back {
   background: var(--surface);
