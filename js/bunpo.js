@@ -279,6 +279,7 @@ function cardNav(dir) {
   cardIndex = Math.max(0, Math.min(cardItems.length - 1, cardIndex + dir));
   renderCard();
   document.querySelector('.app-content').scrollTo({ top: 0, behavior: 'smooth' });
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 cardPrevBtn.addEventListener('click', () => cardNav(-1));
