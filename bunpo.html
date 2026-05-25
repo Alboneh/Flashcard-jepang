@@ -1,106 +1,143 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bunpo Jepang</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/sidebar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app-shell.css">
   <link rel="stylesheet" href="css/bunpo.css">
 </head>
-<body class="has-global-sidebar" data-page="bunpo">
-  <button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
-  <div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
-  <aside id="globalSidebar" class="global-sidebar">
-    <div class="global-sidebar-header">
-      <span class="global-sidebar-title">日本語 Belajar</span>
-      <div class="global-sidebar-subtitle">Navigasi Halaman</div>
+<body class="app-shell" data-page="bunpo">
+
+  <!-- Mobile menu toggle -->
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Buka menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <!-- ===== SIDEBAR ===== -->
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="app-logo">
+      <div class="logo-icon">⛩</div>
+      <div class="logo-text">
+        <span class="logo-jp">日本語 学習</span>
+        <span class="logo-sub">Nihongo Gakushū</span>
+      </div>
     </div>
-    <nav class="global-sidebar-links" aria-label="Sidebar navigasi utama">
-      <a href="index.html" data-page="kosakata">Kosakata</a>
-      <a href="bunpo.html" data-page="bunpo">Bunpo</a>
-      <a href="kanji-n5.html" data-page="kanji">Kanji</a>
-      <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
-      <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
-      <a href="sembunyikan.html" data-page="tersembunyi">Tersembunyi</a>
-    </nav>
-  </aside>
-  <main class="global-app-main">
-   <div class="page">
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-kanji">文法</div>
-        <div class="hero-text">
-          <h1>Bunpo Jepang</h1>
-          <p>Satu pola, satu langkah. <span class="accent">がんばって！</span></p>
+
+    <div class="sidebar-section">
+      <span class="section-label">Progress</span>
+      <div class="progress-card">
+        <div class="progress-title">Bunpo dipelajari</div>
+        <div class="progress-row">
+          <div class="progress-stats">
+            <span class="progress-num" id="progressNum">0</span>
+            <span class="progress-total" id="progressTotal">/ 0</span>
+          </div>
+          <span class="progress-percent" id="progressPct">0%</span>
         </div>
-      </div>
-    </section>
-
-    <section class="controls">
-      <div class="view-mode-row">
-        <label for="bunpoSearch">Cari bunpo</label>
-        <button id="cardModeToggle" class="card-mode-btn" onclick="toggleCardMode()">▦ Mode Kartu</button>
-      </div>
-      <input id="bunpoSearch" type="text" placeholder="Contoh: wa, ga, desu" />
-      <div class="filter-label">Filter Bab</div>
-      <div class="bab-filter" id="babFilter">
-        <button class="level-btn active" onclick="setBabFilter('Semua')">Semua</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 1')">Bab 1</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 2')">Bab 2</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 3')">Bab 3</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 4')">Bab 4</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 5')">Bab 5</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 6')">Bab 6</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 7')">Bab 7</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 8')">Bab 8</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 9')">Bab 9</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 10')">Bab 10</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 11')">Bab 11</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 12')">Bab 12</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 13')">Bab 13</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 14')">Bab 14</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 15')">Bab 15</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 16')">Bab 16</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 17')">Bab 17</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 18')">Bab 18</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 19')">Bab 19</button>
-        <button class="level-btn" onclick="setBabFilter('Bab 20')">Bab 20</button>
-      </div>
-    </section>
-
-    <section class="card helper-card">
-      <h2>Singkatan di Pola</h2>
-      <p>Pola Asli memakai singkatan ini:</p>
-      <div class="helper-grid">
-        <div><strong>KB</strong>: Kata Benda</div>
-        <div><strong>KK</strong>: Kata Kerja</div>
-        <div><strong>KW</strong>: Keterangan Waktu</div>
-        <div><strong>Ket.Tempat</strong>: Keterangan Tempat</div>
-      </div>
-    </section>
-
-    <section class="card" id="bunpoEmptyState">
-      <h2>Belum ada data bunpo</h2>
-      <p>List bunpo akan dimasukkan setelah kamu kirim data.</p>
-    </section>
-
-    <section class="list" id="bunpoList" aria-live="polite"></section>
-
-    <div id="cardModeView" class="card-mode-view" style="display:none;">
-      <div class="card-nav-bar">
-        <span id="cardCounter" class="card-counter">1 / 1</span>
-      </div>
-      <div id="cardModeCard" class="card-mode-card"></div>
-      <div class="card-nav-btns">
-        <button class="card-nav-btn" id="cardPrevBtn" onclick="cardNav(-1)">← Sebelumnya</button>
-        <button class="card-nav-btn card-nav-btn--next" id="cardNextBtn" onclick="cardNav(1)">Berikutnya →</button>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
       </div>
     </div>
-   </div>
-  </main>
 
+    <nav class="sidebar-section" aria-label="Menu utama">
+      <span class="section-label">Menu</span>
+      <a href="index.html" class="nav-link" data-page="kosakata">
+        <span class="nav-icon">📚</span><span>Kosakata</span>
+      </a>
+      <a href="bunpo.html" class="nav-link active" data-page="bunpo">
+        <span class="nav-icon">📖</span><span>Bunpo</span>
+      </a>
+      <a href="kanji-n5.html" class="nav-link" data-page="kanji">
+        <span class="nav-icon">本</span><span>Kanji</span>
+      </a>
+      <a href="latihan.html" class="nav-link" data-page="latihan-vocab">
+        <span class="nav-icon">✎</span><span>Latihan Vocab</span>
+      </a>
+      <a href="bunpo-quiz-full.html" class="nav-link" data-page="latihan-bunpo">
+        <span class="nav-icon">✦</span><span>Latihan Bunpo</span>
+      </a>
+      <a href="sembunyikan.html" class="nav-link" data-page="tersembunyi">
+        <span class="nav-icon">🙈</span><span>Tersembunyi</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-section sidebar-categories">
+      <span class="section-label">Kategori Bunpo</span>
+      <div class="cat-list" id="babFilter"></div>
+    </div>
+  </aside>
+
+  <!-- ===== MAIN ===== -->
+  <div class="app-main">
+    <header class="app-topbar">
+      <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="bunpoSearch" type="text" class="search-input" placeholder="Cari pola, kata, atau arti...">
+        <kbd class="search-kbd">Ctrl /</kbd>
+      </div>
+      <div class="topbar-right">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch tema">
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="app-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span class="crumb crumb-root">
+          <span class="crumb-dot"></span>Bunpo
+        </span>
+        <span class="crumb-sep">›</span>
+        <span class="crumb" id="crumbBab">Semua</span>
+        <span class="crumb-sep">›</span>
+        <span class="crumb crumb-current" id="crumbPattern">Pilih pola</span>
+      </nav>
+
+      <article class="bunpo-card" id="bunpoCard">
+        <div class="bunpo-empty" id="bunpoEmpty">
+          <p>Tidak ada pola yang cocok dengan filter & pencarian saat ini.</p>
+        </div>
+      </article>
+
+      <div class="app-decor">
+        <p class="decor-quote">
+          <span class="decor-heart">❤</span>
+          <span>Belajar sedikit demi sedikit, tapi konsisten setiap hari.</span>
+        </p>
+        <span class="decor-sakura" aria-hidden="true">🌸</span>
+      </div>
+    </div>
+
+    <footer class="app-bottombar" id="appBottombar">
+      <button class="nav-step" id="cardPrevBtn" type="button">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Sebelumnya</span>
+      </button>
+      <div class="bottom-progress">
+        <span class="bottom-counter" id="cardCounter">0 / 0</span>
+        <div class="mini-progress"><div class="mini-fill" id="miniFill"></div></div>
+      </div>
+      <div class="bottom-actions">
+        <button class="bottom-action bottom-action--hide" id="hideAction" type="button" title="Sembunyikan pola ini">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17.94 17.94A10 10 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          <span>Sembunyikan</span>
+        </button>
+        <button class="bottom-action bottom-action--primary" id="practiceAction" type="button">
+          <span>✨ Coba Pola Ini</span>
+        </button>
+        <button class="nav-step nav-step--next" id="cardNextBtn" type="button">
+          <span>Berikutnya</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ===== Practice Modal ===== -->
   <div id="practiceModal" class="practice-modal" aria-hidden="true">
     <div class="practice-modal-backdrop" onclick="closePracticeModal()"></div>
     <div class="practice-modal-dialog" role="dialog" aria-modal="true" aria-labelledby="practiceModalTitle">
@@ -109,11 +146,9 @@
     </div>
   </div>
 
-  <script src="js/sidebar.js"></script>
   <script src="js/hidden.js"></script>
   <script src="data/bunpo_database.js"></script>
   <script src="data/bunpo_practice.js"></script>
   <script src="js/bunpo.js"></script>
 </body>
 </html>
-

@@ -1,118 +1,156 @@
+<!doctype html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Flashcard Kosakata Bab 1-13</title>
+  <title>Kosakata Jepang</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/sidebar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app-shell.css">
   <link rel="stylesheet" href="css/flashcard_kosakata_bab1_10.css">
 </head>
-<body class="has-global-sidebar" data-page="kosakata">
+<body class="app-shell" data-page="kosakata">
 
-<button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
-<div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
-<aside id="globalSidebar" class="global-sidebar">
-  <div class="global-sidebar-header">
-    <span class="global-sidebar-title">日本語 Belajar</span>
-    <div class="global-sidebar-subtitle">Navigasi Halaman</div>
-  </div>
-  <nav class="global-sidebar-links" aria-label="Sidebar navigasi utama">
-    <a href="index.html" data-page="kosakata">Kosakata</a>
-    <a href="bunpo.html" data-page="bunpo">Bunpo</a>
-    <a href="kanji-n5.html" data-page="kanji">Kanji</a>
-    <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
-    <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
-    <a href="sembunyikan.html" data-page="tersembunyi">Tersembunyi</a>
-  </nav>
-</aside>
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Buka menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
 
-<main class="global-app-main">
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="app-logo">
+      <div class="logo-icon">⛩</div>
+      <div class="logo-text">
+        <span class="logo-jp">日本語 学習</span>
+        <span class="logo-sub">Nihongo Gakushū</span>
+      </div>
+    </div>
 
-<div class="fc-wrap">
-  
-  <div class="tab-row">
-    <button class="tab active" data-mode="flash" onclick="setMode('flash')">🎴 Flashcard</button>
-    <button class="tab" data-mode="auto" onclick="setMode('auto')">🔊 Auto Voice</button>
-  </div>
-  
-  <div class="controls">
-    <div class="search-row">
-      <div class="multi-select" id="babFilter">
-        <button type="button" class="multi-select-btn" id="babFilterBtn" onclick="toggleBabDropdown()">Filter Bab: Semua</button>
-        <div class="multi-select-panel" id="babFilterPanel">
-          <label class="multi-option"><input type="checkbox" value="Bab 1" onchange="onBabSelectionChange()"><span>Bab 1 - Perkenalan</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 2" onchange="onBabSelectionChange()"><span>Bab 2 - Benda</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 3" onchange="onBabSelectionChange()"><span>Bab 3 - Tempat</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 4" onchange="onBabSelectionChange()"><span>Bab 4 - Waktu & Jam</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 5" onchange="onBabSelectionChange()"><span>Bab 5 - Transportasi</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 6" onchange="onBabSelectionChange()"><span>Bab 6 - Aktivitas & Makanan</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 7" onchange="onBabSelectionChange()"><span>Bab 7 - Memberi, Menerima, & Benda</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 8" onchange="onBabSelectionChange()"><span>Bab 8 - Sifat, Kehidupan, & Ungkapan</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 9" onchange="onBabSelectionChange()"><span>Bab 9 - Kesukaan dan Kemahiran</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 10" onchange="onBabSelectionChange()"><span>Bab 10 - Keberadaan & Posisi</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 11" onchange="onBabSelectionChange()"><span>Bab 11 - Jumlah, Keluarga, & Pengiriman</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 12" onchange="onBabSelectionChange()"><span>Bab 12 - Cuaca, Musim, & Perbandingan</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 13" onchange="onBabSelectionChange()"><span>Bab 13 - Hobi, Kondisi, & Akhir Pekan</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 14" onchange="onBabSelectionChange()"><span>Bab 14 - Perintah & Aktivitas</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 15" onchange="onBabSelectionChange()"><span>Bab 15 - Izin & Larangan</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 16" onchange="onBabSelectionChange()"><span>Bab 16 - Tubuh, Bank, & Aktivitas</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 17" onchange="onBabSelectionChange()"><span>Bab 17 - Kesehatan, Pakaian, & Aktivitas</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 18" onchange="onBabSelectionChange()"><span>Bab 18 - Hobi, Kemampuan, & Aktivitas</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 19" onchange="onBabSelectionChange()"><span>Bab 19 - Kondisi, Kesehatan, & Aktivitas</span></label>
-          <label class="multi-option"><input type="checkbox" value="Bab 20" onchange="onBabSelectionChange()"><span>Bab 20 - Bentuk Biasa & Kosakata Informal</span></label>
-          <div class="multi-actions">
-            <button type="button" onclick="selectAllBabs()">Pilih Semua</button>
-            <button type="button" onclick="clearAllBabs()">Reset</button>
+    <div class="sidebar-section">
+      <span class="section-label">Progress</span>
+      <div class="progress-card">
+        <div class="progress-title">Kosakata terlihat</div>
+        <div class="progress-row">
+          <div>
+            <span class="progress-num" id="progressNum">0</span>
+            <span class="progress-total" id="progressTotal">/ 0</span>
+          </div>
+          <span class="progress-percent" id="progressPct">0%</span>
+        </div>
+        <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+      </div>
+    </div>
+
+    <nav class="sidebar-section" aria-label="Menu utama">
+      <span class="section-label">Menu</span>
+      <a href="index.html" class="nav-link active" data-page="kosakata">
+        <span class="nav-icon">📚</span><span>Kosakata</span>
+      </a>
+      <a href="bunpo.html" class="nav-link" data-page="bunpo">
+        <span class="nav-icon">📖</span><span>Bunpo</span>
+      </a>
+      <a href="kanji-n5.html" class="nav-link" data-page="kanji">
+        <span class="nav-icon">本</span><span>Kanji</span>
+      </a>
+      <a href="latihan.html" class="nav-link" data-page="latihan-vocab">
+        <span class="nav-icon">✎</span><span>Latihan Vocab</span>
+      </a>
+      <a href="bunpo-quiz-full.html" class="nav-link" data-page="latihan-bunpo">
+        <span class="nav-icon">✦</span><span>Latihan Bunpo</span>
+      </a>
+      <a href="sembunyikan.html" class="nav-link" data-page="tersembunyi">
+        <span class="nav-icon">🙈</span><span>Tersembunyi</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-section sidebar-categories">
+      <span class="section-label">Kategori Kosakata</span>
+      <div class="cat-list" id="babFilter"></div>
+    </div>
+  </aside>
+
+  <div class="app-main">
+    <header class="app-topbar">
+      <div class="search-wrap">
+        <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <input id="search" type="text" class="search-input" placeholder="Cari kata, romaji, atau arti...">
+        <kbd class="search-kbd">Ctrl /</kbd>
+      </div>
+      <div class="topbar-right">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch tema">
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="app-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <span class="crumb crumb-root"><span class="crumb-dot"></span>Kosakata</span>
+        <span class="crumb-sep">›</span>
+        <span class="crumb crumb-current" id="crumbBab">Semua</span>
+      </nav>
+
+      <div class="kosakata-modes">
+        <button class="mode-tab active" data-mode="flash" onclick="setMode('flash')">🎴 Flashcard</button>
+        <button class="mode-tab" data-mode="auto" onclick="setMode('auto')">🔊 Auto Voice</button>
+      </div>
+
+      <div class="kosakata-card" id="flashMode">
+        <div class="flashcard" onclick="flipCard()" id="fc">
+          <div class="card-front" id="front">
+            <span class="card-bab-badge" id="fcBabFront"></span>
+            <div class="card-jp" id="fcJp">–</div>
+            <div class="card-hint">Ketuk untuk melihat arti</div>
+          </div>
+          <div class="card-back" id="back">
+            <div class="card-id" id="fcRomaji"></div>
+            <div class="card-meaning" id="fcMeaning">Pilih kategori</div>
+            <div class="card-cat" id="fcCat"></div>
           </div>
         </div>
+
+        <div class="card-side-actions">
+          <button class="side-btn" onclick="speakCurrentCard()" title="Baca">🔊 Baca</button>
+          <button class="side-btn" id="reverseBtn" onclick="toggleReverseMode()" title="Mode kebalik">↔ Reverse: OFF</button>
+          <button class="side-btn" onclick="shuffle()" title="Acak">🔀 Acak</button>
+        </div>
+
+        <div class="auto-voice-status" id="autoVoiceStatus"></div>
       </div>
-      <input id="search" type="text" placeholder="Cari kata..." oninput="filterCards()" />
-      <span class="stats" id="stats"></span>
+
+      <div class="app-decor">
+        <p class="decor-quote">
+          <span class="decor-heart">❤</span>
+          <span>Belajar sedikit demi sedikit, tapi konsisten setiap hari.</span>
+        </p>
+        <span class="decor-sakura" aria-hidden="true">🌸</span>
+      </div>
     </div>
+
+    <footer class="app-bottombar">
+      <button class="nav-step" id="prevBtn" type="button" onclick="prev()">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
+        <span>Sebelumnya</span>
+      </button>
+      <div class="bottom-progress">
+        <span class="bottom-counter" id="prog">0 / 0</span>
+        <div class="mini-progress"><div class="mini-fill" id="miniFill"></div></div>
+      </div>
+      <div class="bottom-actions">
+        <button class="bottom-action bottom-action--hide" id="hideBtn" onclick="hideCurrentCard()" title="Sembunyikan">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17.94 17.94A10 10 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+          <span>Sembunyikan</span>
+        </button>
+        <button class="nav-step nav-step--next" id="nextBtn" type="button" onclick="next()">
+          <span>Berikutnya</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="9 18 15 12 9 6"/></svg>
+        </button>
+      </div>
+    </footer>
   </div>
 
-  <div id="flashMode">
-    <div class="card-area">
-      <div class="flashcard" onclick="flipCard()" id="fc">
-        <div class="card-front" id="front">
-          <div class="card-bab-badge" id="fcBabFront"></div>
-          <div class="card-jp" id="fcJp"></div>
-          <div class="card-hint">Ketuk untuk melihat arti</div>
-        </div>
-        <div class="card-back" id="back">
-          <div class="card-id" id="fcRomaji"></div>
-          <div class="card-meaning" id="fcMeaning"></div>
-          <div class="card-cat" id="fcCat"></div>
-        </div>
-      </div>
-      <div class="nav-row">
-        <button onclick="prev()">← Prev</button>
-        <span class="progress" id="prog"></span>
-        <button onclick="next()">Next →</button>
-      </div>
-      <div class="nav-row">
-        <button onclick="speakCurrentCard()">🔊 Baca: Jepang lalu arti</button>
-      </div>
-      <div class="nav-row">
-        <button id="hideBtn" class="hide-btn" onclick="hideCurrentCard()">🙈 Sembunyikan</button>
-      </div>
-      <div class="nav-row">
-        <button id="reverseBtn" onclick="toggleReverseMode()">↔ Reverse: OFF (Jepang dulu)</button>
-      </div>
-      <div class="header-subtitle" id="autoVoiceStatus" style="text-align:center; margin-top:4px;"></div>
-      <button class="shuffle-btn" onclick="shuffle()">🔀 Acak Urutan</button>
-    </div>
-  </div>
-
-</div>
-
-</main>
-
-<script src="js/sidebar.js"></script>
-<script src="js/hidden.js"></script>
-<script src="data/database.js"></script>
-<script src="js/flashcard_kosakata_bab1_10.js"></script>
-
+  <script src="js/hidden.js"></script>
+  <script src="data/database.js"></script>
+  <script src="js/flashcard_kosakata_bab1_10.js"></script>
 </body>
 </html>

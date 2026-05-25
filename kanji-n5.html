@@ -6,73 +6,84 @@
 <title>漢字 N5 — Belajar Kanji</title>
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/app-shell.css">
 <link rel="stylesheet" href="css/kanji-n5.css">
 </head>
-<body>
+<body class="app-shell" data-page="kanji">
 
-<button class="mobile-menu-btn" type="button" onclick="toggleSidebar()">☰ Menu</button>
-<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()"></div>
+<button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Buka menu">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+</button>
+<div class="mobile-backdrop" id="mobileBackdrop"></div>
 
-<div class="layout">
-
-<!-- SIDEBAR -->
-<aside class="sidebar">
-  <div class="sidebar-header">
-    <span class="logo">漢字</span>
-    <div class="tagline">JLPT N5 — 104 Kanji</div>
-  </div>
-  <div class="sidebar-progress">
-    <div class="progress-text">
-      <span>Progress</span>
-      <span class="progress-count" id="sideProgressText">0 / 104</span>
-    </div>
-    <div class="progress-bar-wrap">
-      <div class="progress-bar-fill" id="sideProgressBar" style="width:0%"></div>
+<aside class="app-sidebar" id="appSidebar">
+  <div class="app-logo">
+    <div class="logo-icon">字</div>
+    <div class="logo-text">
+      <span class="logo-jp">漢字 N5</span>
+      <span class="logo-sub">104 Kanji</span>
     </div>
   </div>
-  <nav class="sidebar-nav">
-    <div class="nav-section-label">Halaman</div>
-    <a class="nav-item" href="index.html">
-      <span class="nav-kanji-preview">📘</span>
-      <span>Kosakata</span>
-    </a>
-    <a class="nav-item" href="bunpo.html">
-      <span class="nav-kanji-preview">✍</span>
-      <span>Bunpo</span>
-    </a>
-    <a class="nav-item" href="kanji-n5.html">
-      <span class="nav-kanji-preview">字</span>
-      <span>Kanji</span>
-    </a>
-    <a class="nav-item" href="latihan.html">
-      <span class="nav-kanji-preview">📝</span>
-      <span>Latihan Vocab</span>
-    </a>
-    <a class="nav-item" href="bunpo-quiz-full.html">
-      <span class="nav-kanji-preview">💬</span>
-      <span>Latihan Bunpo</span>
-    </a>
-    <a class="nav-item" href="sembunyikan.html">
-      <span class="nav-kanji-preview">🙈</span>
-      <span>Tersembunyi</span>
-    </a>
-    <div class="nav-section-label">Menu</div>
-    <div class="nav-item active" onclick="showHome()" id="navHome">
-      <span class="nav-kanji-preview">🏠</span>
-      <span>Beranda</span>
+
+  <div class="sidebar-section">
+    <span class="section-label">Progress</span>
+    <div class="progress-card">
+      <div class="progress-title">Kanji dipelajari</div>
+      <div class="progress-row">
+        <div>
+          <span class="progress-num" id="sideProgressNum">0</span>
+          <span class="progress-total" id="sideProgressText">/ 104</span>
+        </div>
+        <span class="progress-percent" id="sideProgressPct">0%</span>
+      </div>
+      <div class="progress-bar"><div class="progress-fill" id="sideProgressBar"></div></div>
     </div>
-    <div class="nav-item" onclick="showCardMode()" id="navCardMode">
-      <span class="nav-kanji-preview">▦</span>
-      <span>Mode Kartu</span>
-    </div>
-    <div class="nav-section-label">Kategori</div>
-    <div id="navList"></div>
+  </div>
+
+  <nav class="sidebar-section" aria-label="Menu utama">
+    <span class="section-label">Halaman</span>
+    <a href="index.html" class="nav-link" data-page="kosakata"><span class="nav-icon">📚</span><span>Kosakata</span></a>
+    <a href="bunpo.html" class="nav-link" data-page="bunpo"><span class="nav-icon">📖</span><span>Bunpo</span></a>
+    <a href="kanji-n5.html" class="nav-link active" data-page="kanji"><span class="nav-icon">本</span><span>Kanji</span></a>
+    <a href="latihan.html" class="nav-link" data-page="latihan-vocab"><span class="nav-icon">✎</span><span>Latihan Vocab</span></a>
+    <a href="bunpo-quiz-full.html" class="nav-link" data-page="latihan-bunpo"><span class="nav-icon">✦</span><span>Latihan Bunpo</span></a>
+    <a href="sembunyikan.html" class="nav-link" data-page="tersembunyi"><span class="nav-icon">🙈</span><span>Tersembunyi</span></a>
   </nav>
+
+  <div class="sidebar-section">
+    <span class="section-label">Mode</span>
+    <button type="button" class="nav-link" id="navHome" onclick="showHome()"><span class="nav-icon">🏠</span><span>Beranda</span></button>
+    <button type="button" class="nav-link active" id="navCardMode" onclick="showCardMode()"><span class="nav-icon">▦</span><span>Mode Kartu</span></button>
+  </div>
+
+  <div class="sidebar-section sidebar-categories" id="sidebarCategories">
+    <span class="section-label">Kategori</span>
+    <div class="cat-list" id="navList"></div>
+  </div>
+
+  <div class="sidebar-section sidebar-categories" id="sidebarCardFilter" style="display:none">
+    <span class="section-label">Filter Bab</span>
+    <div class="cat-list" id="cardBabFilterSidebar"></div>
+  </div>
 </aside>
 
-<!-- MAIN -->
-<main class="main">
+<div class="app-main">
+  <header class="app-topbar">
+    <div class="search-wrap">
+      <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input id="kanjiSearch" type="text" class="search-input" placeholder="Cari kanji atau arti...">
+      <kbd class="search-kbd">Ctrl /</kbd>
+    </div>
+    <div class="topbar-right">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch tema">
+        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <main class="app-content">
 
   <!-- HOME VIEW -->
   <div id="homeView">
@@ -156,6 +167,7 @@
   </div>
 
 </main>
+</div>
 
 <!-- KANJI INFO MODAL -->
 <div id="kanjiModal" class="kanji-modal" style="display:none">
@@ -171,8 +183,6 @@
       <div class="modal-info" id="modalInfo"></div>
     </div>
   </div>
-</div>
-
 </div>
 
 <script src="data/kanji_n5_extra_data.js"></script>
@@ -251,6 +261,7 @@ function buildDisplayCategoriesByBab() {
       vocab: Array.isArray(k.vocab) ? k.vocab : [],
       story: k.story || null,
       example: k.example || null,
+      bab: bab,
       originCatId: `extra_${bab.replace(/\s+/g, '_').toLowerCase()}_${idx}`
     };
 
@@ -284,36 +295,55 @@ function getLearnKey(cat, k) {
   return `${k.originCatId || cat.id}_${k.char}`;
 }
 
-const sidebarEl = document.querySelector('.sidebar');
-const sidebarBackdropEl = document.getElementById('sidebarBackdrop');
+const sidebarEl = document.getElementById('appSidebar');
+const sidebarBackdropEl = document.getElementById('mobileBackdrop');
+const mobileMenuToggleEl = document.getElementById('mobileMenuToggle');
 
 function openSidebar() {
-  if (window.innerWidth > 900) return;
-  sidebarEl.classList.add('open');
-  sidebarBackdropEl.classList.add('show');
-  document.body.classList.add('sidebar-open');
+  sidebarEl.classList.add('is-open');
+  sidebarBackdropEl.classList.add('is-open');
 }
 
 function closeSidebar() {
-  sidebarEl.classList.remove('open');
-  sidebarBackdropEl.classList.remove('show');
-  document.body.classList.remove('sidebar-open');
+  sidebarEl.classList.remove('is-open');
+  sidebarBackdropEl.classList.remove('is-open');
 }
 
 function toggleSidebar() {
-  if (sidebarEl.classList.contains('open')) closeSidebar();
+  if (sidebarEl.classList.contains('is-open')) closeSidebar();
   else openSidebar();
 }
 
+if (mobileMenuToggleEl) mobileMenuToggleEl.addEventListener('click', openSidebar);
+if (sidebarBackdropEl) sidebarBackdropEl.addEventListener('click', closeSidebar);
+
 window.addEventListener('resize', () => {
-  if (window.innerWidth > 900) closeSidebar();
+  if (window.innerWidth > 920) closeSidebar();
 });
 
-document.querySelector('.sidebar-nav').addEventListener('click', (event) => {
-  if (window.innerWidth <= 900 && event.target.closest('.nav-item')) {
+sidebarEl.addEventListener('click', (event) => {
+  if (window.innerWidth <= 920 && (event.target.closest('.nav-link') || event.target.closest('.cat-btn'))) {
     closeSidebar();
   }
 });
+
+/* Dark mode */
+const THEME_KEY_K = 'bunpo-theme';
+function applyThemeK(theme) {
+  if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  else document.documentElement.removeAttribute('data-theme');
+}
+const savedThemeK = localStorage.getItem(THEME_KEY_K);
+applyThemeK(savedThemeK === 'dark' ? 'dark' : 'light');
+const themeToggleK = document.getElementById('themeToggle');
+if (themeToggleK) {
+  themeToggleK.addEventListener('click', () => {
+    const cur = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+    const next = cur === 'dark' ? 'light' : 'dark';
+    applyThemeK(next);
+    localStorage.setItem(THEME_KEY_K, next);
+  });
+}
 
 // ================================================================
 // HELPERS
@@ -375,12 +405,8 @@ function resolveInitialRoute() {
   if (hash.startsWith('#cardmode=')) {
     return { type: 'cardmode', bab: decodeURIComponent(hash.slice(10)) };
   }
-  const stored = localStorage.getItem('kanjiN5LastRoute') || 'home';
-  if (stored === 'home') return { type: 'home' };
-  if (stored === 'cardmode') {
-    return { type: 'cardmode', bab: localStorage.getItem('kanjiN5LastCardBab') || 'Semua' };
-  }
-  return { type: 'cat', id: stored };
+  // Default: Mode Kartu (semua kanji)
+  return { type: 'cardmode', bab: localStorage.getItem('kanjiN5LastCardBab') || 'Semua' };
 }
 
 function loadKanjiCharData(char) {
@@ -473,28 +499,41 @@ function renderStrokeOrder(char, canvasId, labelId) {
 function updateProgress() {
   const learned = learnedSet.size;
   const pct = Math.round(learned / totalKanji * 100);
-  document.getElementById('sideProgressText').textContent = `${learned} / ${totalKanji}`;
-  document.getElementById('sideProgressBar').style.width = pct + '%';
-  document.getElementById('statLearned').textContent = learned;
-  document.getElementById('statQuizDone').textContent = quizDoneSet.size;
-  document.getElementById('statCats').textContent = DISPLAY_CATEGORIES.length;
+  const numEl = document.getElementById('sideProgressNum');
+  const totalEl = document.getElementById('sideProgressText');
+  const pctEl = document.getElementById('sideProgressPct');
+  const barEl = document.getElementById('sideProgressBar');
+  if (numEl) numEl.textContent = learned;
+  if (totalEl) totalEl.textContent = '/ ' + totalKanji;
+  if (pctEl) pctEl.textContent = pct + '%';
+  if (barEl) barEl.style.width = pct + '%';
+  const sl = document.getElementById('statLearned');
+  const sq = document.getElementById('statQuizDone');
+  const sc = document.getElementById('statCats');
+  if (sl) sl.textContent = learned;
+  if (sq) sq.textContent = quizDoneSet.size;
+  if (sc) sc.textContent = DISPLAY_CATEGORIES.length;
 }
 
 // ================================================================
 // NAVIGATION
 // ================================================================
+const KANJI_CAT_COLORS = ['#e8607e', '#7fa790', '#c9a14a', '#e89476', '#a684c4'];
+
 function buildSidebar() {
   const navList = document.getElementById('navList');
   navList.innerHTML = '';
-  DISPLAY_CATEGORIES.forEach(cat => {
+  DISPLAY_CATEGORIES.forEach((cat, i) => {
     const done = quizDoneSet.has(cat.id);
-    const learnedCount = cat.kanji.filter(k => learnedSet.has(getLearnKey(cat, k))).length;
-    const item = document.createElement('div');
-    item.className = 'nav-item';
+    const item = document.createElement('button');
+    item.type = 'button';
+    item.className = 'cat-btn';
     item.id = 'nav_' + cat.id;
+    item.style.setProperty('--cat-color', KANJI_CAT_COLORS[i % KANJI_CAT_COLORS.length]);
     item.innerHTML = `
-      <span>${cat.name}</span>
-      ${done ? `<span class="done-badge">✓</span>` : `<span class="nav-count">${cat.kanji.length}</span>`}
+      <span class="cat-dot"></span>
+      <span class="cat-name">${cat.name}</span>
+      ${done ? `<span class="cat-count" style="color:var(--sage-text)">✓</span>` : `<span class="cat-count">${cat.kanji.length}</span>`}
     `;
     item.onclick = () => showCategory(cat.id);
     navList.appendChild(item);
@@ -525,6 +564,8 @@ function showHome() {
   const cm = document.getElementById('cardModeView');
   if (cm) cm.style.display = 'none';
   setActiveNav('home');
+  setSidebarView('default');
+  document.body.classList.remove('cardmode-active');
   updateProgress();
   buildCatOverview();
 }
@@ -538,11 +579,26 @@ let cardModeBab = 'Semua';
 
 function buildAllKanjiFlat() {
   const list = [];
-  if (typeof KANJI_N5_EXTRA === 'undefined') return list;
-  KANJI_N5_EXTRA.forEach((k) => {
-    list.push(k);
+  DISPLAY_CATEGORIES.forEach((cat) => {
+    cat.kanji.forEach((k) => list.push(k));
   });
   return list;
+}
+
+function getCardModeLearnKey(k) {
+  if (!k) return '';
+  return `${k.originCatId || 'card'}_${k.char}`;
+}
+
+function toggleCardLearn() {
+  if (!cardModeKanjiList.length) return;
+  const k = cardModeKanjiList[cardModeIdx];
+  const key = getCardModeLearnKey(k);
+  if (learnedSet.has(key)) learnedSet.delete(key);
+  else learnedSet.add(key);
+  saveState();
+  updateProgress();
+  renderCardMode();
 }
 
 function getCardModeBabs() {
@@ -559,12 +615,17 @@ function getCardModeBabs() {
   return arr;
 }
 
+const CARD_BAB_COLORS = ['#e8607e', '#7fa790', '#c9a14a', '#e89476', '#a684c4'];
+
 function buildCardBabFilter() {
   const container = document.getElementById('cardBabFilter');
-  if (!container) return;
+  const sidebarContainer = document.getElementById('cardBabFilterSidebar');
   const babs = getCardModeBabs();
-  container.innerHTML = '';
-  const mkBtn = (bab) => {
+  const all = buildAllKanjiFlat();
+  const counts = new Map();
+  all.forEach((k) => { const b = k.bab || 'Lainnya'; counts.set(b, (counts.get(b) || 0) + 1); });
+
+  const mkMainBtn = (bab) => {
     const btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'cm-bab-btn' + (cardModeBab === bab ? ' active' : '');
@@ -573,8 +634,33 @@ function buildCardBabFilter() {
     btn.onclick = () => setCardBab(bab);
     return btn;
   };
-  container.appendChild(mkBtn('Semua'));
-  babs.forEach((b) => container.appendChild(mkBtn(b)));
+
+  const mkSidebarBtn = (bab, color) => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'cat-btn' + (cardModeBab === bab ? ' active' : '');
+    btn.dataset.bab = bab;
+    btn.style.setProperty('--cat-color', color);
+    const count = bab === 'Semua' ? all.length : (counts.get(bab) || 0);
+    btn.innerHTML = `
+      <span class="cat-dot"></span>
+      <span class="cat-name">${bab}</span>
+      <span class="cat-count">${count}</span>
+    `;
+    btn.onclick = () => setCardBab(bab);
+    return btn;
+  };
+
+  if (container) {
+    container.innerHTML = '';
+    container.appendChild(mkMainBtn('Semua'));
+    babs.forEach((b) => container.appendChild(mkMainBtn(b)));
+  }
+  if (sidebarContainer) {
+    sidebarContainer.innerHTML = '';
+    sidebarContainer.appendChild(mkSidebarBtn('Semua', CARD_BAB_COLORS[0]));
+    babs.forEach((b, i) => sidebarContainer.appendChild(mkSidebarBtn(b, CARD_BAB_COLORS[(i + 1) % CARD_BAB_COLORS.length])));
+  }
 }
 
 function setCardBab(bab) {
@@ -583,9 +669,25 @@ function setCardBab(bab) {
   document.querySelectorAll('#cardBabFilter .cm-bab-btn').forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.bab === bab);
   });
+  document.querySelectorAll('#cardBabFilterSidebar .cat-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.bab === bab);
+  });
   refreshCardModeList();
   renderCardMode();
   saveLastRoute('cardmode', { bab });
+  closeSidebar();
+}
+
+function setSidebarView(mode) {
+  const cats = document.getElementById('sidebarCategories');
+  const filter = document.getElementById('sidebarCardFilter');
+  if (mode === 'cardmode') {
+    if (cats) cats.style.display = 'none';
+    if (filter) filter.style.display = '';
+  } else {
+    if (cats) cats.style.display = '';
+    if (filter) filter.style.display = 'none';
+  }
 }
 
 function refreshCardModeList() {
@@ -604,6 +706,8 @@ function showCardMode() {
   document.getElementById('quizView').style.display = 'none';
   document.getElementById('cardModeView').style.display = '';
   setActiveNav('cardmode');
+  setSidebarView('cardmode');
+  document.body.classList.add('cardmode-active');
   buildCardBabFilter();
   refreshCardModeList();
   renderCardMode();
@@ -713,29 +817,37 @@ function renderCardMode() {
     `).join('')
     : '<div class="cm-ex-empty">— belum ada contoh —</div>';
 
+  const learnKey = getCardModeLearnKey(k);
+  const isLearned = learnedSet.has(learnKey);
+
   card.innerHTML = `
     <div class="cm-bab-badge">${escapeKanjiHtml(k.bab || '')}</div>
-    <div class="cm-meaning">${escapeKanjiHtml(k.mean || '')}</div>
-    ${k.desc ? `<div class="cm-desc">${escapeKanjiHtml(k.desc)}</div>` : ''}
     <div class="cm-stroke-wrap">
       <div id="cardStrokeCanvas" class="cm-stroke-canvas">${escapeKanjiHtml(k.char)}</div>
+      <button type="button" class="cm-learn-btn ${isLearned ? 'is-learned' : ''}" onclick="toggleCardLearn()">
+        ${isLearned ? '✓ Sudah hafal' : 'Tandai sudah hafal'}
+      </button>
     </div>
-    <div class="cm-readings">
-      <div class="cm-reading cm-reading-on">
-        <div class="cm-reading-head">
-          <span class="cm-reading-label">音読み · onyomi</span>
-          <span class="cm-reading-val">${escapeKanjiHtml(readings ? readings.on : '—')}</span>
-          ${readings && readings.onR ? `<span class="cm-reading-rom">${escapeKanjiHtml(readings.onR)}</span>` : ''}
+    <div class="cm-content">
+      <div class="cm-meaning">${escapeKanjiHtml(k.mean || '')}</div>
+      ${k.desc ? `<div class="cm-desc">${escapeKanjiHtml(k.desc)}</div>` : ''}
+      <div class="cm-readings">
+        <div class="cm-reading cm-reading-on">
+          <div class="cm-reading-head">
+            <span class="cm-reading-label">音読み · onyomi</span>
+            <span class="cm-reading-val">${escapeKanjiHtml(readings ? readings.on : '—')}</span>
+            ${readings && readings.onR ? `<span class="cm-reading-rom">${escapeKanjiHtml(readings.onR)}</span>` : ''}
+          </div>
+          <div class="cm-ex-list">${renderExampleList(onExamples)}</div>
         </div>
-        <div class="cm-ex-list">${renderExampleList(onExamples)}</div>
-      </div>
-      <div class="cm-reading cm-reading-kun">
-        <div class="cm-reading-head">
-          <span class="cm-reading-label">訓読み · kunyomi</span>
-          <span class="cm-reading-val">${escapeKanjiHtml(readings ? readings.kun : '—')}</span>
-          ${readings && readings.kunR ? `<span class="cm-reading-rom">${escapeKanjiHtml(readings.kunR)}</span>` : ''}
+        <div class="cm-reading cm-reading-kun">
+          <div class="cm-reading-head">
+            <span class="cm-reading-label">訓読み · kunyomi</span>
+            <span class="cm-reading-val">${escapeKanjiHtml(readings ? readings.kun : '—')}</span>
+            ${readings && readings.kunR ? `<span class="cm-reading-rom">${escapeKanjiHtml(readings.kunR)}</span>` : ''}
+          </div>
+          <div class="cm-ex-list">${renderExampleList(kunExamples)}</div>
         </div>
-        <div class="cm-ex-list">${renderExampleList(kunExamples)}</div>
       </div>
     </div>
   `;
@@ -800,6 +912,8 @@ function showCategory(catId) {
   const cm = document.getElementById('cardModeView');
   if (cm) cm.style.display = 'none';
   setActiveNav(catId);
+  setSidebarView('default');
+  document.body.classList.remove('cardmode-active');
 
   document.getElementById('catViewTitle').textContent = currentCat.name;
   document.getElementById('catViewDesc').textContent = currentCat.desc;
@@ -1094,6 +1208,7 @@ function startQuiz(mode = 'bab') {
     document.getElementById('quizView').style.display = 'block';
     const cmHide = document.getElementById('cardModeView');
     if (cmHide) cmHide.style.display = 'none';
+    document.body.classList.remove('cardmode-active');
     const prepFb = document.getElementById('quizFeedback');
     prepFb.textContent = 'Menyiapkan kuis...';
     prepFb.className = 'quiz-feedback show';

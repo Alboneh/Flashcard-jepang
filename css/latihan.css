@@ -1,42 +1,109 @@
+/* Page-specific colors for quiz feedback (not shared with app-shell) */
 :root {
-  --green: #58cc02;
-  --green-dark: #46a302;
-  --green-soft: #d7ffb8;
-  --blue: #1cb0f6;
-  --blue-dark: #1899d6;
-  --blue-soft: #ddf4ff;
-  --red: #ff4b4b;
-  --red-dark: #d33b3b;
-  --red-soft: #ffd6d6;
-  --yellow: #ffc800;
-  --yellow-dark: #e6a200;
-  --purple: #ce82ff;
-  --orange: #ff9600;
+  --quiz-green: #58cc02;
+  --quiz-green-dark: #46a302;
+  --quiz-green-soft: #d7ffb8;
+  --quiz-blue: #1cb0f6;
+  --quiz-blue-dark: #1899d6;
+  --quiz-blue-soft: #ddf4ff;
+  --quiz-red: #ff4b4b;
+  --quiz-red-dark: #d33b3b;
+  --quiz-red-soft: #ffd6d6;
+  --quiz-yellow: #ffc800;
+  --quiz-yellow-dark: #e6a200;
+  --quiz-purple: #ce82ff;
+  --quiz-orange: #ff9600;
 
-  --ink: #3c3c3c;
-  --ink-soft: #777;
-  --paper: #f7f7f7;
-  --card: #ffffff;
-  --border: #e5e5e5;
-  --border-dark: #d0d0d0;
+  /* Aliases used by legacy code below */
+  --green: var(--quiz-green);
+  --green-dark: var(--quiz-green-dark);
+  --green-soft: var(--quiz-green-soft);
+  --blue: var(--quiz-blue);
+  --blue-dark: var(--quiz-blue-dark);
+  --blue-soft: var(--quiz-blue-soft);
+  --red: var(--quiz-red);
+  --red-dark: var(--quiz-red-dark);
+  --red-soft: var(--quiz-red-soft);
+  --yellow: var(--quiz-yellow);
+  --yellow-dark: var(--quiz-yellow-dark);
+  --purple: var(--quiz-purple);
+  --orange: var(--quiz-orange);
+
+  --ink: var(--text);
+  --ink-soft: var(--text-soft);
+  --paper: var(--bg);
+  --card: var(--surface);
+  --border-dark: var(--border-strong);
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
-
-body {
-  font-family: 'Noto Sans JP', system-ui, -apple-system, sans-serif;
-  background: var(--paper);
-  color: var(--ink);
-  min-height: 100vh;
-  -webkit-font-smoothing: antialiased;
+/* Topbar title for latihan */
+.topbar-title-wrap { flex: 1; }
+.topbar-title {
+  font-family: var(--font-jp);
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
 }
 
-.fc-wrap {
-  width: min(720px, 96vw);
-  margin: 20px auto 60px;
+/* Sidebar status (hearts/streak/xp) */
+.quiz-status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 0;
+  border-bottom: 1px dashed var(--border);
+}
+.quiz-status-row:last-child { border-bottom: none; }
+.quiz-status-row > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+.status-emoji { font-size: 1.1rem; }
+.status-num {
+  font-family: var(--font-ui);
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--text);
+  margin-left: auto;
+}
+.status-label {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  margin-left: 8px;
+}
+.sidebar-tip {
+  font-size: 0.8rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+  padding: 0 6px;
 }
 
 /* ===== HERO ===== */
+.latihan-hero {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl);
+  padding: 22px 24px;
+  margin-bottom: 14px;
+  box-shadow: var(--shadow-sm);
+}
+.hero-title {
+  font-family: var(--font-jp);
+  font-size: clamp(1.4rem, 4vw, 1.8rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.hero-sub {
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Legacy hero-card (kept for compat, just inherits the new style) */
 .hero-card {
   background: var(--card);
   border: 2px solid var(--border);

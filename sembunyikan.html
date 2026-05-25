@@ -5,76 +5,147 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tersembunyi — Kelola Item</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/sidebar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app-shell.css">
   <link rel="stylesheet" href="css/sembunyikan.css">
 </head>
-<body class="has-global-sidebar" data-page="tersembunyi">
-  <button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
-  <div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
-  <aside id="globalSidebar" class="global-sidebar">
-    <div class="global-sidebar-header">
-      <span class="global-sidebar-title">日本語 Belajar</span>
-      <div class="global-sidebar-subtitle">Navigasi Halaman</div>
-    </div>
-    <nav class="global-sidebar-links" aria-label="Sidebar navigasi utama">
-      <a href="index.html" data-page="kosakata">Kosakata</a>
-      <a href="bunpo.html" data-page="bunpo">Bunpo</a>
-      <a href="kanji-n5.html" data-page="kanji">Kanji</a>
-      <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
-      <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
-      <a href="sembunyikan.html" data-page="tersembunyi">Tersembunyi</a>
-    </nav>
-  </aside>
+<body class="app-shell" data-page="tersembunyi">
 
-  <main class="global-app-main">
-   <div class="page">
-    <section class="hero">
-      <div class="hero-inner">
-        <div class="hero-kanji">隠</div>
-        <div class="hero-text">
-          <h1>Daftar Tersembunyi</h1>
-          <p>Kelola item yang sebelumnya kamu sembunyikan dari Kosakata &amp; Bunpo.</p>
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Buka menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="app-logo">
+      <div class="logo-icon">隠</div>
+      <div class="logo-text">
+        <span class="logo-jp">隠す</span>
+        <span class="logo-sub">Tersembunyi</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="section-label">Ringkasan</span>
+      <div class="progress-card">
+        <div class="quiz-status-row">
+          <div><span class="status-emoji">📚</span><span class="status-label">Kosakata</span><span class="status-num" id="sideKosCount">0</span></div>
+        </div>
+        <div class="quiz-status-row">
+          <div><span class="status-emoji">📖</span><span class="status-label">Bunpo</span><span class="status-num" id="sideBunCount">0</span></div>
         </div>
       </div>
-    </section>
+    </div>
 
-    <section class="sync-card">
-      <h2>Sinkronisasi Antar Perangkat</h2>
-      <p>Export data tersembunyi sebagai file JSON, lalu import di perangkat lain.</p>
-      <div class="sync-row">
-        <button type="button" class="sync-btn" onclick="HiddenStore.downloadExport()">📤 Export</button>
-        <label class="sync-btn">
-          📥 Import
-          <input type="file" accept="application/json,.json" onchange="importHiddenFile(this)" hidden />
-        </label>
+    <nav class="sidebar-section" aria-label="Menu utama">
+      <span class="section-label">Menu</span>
+      <a href="index.html" class="nav-link" data-page="kosakata"><span class="nav-icon">📚</span><span>Kosakata</span></a>
+      <a href="bunpo.html" class="nav-link" data-page="bunpo"><span class="nav-icon">📖</span><span>Bunpo</span></a>
+      <a href="kanji-n5.html" class="nav-link" data-page="kanji"><span class="nav-icon">本</span><span>Kanji</span></a>
+      <a href="latihan.html" class="nav-link" data-page="latihan-vocab"><span class="nav-icon">✎</span><span>Latihan Vocab</span></a>
+      <a href="bunpo-quiz-full.html" class="nav-link" data-page="latihan-bunpo"><span class="nav-icon">✦</span><span>Latihan Bunpo</span></a>
+      <a href="sembunyikan.html" class="nav-link active" data-page="tersembunyi"><span class="nav-icon">🙈</span><span>Tersembunyi</span></a>
+    </nav>
+
+    <div class="sidebar-section">
+      <span class="section-label">Tips</span>
+      <p class="sidebar-tip">Klik <b>↺ Tampilkan Semua</b> untuk mengembalikan semua item di satu kategori, atau gunakan tombol di tiap kartu.</p>
+    </div>
+  </aside>
+
+  <div class="app-main no-bottombar">
+    <header class="app-topbar">
+      <div class="topbar-title-wrap">
+        <h1 class="topbar-title">Daftar Tersembunyi</h1>
       </div>
-    </section>
+      <div class="topbar-right">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch tema">
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </div>
+    </header>
 
-    <section class="scope-section">
-      <header class="scope-header">
-        <h2>Kosakata Tersembunyi <span class="count-badge" id="kosakataCount">0</span></h2>
-        <button type="button" class="bulk-btn" id="clearKosakataBtn" onclick="clearScope('kosakata')">↺ Tampilkan Semua</button>
-      </header>
-      <div class="hidden-list" id="kosakataList"></div>
-      <p class="empty-state" id="kosakataEmpty">Belum ada kosakata yang disembunyikan.</p>
-    </section>
+    <div class="app-content">
+      <section class="hidden-hero">
+        <div class="hidden-hero-kanji">隠</div>
+        <div class="hidden-hero-text">
+          <h2>Kelola item tersembunyi</h2>
+          <p>Item yang sebelumnya kamu sembunyikan dari Kosakata &amp; Bunpo bisa dikembalikan dari sini.</p>
+        </div>
+      </section>
 
-    <section class="scope-section">
-      <header class="scope-header">
-        <h2>Bunpo Tersembunyi <span class="count-badge" id="bunpoCount">0</span></h2>
-        <button type="button" class="bulk-btn" id="clearBunpoBtn" onclick="clearScope('bunpo')">↺ Tampilkan Semua</button>
-      </header>
-      <div class="hidden-list" id="bunpoList"></div>
-      <p class="empty-state" id="bunpoEmpty">Belum ada bunpo yang disembunyikan.</p>
-    </section>
-   </div>
-  </main>
+      <section class="sync-card">
+        <h2>Sinkronisasi Antar Perangkat</h2>
+        <p>Export data tersembunyi sebagai file JSON, lalu import di perangkat lain.</p>
+        <div class="sync-row">
+          <button type="button" class="sync-btn" onclick="HiddenStore.downloadExport()">📤 Export</button>
+          <label class="sync-btn">
+            📥 Import
+            <input type="file" accept="application/json,.json" onchange="importHiddenFile(this)" hidden />
+          </label>
+        </div>
+      </section>
 
-  <script src="js/sidebar.js"></script>
+      <section class="scope-section">
+        <header class="scope-header">
+          <h2>Kosakata Tersembunyi <span class="count-badge" id="kosakataCount">0</span></h2>
+          <button type="button" class="bulk-btn" id="clearKosakataBtn" onclick="clearScope('kosakata')">↺ Tampilkan Semua</button>
+        </header>
+        <div class="hidden-list" id="kosakataList"></div>
+        <p class="empty-state" id="kosakataEmpty">Belum ada kosakata yang disembunyikan.</p>
+      </section>
+
+      <section class="scope-section">
+        <header class="scope-header">
+          <h2>Bunpo Tersembunyi <span class="count-badge" id="bunpoCount">0</span></h2>
+          <button type="button" class="bulk-btn" id="clearBunpoBtn" onclick="clearScope('bunpo')">↺ Tampilkan Semua</button>
+        </header>
+        <div class="hidden-list" id="bunpoList"></div>
+        <p class="empty-state" id="bunpoEmpty">Belum ada bunpo yang disembunyikan.</p>
+      </section>
+    </div>
+  </div>
+
   <script src="js/hidden.js"></script>
   <script src="data/database.js"></script>
   <script src="data/bunpo_database.js"></script>
   <script src="js/sembunyikan.js"></script>
+  <script>
+    /* Mobile sidebar */
+    const _appSidebar = document.getElementById('appSidebar');
+    const _mobileBackdrop = document.getElementById('mobileBackdrop');
+    const _mobileToggle = document.getElementById('mobileMenuToggle');
+    if (_mobileToggle) _mobileToggle.addEventListener('click', () => {
+      _appSidebar.classList.add('is-open');
+      _mobileBackdrop.classList.add('is-open');
+    });
+    if (_mobileBackdrop) _mobileBackdrop.addEventListener('click', () => {
+      _appSidebar.classList.remove('is-open');
+      _mobileBackdrop.classList.remove('is-open');
+    });
+
+    /* Dark mode */
+    const _TK = 'bunpo-theme';
+    function _applyTheme(t) { if (t === 'dark') document.documentElement.setAttribute('data-theme','dark'); else document.documentElement.removeAttribute('data-theme'); }
+    _applyTheme(localStorage.getItem(_TK) === 'dark' ? 'dark' : 'light');
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const c = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const n = c === 'dark' ? 'light' : 'dark';
+      _applyTheme(n);
+      localStorage.setItem(_TK, n);
+    });
+
+    /* Sync sidebar counts from main badges */
+    function _syncSidebarCounts() {
+      const k = document.getElementById('kosakataCount');
+      const b = document.getElementById('bunpoCount');
+      const sk = document.getElementById('sideKosCount');
+      const sb = document.getElementById('sideBunCount');
+      if (k && sk) sk.textContent = k.textContent;
+      if (b && sb) sb.textContent = b.textContent;
+    }
+    setInterval(_syncSidebarCounts, 600);
+  </script>
 </body>
 </html>

@@ -5,34 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Latihan Bunpo Jepang</title>
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=DM+Mono:wght@400;500&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/sidebar.css">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app-shell.css">
   <link rel="stylesheet" href="css/bunpo-quiz-full.css">
 </head>
-<body class="has-global-sidebar" data-page="latihan-bunpo">
-  <button id="globalSidebarToggle" class="global-side-toggle" type="button">☰ Menu</button>
-  <div id="globalSidebarBackdrop" class="global-side-backdrop"></div>
-  <aside id="globalSidebar" class="global-sidebar">
-    <div class="global-sidebar-header">
-      <span class="global-sidebar-title">日本語 Belajar</span>
-      <div class="global-sidebar-subtitle">Navigasi Halaman</div>
+<body class="app-shell" data-page="latihan-bunpo">
+
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Buka menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="app-logo">
+      <div class="logo-icon">✦</div>
+      <div class="logo-text">
+        <span class="logo-jp">文法クイズ</span>
+        <span class="logo-sub">Latihan Bunpo</span>
+      </div>
     </div>
-    <nav class="global-sidebar-links" aria-label="Sidebar navigasi utama">
-      <a href="index.html" data-page="kosakata">Kosakata</a>
-      <a href="bunpo.html" data-page="bunpo">Bunpo</a>
-      <a href="kanji-n5.html" data-page="kanji">Kanji</a>
-      <a href="latihan.html" data-page="latihan-vocab">Latihan Vocab</a>
-      <a href="bunpo-quiz-full.html" data-page="latihan-bunpo">Latihan Bunpo</a>
-      <a href="sembunyikan.html" data-page="tersembunyi">Tersembunyi</a>
+
+    <div class="sidebar-section">
+      <span class="section-label">Status Sesi</span>
+      <div class="progress-card">
+        <div class="quiz-status-row">
+          <div><span class="status-emoji">❤</span><span class="status-num" id="sideHearts">5</span><span class="status-label">Nyawa</span></div>
+        </div>
+        <div class="quiz-status-row">
+          <div><span class="status-emoji">🔥</span><span class="status-num" id="sideStreak">0</span><span class="status-label">Streak</span></div>
+        </div>
+        <div class="quiz-status-row">
+          <div><span class="status-emoji">⭐</span><span class="status-num" id="sideXP">0</span><span class="status-label">XP</span></div>
+        </div>
+      </div>
+    </div>
+
+    <nav class="sidebar-section" aria-label="Menu utama">
+      <span class="section-label">Menu</span>
+      <a href="index.html" class="nav-link" data-page="kosakata"><span class="nav-icon">📚</span><span>Kosakata</span></a>
+      <a href="bunpo.html" class="nav-link" data-page="bunpo"><span class="nav-icon">📖</span><span>Bunpo</span></a>
+      <a href="kanji-n5.html" class="nav-link" data-page="kanji"><span class="nav-icon">本</span><span>Kanji</span></a>
+      <a href="latihan.html" class="nav-link" data-page="latihan-vocab"><span class="nav-icon">✎</span><span>Latihan Vocab</span></a>
+      <a href="bunpo-quiz-full.html" class="nav-link active" data-page="latihan-bunpo"><span class="nav-icon">✦</span><span>Latihan Bunpo</span></a>
+      <a href="sembunyikan.html" class="nav-link" data-page="tersembunyi"><span class="nav-icon">🙈</span><span>Tersembunyi</span></a>
     </nav>
+
+    <div class="sidebar-section">
+      <span class="section-label">Cara Latihan</span>
+      <p class="sidebar-tip">✦ Pilih bab, atur jumlah soal, lalu mulai. Tiap jawaban salah kurangi 1 nyawa.</p>
+    </div>
   </aside>
 
-  <main class="global-app-main">
-    <div class="quiz-page">
-      <section class="hero-card">
+  <div class="app-main no-bottombar">
+    <header class="app-topbar">
+      <div class="topbar-title-wrap">
+        <h1 class="topbar-title">文法クイズ N5-N4</h1>
+      </div>
+      <div class="topbar-right">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch tema">
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="app-content">
+      <section class="latihan-hero">
         <div class="hero-tag">⚡ Latihan Bunpo</div>
-        <h1>文法クイズ N5-N4</h1>
-        <p>Latihan pola bunpo dengan sistem nyawa, beruntun, dan XP — mirip Duolingo. Pilih bab yang ingin kamu pelajari, atau biarkan semua untuk latihan campuran.</p>
+        <h2 class="hero-title">Asah pola bunpo Anda!</h2>
+        <p class="hero-sub">Sistem nyawa, beruntun, dan XP — mirip Duolingo. Pilih bab yang ingin kamu pelajari, atau biarkan semua untuk latihan campuran.</p>
       </section>
 
       <div class="sticky-bar" id="stickyBar">
@@ -73,7 +114,6 @@
       </div>
 
       <section class="panel">
-
         <div id="introPanel">
           <div class="stats-row">
             <div class="stat-box"><div class="s-n" id="iPola">0</div><div class="s-l">Bab Tersedia</div></div>
@@ -140,10 +180,44 @@
         </div>
       </section>
     </div>
-  </main>
+  </div>
 
-  <script src="js/sidebar.js"></script>
   <script src="data/bunpo_quiz_database.js"></script>
   <script src="js/bunpo-quiz-full.js"></script>
+  <script>
+    /* Mobile sidebar */
+    const _appSidebar = document.getElementById('appSidebar');
+    const _mobileBackdrop = document.getElementById('mobileBackdrop');
+    const _mobileToggle = document.getElementById('mobileMenuToggle');
+    if (_mobileToggle) _mobileToggle.addEventListener('click', () => {
+      _appSidebar.classList.add('is-open');
+      _mobileBackdrop.classList.add('is-open');
+    });
+    if (_mobileBackdrop) _mobileBackdrop.addEventListener('click', () => {
+      _appSidebar.classList.remove('is-open');
+      _mobileBackdrop.classList.remove('is-open');
+    });
+
+    /* Dark mode */
+    const _TK = 'bunpo-theme';
+    function _applyTheme(t) { if (t === 'dark') document.documentElement.setAttribute('data-theme','dark'); else document.documentElement.removeAttribute('data-theme'); }
+    _applyTheme(localStorage.getItem(_TK) === 'dark' ? 'dark' : 'light');
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const c = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const n = c === 'dark' ? 'light' : 'dark';
+      _applyTheme(n);
+      localStorage.setItem(_TK, n);
+    });
+
+    /* Sync sidebar status */
+    function _syncSidebarStatus() {
+      const map = [['hHearts','sideHearts'],['hStreak','sideStreak'],['hScore','sideXP']];
+      map.forEach(([a,b]) => {
+        const src = document.getElementById(a); const dst = document.getElementById(b);
+        if (src && dst) dst.textContent = src.textContent;
+      });
+    }
+    setInterval(_syncSidebarStatus, 600);
+  </script>
 </body>
 </html>
