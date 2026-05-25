@@ -905,6 +905,390 @@ const bunpoDatabase = [
       "ワンさんの かばんは どれですか。 …この しろくて、ちいさい かばんです。 (Tasnya Wang yang mana? …Tas yang berwarna putih dan kecil ini.)"
     ],
     bab: "Bab 16",
+  },
+  {
+    pattern: "Perubahan Kata Kerja Bentuk ない (Golongan 1)",
+    explanation: "KK Gol 1: vokal「い」pada akhiran ます diganti dengan vokal「あ」. Contoh: かきます → かかない. Untuk akhiran ~います (vokal い berdiri sendiri seperti かいます, あいます), diganti dengan「わ」(bukan あ). Untuk akhiran ~ちます, ち diganti dengan「た」. Bentuk ini = bentuk biasa negatif sekarang.",
+    examples: [
+      "かきます → かかない (tidak menulis), いきます → いかない (tidak pergi)",
+      "はなします → はなさない, よびます → よばない, のみます → のまない, かえります → かえらない",
+      "すいます → すわない (vokal い → わ), まちます → またない (ち → た)"
+    ],
+    bab: "Bab 17",
+  },
+  {
+    pattern: "Perubahan Kata Kerja Bentuk ない (Golongan 2)",
+    explanation: "KK Gol 2: cukup hilangkan ます dan ganti dengan ない. Pola: ~ます → ~ない. Sangat sederhana karena Gol 2 tidak ada perubahan vokal.",
+    examples: [
+      "たべます → たべない (tidak makan)",
+      "みます → みない (tidak melihat), おきます → おきない (tidak bangun)",
+      "あびます → あびない (tidak mandi), います → いない (tidak ada)"
+    ],
+    bab: "Bab 17",
+  },
+  {
+    pattern: "Perubahan Kata Kerja Bentuk ない (Golongan 3)",
+    explanation: "KK Gol 3 adalah kata kerja tidak beraturan (irregular). Hanya ada 2 dasar: きます → こない, します → しない. Untuk KK majemuk dengan します, bagian します-nya berubah jadi しない.",
+    examples: [
+      "きます → こない (tidak datang)",
+      "します → しない (tidak melakukan)",
+      "しんぱい します → しんぱい しない (tidak khawatir), べんきょう します → べんきょう しない"
+    ],
+    bab: "Bab 17",
+  },
+  {
+    pattern: "[K.Kerja-ない] で ください",
+    explanation: "Pola untuk meminta/memerintah lawan bicara dengan sopan agar TIDAK melakukan sesuatu. Bentuk negatif dari 〜てください. Diartikan 'jangan ~' atau 'tolong jangan ~'.",
+    examples: [
+      "ここに じてんしゃを おかないで ください。 (Jangan meletakkan sepeda di sini.)",
+      "かさを わすれないで ください。 (Jangan melupakan payungnya.)",
+      "あぶないですから、おさないで ください。 (Jangan ditekan karena berbahaya.)",
+      "私は げんきですから、しんぱいしないで ください。 (Karena saya sehat, jangan khawatir.)"
+    ],
+    bab: "Bab 17",
+  },
+  {
+    pattern: "[K.Kerja-ない] なければ なりません",
+    explanation: "Walaupun bentuknya negatif (ない), maknanya POSITIF: 'harus ~'. Menyatakan kewajiban, aturan, atau hal yang harus dilakukan. Sering dipakai untuk saran yang kuat. Cara bentuk: hilangkan ない dari bentuk ない, lalu tambah なければ なりません. Contoh: かえさない → かえさなければ なりません.",
+    examples: [
+      "本を かえさなければ なりません。 (Harus mengembalikan buku.)",
+      "くすりを 飲まなければ なりません。 (Harus minum obat.)",
+      "レポートを ださなければ なりません。 (Harus menyerahkan laporan.)",
+      "パスポートを もって いかなければ なりません。 (Harus membawa paspor.)"
+    ],
+    bab: "Bab 17",
+  },
+  {
+    pattern: "[K.Kerja-ない] なくても いいです",
+    explanation: "Pola untuk menyatakan bahwa suatu aktivitas TIDAK PERLU dilakukan, atau memberi izin halus untuk tidak melakukannya. Cara bentuk: hilangkan ない dari bentuk ない, lalu tambah なくても いいです. Contoh: こない → こなくても いいです. Diartikan 'tidak perlu ~'.",
+    examples: [
+      "あした こなくても いいです。 (Besok tidak perlu datang.)",
+      "なまえを 書かなくても いいです。 (Tidak perlu menulis nama.)",
+      "あした 休みですから、はやく おきなくても いいです。 (Karena besok libur, tidak perlu bangun pagi.)",
+      "この へやは あたたかいですから、うわぎを きなくても いいです。 (Karena ruangan ini hangat, tidak perlu memakai jaket.)"
+    ],
+    bab: "Bab 17",
+  },
+  {
+    pattern: "Pentopikalan Objek dengan は (を → は)",
+    explanation: "Jika objek dijadikan TOPIK pembicaraan, partikel を diganti menjadi は. Fungsinya menekankan/mengangkat objek tertentu sebagai topik. Membuat kalimat terdengar lebih natural. Berlaku juga untuk objek pada pola 〜てください, 〜なければ なりません, 〜ないで ください, dll.",
+    examples: [
+      "しりょうを メールで おくって ください。 → しりょうは メールで おくって ください。 (Dokumennya tolong dikirim lewat email.)",
+      "コピーを まつもとさんに 見せなければ なりません。 → コピーは まつもとさんに 見せなければ なりません。 (Salinannya harus diperlihatkan pada Matsumoto.)",
+      "荷物を そこに おかないで ください。 → 荷物は そこに おかないで ください。 (Barangnya jangan diletakkan di situ.)"
+    ],
+    bab: "Bab 17",
+  },
+  {
+    pattern: "[K.Keterangan Waktu] までに [K.Kerja]",
+    explanation: "Pola untuk menyatakan BATAS WAKTU (deadline) dari suatu aksi. Dipakai untuk deadline PR, pekerjaan, janji, pembayaran, atau himbauan datang sebelum waktu tertentu. Deadline bisa jam, hari, tanggal. Sering diikuti 〜なければ なりません. Beda dengan まで biasa: まで = sampai (durasi terus-menerus), までに = sampai (titik akhir batas/deadline).",
+    examples: [
+      "かいぎは 2時までに おわります。 (Rapatnya selesai sebelum jam 2.)",
+      "土曜日までに しゅくだいを 出さなければ なりません。 (Harus menyerahkan PR paling lambat Sabtu.)",
+      "10日までに りょこうを します。 (Bertamasya sebelum tanggal 10.)",
+      "今月までに お金を はらわなければ なりません。 (Harus membayar uang sebelum bulan ini selesai.)"
+    ],
+    bab: "Bab 17",
+  },
+  {
+    pattern: "Perubahan Kata Kerja Bentuk Kamus (じしょけい) — Golongan 1",
+    explanation: "KK Gol 1: vokal「い」pada akhiran ます diganti dengan vokal「う」. Contoh: かきます → かく. Khusus untuk akhiran ~ちます (ち), berubah menjadi「つ」. Bentuk kamus = bentuk biasa positif sekarang, dan adalah bentuk dasar yang dipakai di kamus.",
+    examples: [
+      "かいます → かう, かきます → かく, およぎます → およぐ",
+      "はなします → はなす, よびます → よぶ, よみます → よむ, はいります → はいる",
+      "たちます → たつ (ち → つ), まちます → まつ (ち → つ)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "Perubahan Kata Kerja Bentuk Kamus (じしょけい) — Golongan 2",
+    explanation: "KK Gol 2: cukup ganti 「ます」 dengan 「る」. Pola: ~ます → ~る. Sangat sederhana karena Gol 2 tidak ada perubahan vokal.",
+    examples: [
+      "ねます → ねる (tidur)",
+      "たべます → たべる (makan), おきます → おきる (bangun)",
+      "みます → みる (melihat), かります → かりる (meminjam)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "Perubahan Kata Kerja Bentuk Kamus (じしょけい) — Golongan 3",
+    explanation: "KK Gol 3 adalah irregular verbs. Hanya ada 2 dasar: きます → くる, します → する. Untuk KK majemuk dengan します, bagian します-nya berubah jadi する.",
+    examples: [
+      "きます → くる (datang)",
+      "します → する (melakukan)",
+      "うんてん します → うんてん する (mengemudi), べんきょう します → べんきょう する"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "[K.Benda] が できます",
+    explanation: "Pola untuk menyatakan KEMAMPUAN/kesanggupan menggunakan Kata Benda. KB sebelum が biasanya berupa KB bersifat aktivitas (うんてん, 買い物, スキー, ダンス) atau bahasa/instrumen (日本語, ピアノ) yang berhubungan dengan kata kerja seperti はなす, ひく. Diartikan 'bisa ~'.",
+    examples: [
+      "ミラーさんは 車の うんてんが できます。 (Miller bisa mengemudikan mobil.)",
+      "父は 日本語が できます。 (Ayah bisa Bahasa Jepang.)",
+      "わたしは スキーが できます。 (Saya bisa main ski.)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "[K.Kerja kamus] ことが できます",
+    explanation: "Jika kemampuan tidak cukup jelas dijelaskan dengan Kata Benda, ganti KB dengan Kata Kerja bentuk kamus + こと. Pola: [KK-kamus] + こと + が できます. こと mengubah kata kerja menjadi frasa benda. Diartikan 'bisa ~'.",
+    examples: [
+      "山田さんは かんじを 読む ことが できます。 (Yamada bisa membaca huruf Kanji.)",
+      "姉は ピアノを ひく ことが できます。 (Kakak perempuan bisa main piano.)",
+      "わたしは 100メートル およぐ ことが できます。 (Saya bisa berenang 100 meter.)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "わたしの しゅみは [K.Benda] です",
+    explanation: "Pola untuk menyatakan hobi/kegemaran menggunakan Kata Benda. 「しゅみ」berarti 'hobi'. Versi paling sederhana untuk menjawab pertanyaan しゅみは 何ですか.",
+    examples: [
+      "わたしの しゅみは スポーツです。 (Hobi saya olahraga.)",
+      "わたしの しゅみは りょこうです。 (Hobi saya rekreasi.)",
+      "わたしの しゅみは うたです。 (Hobi saya menyanyi.)",
+      "わたしの しゅみは りょうりです。 (Hobi saya memasak.)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "わたしの しゅみは [K.Kerja kamus] こと です",
+    explanation: "Jika hobi tidak cukup dijelaskan dengan Kata Benda, gunakan Kata Kerja bentuk kamus + こと. こと mengubah kata kerja jadi frasa benda. Pola: わたしの しゅみは [KK-kamus] + こと + です.",
+    examples: [
+      "わたしの しゅみは どうぶつの しゃしんを とる こと です。 (Hobi saya memotret hewan.)",
+      "わたしの しゅみは おんがくを 聞く こと です。 (Hobi saya mendengarkan musik.)",
+      "わたしの しゅみは 馬に 乗る こと です。 (Hobi saya berkuda.)",
+      "わたしの しゅみは YouTubeで Vlogを 見る こと です。 (Hobi saya menonton vlog di YouTube.)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "[K.Kerja kamus] まえに、[K.Kerja 2]",
+    explanation: "Pola untuk menyatakan melakukan KK2 SEBELUM melakukan KK1. KK1 WAJIB bentuk kamus (tidak boleh ~ます atau bentuk lampau), walaupun KK2 boleh bentuk lampau. Diartikan 'sebelum ~, melakukan ~'.",
+    examples: [
+      "日本へ 来る まえに、日本語を べんきょうしました。 (Sebelum datang ke Jepang, belajar Bahasa Jepang.)",
+      "ねる まえに、本を 読みます。 (Sebelum tidur, membaca buku.)",
+      "しゅっちょうする まえに、ホテルを よやくしました。 (Sebelum dinas, sudah pesan hotel.)",
+      "ピアノを ひく まえに、手を あらいます。 (Sebelum main piano, mencuci tangan.)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "[K.Benda] の まえに、[K.Kerja 2]",
+    explanation: "Pola untuk menyatakan melakukan KK2 SEBELUM kegiatan/peristiwa yang berupa Kata Benda. Jika subjeknya KB, WAJIB tambahkan partikel「の」sebelum まえに. Diartikan 'sebelum ~, melakukan ~'.",
+    examples: [
+      "しょくじの まえに、手を あらいます。 (Sebelum makan, mencuci tangan.)",
+      "クリスマスの まえに、プレゼントを 買います。 (Sebelum Natal, membeli hadiah.)",
+      "りょこうの まえに、お金を かえます。 (Sebelum liburan, menukar uang.)",
+      "かいぎの まえに、おにぎりを 食べます。 (Sebelum rapat, makan onigiri.)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "[K.Ket. waktu/bilangan] まえに、[K.Kerja 2]",
+    explanation: "Jika subjeknya keterangan waktu/bilangan (seperti 5年, 3時間, 4日), TIDAK pakai partikel の. Beda makna: di pola ini, 「まえに」berarti '~ yang LALU' (past), bukan 'sebelum'. Bedakan dengan dua pola まえに sebelumnya.",
+    examples: [
+      "5年 まえに、ブラジルへ 行きました。 (Pergi ke Brasil 5 tahun yang lalu.)",
+      "ジョンさんは 3時間 まえに、でかけました。 (John keluar 3 jam yang lalu.)",
+      "4日 まえに、この 本を 買いました。 (Membeli buku ini 4 hari yang lalu.)",
+      "半年 まえに、日本語の べんきょうを はじめました。 (Mulai belajar bahasa Jepang setengah tahun yang lalu.)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "なかなか (adverbia)",
+    explanation: "「なかなか」+ bentuk NEGATIF = 'tidak mudah', 'tidak kunjung', 'sulit terjadi sesuai harapan'. Tapi「なかなか」+ bentuk POSITIF = 'lumayan', 'cukup'. Sering dipakai untuk sesuatu yang sulit dilakukan, jarang terjadi, hasil tidak cepat terlihat. Umum dalam percakapan sehari-hari.",
+    examples: [
+      "日本では なかなか 馬を 見る ことが できません。 (Di Jepang sulit melihat kuda.) — negatif",
+      "しゅくだいが なかなか おわりません。 (PR tidak kunjung selesai.) — negatif",
+      "バスが なかなか 来ません。 (Busnya tidak kunjung datang.) — negatif",
+      "なかなか いい システムです。 (Sistemnya lumayan bagus.) — positif",
+      "この りょうりは なかなか おいしいです。 (Masakan ini lumayan enak.) — positif"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "ぜひ (adverbia)",
+    explanation: "「ぜひ」menyatakan ekspresi HARAPAN dan PERMINTAAN yang kuat. Berarti 'sungguh-sungguh', 'benar-benar', 'wajib'. Memberi kesan antusias/semangat. Sering dipakai dalam percakapan formal. Umumnya diikuti bentuk keinginan/ajakan seperti 〜たいです, 〜てください, 〜ましょう.",
+    examples: [
+      "ぜひ かんこくへ 行きたいです。 (Saya ingin sekali pergi ke Korea Selatan.)",
+      "あした ぜひ 来て ください。 (Besok tolong usahakan datang.)",
+      "ぜひ 日本の ともだちを つくりたいです。 (Saya benar-benar ingin punya teman Jepang.)",
+      "この 本は おもしろいですから、ぜひ よんで ください。 (Buku ini menarik, wajib baca ya.)",
+      "日本の コンサートを ぜひ いっしょに 見ましょう。 (Mari kita tonton konser Jepang bersama-sama.)"
+    ],
+    bab: "Bab 18",
+  },
+  {
+    pattern: "Perubahan Kata Kerja Bentuk た (Golongan 1)",
+    explanation: "Aturannya sama seperti bentuk て (Bab 14), hanya て diganti dengan た, dan で diganti dengan だ. Aturan: (1) akhiran い/ち/り → った. (2) akhiran み/び/に → んだ. (3) akhiran き → いた, ぎ → いだ, し → した. Pengecualian: いきます → いった (bukan いいた).",
+    examples: [
+      "かいます → かった, まちます → まった, かえります → かえった (い/ち/り → った)",
+      "よみます → よんだ, よびます → よんだ, しにます → しんだ (み/び/に → んだ)",
+      "かきます → かいた, およぎます → およいだ, はなします → はなした",
+      "いきます → いった (pengecualian, bukan いいた)"
+    ],
+    bab: "Bab 19",
+  },
+  {
+    pattern: "Perubahan Kata Kerja Bentuk た (Golongan 2)",
+    explanation: "KK Gol 2: cukup hilangkan ます dan tambah た di belakang. Pola: ~ます → ~た. Sangat sederhana karena Gol 2 tidak ada perubahan vokal.",
+    examples: [
+      "たべます → たべた (sudah makan)",
+      "でかけます → でかけた, おきます → おきた, あびます → あびた",
+      "できます → できた, みます → みた"
+    ],
+    bab: "Bab 19",
+  },
+  {
+    pattern: "Perubahan Kata Kerja Bentuk た (Golongan 3)",
+    explanation: "KK Gol 3 adalah irregular verbs. Cara mengubahnya: cukup ganti ます dengan た. きます → きた, します → した. Untuk KK majemuk dengan します, bagian します-nya berubah jadi した.",
+    examples: [
+      "きます → きた (sudah datang)",
+      "します → した (sudah melakukan)",
+      "せんたく します → せんたく した, さんぽ します → さんぽ した"
+    ],
+    bab: "Bab 19",
+  },
+  {
+    pattern: "[K.Kerja-た] ことが あります",
+    explanation: "Pola untuk menyatakan perbuatan yang PERNAH dilakukan pada masa lampau, sebagai pengalaman hidup. Diartikan 'pernah ~'. Bentuk negatif: 〜た ことが ありません ('belum pernah ~'). PERHATIAN: tidak bisa dipakai dengan keterangan waktu spesifik yang dekat seperti きのう, 先週, おととい karena ini fokus pada pengalaman umum, bukan kejadian spesifik.",
+    examples: [
+      "わたしは ふじさんに のぼった ことが あります。 (Saya pernah mendaki Gunung Fuji.)",
+      "わたしは おきなわへ 行った ことが あります。 (Saya pernah pergi ke Okinawa.)",
+      "わたしは すしを 食べた ことが あります。 (Saya pernah makan sushi.)",
+      "わたしは ほんものの パンダを 見た ことが ありません。 (Saya belum pernah melihat panda asli.)",
+      "わたしは まだ ヨーロッパの 人と えいごで 話した ことが ありません。 (Saya belum pernah berbicara dengan orang Eropa pakai Inggris.)"
+    ],
+    bab: "Bab 19",
+  },
+  {
+    pattern: "[K.Kerja-た] り、[K.Kerja-た] り します",
+    explanation: "Pola untuk menyebutkan BEBERAPA kegiatan sebagai PERWAKILAN dari banyak kegiatan (bukan daftar lengkap, dan tidak harus urut). Beda dengan [KK-て] (Bab 16) yang berurutan, pola ~たり~たり TIDAK berurutan. Waktu kegiatan (sekarang/lampau) ditentukan oleh します/しました di akhir. Bisa diartikan 'antara lain melakukan ~, melakukan ~, dll'.",
+    examples: [
+      "毎晩 てがみを 書いたり、おんがくを 聞いたり します。 (Setiap malam menulis surat, mendengarkan musik, dll.)",
+      "水曜日は 日本語を べんきょうしたり、パソコンで あそんだり します。 (Hari Rabu belajar bahasa Jepang, main PC, dll.)",
+      "きのう テレビを 見たり、本を 読んだり しました。 (Kemarin nonton TV, baca buku, dll.)"
+    ],
+    bab: "Bab 19",
+  },
+  {
+    pattern: "[K.Sifat-い] → ~く なります",
+    explanation: "Pola untuk menyatakan PERUBAHAN KONDISI ('menjadi ~'). Untuk Kata Sifat-い, vokal い paling belakang DIHILANGKAN, diganti dengan「く」, lalu diikuti なります. Pola: い → く + なります. Pengecualian: いい → よく なります. Bentuk negatif: 〜く なく なります.",
+    examples: [
+      "テレーザちゃんは せが 高く なりました。 (Tereza tubuhnya sudah jadi tinggi.)",
+      "きおんが さむく なります。 (Suhu udara jadi dingin.)",
+      "夜に なりましたから、そとが くらく なりました。 (Karena sudah malam, di luar jadi gelap.)",
+      "くすりを 飲みましたから、いたく なく なりました。 (Karena minum obat, jadi tidak sakit.)",
+      "日本語は まえより むずかしく なく なりました。 (Bahasa Jepang jadi tidak sesulit sebelumnya.)"
+    ],
+    bab: "Bab 19",
+  },
+  {
+    pattern: "[K.Sifat-な / K.Benda] → ~に なります",
+    explanation: "Untuk Kata Sifat-な dan Kata Benda, tambahkan partikel「に」di belakang kata, lalu diikuti なります. K.Sifat-na & K.Benda PAKAI RUMUS YANG SAMA. Bentuk negatif: 〜じゃ なく なります atau 〜では なく なります.",
+    examples: [
+      "マリアさんは げんきに なります。 (Maria menjadi sehat.)",
+      "へやが きれいに なりました。 (Kamarnya jadi bersih.)",
+      "この まちは まえより にぎやかに なりました。 (Kota ini jadi lebih ramai dari sebelumnya.)",
+      "21さいに なります。 (Menjadi 21 tahun.) — K.Benda",
+      "毎日 れんしゅうしましたから、ピアノが へたじゃ なく なりました。 (Karena latihan tiap hari, jadi tidak buruk main piano.)",
+      "さいきん、田中さんは げんきじゃ なく なりました。 (Akhir-akhir ini Tanaka jadi tidak bersemangat.)"
+    ],
+    bab: "Bab 19",
+  },
+  {
+    pattern: "Bentuk Sopan (ていねいけい) vs Bentuk Biasa (ふつうけい)",
+    explanation: "ていねいけい (~ます/~です) dipakai pada orang baru kenal, atasan, orang sebaya yang kurang akrab, dan dalam surat. ふつうけい (bentuk biasa/plain) dipakai pada teman akrab, keluarga, kolega dekat, monolog, diary, buku, koran, skripsi. Salah pakai bentuk biasa pada orang yang tidak akrab dianggap tidak sopan dan bisa merenggangkan hubungan.",
+    examples: [
+      "わたしは パンを 食べます。 → わたしは パンを 食べる。 (Saya makan roti.)",
+      "わたしは おおさかに 住んで います。 → わたしは おおさかに 住んでいる。 (Aku tinggal di Osaka.)",
+      "わたしは IMCの しゃいんです。 → わたしは IMCの しゃいんだ。 (Aku karyawan IMC.)"
+    ],
+    bab: "Bab 20",
+  },
+  {
+    pattern: "Konjugasi Kata Kerja Bentuk Biasa (ふつうけい)",
+    explanation: "Ubah ます-kei ke bentuk biasa: (1) ~ます → bentuk kamus/じしょけい (Bab 18). (2) ~ません → bentuk ない (Bab 17). (3) ~ました → bentuk た (Bab 19). (4) ~ませんでした → bentuk なかった (Bab 17). Bentuk kamus = positif sekarang, bentuk ない = negatif sekarang, bentuk た = positif lampau, bentuk なかった = negatif lampau.",
+    examples: [
+      "かきます / かきません / かきました / かきませんでした → かく / かかない / かいた / かかなかった",
+      "たべます / たべません / たべました / たべませんでした → たべる / たべない / たべた / たべなかった",
+      "します / しません / しました / しませんでした → する / しない / した / しなかった"
+    ],
+    bab: "Bab 20",
+  },
+  {
+    pattern: "Konjugasi Kata Sifat-い Bentuk Biasa",
+    explanation: "Kata Sifat-い (いけいようし) konjugasinya hanya dengan menghilangkan です di belakang. Pola dasar tetap sama: ~い / ~くない / ~かった / ~くなかった. Pengecualian: いい → よくない / よかった / よくなかった.",
+    examples: [
+      "おおきいです → おおきい (besar)",
+      "おおきくないです → おおきくない (tidak besar)",
+      "おおきかったです → おおきかった (tadinya besar)",
+      "おおきくなかったです → おおきくなかった (tadinya tidak besar)"
+    ],
+    bab: "Bab 20",
+  },
+  {
+    pattern: "Konjugasi Kata Sifat-な & Kata Benda Bentuk Biasa",
+    explanation: "Kata Sifat-な (なけいようし) dan Kata Benda (めいし) pakai rumus yang SAMA. Bentuk positif sekarang: です → だ. Negatif sekarang: じゃありません → じゃない. Positif lampau: でした → だった. Negatif lampau: じゃありませんでした → じゃなかった.",
+    examples: [
+      "きれいです → きれいだ / きれいじゃない / きれいだった / きれいじゃなかった",
+      "がくせいです → がくせいだ / がくせいじゃない / がくせいだった / がくせいじゃなかった",
+      "ひまです → ひまだ / ひまじゃない / ひまだった / ひまじゃなかった"
+    ],
+    bab: "Bab 20",
+  },
+  {
+    pattern: "Kalimat Tanya Bentuk Biasa (hilangkan か)",
+    explanation: "Pada bentuk biasa, partikel tanya か di akhir kalimat dihilangkan. Intonasi akhir kalimat dinaikkan untuk menandai pertanyaan. Jawaban juga pakai bentuk biasa: うん (ya, informal dari はい) / ううん (tidak, informal dari いいえ).",
+    examples: [
+      "あした うちに いる？ …うん、いる。 (Besok ada di rumah? …Ya, ada.)",
+      "じしょを 持って いる？ …ううん、持って いない。 (Punya kamus? …Tidak, tidak punya.)",
+      "ビールと ワインと どっちが いい？ …ワインの ほうが いい。 (Bir atau wine, mana yang lebih baik? …Wine lebih baik.)"
+    ],
+    bab: "Bab 20",
+  },
+  {
+    pattern: "Partikel Penutup (だ / ～よ) — Danseigo & Joseigo",
+    explanation: "Pada kalimat tanya bentuk biasa yang berakhiran Kata Benda/Kata Sifat-な, 「だ」(bentuk biasa dari です) sering dihilangkan, lalu diganti partikel penutup seperti ～よ. 「だ」biasa dipakai pria (danseigo/男性語). 「～よ」biasa dipakai wanita (joseigo/女性語). Untuk negatif (じゃない), pria & wanita sama.",
+    examples: [
+      "こんばん、ひま？ (Malam ini luang?) — netral",
+      "うん、ひま／ひまだ／ひまだよ。 (pria: pakai だ atau だよ)",
+      "うん、ひま／ひまよ。 (wanita: tanpa だ, atau pakai よ)",
+      "ううん、ひま じゃない。 (Negatif: pria & wanita sama.)"
+    ],
+    bab: "Bab 20",
+  },
+  {
+    pattern: "Partikel Dihilangkan (を / が / へ / は)",
+    explanation: "Pada bentuk biasa, beberapa partikel sering dihilangkan tanpa mengurangi makna: を, が, へ, は. TAPI partikel で, に, から, まで, と TIDAK BOLEH dihilangkan karena akan mengubah/mengurangi makna kalimat.",
+    examples: [
+      "さしみ(を) 食べる？ (Mau makan sashimi?) — を dihilangkan",
+      "そこに たな(が) いる。 (Di situ ada lemari.) — が dihilangkan",
+      "あさって バリ(へ) 行かない？ (Lusa pergi ke Bali?) — へ dihilangkan",
+      "あの かばん(は) 高い。 (Tas itu mahal.) — は dihilangkan"
+    ],
+    bab: "Bab 20",
+  },
+  {
+    pattern: "「い」Dihilangkan pada て-いる → ～てる",
+    explanation: "Pada bentuk biasa percakapan, vokal 「い」pada pola て-いる sering dihilangkan, sehingga pelafalannya jadi 「～てる」. Ini sangat umum dalam percakapan santai sehari-hari.",
+    examples: [
+      "どこに 住んで(い)る？ …ならに 住んで(い)る。 (Tinggal di mana? …Tinggal di Nara.)",
+      "雨が 降って(い)る？ …ううん、降って(い)ない。 (Apa turun hujan? …Tidak, tidak hujan.)",
+      "なにを して(い)る？ …テレビ 見て(い)る。 (Lagi ngapain? …Lagi nonton TV.)"
+    ],
+    bab: "Bab 20",
+  },
+  {
+    pattern: "Konjungsi けど (informal dari が)",
+    explanation: "「けど」adalah bentuk informal dari 「が」, sama-sama berarti 'tetapi ~' atau dipakai sebagai penghalus (preface) sebelum permintaan/ajakan. Dipakai dalam percakapan santai bentuk biasa.",
+    examples: [
+      "この ラーメン(は) おいしい？ …うん、からいけど、おいしい。 (Ramen ini enak? …Ya, pedas tapi enak.)",
+      "コンサートの チケット(が) あるけど、いっしょに 行かない？ …いいね。 (Aku punya tiket konser, mau pergi bareng? …Boleh.)",
+      "夜まで 勉強したけど、日本語の 試験に 落ちた。 (Walaupun belajar sampai malam, saya gagal di ujian bahasa Jepang.)"
+    ],
+    bab: "Bab 20",
   }
 ];
 
