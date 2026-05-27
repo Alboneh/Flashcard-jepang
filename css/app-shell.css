@@ -458,6 +458,84 @@ body.app-shell { overflow: hidden; }
 [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
 [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
 
+/* Background music control */
+.bgm-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 4px 4px 4px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--r-pill);
+  transition: all var(--t) var(--ease);
+}
+
+.bgm-toggle {
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  border: none;
+  background: transparent;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0;
+  transition: transform var(--t) var(--ease);
+}
+
+.bgm-toggle:hover { transform: scale(1.1); }
+
+.bgm-icon-on { display: none; }
+.bgm-control.is-on .bgm-icon-off { display: none; }
+.bgm-control.is-on .bgm-icon-on { display: inline; animation: bgm-pulse 1.6s ease-in-out infinite; }
+
+@keyframes bgm-pulse {
+  0%, 100% { opacity: 0.85; }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+
+.bgm-control.is-on {
+  background: linear-gradient(135deg, rgba(232, 96, 126, 0.12), rgba(232, 148, 118, 0.12));
+  border-color: var(--pink, #e8607e);
+}
+
+.bgm-volume {
+  width: 70px;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: var(--border);
+  border-radius: var(--r-pill);
+  outline: none;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.bgm-volume::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  background: var(--pink, #e8607e);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.bgm-volume::-moz-range-thumb {
+  width: 12px;
+  height: 12px;
+  background: var(--pink, #e8607e);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+}
+
+@media (max-width: 768px) {
+  .bgm-volume { display: none; }
+  .bgm-control { padding: 0; border-radius: 50%; }
+  .bgm-control.is-on { padding: 0; }
+}
+
 /* ==========================================================
    CONTENT AREA
    ========================================================== */

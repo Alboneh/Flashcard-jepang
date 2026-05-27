@@ -76,6 +76,13 @@
         <kbd class="search-kbd">Ctrl /</kbd>
       </div>
       <div class="topbar-right">
+        <div class="bgm-control" id="bgmControl">
+          <button class="bgm-toggle" id="bgmToggle" type="button" aria-label="Toggle musik latar" title="Background music">
+            <span class="bgm-icon-off">🎵</span>
+            <span class="bgm-icon-on">🎶</span>
+          </button>
+          <input class="bgm-volume" id="bgmVolume" type="range" min="0" max="100" value="35" aria-label="Volume musik">
+        </div>
         <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch tema">
           <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
           <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
@@ -154,5 +161,43 @@
   <script src="js/hidden.js"></script>
   <script src="data/database.js"></script>
   <script src="js/flashcard_kosakata_bab1_10.js"></script>
+  <script src="js/bgm.js"></script>
+  <script>
+    (function () {
+      const btn = document.getElementById('bgmToggle');
+      const vol = document.getElementById('bgmVolume');
+      const ctrl = document.getElementById('bgmControl');
+      if (!btn || !vol || !ctrl || !window.BGM) return;
+
+      function syncUI() {
+        ctrl.classList.toggle('is-on', BGM.isOn());
+      }
+
+      vol.value = Math.round(BGM.getVolume() * 100);
+      vol.addEventListener('input', () => {
+        BGM.setVolume(parseInt(vol.value, 10) / 100);
+      });
+
+      btn.addEventListener('click', () => {
+        BGM.toggle();
+        syncUI();
+      });
+
+      /* Auto-resume on first user gesture if it was on last session.
+         Browsers block AudioContext start without user interaction. */
+      if (BGM.wasOn()) {
+        const resume = () => {
+          BGM.start();
+          syncUI();
+          window.removeEventListener('pointerdown', resume);
+          window.removeEventListener('keydown', resume);
+        };
+        window.addEventListener('pointerdown', resume, { once: false });
+        window.addEventListener('keydown', resume, { once: false });
+      }
+
+      syncUI();
+    })();
+  </script>
 </body>
 </html>
