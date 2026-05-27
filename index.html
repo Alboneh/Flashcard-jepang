@@ -57,7 +57,7 @@
       <a href="bunpo-quiz-full.html" class="nav-link" data-page="latihan-bunpo">
         <span class="nav-icon">✦</span><span>Latihan Bunpo</span>
       </a>
-      <a href="sembunyikan.html" class="nav-link" data-page="tersembunyi">
+      <a href="sembunyikan.html" class="nav-link" data-page="tersembunyi" style="display:none">
         <span class="nav-icon">🙈</span><span>Tersembunyi</span>
       </a>
     </nav>
@@ -114,6 +114,7 @@
           <button class="side-btn" onclick="speakCurrentCard()" title="Baca">🔊 Baca</button>
           <button class="side-btn" id="reverseBtn" onclick="toggleReverseMode()" title="Mode kebalik">↔ Reverse: OFF</button>
           <button class="side-btn" onclick="shuffle()" title="Acak">🔀 Acak</button>
+          <button class="side-btn side-btn--accent" id="latihanBtn" onclick="goToLatihan()" title="Latihan kosakata bab yang sedang dipilih">✎ Latihan Bab Ini</button>
         </div>
 
         <div class="auto-voice-status" id="autoVoiceStatus"></div>
@@ -138,7 +139,7 @@
         <div class="mini-progress"><div class="mini-fill" id="miniFill"></div></div>
       </div>
       <div class="bottom-actions">
-        <button class="bottom-action bottom-action--hide" id="hideBtn" onclick="hideCurrentCard()" title="Sembunyikan">
+        <button class="bottom-action bottom-action--hide" id="hideBtn" onclick="hideCurrentCard()" title="Sembunyikan" style="display:none">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17.94 17.94A10 10 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
           <span>Sembunyikan</span>
         </button>

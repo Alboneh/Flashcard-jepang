@@ -222,6 +222,19 @@
   transform: translateY(-1px);
 }
 
+.side-btn.side-btn--accent {
+  background: linear-gradient(135deg, var(--pink, #e8607e), var(--coral, #e89476));
+  color: #fff;
+  border-color: transparent;
+  font-weight: 700;
+}
+
+.side-btn.side-btn--accent:hover {
+  filter: brightness(1.05);
+  color: #fff;
+  border-color: transparent;
+}
+
 .auto-voice-status {
   font-size: 0.8rem;
   color: var(--text-faded);

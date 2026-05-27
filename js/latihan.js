@@ -1,6 +1,5 @@
 // ===== DATA =====
 const VOCAB = (typeof vocab !== 'undefined' && Array.isArray(vocab)) ? vocab : [];
-const ALL_BAB = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15];
 
 // Map "Bab X" string → bab number
 function getBabNum(v) {
@@ -9,8 +8,22 @@ function getBabNum(v) {
 }
 VOCAB.forEach((v) => { v._bab = getBabNum(v); });
 
+const ALL_BAB = [...new Set(VOCAB.map((v) => v._bab).filter((b) => b !== null))].sort((a, b) => a - b);
+
 // ===== STATE =====
 const selectedBabs = new Set();   // empty = semua
+
+(function preselectFromURL() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    const raw = params.get('bab');
+    if (!raw) return;
+    raw.split(',').forEach((s) => {
+      const n = parseInt(String(s).trim(), 10);
+      if (!isNaN(n) && ALL_BAB.includes(n)) selectedBabs.add(n);
+    });
+  } catch (e) { /* ignore */ }
+})();
 let questionType = 'campur';      // campur / jp-to-id / id-to-jp
 let sessionCount = 9999;          // default Semua
 let activeList = [];
@@ -111,7 +124,9 @@ function updateSummary() {
   if (selectedBabs.size === 0) {
     sum.textContent = `Semua bab · ${total} kata`;
     sum.classList.remove('empty');
-    btnText.textContent = 'Semua Bab (1–15)';
+    const first = ALL_BAB[0];
+    const last = ALL_BAB[ALL_BAB.length - 1];
+    btnText.textContent = first && last ? `Semua Bab (${first}–${last})` : 'Semua Bab';
     el('iPola').textContent = ALL_BAB.length;
   } else {
     const list = ALL_BAB.filter((b) => selectedBabs.has(b));

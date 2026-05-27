@@ -12,7 +12,11 @@ let voicesReady = false;
 let autoVoiceRunning = false;
 let autoVoiceRunId = 0;
 let reverseMode = false;
-let selectedBab = 'Semua';
+const SELECTED_BAB_KEY = 'kosakata-selected-bab';
+let selectedBab = (function () {
+  try { return localStorage.getItem(SELECTED_BAB_KEY) || 'Semua'; }
+  catch (e) { return 'Semua'; }
+})();
 
 const JAPANESE_TO_MEANING_DELAY_MS = 1000;
 const AUTO_NEXT_DELAY_MS = 1500;
@@ -131,6 +135,7 @@ function renderBabFilter() {
   el.querySelectorAll('.cat-btn').forEach((btn) => {
     btn.addEventListener('click', () => {
       selectedBab = btn.dataset.bab;
+      try { localStorage.setItem(SELECTED_BAB_KEY, selectedBab); } catch (e) { /* ignore */ }
       idx = 0;
       renderBabFilter();
       filterCards();
@@ -182,6 +187,11 @@ function renderCard() {
 
   const crumbBab = $k('crumbBab');
   if (crumbBab) crumbBab.textContent = selectedBab;
+
+  const latihanBtn = $k('latihanBtn');
+  if (latihanBtn) {
+    latihanBtn.textContent = selectedBab === 'Semua' ? '✎ Latihan Semua' : `✎ Latihan ${selectedBab}`;
+  }
 
   if (!filtered.length) {
     $k('fcJp').textContent = '–';
@@ -345,6 +355,15 @@ function hideCurrentCard() {
   HiddenStore.add('kosakata', vocabHideKey(v));
   renderBabFilter();
   filterCards({ preservePosition: true });
+}
+
+function goToLatihan() {
+  const url = new URL('latihan.html', window.location.href);
+  if (selectedBab && selectedBab !== 'Semua') {
+    const m = String(selectedBab).match(/(\d+)/);
+    if (m) url.searchParams.set('bab', m[1]);
+  }
+  window.location.href = url.toString();
 }
 
 /* ===== Keyboard ===== */
