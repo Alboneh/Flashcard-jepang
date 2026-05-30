@@ -435,6 +435,25 @@ body.app-shell { overflow: hidden; }
   margin-left: auto;
 }
 
+.sidebar-version {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.app-version-line {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--text-soft);
+  padding: 4px 10px;
+  margin-top: 4px;
+  border-radius: var(--r-pill);
+  background: var(--surface-soft);
+  border: 1px solid var(--border);
+  user-select: all;
+}
+
 .theme-toggle {
   width: 38px;
   height: 38px;
