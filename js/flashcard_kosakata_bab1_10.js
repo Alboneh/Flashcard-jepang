@@ -18,7 +18,7 @@ let selectedBab = (function () {
   catch (e) { return 'Semua'; }
 })();
 
-const JAPANESE_TO_MEANING_DELAY_MS = 1000;
+const JAPANESE_TO_MEANING_DELAY_MS = 1500;
 const AUTO_NEXT_DELAY_MS = 1500;
 const CAT_COLORS = ['#e8607e', '#7fa790', '#c9a14a', '#e89476', '#a684c4'];
 
@@ -77,13 +77,41 @@ function cleanForTTS(text, lang) {
     .trim();
 }
 
+function speakViaSynthesis(text, lang) {
+  return new Promise((resolve) => {
+    if (!('speechSynthesis' in window) || !text) return resolve();
+    try {
+      const utt = new SpeechSynthesisUtterance(text);
+      utt.lang = lang === 'ja' ? 'ja-JP' : 'id-ID';
+      utt.rate = 0.95;
+      utt.onend = () => resolve();
+      utt.onerror = () => resolve();
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(utt);
+    } catch (e) {
+      resolve();
+    }
+  });
+}
+
 async function speakText(text, lang) {
   const cleaned = cleanForTTS(text, lang);
-  if (!cleaned || !window.TTSCache) return;
+  if (!cleaned) return;
+  if (!window.TTSCache) {
+    console.warn('[speakText] TTSCache missing, using speechSynthesis');
+    return speakViaSynthesis(cleaned, lang);
+  }
+
   let res;
   try { res = await TTSCache.getAudioURL(cleaned, lang); }
-  catch (e) { return; }
-  if (!res || !res.url) return;
+  catch (e) {
+    console.warn('[speakText] TTSCache error:', e);
+    return speakViaSynthesis(cleaned, lang);
+  }
+  if (!res || !res.url) {
+    console.warn('[speakText] No URL returned for:', cleaned, lang);
+    return speakViaSynthesis(cleaned, lang);
+  }
 
   releaseTTSURL();
   ttsCurrentURL = res.url;
@@ -93,14 +121,46 @@ async function speakText(text, lang) {
 
   return new Promise((resolve) => {
     let done = false;
+    let started = false;
+
     const finish = () => { if (done) return; done = true; cleanup(); resolve(); };
     const cleanup = () => {
       audio.removeEventListener('ended', finish);
-      audio.removeEventListener('error', finish);
+      audio.removeEventListener('error', onError);
+      audio.removeEventListener('playing', onPlaying);
     };
+    const onPlaying = () => { started = true; };
+    const onError = async () => {
+      console.warn('[speakText] <audio> error for', cleaned, '— falling back to speechSynthesis');
+      cleanup();
+      if (done) return;
+      done = true;
+      await speakViaSynthesis(cleaned, lang);
+      resolve();
+    };
+
     audio.addEventListener('ended', finish);
-    audio.addEventListener('error', finish);
-    audio.play().catch(() => finish());
+    audio.addEventListener('error', onError);
+    audio.addEventListener('playing', onPlaying);
+
+    audio.play().catch(async (err) => {
+      console.warn('[speakText] play() rejected for', cleaned, ':', err && err.message, '— falling back to speechSynthesis');
+      cleanup();
+      if (done) return;
+      done = true;
+      await speakViaSynthesis(cleaned, lang);
+      resolve();
+    });
+
+    // Safety timeout: if audio never starts playing within 5 sec, fallback
+    setTimeout(() => {
+      if (!started && !done) {
+        console.warn('[speakText] audio never started for', cleaned, '— falling back to speechSynthesis');
+        cleanup();
+        done = true;
+        speakViaSynthesis(cleaned, lang).then(resolve);
+      }
+    }, 5000);
   });
 }
 
@@ -366,48 +426,26 @@ function setMode(m) {
   else { stopAutoVoice(); updateAutoVoiceStatus(); }
 }
 
-async function updateAutoVoiceStatus() {
+function updateAutoVoiceStatus() {
   const el = $k('autoVoiceStatus');
   const controls = document.querySelector('.auto-voice-controls');
+  const btn = $k('autoToggleBtn');
+
   if (controls) controls.style.display = mode === 'auto' ? 'flex' : 'none';
   if (!el) return;
   if (mode !== 'auto') { el.textContent = ''; return; }
-  let cacheInfo = '';
-  if (window.TTSCache) {
-    try {
-      const n = await TTSCache.getCacheCount();
-      if (n > 0) cacheInfo = ` · ${n} audio di-cache`;
-    } catch (e) { /* ignore */ }
-  }
-  const base = autoVoiceRunning
+
+  el.textContent = autoVoiceRunning
     ? 'Auto Voice aktif — bisa lock HP & dengar dengan tenang'
-    : 'Auto Voice siap';
-  el.textContent = base + cacheInfo;
+    : 'Auto Voice di-pause — klik Lanjut untuk meneruskan';
+
+  if (btn) btn.textContent = autoVoiceRunning ? '⏸ Pause' : '▶ Lanjut';
 }
 
-let precacheRunning = false;
-async function precacheCurrentBab() {
-  if (precacheRunning || !window.TTSCache || !filtered.length) return;
-  const items = [];
-  filtered.forEach((v) => {
-    const jp = getJapaneseReadText(v);
-    if (jp) items.push({ text: jp, lang: 'ja' });
-    if (v.id) items.push({ text: v.id, lang: 'id' });
-  });
-  if (!items.length) return;
-
-  precacheRunning = true;
-  const btn = $k('precacheBtn');
-  if (btn) btn.disabled = true;
-  const el = $k('autoVoiceStatus');
-
-  await TTSCache.precache(items, (done, total) => {
-    if (el) el.textContent = `Pre-cache ${done}/${total}...`;
-  });
-
-  precacheRunning = false;
-  if (btn) btn.disabled = false;
-  updateAutoVoiceStatus();
+function toggleAutoVoice() {
+  if (mode !== 'auto') return;
+  if (autoVoiceRunning) stopAutoVoice();
+  else startAutoVoice(false);
 }
 
 function updateReverseButton() {
