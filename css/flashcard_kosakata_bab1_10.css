@@ -243,6 +243,22 @@
   min-height: 1.2em;
 }
 
+.auto-voice-controls {
+  display: none;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.auto-voice-controls .side-btn {
+  font-size: 0.78rem;
+  padding: 6px 12px;
+}
+
+.auto-voice-controls .side-btn:disabled {
+  opacity: 0.5;
+  cursor: wait;
+}
+
 @media (max-width: 540px) {
   .card-front, .card-back { padding: 28px 18px; min-height: 280px; }
   .card-jp { font-size: 2rem; }

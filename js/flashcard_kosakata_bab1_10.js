@@ -36,31 +36,71 @@ function waitMs(ms) {
   return new Promise((r) => setTimeout(r, ms));
 }
 
-/* ===== Speech ===== */
-function loadVoices() {
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.getVoices();
-  voicesReady = true;
+/* ===== Speech (audio-file based via TTSCache, works on lock screen) ===== */
+let ttsAudio = null;
+let ttsCurrentURL = null;
+
+function getTTSAudio() {
+  if (!ttsAudio) {
+    ttsAudio = new Audio();
+    ttsAudio.preload = 'auto';
+    ttsAudio.playsInline = true;
+    document.body.appendChild(ttsAudio);
+  }
+  return ttsAudio;
 }
 
-function findVoice(langPrefix) {
-  if (!('speechSynthesis' in window)) return null;
-  const voices = window.speechSynthesis.getVoices();
-  if (!voices || !voices.length) return null;
-  return voices.find((v) => v.lang && v.lang.toLowerCase().startsWith(langPrefix.toLowerCase())) || null;
+function releaseTTSURL() {
+  if (ttsCurrentURL && ttsCurrentURL.startsWith('blob:')) {
+    try { URL.revokeObjectURL(ttsCurrentURL); } catch (e) { /* ignore */ }
+  }
+  ttsCurrentURL = null;
 }
 
-function speakText(text, lang, voice) {
+function loadVoices() { /* legacy no-op, kept for compatibility */ }
+
+/* Clean Indonesian text for TTS — strip Japanese chars, parens, tildes
+   that would confuse the Indonesian voice. */
+function cleanForTTS(text, lang) {
+  if (!text) return '';
+  if (lang !== 'id') return text;
+  return String(text)
+    .replace(/\([^)]*\)/g, '')                       // remove (...)
+    .replace(/\[[^\]]*\]/g, '')                      // remove [...]
+    .replace(/[぀-ヿ一-鿿]/g, '')    // remove hiragana/katakana/kanji
+    .replace(/[~～]/g, 'ini')                        // tilde → "ini"
+    .replace(/\s+([,.!?:;])/g, '$1')                 // tighten punct
+    .replace(/([,.!?:;])\1+/g, '$1')                 // collapse repeats: ",, " → ","
+    .replace(/^[\s,.!?:;]+/, '')                     // strip leading junk
+    .replace(/[\s,]+$/, '')                          // strip trailing comma/space
+    .replace(/\s+/g, ' ')                            // collapse spaces
+    .trim();
+}
+
+async function speakText(text, lang) {
+  const cleaned = cleanForTTS(text, lang);
+  if (!cleaned || !window.TTSCache) return;
+  let res;
+  try { res = await TTSCache.getAudioURL(cleaned, lang); }
+  catch (e) { return; }
+  if (!res || !res.url) return;
+
+  releaseTTSURL();
+  ttsCurrentURL = res.url;
+
+  const audio = getTTSAudio();
+  audio.src = ttsCurrentURL;
+
   return new Promise((resolve) => {
-    if (!('speechSynthesis' in window)) return resolve();
-    const utt = new SpeechSynthesisUtterance(text);
-    utt.lang = lang;
-    if (voice) utt.voice = voice;
-    utt.rate = 0.95;
-    utt.pitch = 1;
-    utt.onend = () => resolve();
-    utt.onerror = () => resolve();
-    window.speechSynthesis.speak(utt);
+    let done = false;
+    const finish = () => { if (done) return; done = true; cleanup(); resolve(); };
+    const cleanup = () => {
+      audio.removeEventListener('ended', finish);
+      audio.removeEventListener('error', finish);
+    };
+    audio.addEventListener('ended', finish);
+    audio.addEventListener('error', finish);
+    audio.play().catch(() => finish());
   });
 }
 
@@ -71,27 +111,71 @@ function getJapaneseReadText(v) {
   return v.jp;
 }
 
+function updateMediaSession(v) {
+  if (!('mediaSession' in navigator)) return;
+  try {
+    const title = v.type === 'kanji' ? v.kanji : v.jp;
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: title || 'Kosakata',
+      artist: v.id || '',
+      album: v.cat || 'Kosakata',
+    });
+  } catch (e) { /* ignore */ }
+}
+
+function setupMediaSessionHandlers() {
+  if (!('mediaSession' in navigator)) return;
+  try {
+    navigator.mediaSession.setActionHandler('play', () => {
+      if (mode === 'auto' && !autoVoiceRunning) startAutoVoice(false);
+      else if (ttsAudio && ttsAudio.paused && ttsAudio.src) ttsAudio.play().catch(() => {});
+    });
+    navigator.mediaSession.setActionHandler('pause', () => {
+      stopAutoVoice();
+    });
+    navigator.mediaSession.setActionHandler('previoustrack', () => {
+      if (!filtered.length) return;
+      idx = (idx - 1 + filtered.length) % filtered.length;
+      renderCard();
+      if (mode === 'auto') startAutoVoice(true);
+    });
+    navigator.mediaSession.setActionHandler('nexttrack', () => {
+      if (!filtered.length) return;
+      idx = (idx + 1) % filtered.length;
+      renderCard();
+      if (mode === 'auto') startAutoVoice(true);
+    });
+  } catch (e) { /* ignore */ }
+}
+
+function prefetchNextCard() {
+  if (!window.TTSCache || filtered.length < 2) return;
+  const nextIdx = (idx + 1) % filtered.length;
+  const v = filtered[nextIdx];
+  if (!v) return;
+  TTSCache.getAudioURL(getJapaneseReadText(v), 'ja').catch(() => {});
+  if (v.id) TTSCache.getAudioURL(v.id, 'id').catch(() => {});
+}
+
 async function speakCurrentCardSequence(autoFlip) {
   if (!filtered.length) return;
   const v = filtered[idx];
-  if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
-  loadVoices();
-  const jpVoice = findVoice('ja');
-  const idVoice = findVoice('id') || findVoice('en');
+  updateMediaSession(v);
+  prefetchNextCard();
+
   const jpText = getJapaneseReadText(v);
   const idText = v.id;
 
   if (reverseMode) {
-    await speakText(idText, 'id-ID', idVoice);
+    await speakText(idText, 'id');
     await waitMs(JAPANESE_TO_MEANING_DELAY_MS);
     if (autoFlip) { flipped = true; updateFlipState(); }
-    await speakText(jpText, 'ja-JP', jpVoice);
+    await speakText(jpText, 'ja');
   } else {
-    await speakText(jpText, 'ja-JP', jpVoice);
+    await speakText(jpText, 'ja');
     await waitMs(JAPANESE_TO_MEANING_DELAY_MS);
     if (autoFlip) { flipped = true; updateFlipState(); }
-    await speakText(idText, 'id-ID', idVoice);
+    await speakText(idText, 'id');
   }
 }
 
@@ -282,13 +366,48 @@ function setMode(m) {
   else { stopAutoVoice(); updateAutoVoiceStatus(); }
 }
 
-function updateAutoVoiceStatus() {
+async function updateAutoVoiceStatus() {
   const el = $k('autoVoiceStatus');
+  const controls = document.querySelector('.auto-voice-controls');
+  if (controls) controls.style.display = mode === 'auto' ? 'flex' : 'none';
   if (!el) return;
   if (mode !== 'auto') { el.textContent = ''; return; }
-  el.textContent = autoVoiceRunning
-    ? 'Auto Voice aktif — Esc untuk berhenti'
+  let cacheInfo = '';
+  if (window.TTSCache) {
+    try {
+      const n = await TTSCache.getCacheCount();
+      if (n > 0) cacheInfo = ` · ${n} audio di-cache`;
+    } catch (e) { /* ignore */ }
+  }
+  const base = autoVoiceRunning
+    ? 'Auto Voice aktif — bisa lock HP & dengar dengan tenang'
     : 'Auto Voice siap';
+  el.textContent = base + cacheInfo;
+}
+
+let precacheRunning = false;
+async function precacheCurrentBab() {
+  if (precacheRunning || !window.TTSCache || !filtered.length) return;
+  const items = [];
+  filtered.forEach((v) => {
+    const jp = getJapaneseReadText(v);
+    if (jp) items.push({ text: jp, lang: 'ja' });
+    if (v.id) items.push({ text: v.id, lang: 'id' });
+  });
+  if (!items.length) return;
+
+  precacheRunning = true;
+  const btn = $k('precacheBtn');
+  if (btn) btn.disabled = true;
+  const el = $k('autoVoiceStatus');
+
+  await TTSCache.precache(items, (done, total) => {
+    if (el) el.textContent = `Pre-cache ${done}/${total}...`;
+  });
+
+  precacheRunning = false;
+  if (btn) btn.disabled = false;
+  updateAutoVoiceStatus();
 }
 
 function updateReverseButton() {
@@ -308,6 +427,10 @@ function stopAutoVoice() {
   autoVoiceRunning = false;
   autoVoiceRunId += 1;
   if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  if (ttsAudio) { try { ttsAudio.pause(); } catch (e) { /* ignore */ } }
+  if ('mediaSession' in navigator) {
+    try { navigator.mediaSession.playbackState = 'paused'; } catch (e) { /* ignore */ }
+  }
   updateAutoVoiceStatus();
 }
 
@@ -328,9 +451,11 @@ async function runAutoVoiceLoop(runId) {
 
 function startAutoVoice(restart) {
   if (!filtered.length) { updateAutoVoiceStatus(); return; }
-  if (!('speechSynthesis' in window)) { alert('Browser tidak mendukung voice synthesis.'); return; }
   if (restart) stopAutoVoice();
   if (autoVoiceRunning) return;
+  // Prime <audio> with user gesture context — this lets it keep playing on lock screen
+  try { getTTSAudio(); } catch (e) { /* ignore */ }
+  setupMediaSessionHandlers();
   autoVoiceRunning = true;
   autoVoiceRunId += 1;
   const runId = autoVoiceRunId;
