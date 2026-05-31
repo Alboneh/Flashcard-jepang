@@ -122,19 +122,54 @@ async function speakText(text, lang) {
   return new Promise((resolve) => {
     let done = false;
     let started = false;
+    let durationTimer = null;
 
-    const finish = () => { if (done) return; done = true; cleanup(); resolve(); };
+    const finish = () => {
+      if (done) return;
+      done = true;
+      cleanup();
+      resolve();
+    };
     const cleanup = () => {
       audio.removeEventListener('ended', finish);
       audio.removeEventListener('error', onError);
       audio.removeEventListener('playing', onPlaying);
+      audio.removeEventListener('loadedmetadata', onMeta);
+      if (durationTimer) { clearTimeout(durationTimer); durationTimer = null; }
     };
-    const onPlaying = () => { started = true; };
+    const onPlaying = () => {
+      started = true;
+      if ('mediaSession' in navigator) {
+        try {
+          navigator.mediaSession.playbackState = 'playing';
+          if (audio.duration && isFinite(audio.duration)) {
+            navigator.mediaSession.setPositionState({
+              duration: audio.duration,
+              position: 0,
+              playbackRate: 1,
+            });
+          }
+        } catch (e) { /* ignore */ }
+      }
+    };
+    const onMeta = () => {
+      // Backup: if 'ended' never fires (can happen on lock screen),
+      // force resolve after duration + 1 sec buffer.
+      if (audio.duration && isFinite(audio.duration) && audio.duration > 0) {
+        const maxMs = (audio.duration + 1) * 1000;
+        durationTimer = setTimeout(() => {
+          if (!done) {
+            console.warn('[speakText] ended event missing, forcing resolve for:', cleaned);
+            finish();
+          }
+        }, maxMs);
+      }
+    };
     const onError = async () => {
-      console.warn('[speakText] <audio> error for', cleaned, '— falling back to speechSynthesis');
-      cleanup();
+      console.warn('[speakText] <audio> error for', cleaned, '- falling back to speechSynthesis');
       if (done) return;
       done = true;
+      cleanup();
       await speakViaSynthesis(cleaned, lang);
       resolve();
     };
@@ -142,22 +177,23 @@ async function speakText(text, lang) {
     audio.addEventListener('ended', finish);
     audio.addEventListener('error', onError);
     audio.addEventListener('playing', onPlaying);
+    audio.addEventListener('loadedmetadata', onMeta);
 
     audio.play().catch(async (err) => {
-      console.warn('[speakText] play() rejected for', cleaned, ':', err && err.message, '— falling back to speechSynthesis');
-      cleanup();
+      console.warn('[speakText] play() rejected for', cleaned, ':', err && err.message);
       if (done) return;
       done = true;
+      cleanup();
       await speakViaSynthesis(cleaned, lang);
       resolve();
     });
 
-    // Safety timeout: if audio never starts playing within 5 sec, fallback
+    // Hard safety: if audio never starts within 5s, fallback
     setTimeout(() => {
       if (!started && !done) {
-        console.warn('[speakText] audio never started for', cleaned, '— falling back to speechSynthesis');
-        cleanup();
+        console.warn('[speakText] audio never started for', cleaned, '- falling back to speechSynthesis');
         done = true;
+        cleanup();
         speakViaSynthesis(cleaned, lang).then(resolve);
       }
     }, 5000);
@@ -179,8 +215,19 @@ function updateMediaSession(v) {
       title: title || 'Kosakata',
       artist: v.id || '',
       album: v.cat || 'Kosakata',
+      artwork: [
+        { src: 'assets/favicon.svg', sizes: '96x96', type: 'image/svg+xml' },
+        { src: 'assets/favicon.svg', sizes: '192x192', type: 'image/svg+xml' },
+        { src: 'assets/favicon.svg', sizes: '512x512', type: 'image/svg+xml' },
+      ],
     });
+    navigator.mediaSession.playbackState = 'playing';
   } catch (e) { /* ignore */ }
+}
+
+function setMediaSessionPaused() {
+  if (!('mediaSession' in navigator)) return;
+  try { navigator.mediaSession.playbackState = 'paused'; } catch (e) { /* ignore */ }
 }
 
 function setupMediaSessionHandlers() {
