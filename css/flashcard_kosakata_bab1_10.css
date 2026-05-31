@@ -249,6 +249,132 @@
   margin-top: 8px;
 }
 
+/* ===== Music mode ===== */
+.music-mode {
+  padding: 24px 0;
+}
+
+.music-player {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.music-cover {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--r-lg);
+  background: linear-gradient(135deg, var(--pink, #e8607e), var(--coral, #e89476));
+  display: grid;
+  place-items: center;
+  font-size: 3rem;
+  color: white;
+  margin: 0 auto;
+  box-shadow: 0 8px 24px rgba(232, 96, 126, 0.25);
+}
+
+.music-meta {
+  text-align: center;
+}
+
+.music-title {
+  font-family: var(--font-ui);
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.music-sub {
+  font-size: 0.85rem;
+  color: var(--text-soft);
+}
+
+.music-options {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+}
+
+.music-option {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: var(--text-soft);
+  cursor: pointer;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--r-pill);
+  user-select: none;
+}
+
+.music-option input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.music-audio {
+  width: 100%;
+  height: 40px;
+}
+
+.music-tracklist {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 320px;
+  overflow-y: auto;
+  border-top: 1px dashed var(--border);
+  padding-top: 16px;
+  margin-top: 8px;
+}
+
+.music-track {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: var(--r-md);
+  cursor: pointer;
+  font-family: var(--font-ui);
+  font-size: 0.9rem;
+  color: var(--text);
+  transition: all var(--t) var(--ease);
+  text-align: left;
+}
+
+.music-track:hover {
+  background: var(--surface-soft);
+  border-color: var(--border-strong);
+}
+
+.music-track.active {
+  background: linear-gradient(135deg, rgba(232, 96, 126, 0.15), rgba(232, 148, 118, 0.15));
+  border-color: var(--pink, #e8607e);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.music-track-count {
+  font-size: 0.78rem;
+  color: var(--text-soft);
+}
+
+@media (max-width: 540px) {
+  .music-player { padding: 18px; }
+  .music-cover { width: 96px; height: 96px; font-size: 2.4rem; }
+  .music-title { font-size: 1.15rem; }
+}
+
 .auto-voice-controls .side-btn {
   font-size: 0.78rem;
   padding: 6px 12px;

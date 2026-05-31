@@ -77,11 +77,12 @@ function cleanForTTS(text, lang) {
     .trim();
 }
 
-function speakViaSynthesis(text, lang) {
+function speakText(text, lang) {
+  const cleaned = cleanForTTS(text, lang);
   return new Promise((resolve) => {
-    if (!('speechSynthesis' in window) || !text) return resolve();
+    if (!('speechSynthesis' in window) || !cleaned) return resolve();
     try {
-      const utt = new SpeechSynthesisUtterance(text);
+      const utt = new SpeechSynthesisUtterance(cleaned);
       utt.lang = lang === 'ja' ? 'ja-JP' : 'id-ID';
       utt.rate = 0.95;
       utt.onend = () => resolve();
@@ -91,112 +92,6 @@ function speakViaSynthesis(text, lang) {
     } catch (e) {
       resolve();
     }
-  });
-}
-
-async function speakText(text, lang) {
-  const cleaned = cleanForTTS(text, lang);
-  if (!cleaned) return;
-  if (!window.TTSCache) {
-    console.warn('[speakText] TTSCache missing, using speechSynthesis');
-    return speakViaSynthesis(cleaned, lang);
-  }
-
-  let res;
-  try { res = await TTSCache.getAudioURL(cleaned, lang); }
-  catch (e) {
-    console.warn('[speakText] TTSCache error:', e);
-    return speakViaSynthesis(cleaned, lang);
-  }
-  if (!res || !res.url) {
-    console.warn('[speakText] No URL returned for:', cleaned, lang);
-    return speakViaSynthesis(cleaned, lang);
-  }
-
-  releaseTTSURL();
-  ttsCurrentURL = res.url;
-
-  const audio = getTTSAudio();
-  audio.src = ttsCurrentURL;
-
-  return new Promise((resolve) => {
-    let done = false;
-    let started = false;
-    let durationTimer = null;
-
-    const finish = () => {
-      if (done) return;
-      done = true;
-      cleanup();
-      resolve();
-    };
-    const cleanup = () => {
-      audio.removeEventListener('ended', finish);
-      audio.removeEventListener('error', onError);
-      audio.removeEventListener('playing', onPlaying);
-      audio.removeEventListener('loadedmetadata', onMeta);
-      if (durationTimer) { clearTimeout(durationTimer); durationTimer = null; }
-    };
-    const onPlaying = () => {
-      started = true;
-      if ('mediaSession' in navigator) {
-        try {
-          navigator.mediaSession.playbackState = 'playing';
-          if (audio.duration && isFinite(audio.duration)) {
-            navigator.mediaSession.setPositionState({
-              duration: audio.duration,
-              position: 0,
-              playbackRate: 1,
-            });
-          }
-        } catch (e) { /* ignore */ }
-      }
-    };
-    const onMeta = () => {
-      // Backup: if 'ended' never fires (can happen on lock screen),
-      // force resolve after duration + 1 sec buffer.
-      if (audio.duration && isFinite(audio.duration) && audio.duration > 0) {
-        const maxMs = (audio.duration + 1) * 1000;
-        durationTimer = setTimeout(() => {
-          if (!done) {
-            console.warn('[speakText] ended event missing, forcing resolve for:', cleaned);
-            finish();
-          }
-        }, maxMs);
-      }
-    };
-    const onError = async () => {
-      console.warn('[speakText] <audio> error for', cleaned, '- falling back to speechSynthesis');
-      if (done) return;
-      done = true;
-      cleanup();
-      await speakViaSynthesis(cleaned, lang);
-      resolve();
-    };
-
-    audio.addEventListener('ended', finish);
-    audio.addEventListener('error', onError);
-    audio.addEventListener('playing', onPlaying);
-    audio.addEventListener('loadedmetadata', onMeta);
-
-    audio.play().catch(async (err) => {
-      console.warn('[speakText] play() rejected for', cleaned, ':', err && err.message);
-      if (done) return;
-      done = true;
-      cleanup();
-      await speakViaSynthesis(cleaned, lang);
-      resolve();
-    });
-
-    // Hard safety: if audio never starts within 5s, fallback
-    setTimeout(() => {
-      if (!started && !done) {
-        console.warn('[speakText] audio never started for', cleaned, '- falling back to speechSynthesis');
-        done = true;
-        cleanup();
-        speakViaSynthesis(cleaned, lang).then(resolve);
-      }
-    }, 5000);
   });
 }
 
@@ -267,8 +162,6 @@ function prefetchNextCard() {
 async function speakCurrentCardSequence(autoFlip) {
   if (!filtered.length) return;
   const v = filtered[idx];
-  updateMediaSession(v);
-  prefetchNextCard();
 
   const jpText = getJapaneseReadText(v);
   const idText = v.id;
@@ -331,6 +224,7 @@ function renderBabFilter() {
       renderBabFilter();
       filterCards();
       closeMobileSidebar();
+      if (mode === 'music') loadMusicForCurrentBab();
     });
   });
 }
@@ -466,11 +360,142 @@ function setMode(m) {
   document.querySelectorAll('.mode-tab').forEach((t) => {
     t.classList.toggle('active', t.dataset.mode === m);
   });
+  const flashCard = $k('flashMode');
+  const musicCard = $k('musicMode');
+  if (flashCard) flashCard.style.display = (m === 'music') ? 'none' : '';
+  if (musicCard) musicCard.style.display = (m === 'music') ? 'block' : 'none';
+
   const fc = $k('fc');
   if (fc) fc.classList.toggle('mode-side', m === 'side');
   if (m === 'side') { flipped = false; updateFlipState(); }
   if (m === 'auto') startAutoVoice(true);
   else { stopAutoVoice(); updateAutoVoiceStatus(); }
+
+  if (m === 'music') {
+    pauseMusic();
+    renderMusicTracklist();
+    loadMusicForCurrentBab();
+  } else {
+    pauseMusic();
+  }
+}
+
+/* ===== Music mode ===== */
+function babSlug(babName) {
+  return String(babName).trim().toLowerCase()
+    .replace(/\s+/g, '-')
+    .replace(/[^a-z0-9-]/g, '');
+}
+
+function listAvailableBabs() {
+  // Same logic as getBabList but without "Semua"
+  const map = new Map();
+  vocab.forEach((v) => {
+    if (isVocabHidden(v)) return;
+    const c = v.cat || 'Lainnya';
+    map.set(c, (map.get(c) || 0) + 1);
+  });
+  return Array.from(map.entries())
+    .map(([name, count]) => ({ name, count, slug: babSlug(name) }))
+    .sort((a, b) => {
+      const na = parseInt(a.name.replace(/\D/g, ''), 10) || 999;
+      const nb = parseInt(b.name.replace(/\D/g, ''), 10) || 999;
+      return na - nb;
+    });
+}
+
+function renderMusicTracklist() {
+  const el = $k('musicTracklist');
+  if (!el) return;
+  const babs = listAvailableBabs();
+  el.innerHTML = babs.map((b) => `
+    <button class="music-track" data-bab="${b.name}">
+      <span class="music-track-name">${b.name}</span>
+      <span class="music-track-count">${b.count} kata</span>
+    </button>
+  `).join('');
+  el.querySelectorAll('.music-track').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const name = btn.dataset.bab;
+      selectedBab = name;
+      try { localStorage.setItem(SELECTED_BAB_KEY, selectedBab); } catch (e) { /* ignore */ }
+      renderBabFilter();
+      filterCards();
+      loadMusicForCurrentBab(true);
+    });
+  });
+  highlightCurrentMusicTrack();
+}
+
+function highlightCurrentMusicTrack() {
+  const el = $k('musicTracklist');
+  if (!el) return;
+  el.querySelectorAll('.music-track').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.bab === selectedBab);
+  });
+}
+
+const MUSIC_REVERSE_KEY = 'kosakata-music-reverse';
+let musicReverseMode = (function () {
+  try { return localStorage.getItem(MUSIC_REVERSE_KEY) === '1'; }
+  catch (e) { return false; }
+})();
+
+function toggleMusicReverse() {
+  const cb = $k('musicReverseToggle');
+  musicReverseMode = cb ? cb.checked : !musicReverseMode;
+  try { localStorage.setItem(MUSIC_REVERSE_KEY, musicReverseMode ? '1' : '0'); } catch (e) { /* ignore */ }
+  loadMusicForCurrentBab(false, true);
+}
+
+function loadMusicForCurrentBab(autoPlay, forceReload) {
+  const audio = $k('musicAudio');
+  const title = $k('musicTitle');
+  const sub = $k('musicSub');
+  const revToggle = $k('musicReverseToggle');
+  if (revToggle) revToggle.checked = musicReverseMode;
+  if (!audio) return;
+
+  if (!selectedBab || selectedBab === 'Semua') {
+    if (title) title.textContent = 'Pilih bab di tracklist atau sidebar';
+    if (sub) sub.textContent = 'Music mode butuh bab tertentu, bukan "Semua"';
+    audio.removeAttribute('src');
+    audio.load();
+    return;
+  }
+
+  const slug = babSlug(selectedBab);
+  const suffix = musicReverseMode ? '-rev' : '';
+  const src = `assets/audio/bab/${slug}${suffix}.mp3`;
+  if (!forceReload && audio.src && audio.src.endsWith(src)) return;
+
+  audio.src = src;
+  const direction = musicReverseMode ? 'ID → JP (reversed)' : 'JP → ID';
+  if (title) title.textContent = selectedBab;
+  if (sub) sub.textContent = `${direction} — tap play untuk mulai`;
+
+  if ('mediaSession' in navigator) {
+    try {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: `${selectedBab} (${direction})`,
+        artist: 'Kosakata Jepang',
+        album: 'Minna no Nihongo',
+        artwork: [
+          { src: 'assets/favicon.svg', sizes: '512x512', type: 'image/svg+xml' },
+        ],
+      });
+    } catch (e) { /* ignore */ }
+  }
+
+  highlightCurrentMusicTrack();
+  if (autoPlay) {
+    audio.play().catch(() => { /* user gesture might be needed */ });
+  }
+}
+
+function pauseMusic() {
+  const audio = $k('musicAudio');
+  if (audio) { try { audio.pause(); } catch (e) { /* ignore */ } }
 }
 
 function updateAutoVoiceStatus() {
@@ -536,11 +561,9 @@ async function runAutoVoiceLoop(runId) {
 
 function startAutoVoice(restart) {
   if (!filtered.length) { updateAutoVoiceStatus(); return; }
+  if (!('speechSynthesis' in window)) { alert('Browser tidak mendukung voice synthesis.'); return; }
   if (restart) stopAutoVoice();
   if (autoVoiceRunning) return;
-  // Prime <audio> with user gesture context — this lets it keep playing on lock screen
-  try { getTTSAudio(); } catch (e) { /* ignore */ }
-  setupMediaSessionHandlers();
   autoVoiceRunning = true;
   autoVoiceRunId += 1;
   const runId = autoVoiceRunId;

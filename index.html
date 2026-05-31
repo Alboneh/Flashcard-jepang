@@ -69,7 +69,7 @@
 
     <div class="sidebar-section sidebar-version">
       <span class="section-label">Last updated</span>
-      <span class="app-version-line" title="Kalau yang muncul di sini sesuai versi terbaru, berarti bukan cache">2026-05-31 12:36</span>
+      <span class="app-version-line" title="Kalau yang muncul di sini sesuai versi terbaru, berarti bukan cache">2026-05-31 15:24</span>
     </div>
   </aside>
 
@@ -106,6 +106,25 @@
         <button class="mode-tab active" data-mode="flash" onclick="setMode('flash')">🎴 Flashcard</button>
         <button class="mode-tab" data-mode="side" onclick="setMode('side')">📖 Berdampingan</button>
         <button class="mode-tab" data-mode="auto" onclick="setMode('auto')">🔊 Auto Voice</button>
+        <button class="mode-tab" data-mode="music" onclick="setMode('music')">🎵 Music</button>
+      </div>
+
+      <div class="music-mode" id="musicMode" style="display:none">
+        <div class="music-player">
+          <div class="music-cover">🎵</div>
+          <div class="music-meta">
+            <div class="music-title" id="musicTitle">Pilih bab di sidebar</div>
+            <div class="music-sub" id="musicSub">Music player — putar audio satu bab penuh</div>
+          </div>
+          <div class="music-options">
+            <label class="music-option">
+              <input type="checkbox" id="musicReverseToggle" onchange="toggleMusicReverse()">
+              <span>↔ Reverse (ID → JP)</span>
+            </label>
+          </div>
+          <audio class="music-audio" id="musicAudio" controls preload="metadata"></audio>
+          <div class="music-tracklist" id="musicTracklist"></div>
+        </div>
       </div>
 
       <div class="kosakata-card" id="flashMode">
@@ -168,7 +187,6 @@
 
   <script src="js/hidden.js"></script>
   <script src="data/database.js"></script>
-  <script src="js/tts-cache.js"></script>
   <script src="js/flashcard_kosakata_bab1_10.js"></script>
   <script src="js/bgm.js"></script>
   <script>
