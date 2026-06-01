@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Ketik Kosakata</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/app-shell.css">
+  <link rel="stylesheet" href="css/kuis-kosakata.css">
+</head>
+<body class="app-shell" data-page="kuis-ketik">
+
+  <button class="mobile-menu-toggle" id="mobileMenuToggle" type="button" aria-label="Buka menu">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+  </button>
+  <div class="mobile-backdrop" id="mobileBackdrop"></div>
+
+  <aside class="app-sidebar" id="appSidebar">
+    <div class="app-logo">
+      <div class="logo-icon">✍️</div>
+      <div class="logo-text">
+        <span class="logo-jp">タイピング クイズ</span>
+        <span class="logo-sub">Kuis Ketik</span>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <span class="section-label">Sesi</span>
+      <div class="session-card">
+        <div class="session-num"><b id="sideCorrect">0</b> <span>/ <span id="sideTotal">0</span> benar</span></div>
+      </div>
+    </div>
+
+    <nav class="sidebar-section" aria-label="Menu utama">
+      <span class="section-label">Menu</span>
+      <a href="index.html" class="nav-link" data-page="kosakata"><span class="nav-icon">📚</span><span>Kosakata</span></a>
+      <a href="bunpo.html" class="nav-link" data-page="bunpo"><span class="nav-icon">📖</span><span>Bunpo</span></a>
+      <a href="kanji-n5.html" class="nav-link" data-page="kanji"><span class="nav-icon">本</span><span>Kanji</span></a>
+      <a href="latihan.html" class="nav-link" data-page="latihan-vocab"><span class="nav-icon">✎</span><span>Latihan Vocab</span></a>
+      <a href="kuis-kosakata.html" class="nav-link active" data-page="kuis-ketik"><span class="nav-icon">✍️</span><span>Kuis Ketik</span></a>
+      <a href="bunpo-quiz-full.html" class="nav-link" data-page="latihan-bunpo"><span class="nav-icon">✦</span><span>Latihan Bunpo</span></a>
+      <a href="sembunyikan.html" class="nav-link" data-page="tersembunyi" style="display:none"><span class="nav-icon">🙈</span><span>Tersembunyi</span></a>
+    </nav>
+
+    <div class="sidebar-section">
+      <span class="section-label">Cara Latihan</span>
+      <p class="sidebar-tip">Ketik jawabanmu lalu tekan <b>Enter</b>. Kalau salah lebih dari 5×, jawaban otomatis muncul.</p>
+    </div>
+  </aside>
+
+  <div class="app-main no-bottombar">
+    <header class="app-topbar">
+      <div class="topbar-title-wrap">
+        <h1 class="topbar-title">Kuis Ketik Kosakata</h1>
+      </div>
+      <div class="topbar-right">
+        <button class="icon-btn" id="soundBtn" type="button" onclick="toggleSound()" title="Suara">🔊</button>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch tema">
+          <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="app-content">
+
+      <!-- ===== INTRO / KONFIGURASI ===== -->
+      <section class="card" id="introPanel">
+        <div class="intro-head">
+          <h2 class="intro-title">Ketik jawabanmu</h2>
+          <p class="intro-sub">Pilih bab, arah soal, dan jumlah. Jawaban diketik sendiri — bukan pilihan ganda.</p>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-box"><div class="s-n" id="iPola">0</div><div class="s-l">Bab tersedia</div></div>
+          <div class="stat-box"><div class="s-n" id="iTotal">0</div><div class="s-l">Total kata</div></div>
+        </div>
+
+        <div class="field-label">Pilih bab</div>
+        <div class="bab-dropdown" id="babDropdown">
+          <button class="bab-btn" id="babBtn" type="button" onclick="toggleDropdown(event)">
+            <span id="babBtnText">Semua Bab</span>
+            <span class="bab-arrow">▾</span>
+          </button>
+          <div class="bab-panel" id="babPanel">
+            <div class="bab-hint">Kosongkan = semua bab. Centang bab tertentu untuk fokus.</div>
+            <div class="bab-list" id="babList"></div>
+          </div>
+        </div>
+        <div class="selection-summary" id="selSummary">Semua bab</div>
+
+        <div class="field-label">Arah soal</div>
+        <div class="seg" id="dirRow">
+          <button class="seg-btn on" onclick="setDirection(this,'id-to-jp')">Arti → Ketik JP</button>
+          <button class="seg-btn" onclick="setDirection(this,'jp-to-id')">JP → Ketik Arti</button>
+          <button class="seg-btn" onclick="setDirection(this,'campur')">Campur</button>
+        </div>
+
+        <div class="field-label">Jumlah soal</div>
+        <div class="seg" id="modeRow">
+          <button class="seg-btn" onclick="setSession(this,10)">10</button>
+          <button class="seg-btn on" onclick="setSession(this,20)">20</button>
+          <button class="seg-btn" onclick="setSession(this,40)">40</button>
+          <button class="seg-btn" onclick="setSession(this,9999)">Semua</button>
+        </div>
+
+        <button class="primary-btn" id="startBtn" onclick="startQuiz()">Mulai</button>
+      </section>
+
+      <!-- ===== KUIS ===== -->
+      <div id="quizPanel" style="display:none;">
+        <div class="prog-wrap">
+          <div class="prog-info">
+            <span id="pLabel">Soal 1</span>
+            <span id="pScore">0 benar</span>
+          </div>
+          <div class="prog-track"><div class="prog-fill" id="progFill"></div></div>
+        </div>
+        <div id="qWrap"></div>
+      </div>
+
+      <!-- ===== HASIL ===== -->
+      <section class="card result-panel" id="resultPanel" style="display:none;">
+        <div class="result-score"><span id="rScore">0</span><span class="rd" id="rDenom">/0</span></div>
+        <h2 id="rTitle">Hasil</h2>
+        <p class="result-msg" id="rMsg"></p>
+
+        <div class="r-stats">
+          <div class="r-stat g"><div class="sn" id="rC">0</div><div class="sl">Benar</div></div>
+          <div class="r-stat r"><div class="sn" id="rW">0</div><div class="sl">Salah</div></div>
+          <div class="r-stat"><div class="sn" id="rP">0%</div><div class="sl">Akurasi</div></div>
+        </div>
+
+        <div class="review-box" id="reviewBox"></div>
+        <div class="btn-row">
+          <button class="primary-btn" onclick="retryQuiz()">Ulangi</button>
+          <button class="ghost-btn" onclick="backMenu()">Kembali ke menu</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- Popup jawaban (muncul kalau salah > 5x atau klik "Lihat jawaban") -->
+  <div class="answer-popup" id="answerPopup" role="dialog" aria-modal="true" aria-labelledby="popupTitle">
+    <div class="answer-popup-card">
+      <div class="popup-title" id="popupTitle">Jawaban</div>
+      <div class="popup-jp" id="popupJp">–</div>
+      <div class="popup-id" id="popupId">–</div>
+      <div class="popup-bab" id="popupBab"></div>
+      <button class="primary-btn" id="popupCloseBtn" type="button" onclick="popupContinue()">Mengerti, lanjut</button>
+    </div>
+  </div>
+
+  <script src="data/database.js"></script>
+  <script src="js/tts-cache.js"></script>
+  <script src="js/kuis-kosakata.js"></script>
+  <script>
+    /* Mobile sidebar */
+    const _appSidebar = document.getElementById('appSidebar');
+    const _mobileBackdrop = document.getElementById('mobileBackdrop');
+    const _mobileToggle = document.getElementById('mobileMenuToggle');
+    if (_mobileToggle) _mobileToggle.addEventListener('click', () => {
+      _appSidebar.classList.add('is-open');
+      _mobileBackdrop.classList.add('is-open');
+    });
+    if (_mobileBackdrop) _mobileBackdrop.addEventListener('click', () => {
+      _appSidebar.classList.remove('is-open');
+      _mobileBackdrop.classList.remove('is-open');
+    });
+
+    /* Dark mode */
+    const _TK = 'bunpo-theme';
+    function _applyTheme(t) { if (t === 'dark') document.documentElement.setAttribute('data-theme','dark'); else document.documentElement.removeAttribute('data-theme'); }
+    _applyTheme(localStorage.getItem(_TK) === 'dark' ? 'dark' : 'light');
+    document.getElementById('themeToggle').addEventListener('click', () => {
+      const c = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+      const n = c === 'dark' ? 'light' : 'dark';
+      _applyTheme(n);
+      localStorage.setItem(_TK, n);
+    });
+  </script>
+</body>
+</html>
